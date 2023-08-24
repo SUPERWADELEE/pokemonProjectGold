@@ -14,5 +14,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pokemons');
+});
+
+
+
+Route::get('/pokemon', function () {
+    return view('pokemon');
+});
+
+
+
+Route::get('/addRace', function () {
+    return view('addRace');
+});
+
+
+Route::get('/addProfile', function () {
+    return view('addProfile');
 });
