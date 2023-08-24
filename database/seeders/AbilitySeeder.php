@@ -13,19 +13,17 @@ class AbilitySeeder extends Seeder
      */
     public function run(): void
     {
-      
-    $json = file_get_contents(__DIR__ . '/allAbilities.txt');
 
-    $data = json_decode($json, true);
+        $json = file_get_contents(__DIR__ . '/allAbilities.txt');
 
-    foreach ($data['data']['pokemon_v2_ability'] as $item) {
-        if (isset($item['pokemon_v2_abilitynames'][0]['name'])) {
-            Ability::create([
-                'name' => $item['pokemon_v2_abilitynames'][0]['name']
-            ]);
+        $data = json_decode($json, true);
+
+        foreach ($data['data']['pokemon_v2_ability'] as $item) {
+            if (isset($item['pokemon_v2_abilitynames'][0]['name'])) {
+                Ability::create([
+                    'name' => $item['pokemon_v2_abilitynames'][0]['name']
+                ]);
+            }
         }
-    
-}
-
     }
 }

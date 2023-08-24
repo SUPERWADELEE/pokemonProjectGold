@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('races', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->tinyInteger('evolution');
             $table->string('photo');
             $table->timestamps();
         });
