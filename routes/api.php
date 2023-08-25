@@ -6,6 +6,7 @@ use Database\Seeders\NatureSeeder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NatureController;
+use App\Http\Controllers\AbilityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,8 +47,8 @@ Route::patch('natures/{id}', [NatureController::class, 'update']);
  */
 // ability列表
 Route::get('abilities', [AbilityController::class, 'index']);
-Route::post('abilities', [NatureController::class, 'store']);
-Route::patch('abilities/{id}', [NatureController::class, 'update']);
+Route::post('abilities', [AbilityController::class, 'store']);
+Route::patch('abilities/{id}', [AbilityController::class, 'update']);
 
 
 /**
@@ -55,4 +56,4 @@ Route::patch('abilities/{id}', [NatureController::class, 'update']);
  */
 // natural列表
 Route::get('races', [NatureController::class, 'index']);
-Route::patch('abilities/{id}', [NatureController::class, 'update']);
+Route::patch('races/{id}', [NatureController::class, 'update']);
