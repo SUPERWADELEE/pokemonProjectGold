@@ -16,9 +16,7 @@ return new class extends Migration
         $table->unsignedBigInteger('race_id');
         $table->unsignedBigInteger('skill_id');
 
-        $table->foreign('race_id')->references('id')->on('races')->onDelete('cascade')->onUpdate('cascade');
-        $table->foreign('skill_id')->references('id')->on('skills')->onDelete('cascade')->onUpdate('cascade');
-
+        
 
     });
 }

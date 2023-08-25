@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\PokemonController;
+use App\Models\Ability;
+use Database\Seeders\NatureSeeder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NatureController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +22,37 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-
+/**
+ * pokemon管理
+ */
+// pokemon列表
 Route::get('pokemons', [PokemonController::class, 'index']);
+Route::post('pokemons', [PokemonController::class, 'store']);
+Route::get('pokemons/{id}', [PokemonController::class, 'show']);
+Route::patch('pokemons', [PokemonController::class, 'update']);
+Route::delete('pokemons/{id}', [PokemonController::class, 'destroy']);
+Route::patch('pokemons/{id}', [PokemonController::class, 'evolution']);
+
+/**
+ * natural管理
+ */
+Route::get('natures', [NatureController::class, 'index']);
+Route::post('natures', [NatureController::class, 'store']);
+Route::patch('natures/{id}', [NatureController::class, 'update']);
+
+
+/**
+ * ability管理
+ */
+// ability列表
+Route::get('abilities', [AbilityController::class, 'index']);
+Route::post('abilities', [NatureController::class, 'store']);
+Route::patch('abilities/{id}', [NatureController::class, 'update']);
+
+
+/**
+ * race管理
+ */
+// natural列表
+Route::get('races', [NatureController::class, 'index']);
+Route::patch('abilities/{id}', [NatureController::class, 'update']);

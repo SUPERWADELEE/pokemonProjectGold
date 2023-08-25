@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Nature extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name', 
+        
+        // ... 其他允許的屬性 ...
+    ];
 }
