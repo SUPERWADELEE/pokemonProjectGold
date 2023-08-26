@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('photo');
-            $table->tinyInteger('evolution_level')->unsigned();
+            $table->tinyInteger('evolution_level')->unsigned()->nullable();;
             $table->timestamps();
         });
     }

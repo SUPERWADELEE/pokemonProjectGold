@@ -13,5 +13,12 @@ class Race extends Model
         'name', 
         'photo',
         // ... 其他允許的屬性 ...
+
     ];
+
+    public function skills()
+{
+    return $this->belongsToMany(Skill::class);
+}
+
 }
