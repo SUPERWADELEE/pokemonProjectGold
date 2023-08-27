@@ -24,21 +24,51 @@ class PokemonController extends Controller
     // 寶可夢新增
     public function store(Request $request)
     {
+        // dd($request->skills);
         $validationData = $request->validate([
             'name' => 'required|string|max:255',
-            'race' => 'required|string|max:255',
-            'level' => 'required|int|min:1|max:100',
-            'ability' => 'required|string|max:255',
-            'nature' => 'required|string|max:255',
-            'skills' => 'required|array|min:1|max:4',
+            'race_id' => 'required|integer|exists:races,id',
+            'ability_id' => 'required|integer|exists:abilities,id',
+            'nature_id' => 'required|integer|exists:natures,id',
+            'level' => [
+                'required',
+                'integer',
+                function ($attribute, $value, $fail) use ($request) {
+                    $race = Race::find($request->input('race_id'));
+                    if ($race && $value >= $race->evolution_level) {
+                        $fail("The level must be less than or equal to the race's minimum evolution level.");
+                    }
+                }
+            ],
+            'skills' => [
+                'required',
+                'array',
+                'min:1',
+                'max:4',
+                function ($attribute, $value, $fail) use ($request) {
+                    $race = Race::find($request->input('race_id'));
+                    if (!$race) {
+                        return $fail('The race_id is invalid.');
+                    }
+                    $allowedSkills = $race->skills->pluck('id')->toArray();
+                    // dd($allowedSkills);
+                    // dd($value);
+                    foreach ($value as $skillId) {
+                        if (!in_array($skillId, $allowedSkills)) {
+                            return $fail("The skill with ID {$skillId} is not allowed for this race.");
+                        }
+                    }
+                }
+            ]
         ]);
+        
 
         Pokemon::create([
             'name' => $validationData['name'],
-            'race' => $validationData['race'],
+            'race_id' => $validationData['race_id'],
             'level' => $validationData['level'],
-            'ability' => $validationData['ability'],
-            'nature' => $validationData['nature'],
+            'ability_id' => $validationData['ability_id'],
+            'nature_id' => $validationData['nature_id'],
             'skills' => $validationData['skills'],
         ]);
 
