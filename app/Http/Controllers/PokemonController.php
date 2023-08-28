@@ -40,18 +40,8 @@ class PokemonController extends Controller
     // 寶可夢資料修改
     public function update(UpdatePokemonRequest $request, $id)
     {
-        // dd('fuck');
-        // dd($request->name);
-       
-
-       
         $pokemon = Pokemon::find($id);
-
-        // 創建基於 $pokemon 的原始數據陣列
-       
-
-        // 使用 array_merge 合併 $originalData 和 $validationData
-       
+        // 使用此方法更新只有實際有輸入數據的欄位才會做更新
         $pokemon->update($request->only([
             'name',
             'race_id',
@@ -60,7 +50,7 @@ class PokemonController extends Controller
             'nature_id',
             'skills'
         ]));
-        
+
         return response(['message' => 'pokemon updated successfully'], 200);
     }
 
@@ -97,6 +87,21 @@ class PokemonController extends Controller
         // 拿到寶可夢進化等級
         $pokemon = Pokemon::with('race')->find($id);
         $evolutionLevel = $pokemon->race->evolution_level;
+
+        try {
+            if (!$evolutionLevel) {
+                throw new Exception("寶可夢已是最終形態");
+            }
+
+            if ($pokemon->level > $evolutionLevel) {
+                $pokemon->update(['race_id' => $pokemon->race_id + 1]);
+                return response(['message' => "This Pokemon evolves."], 200);
+            }
+
+            throw new Exception("寶可夢未達進化條件");
+        } catch (Exception $e) {
+            return response(['message' => $e->getMessage()], 400);
+        }
 
 
         // try{
@@ -135,7 +140,7 @@ class PokemonController extends Controller
         // return response(['message' => "寶可夢未達進化條件"], 400);
 
 
-        
+
 
 
 
