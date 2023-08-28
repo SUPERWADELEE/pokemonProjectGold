@@ -24,4 +24,26 @@ class Pokemon extends Model
         // ... 其他允許的屬性 ...
 
     ];
+
+    public function race(){
+        return $this->belongsTo(Race::class);
+
+    }
+
+    public function nature(){
+        return $this->belongsTo(Nature::class);
+
+    }
+
+    public function ability(){
+        return $this->belongsTo(Ability::class);
+
+    }
+
+    public function skills()
+{
+    return $this->belongsToMany(Skill::class, 'pokemon_skill');
+}
+    
+    
 }

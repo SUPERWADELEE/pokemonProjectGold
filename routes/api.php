@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NatureController;
 use App\Http\Controllers\AbilityController;
+use App\Http\Controllers\RaceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +31,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('pokemons', [PokemonController::class, 'index']);
 Route::post('pokemons', [PokemonController::class, 'store']);
 Route::get('pokemons/{id}', [PokemonController::class, 'show']);
-Route::patch('pokemons', [PokemonController::class, 'update']);
+Route::patch('pokemons/{id}', [PokemonController::class, 'update']);
 Route::delete('pokemons/{id}', [PokemonController::class, 'destroy']);
-Route::patch('pokemons/{id}', [PokemonController::class, 'evolution']);
+Route::put('pokemons/{id}/evolution', [PokemonController::class, 'evolution']);
 
 /**
  * natural管理
@@ -55,5 +56,7 @@ Route::patch('abilities/{id}', [AbilityController::class, 'update']);
  * race管理
  */
 // natural列表
-Route::get('races', [NatureController::class, 'index']);
-Route::patch('races/{id}', [NatureController::class, 'update']);
+Route::get('races', [RaceController::class, 'index']);
+Route::get('races/{id}/evolution', [RaceController::class, 'evolution']);
+Route::get('races/{id}/skill', [RaceController::class, 'skills']);
+

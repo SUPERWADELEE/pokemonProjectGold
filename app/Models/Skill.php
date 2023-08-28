@@ -9,8 +9,7 @@ class Skill extends Model
 {
     use HasFactory;
     public function Races()
-{
-    return $this->belongsToMany(Race::class);
-}
-
+    {
+        return $this->belongsToMany(Race::class);
+    }
 }
