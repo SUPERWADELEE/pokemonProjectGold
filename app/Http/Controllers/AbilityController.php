@@ -14,6 +14,7 @@ class AbilityController extends Controller
         return $allNatures;
     }
 
+    
     // 性格新增
     public function store(Request $request)
     {
@@ -27,6 +28,7 @@ class AbilityController extends Controller
 
         return response(['message' => 'Ability saved successfully'], 201);
     }
+
 
     // 性格修改
     public function update(Request $request, $id)
