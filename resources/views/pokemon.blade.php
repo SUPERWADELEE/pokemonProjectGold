@@ -25,6 +25,7 @@
           <svg viewBox="0 0 2 2" width="3" height="3" aria-hidden="true" class="fill-gray-900">
             <circle cx="1" cy="1" r="1" />
           </svg>
+          <p id = 'pokemonData'></p>
           <div class="text-gray-600">CEO of Workcation</div>
           <button onclick="upgradePokemon()">修改</button>
           <button onclick="deletePokemon()">放生</button>
@@ -35,6 +36,36 @@
     </figure>
   </div>
 </section>
+
+<script>
+    function upgradePokemon() {
+      // 這裡是模擬新增寶可夢的API請求
+
+
+      fetch('http://127.0.0.1:8000/api/pokemons/11', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          }
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Success:', data);
+
+          // 輸出數據到網頁
+          const pokemonDiv = document.getElementById('pokemonData');
+          pokemonDiv.innerHTML = JSON.stringify(data, null, 2); // 使用 JSON.stringify 格式化數據
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+
+        // console.log('fuckmother');
+    }
+
+
+</script>
 
 
 </body>

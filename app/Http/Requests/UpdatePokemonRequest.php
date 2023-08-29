@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Race;
+use App\Rules\SkillJudgment;
 
 class UpdatePokemonRequest extends FormRequest
 {
@@ -30,24 +31,7 @@ class UpdatePokemonRequest extends FormRequest
             'ability_id' => 'integer|exists:abilities,id',
             'nature_id' => 'integer|exists:natures,id',
             'level' => 'integer|min:1|max:100',
-            'skills' => [
-                'array',
-                'min:1',
-                'max:4',
-                function ($attribute, $value, $fail) {
-                    $race = Race::find($this->input('race_id'));
-                    if (!$race) {
-                        return $fail('The race_id is invalid.');
-                    }
-                    $allowedSkills = $race->skills->pluck('id')->toArray();
-
-                    foreach ($value as $skillId) {
-                        if (!in_array($skillId, $allowedSkills)) {
-                            return $fail("The skill with ID {$skillId} is not allowed for this race.");
-                        }
-                    }
-                }
-            ]
+            'skills' => ['required','array','min:1','max:4', new SkillJudgment()]
         ];
     }
 }

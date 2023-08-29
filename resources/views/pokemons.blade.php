@@ -28,9 +28,10 @@
 
               <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">Leslie Alexander</h3>
               <p class="text-sm font-semibold leading-6 text-indigo-600">Co-Founder / CEO</p>
-            
+
 
               <!-- 顯示詳情按鈕 -->
+              <p id = 'pokemonData'></p>
               <button onclick="showPokemonDetails()">顯示詳情</button>
               <button onclick="pokemonIndex()">所有寶可夢</button>
             </div>
@@ -48,24 +49,30 @@
   <script>
     function pokemonIndex() {
       // 這裡是模擬新增寶可夢的API請求
-      
+
 
       fetch('http://127.0.0.1:8000/api/pokemons/', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            'Accept':'application/json'
-          },
-          
+            'Accept': 'application/json'
+          }
         })
         .then(response => response.json())
         .then(data => {
           console.log('Success:', data);
+
+          // 輸出數據到網頁
+          const pokemonDiv = document.getElementById('pokemonData');
+          pokemonDiv.innerHTML = JSON.stringify(data, null, 2); // 使用 JSON.stringify 格式化數據
         })
         .catch((error) => {
           console.error('Error:', error);
         });
+
+        // console.log('fuckmother');
     }
+
 
     function showPokemonDetails() {
       // 這裡是模擬獲取寶可夢詳情的API請求

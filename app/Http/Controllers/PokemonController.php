@@ -21,14 +21,21 @@ class PokemonController extends Controller
     public function index()
     {
         // 寶可夢詳情
-        $pokemons = Pokemon::with(['race', 'ability', 'nature', 'race.skills'])->get();
+        $pokemons = Pokemon::with(['race', 'ability', 'nature'])->get();
+        // dd($pokemons);
         return PokemonResource::collection($pokemons);
     }
 
     // 寶可夢新增
     public function store(StorePokemonRequest $request)
     {
+        // 用validated()方法拿到已驗證過後的數據
         $validatedData = $request->validated();
+        
+        // 用輔助函數驗證此技能是否為寶可夢可以學
+        if(!valid_skills_for_race($request->skills)){
+            return response(['message' => 'The skill is not allowed for this race. '], 400);
+        }
 
         Pokemon::create($validatedData);
 
@@ -41,15 +48,9 @@ class PokemonController extends Controller
     public function update(UpdatePokemonRequest $request, $id)
     {
         $pokemon = Pokemon::find($id);
+        $pokemonValue = ['name', 'race_id', 'level', 'ability_id', 'nature_id', 'skills'];
         // 使用此方法更新只有實際有輸入數據的欄位才會做更新
-        $pokemon->update($request->only([
-            'name',
-            'race_id',
-            'level',
-            'ability_id',
-            'nature_id',
-            'skills'
-        ]));
+        $pokemon->update($request->only($pokemonValue));
 
         return response(['message' => 'pokemon updated successfully'], 200);
     }
@@ -57,7 +58,7 @@ class PokemonController extends Controller
 
     public function show($id)
     {
-        $pokemon = Pokemon::with(['race', 'ability', 'nature', 'race.skills'])->find($id);
+        $pokemon = Pokemon::with(['race', 'ability', 'nature'])->find($id);
         return new PokemonResource($pokemon);
     }
 

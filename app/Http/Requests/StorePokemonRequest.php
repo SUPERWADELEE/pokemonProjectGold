@@ -2,8 +2,11 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Pokemon;
 use App\Models\Race;
+use App\Rules\SkillJudgment;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
 class StorePokemonRequest extends FormRequest
 {
@@ -24,29 +27,30 @@ class StorePokemonRequest extends FormRequest
     {
         $race = Race::find($this->input('race_id'));
         $miniEvolutionLevel = $race->evolution_level;
-    
+
         return [
             'name' => 'required|string|max:255',
             'race_id' => 'required|integer|exists:races,id',
             'ability_id' => 'required|integer|exists:abilities,id',
             'nature_id' => 'required|integer|exists:natures,id',
             'level' => 'required|integer|max:' . $miniEvolutionLevel,
-            'skills' => [
-                'required',
-                'array',
-                'min:1',
-                'max:4',
-                function ($attribute, $value, $fail) {
-                    $race = Race::find($this->input('race_id'));
-                    $allowedSkills = $race->skills->pluck('id')->toArray();
-                    foreach ($value as $skillId) {
-                        if (!in_array($skillId, $allowedSkills)) {
-                            return $fail("The skill with ID {$skillId} is not allowed for this race.");
-                        }
-                    }
-                }
-            ],
-            'skills.*' => 'integer|exists:skills,id'
+            'skills' => ['required','array','min:1','max:4', new SkillJudgment()]
+            
         ];
     }
+
+    // public function valid_skills_for_race($skills) {
+    //     $pokemonId = request()->input('race_id');
+    //     $pokemon = Race::find($pokemonId);
+    //     $allowedSkills = $pokemon->skills->pluck('id')->toArray();
+        
+    //     foreach ($skills as $skillId) {
+    //         if (!in_array($skillId, $allowedSkills)) {
+    //             return false;
+    //         }
+    //     }
+    //     return true;
+    // }
+
+   
 }
