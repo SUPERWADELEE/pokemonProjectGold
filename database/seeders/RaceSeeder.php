@@ -25,13 +25,10 @@ class RaceSeeder extends Seeder
     {
         
         // 姓名、照片、進化等級、技能一次全部拿,全部存
-
         $batchSize = 1; // 可以根據需要調整
         $totalPokemons = 1011; // 根據你的實際數量調整
 
         for ($i = 1; $i < $totalPokemons; $i += $batchSize) {
-
-
             // 取得名稱、照片、招式
             $response1 = Http::get("https://pokeapi.co/api/v2/pokemon/$i");
             $pokemonDetail = $response1->json();
@@ -41,14 +38,11 @@ class RaceSeeder extends Seeder
             $photo = $pokemonDetail["sprites"]['front_default'];
             $moves = $pokemonDetail['moves'];
             $moveNames = [];
-
             // 取出此寶可夢所能學的所有的招式名稱
             foreach ($moves as $moves) {
                 $moveNames[] = $moves['move']['name'];
                 // dd($moveNames);
             }
-
-
 
             // 取得進化等級,這在pokemon-species的進化鏈裡面
             $pokemonData = Http::get("https://pokeapi.co/api/v2/pokemon-species/$i")->json();
@@ -62,7 +56,6 @@ class RaceSeeder extends Seeder
                 'evolution_level' => $minLevel
             ]);
 
-
             foreach ($moveNames as $moveName) {
                 // 先找出或創建招式
                 $move = Skill::firstOrCreate(['name' => $moveName]);
@@ -70,13 +63,6 @@ class RaceSeeder extends Seeder
                 // 關聯到寶可夢
                 $race->skills()->attach($move->id);
             }
-            
-
-           
-
-            // dd($moveNames);
-
-
         }
     }
 
@@ -97,9 +83,9 @@ class RaceSeeder extends Seeder
             // 代表他不用進化
             return null;
         }
-
         return $this->searchEvolutionLevel($chain['chain'], $pokemonName);
     }
+
 
     public function searchEvolutionLevel($chain, $pokemonName)
     {

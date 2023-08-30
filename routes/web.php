@@ -18,10 +18,10 @@ Route::get('/', function () {
 });
 
 
-
-Route::get('/pokemon', function () {
-    return view('pokemon');
+Route::get('/pokemon/{id}', function ($id) {
+    return view('pokemon', ['id' => $id]);
 });
+
 
 
 

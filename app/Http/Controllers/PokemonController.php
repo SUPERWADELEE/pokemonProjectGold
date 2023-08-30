@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SearchPokemonRequest;
 use App\Http\Requests\StorePokemonRequest;
 use App\Http\Requests\UpdatePokemonRequest;
 use App\Http\Resources\PokemonResource;
@@ -20,9 +21,9 @@ class PokemonController extends Controller
 {
     public function index()
     {
+
         // 寶可夢詳情
         $pokemons = Pokemon::with(['race', 'ability', 'nature'])->get();
-        // dd($pokemons);
         return PokemonResource::collection($pokemons);
     }
 
@@ -31,9 +32,9 @@ class PokemonController extends Controller
     {
         // 用validated()方法拿到已驗證過後的數據
         $validatedData = $request->validated();
-        
+
         // 用輔助函數驗證此技能是否為寶可夢可以學
-        if(!valid_skills_for_race($request->skills)){
+        if (!valid_skills_for_race($request->skills)) {
             return response(['message' => 'The skill is not allowed for this race. '], 400);
         }
 
@@ -103,64 +104,106 @@ class PokemonController extends Controller
         } catch (Exception $e) {
             return response(['message' => $e->getMessage()], 400);
         }
-
-
-        // try{
-
-        // 判定進化後,更新資料,如未到達進化條件或已封頂,則不進化
-        //if (!$evolutionLevel){
-        //return ...
-        // }
-
-
-        //if($pokemon->level > $evolutionLevel < 進化條件){
-        //}} ctach()
-        //return 進化條件未達到
-
-        // $pokemon->update([
-        //     'race_id' => $pokemon->race_id + 1,
-
-        // ]);
-
-
-
-
-        // if(!$evolutionLevel){
-        //     return response(['message' => "寶可夢已是最終形態"], 400);
-        // }
-
-        // if ($pokemon->level > $evolutionLevel) {
-        //     // dd($pokemon->race_id);
-        //     $pokemon->update([
-        //         'race_id' => $pokemon->race_id + 1,
-
-        //     ]);
-        //     return response(['message' => "This Pokemon evolves."], 200);
-        // }
-
-        // return response(['message' => "寶可夢未達進化條件"], 400);
-
-
-
-
-
-
-
-
-        //     if ($evolutionLevel) {
-        //         if ($pokemon->level > $evolutionLevel) {
-        //             // dd($pokemon->race_id);
-        //             $pokemon->update([
-        //                 'race_id' => $pokemon->race_id + 1,
-
-        //             ]);
-        //             return response(['message' => "This Pokemon evolves."], 200);
-        //         } else {
-
-        //             return response(['message' => "寶可夢未達進化條件"], 400);
-        //         }
-        //     }
-
-        //     return response(['message' => "寶可夢已是最終形態"], 400);
     }
+
+    public function search(SearchPokemonRequest $request)
+    {
+        // dd('fuck');
+        $query = Pokemon::query();
+        
+        // 加載關聯
+        $query->with(['race', 'ability', 'nature']);
+    
+        // 如果有提供名稱，則增加名稱的搜尋條件
+        if ($name = $request->input('name')) {
+            $query->where('name', 'LIKE', '%' . $name . '%');
+        }
+        
+        // 如果有提供性格 ID，則增加性格的搜尋條件
+        if ($natureId = $request->input('nature_id')) {
+            $query->where('nature_id', $natureId);
+        }
+
+        if ($abilityId = $request->input('ability_id')) {
+            $query->where('ability_id', $abilityId);
+        }
+
+        if ($level = $request->input('level')) {
+            $query->where('level', $level);
+        }
+
+
+    //    $pokemons =  $query->with(['race', 'ability', 'nature'])
+    //     -> where('name', 'LIKE', '%' . $name . '%')
+    //     ->where('nature_id', $natureId)
+    //     ->get()
+    //     ;
+        // 執行查詢並獲得結果
+        $pokemons = $query->get();
+        // dd($pokemons);
+    
+        // 使用 PokemonResource 格式化並回傳結果
+        return PokemonResource::collection($pokemons);
+    }
+    
+
+
+    // try{
+
+    // 判定進化後,更新資料,如未到達進化條件或已封頂,則不進化
+    //if (!$evolutionLevel){
+    //return ...
+    // }
+
+
+    //if($pokemon->level > $evolutionLevel < 進化條件){
+    //}} ctach()
+    //return 進化條件未達到
+
+    // $pokemon->update([
+    //     'race_id' => $pokemon->race_id + 1,
+
+    // ]);
+
+
+
+
+    // if(!$evolutionLevel){
+    //     return response(['message' => "寶可夢已是最終形態"], 400);
+    // }
+
+    // if ($pokemon->level > $evolutionLevel) {
+    //     // dd($pokemon->race_id);
+    //     $pokemon->update([
+    //         'race_id' => $pokemon->race_id + 1,
+
+    //     ]);
+    //     return response(['message' => "This Pokemon evolves."], 200);
+    // }
+
+    // return response(['message' => "寶可夢未達進化條件"], 400);
+
+
+
+
+
+
+
+
+    //     if ($evolutionLevel) {
+    //         if ($pokemon->level > $evolutionLevel) {
+    //             // dd($pokemon->race_id);
+    //             $pokemon->update([
+    //                 'race_id' => $pokemon->race_id + 1,
+
+    //             ]);
+    //             return response(['message' => "This Pokemon evolves."], 200);
+    //         } else {
+
+    //             return response(['message' => "寶可夢未達進化條件"], 400);
+    //         }
+    //     }
+
+    //     return response(['message' => "寶可夢已是最終形態"], 400);
+
 }

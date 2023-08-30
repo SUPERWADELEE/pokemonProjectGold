@@ -31,7 +31,7 @@ class UpdatePokemonRequest extends FormRequest
             'ability_id' => 'integer|exists:abilities,id',
             'nature_id' => 'integer|exists:natures,id',
             'level' => 'integer|min:1|max:100',
-            'skills' => ['required','array','min:1','max:4', new SkillJudgment()]
+            'skills' => ['array','min:1','max:4', new SkillJudgment()]
         ];
     }
 }

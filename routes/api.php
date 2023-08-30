@@ -30,10 +30,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // pokemon列表
 Route::get('pokemons', [PokemonController::class, 'index']);
 Route::post('pokemons', [PokemonController::class, 'store']);
+Route::get('pokemons/search', [PokemonController::class, 'search']);
 Route::get('pokemons/{id}', [PokemonController::class, 'show']);
 Route::patch('pokemons/{id}', [PokemonController::class, 'update']);
 Route::delete('pokemons/{id}', [PokemonController::class, 'destroy']);
 Route::put('pokemons/{id}/evolution', [PokemonController::class, 'evolution']);
+
 
 /**
  * natural管理
@@ -57,6 +59,6 @@ Route::patch('abilities/{id}', [AbilityController::class, 'update']);
  */
 // natural列表
 Route::get('races', [RaceController::class, 'index']);
-Route::get('races/{id}/evolution', [RaceController::class, 'evolution']);
+Route::get('races/{id}/evolutionLevel', [RaceController::class, 'evolutionLevel']);
 Route::get('races/{id}/skill', [RaceController::class, 'skills']);
 

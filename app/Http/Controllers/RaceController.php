@@ -17,7 +17,7 @@ class RaceController extends Controller
         return $pokemons;
     }
 
-    public function evolution($id){
+    public function evolutionLevel($id){
         $pokemon = Race::find($id);
         // dd($pokemon);
         if (!$pokemon) {

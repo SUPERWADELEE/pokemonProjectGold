@@ -29,44 +29,8 @@ class SkillSeeder extends Seeder
                 'updated_at' => now()
             ];
         }
-
         // 一次性插入所有技能到資料庫中
         Skill::insert($skillsToInsert);
-
-
-
-        // 使用併發的方法
-    //     $client = new Client();
-
-    //     $response = $client->get('https://pokeapi.co/api/v2/move?limit=10');
-    //     $allSkills = json_decode($response->getBody(), true)['results'];
-    //     // dd($allPokemons);
-    //     $urls = array_map(fn ($pokemon) => $pokemon['url'], $allSkills);
-
-    //     $batchSize = 10;
-    //     $urlBatches = array_chunk($urls, $batchSize);
-    //     // dd($urlBatches);
-    //     foreach ($urlBatches as $batch) {
-    //         $requests = function () use ($batch) {
-    //             foreach ($batch as $url) {
-    //                 yield new LaravelRequest('GET', $url);
-    //             }
-    //         };
-
-    //         $responses = Pool::batch($client, $requests(), [
-    //             'concurrency' => $batchSize,
-    //             'fulfilled' => function ($response, $index) use ($allSkills) {
-    //                 $pokemonDetail = json_decode($response->getBody(), true);
-    //                 // dd($pokemonDetail);
-    //                 Race::create([
-    //                     'name' => $allSkills[$index]['name'],
-
-    //                 ]);
-    //             },
-    //             'rejected' => function ($reason, $index) {
-    //                 error_log("Request $index failed: $reason");
-    //             },
-    //         ]);
-    //     }
+       
     }
 }
