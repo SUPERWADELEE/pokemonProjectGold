@@ -110,15 +110,15 @@ class PokemonController extends Controller
     {
         // dd('fuck');
         $query = Pokemon::query();
-        
-        // 加載關聯
-        $query->with(['race', 'ability', 'nature']);
-    
+
+        // // 加載關聯
+        // $query->with(['race', 'ability', 'nature']);
+
         // 如果有提供名稱，則增加名稱的搜尋條件
         if ($name = $request->input('name')) {
             $query->where('name', 'LIKE', '%' . $name . '%');
         }
-        
+
         // 如果有提供性格 ID，則增加性格的搜尋條件
         if ($natureId = $request->input('nature_id')) {
             $query->where('nature_id', $natureId);
@@ -132,20 +132,29 @@ class PokemonController extends Controller
             $query->where('level', $level);
         }
 
+        if ($race_id = $request->input('race_id')) {
+            $query->where('race_id', $race_id);
+        }
 
-    //    $pokemons =  $query->with(['race', 'ability', 'nature'])
-    //     -> where('name', 'LIKE', '%' . $name . '%')
-    //     ->where('nature_id', $natureId)
-    //     ->get()
-    //     ;
+
+
+        // $name = $request->input('name');
+        // $natureId = $request->input('nature_id');
+
+        // $pokemons =  $query->with(['race', 'ability', 'nature'])
+        //     ->orWhere('name', 'LIKE', '%' . $name . '%')
+        //     ->orWhere('nature_id', $natureId)
+        //     ->get();
+
+
         // 執行查詢並獲得結果
         $pokemons = $query->get();
         // dd($pokemons);
-    
+
         // 使用 PokemonResource 格式化並回傳結果
         return PokemonResource::collection($pokemons);
     }
-    
+
 
 
     // try{
