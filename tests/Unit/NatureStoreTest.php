@@ -11,6 +11,7 @@ class NatureStoreTest extends TestCase
 
     public function test_a_basic_request(): void
     {
+        
         $response = $this->get('/api/natures');
  
         $response->assertStatus(200);

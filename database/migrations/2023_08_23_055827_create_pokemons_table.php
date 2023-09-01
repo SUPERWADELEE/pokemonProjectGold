@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('level');
             $table->unsignedBigInteger('ability_id');
             $table->unsignedBigInteger('nature_id');
-            $table->json('skill');
+            $table->json('skills');
             $table->timestamps();
             $table->softDeletes();
         
