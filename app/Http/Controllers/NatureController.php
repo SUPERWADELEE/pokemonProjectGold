@@ -37,17 +37,17 @@ class NatureController extends Controller
 
 
     // 性格修改
-    public function update(Request $request, $id)
+    public function update(Request $request, Nature $nature)
     {
         $validationData = $request->validate([
             'name' => 'required|max:255',
         ]);
 
-        $nature = Nature::find($id);
+        // $nature = Nature::find($id);
 
-        if (!$nature) {
-            return response(['message' => 'Nature not found'], 404);
-        }
+        // if (!$nature) {
+        //     return response(['message' => 'Nature not found'], 404);
+        // }
 
         $nature->update([
             'name' => $validationData['name']

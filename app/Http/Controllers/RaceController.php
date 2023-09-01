@@ -18,20 +18,20 @@ class RaceController extends Controller
     }
 
     // 返回這隻寶可夢的進化等級
-    public function evolutionLevel($id){
-        $pokemon = Race::find($id);
-        // dd($pokemon);
-        if (!$pokemon) {
-            return response(['error' => 'Race not found'], 404);
-        }
-        return response(['evolution_level' => $pokemon->evolution_level]);
+    public function evolutionLevel(Race $race){
+        // $pokemon = Race::find($id);
+        // // dd($pokemon);
+        // if (!$pokemon) {
+        //     return response(['error' => 'Race not found'], 404);
+        // }
+        return response(['evolution_level' => $race->evolution_level]);
 
     }
     
 
-    public function skills($id){
-        $skills = Race::with('skills')->find($id);
-        return new RaceResource($skills);
+    public function skills(Race $race){
+        // $skills = Race::with('skills')->find($id);
+        return new RaceResource($race);
 
     }
 

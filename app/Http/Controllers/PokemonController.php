@@ -25,12 +25,9 @@ class PokemonController extends Controller
     public function store(StorePokemonRequest $request)
     {
         // 用validated()方法只返回在 Form Request 中定義的驗證規則對應的數據
-        $validatedData = $request->validated();
-
-        // 用輔助函數驗證此技能是否為寶可夢可以學
-        // if (!valid_skills_for_race($request->skills)) {
-        //     return response(['message' => 'The skill is not allowed for this race. '], 400);
-        // }
+        $validatedData = $request->toArray();
+        // dd($validatedData);
+        
 
         return PokemonResource::make(Pokemon::create($validatedData));
         // return Pokemon::create($validatedData)->load(['race', 'ability', 'nature']);
@@ -42,41 +39,34 @@ class PokemonController extends Controller
 
 
     // 寶可夢資料修改
-    public function update(UpdatePokemonRequest $request, $id)
+    public function update(UpdatePokemonRequest $request, Pokemon $pokemon)
     {
-        $pokemon = Pokemon::find($id);
-
-        // if (!valid_skills_for_race($request->skills)) {
-        //     return response(['message' => 'The skill is not allowed for this race. '], 400);
-        // }
         // 使用此方法更新只有實際有輸入數據的欄位才會做更新
         // $inputValue = $request->only($pokemonValue);
-        // dd($request);
         $pokemon->update($request->toArray());
-        return $pokemon;
+        // return PokemonResource::make($pokemon->load(['race', 'ability', 'nature']));
+        return PokemonResource::make($pokemon);
         // return response(['message' => 'pokemon updated successfully'], 200);
     }
 
 
     public function show(Pokemon $pokemon)
     {
+        dd($pokemon);
         // $pokemon = Pokemon::with(['race', 'ability', 'nature'])->find($id);
-        // return PokemonResource::make($pokemon->load(['race', 'ability', 'nature']));
-        return $pokemon;
+        return PokemonResource::make($pokemon);
+        // return $pokemon;
         // 如何解決modelbiding錯誤問題
     }
 
 
 
-    public function destroy($id)
+    public function destroy(Pokemon $pokemon)
     {
-        // 尋找該ID的寶可夢 
-        $pokemon = Pokemon::find($id);
-
         // 如果找不到寶可夢，返回一個錯誤響應
-        if (!$pokemon) {
-            return response()->json(['message' => 'Pokemon not found'], 404);
-        }
+        // if (!$pokemon) {
+        //     return response()->json(['message' => 'Pokemon not found'], 404);
+        // }
 
         // 刪除該寶可夢
         $pokemon->delete();
@@ -87,10 +77,12 @@ class PokemonController extends Controller
 
 
 
-    public function evolution($id)
+    public function evolution(Pokemon $pokemon)
     {
+        // dd($pokemon);
         // 拿到寶可夢進化等級
-        $pokemon = Pokemon::with('race')->find($id);
+        $pokemon->load('race');
+        // $pokemon = Pokemon::with('race')->find($id);
         // 取得這隻寶可夢的進化等級
         $evolutionLevel = $pokemon->race->evolution_level;
 

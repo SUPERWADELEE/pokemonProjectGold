@@ -38,7 +38,7 @@ Route::apiResource('pokemons',PokemonController::class);
 
 
 Route::get('pokemons/search', [PokemonController::class, 'search']);
-Route::put('pokemons/{id}/evolution', [PokemonController::class, 'evolution']);
+Route::put('pokemons/{pokemon}/evolution', [PokemonController::class, 'evolution']);
 
 
 
@@ -47,7 +47,7 @@ Route::put('pokemons/{id}/evolution', [PokemonController::class, 'evolution']);
  */
 Route::get('natures', [NatureController::class, 'index']);
 Route::post('natures', [NatureController::class, 'store']);
-Route::patch('natures/{id}', [NatureController::class, 'update']);
+Route::patch('natures/{nature}', [NatureController::class, 'update']);
 
 
 /**
@@ -56,7 +56,7 @@ Route::patch('natures/{id}', [NatureController::class, 'update']);
 // ability列表
 Route::get('abilities', [AbilityController::class, 'index']);
 Route::post('abilities', [AbilityController::class, 'store']);
-Route::patch('abilities/{id}', [AbilityController::class, 'update']);
+Route::patch('abilities/{ability}', [AbilityController::class, 'update']);
 
 
 /**
@@ -64,6 +64,6 @@ Route::patch('abilities/{id}', [AbilityController::class, 'update']);
  */
 // natural列表
 Route::get('races', [RaceController::class, 'index']);
-Route::get('races/{id}/evolutionLevel', [RaceController::class, 'evolutionLevel']);
-Route::get('races/{id}/skill', [RaceController::class, 'skills']);
+Route::get('races/{race}/evolutionLevel', [RaceController::class, 'evolutionLevel']);
+Route::get('races/{race}/skill', [RaceController::class, 'skills']);
 

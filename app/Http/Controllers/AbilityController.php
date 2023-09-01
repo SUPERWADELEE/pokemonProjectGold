@@ -14,7 +14,7 @@ class AbilityController extends Controller
         return $allNatures;
     }
 
-    
+
     // 性格新增
     public function store(Request $request)
     {
@@ -31,17 +31,11 @@ class AbilityController extends Controller
 
 
     // 性格修改
-    public function update(Request $request, $id)
+    public function update(Request $request, Ability $ability)
     {
         $validationData = $request->validate([
             'name' => 'required|max:255',
         ]);
-
-        $ability = Ability::find($id);
-
-        if (!$ability) {
-            return response(['message' => 'Ability not found'], 404);
-        }
 
         $ability->update([
             'name' => $validationData['name']
