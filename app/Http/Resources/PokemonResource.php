@@ -16,10 +16,12 @@ class PokemonResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        // 如果 $this->skills 是一個 id 陣列
+        // 如果 $this->skills 是一個 id 陣列,去找skill表中,尋找這個陣列存在的id的所有資料
         $selectedSkills = Skill::whereIn('id', $this->skills)->get();
+        // 從這個skill資料的集合中,取出所有的名稱組成陣列
         $skillNames = $selectedSkills->pluck('name')->toArray();
     
+        // 將collection中的每一個object都跑一遍
         return [
             'id' => $this->id,
             'name' => $this->name,

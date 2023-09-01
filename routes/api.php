@@ -28,13 +28,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
  * pokemon管理
  */
 // pokemon列表
-Route::get('pokemons', [PokemonController::class, 'index']);
-Route::post('pokemons', [PokemonController::class, 'store']);
+Route::apiResource('pokemons',PokemonController::class);
+// Route::get('pokemons', [PokemonController::class, 'index']);
+// Route::post('pokemons', [PokemonController::class, 'store']);
+
+// Route::get('pokemons/{pokemon}', [PokemonController::class, 'show']);
+// Route::patch('pokemons/{id}', [PokemonController::class, 'update']);
+// Route::delete('pokemons/{id}', [PokemonController::class, 'destroy']);
+
+
 Route::get('pokemons/search', [PokemonController::class, 'search']);
-Route::get('pokemons/{id}', [PokemonController::class, 'show']);
-Route::patch('pokemons/{id}', [PokemonController::class, 'update']);
-Route::delete('pokemons/{id}', [PokemonController::class, 'destroy']);
 Route::put('pokemons/{id}/evolution', [PokemonController::class, 'evolution']);
+
 
 
 /**

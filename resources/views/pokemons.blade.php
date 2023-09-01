@@ -19,6 +19,7 @@
         <button onclick="fetchPokemons()" class="mt-6 px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-600">新增寶可夢</button>
 
       </div>
+      <div id="pokemonDetail"></div>
 
 
 
@@ -35,6 +36,7 @@
   </div>
 
   <script>
+    // 由按鈕觸發,打api接收所有寶可夢資訊
     function pokemonIndex() {
       fetch('http://127.0.0.1:8000/api/pokemons/', {
           method: 'GET',
@@ -53,10 +55,13 @@
         });
     }
 
+    // 處理接收到的json擋,然後找到想填入的標籤,創建標籤
     function populatePokemons(pokemons) {
+      // 找到想填入的標籤  創建該標籤物件好操作此標籤
       const pokemonList = document.getElementById('pokemonList');
       pokemonList.innerHTML = ''; // 清空列表
 
+      // 個別取出整包資料
       pokemons.forEach(pokemon => { // 注意這裡直接使用 pokemons 來遍歷資料
         // 創建一個li標籤
         const listItem = document.createElement('li');
@@ -64,25 +69,38 @@
         listItem.classList.add('bg-white', 'rounded-lg', 'shadow', 'p-4', 'flex', 'flex-col', 'items-center');
         // 將標籤裡面實際內容填入
         listItem.innerHTML = `
-        <a href="/pokemon/${pokemon.id}">
-            <img class="h-48 w-48 rounded-full mb-4" src="${pokemon.photo}" alt="${pokemon.name}">
-        </a>
+      <a href="/pokemon/${pokemon.id}">
+          <img class="h-48 w-48 rounded-full mb-4" src="${pokemon.photo}" alt="${pokemon.name}">
+      </a>
 
-            <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">${pokemon.name}</h3>
-            <p class="text-sm text-gray-600">種族: ${pokemon.race}</p>
-            <p class="text-sm text-gray-600">能力: ${pokemon.ability}</p>
-            <p class="text-sm text-gray-600">等級: ${pokemon.level}</p>
-        `;
+          <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">${pokemon.name}</h3>
+          <p class="text-sm text-gray-600">種族: ${pokemon.race}</p>
+          <p class="text-sm text-gray-600">能力: ${pokemon.ability}</p>
+          <p class="text-sm text-gray-600">等級: ${pokemon.level}</p>
+      `;
         // 將此新創建的list加入到一開始先創建好的html標籤
         // 將創建的動態 DOM 元素附加到現有的 DOM 元素中
         pokemonList.appendChild(listItem);
       });
     }
 
+
+
+
+
+
+
+
+
+
+    // 新增寶可夢
+
+
     let pokemons = [];
     const pokemonsPerPage = 10;
     let currentPage = 1;
 
+    // 取得所有寶可夢種族及圖片
     function fetchPokemons() {
       fetch('http://127.0.0.1:8000/api/races/', {
           method: 'GET',
@@ -117,9 +135,11 @@
       <h3>${pokemon.name}</h3>
       <img src="${pokemon.photo}" alt="${pokemon.name}" width="100">
     `;
+        li.addEventListener('click', () => updatePokemonDetail(pokemon)); // 添加点击事件
         pokemonList.appendChild(li);
       });
     }
+
 
     function renderPaginationButtons() {
       const paginationContainer = document.getElementById('pagination');
@@ -137,16 +157,99 @@
       }
     }
 
-    fetchPokemons();
+
+    // 1. 创建获取数据并填充下拉列表的函数
+
+    function fetchAndPopulateDropdown(apiUrl, selectId) {
+      fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+          const selectElement = document.getElementById(selectId);
+          selectElement.innerHTML = ''; // 清空现有选项
+          data.forEach(item => {
+            const option = document.createElement('option');
+            option.value = item.id || item.name; // 取决于你的API结构
+            option.textContent = item.name;
+            selectElement.appendChild(option);
+          });
+        })
+        .catch(error => {
+          console.error("Error fetching data:", error);
+        });
+    }
 
 
-    // function pokemonIndex() {
-    //   renderPokemons(currentPage);
-    //   // 你也可以在這裡添加分頁按鈕
-    // }
+    function fetchAndPopulateDropdownSkills(apiUrl, selectId) {
+      fetch(apiUrl)
+        .then(response => {
+          // 檢查伺服器響應是否正確
+          if (!response.ok) {
+            throw new Error(`Server responded with ${response.status}: ${response.statusText}`);
+          }
+          return response.json();
+        })
+        .then(data => {
+          const selectElement = document.getElementById(selectId);
+          selectElement.innerHTML = ''; // 清空现有选项
 
-    // 初始渲染
-    // fetchPokemons();  // 這裡我使用fetchPokemons進行初始的數據獲取和渲染
+          data.skills.forEach(skill => {
+            const option = document.createElement('option');
+            option.value = skill.id;
+            option.textContent = skill.name;
+            selectElement.appendChild(option);
+          });
+        })
+        .catch(error => {
+          console.error("Error fetching data:", error);
+        });
+    }
+
+
+
+
+    function updatePokemonDetail(pokemon) {
+      const detailContainer = document.getElementById('pokemonDetail');
+      detailContainer.innerHTML = `
+        <label for="pokemonName">寶可夢名稱:</label>
+        <input type="text" id="pokemonName" name="pokemonName" >
+        <h2>${pokemon.name}</h2>
+        <img src="${pokemon.photo}" alt="${pokemon.name}" width="200">
+        <label>技能:</label>
+        <select id="skills"></select>
+        <label>特性:</label>
+        <select id="abilities"></select>
+        <label>性格:</label>
+        <select id="natures"></select>
+        <button class="mt-6 px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-600">新增寶可夢</button>
+        <!-- 其他详细信息 -->
+    `;
+
+
+      // 2. 调用函数来填充下拉列表
+      // fetchAndPopulateDropdown('API_URL_FOR_SKILLS', 'skills');
+      fetchAndPopulateDropdown('http://localhost:8000/api/abilities', 'abilities');
+      fetchAndPopulateDropdown('http://localhost:8000/api/natures', 'natures');
+      fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${pokemon.id}/skill`, 'skills');
+
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+
+  <!-- // function pokemonIndex() {
+  // renderPokemons(currentPage);
+  // // 你也可以在這裡添加分頁按鈕
+  // }
+
+  // 初始渲染
+  // fetchPokemons(); // 這裡我使用fetchPokemons進行初始的數據獲取和渲染 -->
   </script>
 </body>
 

@@ -17,6 +17,7 @@ class RaceController extends Controller
         return $pokemons;
     }
 
+    // 返回這隻寶可夢的進化等級
     public function evolutionLevel($id){
         $pokemon = Race::find($id);
         // dd($pokemon);

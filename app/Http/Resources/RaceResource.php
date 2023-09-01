@@ -18,7 +18,7 @@ class RaceResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'skills' => SkillResource::collection($this->skills)
-            // 你還可以加入其他的欄位和邏輯...
+            
         ];
     }
 }

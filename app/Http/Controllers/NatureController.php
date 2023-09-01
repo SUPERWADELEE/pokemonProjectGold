@@ -10,6 +10,12 @@ class NatureController extends Controller
     // 性格詳情
     public function index()
     {
+        // 創建一個單獨的 `Nature` 模型實例並保存到資料庫
+        // $nature = Nature::factory()->make();
+
+        // 創建三個 `Nature` 模型實例並保存到資料庫
+        // $natures = Nature::factory(3)->create();
+
         $allNatures = Nature::all();
         return $allNatures;
     }
@@ -29,7 +35,7 @@ class NatureController extends Controller
         return response(['message' => 'Nature saved successfully'], 201);
     }
 
-    
+
     // 性格修改
     public function update(Request $request, $id)
     {

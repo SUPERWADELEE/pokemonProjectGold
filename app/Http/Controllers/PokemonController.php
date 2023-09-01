@@ -10,18 +10,12 @@ use App\Models\Nature;
 use App\Models\Pokemon;
 use App\Models\Race;
 use Exception;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
-use Mockery\Expectation;
-use GuzzleHttp\Client;
-use GuzzleHttp\Pool;
-use GuzzleHttp\Psr7\Request as LaravelRequest;
+
 
 class PokemonController extends Controller
 {
     public function index()
     {
-
         // 寶可夢詳情
         $pokemons = Pokemon::with(['race', 'ability', 'nature'])->get();
         return PokemonResource::collection($pokemons);
@@ -30,17 +24,19 @@ class PokemonController extends Controller
     // 寶可夢新增
     public function store(StorePokemonRequest $request)
     {
-        // 用validated()方法拿到已驗證過後的數據
+        // 用validated()方法只返回在 Form Request 中定義的驗證規則對應的數據
         $validatedData = $request->validated();
 
         // 用輔助函數驗證此技能是否為寶可夢可以學
-        if (!valid_skills_for_race($request->skills)) {
-            return response(['message' => 'The skill is not allowed for this race. '], 400);
-        }
+        // if (!valid_skills_for_race($request->skills)) {
+        //     return response(['message' => 'The skill is not allowed for this race. '], 400);
+        // }
 
-        Pokemon::create($validatedData);
-
-        return response(['message' => 'Pokemon saved successfully'], 201);
+        return PokemonResource::make(Pokemon::create($validatedData));
+        // return Pokemon::create($validatedData)->load(['race', 'ability', 'nature']);
+        // whenload用法
+        // return response(['message' => 'Pokemon saved successfully'], 201);
+        #可以回資料（mia
     }
 
 
@@ -49,18 +45,25 @@ class PokemonController extends Controller
     public function update(UpdatePokemonRequest $request, $id)
     {
         $pokemon = Pokemon::find($id);
-        $pokemonValue = ['name', 'race_id', 'level', 'ability_id', 'nature_id', 'skills'];
-        // 使用此方法更新只有實際有輸入數據的欄位才會做更新
-        $pokemon->update($request->only($pokemonValue));
 
-        return response(['message' => 'pokemon updated successfully'], 200);
+        // if (!valid_skills_for_race($request->skills)) {
+        //     return response(['message' => 'The skill is not allowed for this race. '], 400);
+        // }
+        // 使用此方法更新只有實際有輸入數據的欄位才會做更新
+        // $inputValue = $request->only($pokemonValue);
+        // dd($request);
+        $pokemon->update($request->toArray());
+        return $pokemon;
+        // return response(['message' => 'pokemon updated successfully'], 200);
     }
 
 
-    public function show($id)
+    public function show(Pokemon $pokemon)
     {
-        $pokemon = Pokemon::with(['race', 'ability', 'nature'])->find($id);
-        return new PokemonResource($pokemon);
+        // $pokemon = Pokemon::with(['race', 'ability', 'nature'])->find($id);
+        // return PokemonResource::make($pokemon->load(['race', 'ability', 'nature']));
+        return $pokemon;
+        // 如何解決modelbiding錯誤問題
     }
 
 
@@ -88,6 +91,7 @@ class PokemonController extends Controller
     {
         // 拿到寶可夢進化等級
         $pokemon = Pokemon::with('race')->find($id);
+        // 取得這隻寶可夢的進化等級
         $evolutionLevel = $pokemon->race->evolution_level;
 
         try {
@@ -95,6 +99,7 @@ class PokemonController extends Controller
                 throw new Exception("寶可夢已是最終形態");
             }
 
+            // 因為id有照順序排所以通常id+1就會是他進化的種族的id
             if ($pokemon->level > $evolutionLevel) {
                 $pokemon->update(['race_id' => $pokemon->race_id + 1]);
                 return response(['message' => "This Pokemon evolves."], 200);
@@ -108,50 +113,41 @@ class PokemonController extends Controller
 
     public function search(SearchPokemonRequest $request)
     {
-        // dd('fuck');
         $query = Pokemon::query();
 
-        // // 加載關聯
-        // $query->with(['race', 'ability', 'nature']);
+        $name = $request->input('name');
+        $nature_id = $request->input('nature_id');
+        $ability_id = $request->input('ability_id');
+        $level = $request->input('level');
+        $race_id = $request->input('race_id');
 
         // 如果有提供名稱，則增加名稱的搜尋條件
-        if ($name = $request->input('name')) {
-            $query->where('name', 'LIKE', '%' . $name . '%');
+        if ($name) {
+            $query->where('name', 'LIKE', "%$name%");
         }
 
         // 如果有提供性格 ID，則增加性格的搜尋條件
-        if ($natureId = $request->input('nature_id')) {
-            $query->where('nature_id', $natureId);
+        if ($nature_id) {
+            $query->where('nature_id', $nature_id);
         }
 
-        if ($abilityId = $request->input('ability_id')) {
-            $query->where('ability_id', $abilityId);
+        if ($ability_id) {
+            $query->where('ability_id', $ability_id);
         }
 
-        if ($level = $request->input('level')) {
+        if ($level) {
             $query->where('level', $level);
         }
 
-        if ($race_id = $request->input('race_id')) {
+        if ($race_id) {
             $query->where('race_id', $race_id);
         }
-
-
-
-        // $name = $request->input('name');
-        // $natureId = $request->input('nature_id');
 
         // $pokemons =  $query->with(['race', 'ability', 'nature'])
         //     ->orWhere('name', 'LIKE', '%' . $name . '%')
         //     ->orWhere('nature_id', $natureId)
         //     ->get();
-
-
-        // 執行查詢並獲得結果
         $pokemons = $query->get();
-        // dd($pokemons);
-
-        // 使用 PokemonResource 格式化並回傳結果
         return PokemonResource::collection($pokemons);
     }
 

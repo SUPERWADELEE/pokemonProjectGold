@@ -14,9 +14,7 @@ class NatureSeeder extends Seeder
     public function run(): void
     {
         $json = file_get_contents(__DIR__ . '/allNatures.txt');
-
         $data = json_decode($json, true);
-
         foreach ($data['data']['pokemon_v2_naturename'] as $item) {
             if (isset($item['name'])) {
                 Nature::create([

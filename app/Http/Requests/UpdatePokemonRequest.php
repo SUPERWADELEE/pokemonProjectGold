@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Race;
 use App\Rules\SkillJudgment;
+use Illuminate\Contracts\Validation\Validator;
 
 class UpdatePokemonRequest extends FormRequest
 {
@@ -31,8 +32,17 @@ class UpdatePokemonRequest extends FormRequest
             'ability_id' => 'integer|exists:abilities,id',
             'nature_id' => 'integer|exists:natures,id',
             'level' => 'integer|min:1|max:100',
-            'skills' => ['array','min:1','max:4', new SkillJudgment()]
+            'skills' => 'required|array|min:1|max:4'
         ];
+    }
+
+    public function withValidator(Validator $validator)
+    {
+        $validator->after(function (Validator $validator) {
+            if (!valid_skills_for_race($this->skills)) {
+                $validator->errors()->add('skills', 'The skill is not allowed for this race.');
+            }
+        });
     }
 }
 
