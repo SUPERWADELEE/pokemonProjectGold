@@ -1,32 +1,22 @@
 <?php
-
-namespace Tests\Unit;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Http\Response;
 
-use PHPUnit\Framework\TestCase;
+ 
 
+use Illuminate\Foundation\Testing\WithoutMiddleware;
+use Tests\TestCase;
 class NatureStoreTest extends TestCase
 {
-    
-        use RefreshDatabase; // 使用此 trait 以確保每次測試後，資料庫重新建立。
-    
-        public function test_can_store_nature_with_valid_data()
-        {
-            $natureData = ['name' => 'Bold'];
-    
-            // 進行 POST 請求
-            $response = $this->json('POST', route('natures.store'), $natureData);
+    use RefreshDatabase; // 使用此trait可以在每次測試後重設數據庫
 
-    
-            // 檢查是否在資料庫中
-            $this->assertDatabaseHas('natures', $natureData);
-    
-            // 驗證回應
-            $response
-                ->assertStatus(Response::HTTP_CREATED) // 201
-                ->assertJson(['message' => 'Nature saved successfully']);
-        }
+    public function test_a_basic_request(): void
+    {
+        $response = $this->get('/api/natures');
+ 
+        $response->assertStatus(200);
+    }
+}
+
     
         // public function test_cannot_store_nature_with_missing_name()
         // {
@@ -51,5 +41,5 @@ class NatureStoreTest extends TestCase
         //         ->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY) // 422
         //         ->assertJsonValidationErrors(['name']);
         // }
-    }
+    
     

@@ -52,7 +52,7 @@ class PokemonController extends Controller
 
     public function show(Pokemon $pokemon)
     {
-        dd($pokemon);
+        
         // $pokemon = Pokemon::with(['race', 'ability', 'nature'])->find($id);
         return PokemonResource::make($pokemon);
         // return $pokemon;
