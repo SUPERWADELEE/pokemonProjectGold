@@ -40,6 +40,12 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'api' => [  // 添加api守衛
+            'driver' => 'jwt',  // 使用jwt作為驅動
+            'provider' => 'users',
+            'hash' => false,
+        ],
     ],
 
     /*

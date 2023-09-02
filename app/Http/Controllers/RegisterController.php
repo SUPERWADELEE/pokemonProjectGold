@@ -17,6 +17,7 @@ class RegisterController extends Controller
             'password' => 'required|string|min:8|confirmed',
         ]);
 
+        // 將使用者資料輸入資料庫
         $user = User::create([
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
