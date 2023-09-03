@@ -9,16 +9,19 @@ use App\Http\Resources\PokemonResource;
 use App\Models\Nature;
 use App\Models\Pokemon;
 use App\Models\Race;
+use App\Models\User;
 use Exception;
-
+use Illuminate\Support\Facades\Auth;
 
 class PokemonController extends Controller
 {
     public function index()
     {
         $this->authorize('index', Pokemon::class);
+        $user = Auth::user();
+        // dd($user->id);
         // 寶可夢詳情
-        $pokemons = Pokemon::with(['race', 'ability', 'nature'])->get();
+        $pokemons = Pokemon::with(['race', 'ability', 'nature'])->where('user_id', $user->id)->get();
         return PokemonResource::collection($pokemons);
     }
 
@@ -26,17 +29,23 @@ class PokemonController extends Controller
     public function store(StorePokemonRequest $request)
     {
 
+        // 確認目前登入者操作權限
         // authorization 為底層有去引用Illuminate\Foundation\Auth\Access\AuthorizesRequests trait
         // 此方法通常會搭配policy用,後面參數傳入以註冊之model,然後就可以對應到該model設置的判斷權限方法
         $this->authorize('create', Pokemon::class);
-// dd($canCreate);
+
 
         // 用validated()方法只返回在 Form Request 中定義的驗證規則對應的數據
         $validatedData = $request->toArray();
-        // dd($validatedData);
-        
 
-        return PokemonResource::make(Pokemon::create($validatedData));
+        
+        // dd($validatedData);
+        // 要如何在該陣列加入當前使用者的id
+        $userId = Auth::user()->id;
+        $validatedData['user_id'] = $userId;
+        $createdData = Pokemon::create($validatedData);
+    
+        return PokemonResource::make($createdData);
         // return Pokemon::create($validatedData)->load(['race', 'ability', 'nature']);
         // whenload用法
         // return response(['message' => 'Pokemon saved successfully'], 201);

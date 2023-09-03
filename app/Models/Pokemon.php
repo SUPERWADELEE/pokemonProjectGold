@@ -21,7 +21,8 @@ class Pokemon extends Model
         'ability_id',
         'nature_id',
         'level',
-        'skills'
+        'skills',
+        'user_id'
 
         // ... 其他允許的屬性 ...
 

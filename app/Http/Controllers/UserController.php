@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    // 超級使用者更改權限功能
     public function changeUserStatus(User $user)
     {
         $this->authorize('changePermission', $user);
