@@ -73,8 +73,8 @@ class PokemonController extends Controller
         // return $pokemon;
         // 如何解決modelbiding錯誤問題
 
-        $currentUser = Auth::user();
 
+        $currentUser = Auth::user();
         if ($currentUser->id !== $pokemon->user_id) {
             return response()->json(['message' => 'Unauthorized'], 403);
         }
@@ -86,11 +86,10 @@ class PokemonController extends Controller
 
     public function destroy(Pokemon $pokemon)
     {
-        // 如果找不到寶可夢，返回一個錯誤響應
-        // if (!$pokemon) {
-        //     return response()->json(['message' => 'Pokemon not found'], 404);
-        // }
-
+        $currentUser = Auth::user();
+        if ($currentUser->id !== $pokemon->user_id) {
+            return response()->json(['message' => 'Unauthorized'], 403);
+        }
         // 刪除該寶可夢
         $pokemon->delete();
 
@@ -102,6 +101,10 @@ class PokemonController extends Controller
 
     public function evolution(Pokemon $pokemon)
     {
+        $currentUser = Auth::user();
+        if ($currentUser->id !== $pokemon->user_id) {
+            return response()->json(['message' => 'Unauthorized'], 403);
+        }
         // dd($pokemon);
         // 拿到寶可夢進化等級
         $pokemon->load('race');
