@@ -15,9 +15,11 @@
     <div class="flex justify-center mt-24">
       <div class="w-1/3 bg-white p-6 rounded shadow-lg">
         <h2 class="text-3xl font-bold mb-4">請登入</h2>
-        <input type="text" placeholder="帳號" class="p-2 w-full mb-4 border rounded">
-        <input type="password" placeholder="密碼" class="p-2 w-full mb-4 border rounded">
-        <button onclick="login()" class="px-4 py-2 font-bold text-white bg-blue-500 w-full rounded-full hover:bg-blue-600">登入</button>
+        <input type="text" id="emailInput" placeholder="帳號" class="p-2 w-full mb-4 border rounded">
+        <input type="password" id="passwordInput" placeholder="密碼" class="p-2 w-full mb-4 border rounded">
+
+        <button onclick="handleLogin()" class="px-4 py-2 font-bold text-white bg-blue-500 w-full rounded-full hover:bg-blue-600">登入</button>
+
       </div>
     </div>
   </div>
@@ -51,54 +53,126 @@
   </div>
 
   <script>
+   function handleLogin() {
+    const email = document.getElementById('emailInput').value;
+    const password = document.getElementById('passwordInput').value;
 
+    login(email, password)
+        .then(token => {
+            // 保存token到localStorage
+            localStorage.setItem('jwtToken', token);
 
-    function login(email, password) {
-      return fetch('http://127.0.0.1:8000/Auth/login', {
-          method: 'POST',
-          headers: {
+            // 顯示寶可夢的界面
+            showPokemonPage();
+        })
+        .catch(error => {
+            console.error('Login error:', error.message);
+        });
+}
+
+function login(email, password) {
+    return fetch('http://localhost:8000/api/Auth/login', {
+        method: 'POST',
+        headers: {
             'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
+        },
+        body: JSON.stringify({
             email: email,
             password: password
-          })
         })
-        .then(response => {
-          if (response.ok) {
+    })
+    .then(response => {
+        if (response.ok) {
             return response.json();
-          } else {
+        } else {
             return response.json().then(data => {
-              throw new Error(data.message || 'Unable to login');
+                throw new Error(data.message || 'Unable to login');
             });
-          }
-        })
-        .then(data => {
-          return data.token;
-        });
-    }
+        }
+    })
+    .then(data => {
+        return data.token;
+    });
+}
+
+function logout() {
+   
+
+    // 調用API的登出端點
+    const token = localStorage.getItem('jwtToken');
+    fetch('http://localhost:8000/api/Auth/logout', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token  // 這裡添加token
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Logout failed');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Logged out successfully');
+        showLoginPage()
+    })
+    .catch(error => {
+        console.error('Logout error:', error);
+    });
+    localStorage.removeItem('jwtToken');
+
+    
+
+
+}
+
+
+
+function showPokemonPage() {
+    // 隱藏登錄界面
+    document.getElementById('loginPage').style.display = 'none';
+    
+    // 顯示寶可夢的界面
+    document.getElementById('pokemonContainer').style.display = 'block';
+}
+
+
+
+function showLoginPage(){
+
+  // 隱藏登錄界面
+  document.getElementById('loginPage').style.display = 'block';
+    
+    // 顯示寶可夢的界面
+  document.getElementById('pokemonContainer').style.display = 'none';
+}
 
 
 
 
     // 由按鈕觸發,打api接收所有寶可夢資訊
     function pokemonIndex() {
-      fetch('http://127.0.0.1:8000/api/pokemons/', {
-          method: 'GET',
-          headers: {
+    const token = localStorage.getItem('jwtToken');
+
+    fetch('http://127.0.0.1:8000/api/pokemons/', {
+        method: 'GET',
+        headers: {
             'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          }
-        })
-        .then(response => response.json())
-        .then(data => {
-          populatePokemons(data.data);
-          console.log('Success:', data);
-        })
-        .catch((error) => {
-          console.error('Error:', error);
-        });
-    }
+            'Accept': 'application/json',
+            'Authorization': 'Bearer ' + token  // 這裡添加token
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        populatePokemons(data.data);
+        console.log('Success:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
 
     // 處理接收到的json擋,然後找到想填入的標籤,創建標籤
     function populatePokemons(pokemons) {
@@ -147,11 +221,13 @@
 
     // 取得所有寶可夢種族及圖片
     function fetchPokemons() {
+      const token = localStorage.getItem('jwtToken');
       fetch('http://127.0.0.1:8000/api/races/', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            'Accept': 'application/json'
+            'Accept': 'application/json',
+            'Authorization': 'Bearer ' + token  // 這裡添加token
           }
         })
         .then(response => response.json())

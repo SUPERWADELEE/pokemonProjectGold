@@ -32,7 +32,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
  * pokemon管理
  */
 // pokemon列表
-Route::middleware('auth:api', 'checkStatus')->group(function () {
+Route::middleware('auth:api', 'checkStatus', )->group(function () {
 
     /**
      * pokemon管理

@@ -12,23 +12,30 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        $credentials = $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-        ]);
-
-        $token = JWTAuth::attempt($credentials);
-
-        if (!$token) {
-            return response()->json(['error' => 'Invalid credentials'], 401);
+        try {
+            $credentials = $request->validate([
+                'email' => 'required|string|email',
+                'password' => 'required|string',
+            ]);
+    
+            $token = JWTAuth::attempt($credentials);
+    
+            if (!$token) {
+                return response()->json(['error' => 'Invalid credentials'], 401);
+            }
+    
+            return response()->json([
+                'message' => 'Login successful',
+                'token' => $token,
+                'user' => Auth::user()
+            ], 200);
+    
+        } catch (Exception $e) {
+            // 返回一個具有錯誤信息的JSON響應
+            return response()->json(['error' => $e->getMessage()], 500);
         }
-
-        return response()->json([
-            'message' => 'Login successful',
-            'token' => $token,
-            'user' => Auth::user()
-        ], 200);
     }
+    
 
 
     public function logout(Request $request)

@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         // 確認使用者是否被停權
         'checkStatus' => \App\Http\Middleware\CheckUserStatus::class,
+        'cors' => \App\Http\Middleware\Cors::class,
     ];
 }
