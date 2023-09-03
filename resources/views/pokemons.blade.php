@@ -10,32 +10,77 @@
 
 <body class="bg-gray-100">
 
-  <div class="bg-white py-24 sm:py-32">
-    <div class="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
-      <div class="max-w-2xl">
-        <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">寶可夢清單</h2>
-        <p class="mt-6 text-lg leading-8 text-gray-600">我家的寶可夢,會後空翻</p>
-        <button onclick="pokemonIndex()" class="mt-6 px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-600">所有寶可夢</button>
-        <button onclick="fetchPokemons()" class="mt-6 px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-600">新增寶可夢</button>
-
+  <!-- 登入畫面 -->
+  <div id="loginPage">
+    <div class="flex justify-center mt-24">
+      <div class="w-1/3 bg-white p-6 rounded shadow-lg">
+        <h2 class="text-3xl font-bold mb-4">請登入</h2>
+        <input type="text" placeholder="帳號" class="p-2 w-full mb-4 border rounded">
+        <input type="password" placeholder="密碼" class="p-2 w-full mb-4 border rounded">
+        <button onclick="login()" class="px-4 py-2 font-bold text-white bg-blue-500 w-full rounded-full hover:bg-blue-600">登入</button>
       </div>
-      <div id="pokemonDetail"></div>
-
-
-
-      <!-- Pokemon List Container -->
-      <ul role="list" id="pokemonList" class="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
-
-
-
-        <!-- Single Pokemon will be appended here -->
-
-      </ul>
-      <div id="pagination"></div>
     </div>
   </div>
 
+  <!-- 寶可夢的畫面 -->
+  <div id="pokemonContainer" style="display: none;">
+    <div class="flex justify-end space-x-4 mr-4 mt-4">
+      <button onclick="logout()" class="px-4 py-2 font-bold text-white bg-red-500 rounded-full hover:bg-red-600">登出</button>
+    </div>
+
+    <div class="bg-white py-24 sm:py-32">
+      <div class="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
+        <div class="max-w-2xl">
+          <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">寶可夢清單</h2>
+          <p class="mt-6 text-lg leading-8 text-gray-600">我家的寶可夢,會後空翻</p>
+          <button onclick="pokemonIndex()" class="mt-6 px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-600">所有寶可夢</button>
+          <button onclick="fetchPokemons()" class="mt-6 px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-600">新增寶可夢</button>
+        </div>
+        <div id="pokemonDetail"></div>
+
+        <!-- Pokemon List Container -->
+        <ul role="list" id="pokemonList" class="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
+          <!-- Single Pokemon will be appended here -->
+        </ul>
+        <div id="pagination"></div>
+      </div>
+    </div>
+  </div>
+  <div id="pagination"></div>
+  </div>
+  </div>
+
   <script>
+
+
+    function login(email, password) {
+      return fetch('http://127.0.0.1:8000/Auth/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            email: email,
+            password: password
+          })
+        })
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            return response.json().then(data => {
+              throw new Error(data.message || 'Unable to login');
+            });
+          }
+        })
+        .then(data => {
+          return data.token;
+        });
+    }
+
+
+
+
     // 由按鈕觸發,打api接收所有寶可夢資訊
     function pokemonIndex() {
       fetch('http://127.0.0.1:8000/api/pokemons/', {
@@ -250,7 +295,6 @@
 
   // 初始渲染
   // fetchPokemons(); // 這裡我使用fetchPokemons進行初始的數據獲取和渲染 -->
-  </script>
 </body>
 
 </html>

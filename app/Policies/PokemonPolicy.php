@@ -42,7 +42,7 @@ class PokemonPolicy
 
     public function update(User $user, Pokemon $pokemon)
     {
-        return in_array($user->role, ['superadmin', 'user']);
+        return $user->id === $pokemon->user_id || $user->role === 'superadmin';
     }
 
 
@@ -51,7 +51,7 @@ class PokemonPolicy
         return $user->id === $pokemon->user_id || $user->role === 'superadmin';
     }
 
-    
+
     public function evolution(User $user, Pokemon $pokemon)
     {
         return $user->id === $pokemon->user_id || $user->role === 'superadmin';

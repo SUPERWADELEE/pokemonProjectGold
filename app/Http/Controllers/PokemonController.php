@@ -39,8 +39,6 @@ class PokemonController extends Controller
         // 用validated()方法只返回在 Form Request 中定義的驗證規則對應的數據
         $validatedData = $request->toArray();
 
-
-        // dd($validatedData);
         // 要如何在該陣列加入當前使用者的id
         $userId = Auth::user()->id;
         $validatedData['user_id'] = $userId;
@@ -60,6 +58,9 @@ class PokemonController extends Controller
     {
         // 使用此方法更新只有實際有輸入數據的欄位才會做更新
         // $inputValue = $request->only($pokemonValue);
+
+        // 你不能去修改別人的神奇寶貝
+        $this->authorize('update', $pokemon);
         $pokemon->update($request->toArray());
         // return PokemonResource::make($pokemon->load(['race', 'ability', 'nature']));
         return PokemonResource::make($pokemon);
