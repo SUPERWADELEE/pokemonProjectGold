@@ -47,6 +47,12 @@ class Pokemon extends Model
 {
     return $this->belongsToMany(Skill::class, 'pokemon_skill');
 }
-    
-    
+    // app/Models/Pokemon.php
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
+
+    

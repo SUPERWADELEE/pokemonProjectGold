@@ -21,7 +21,7 @@ class PokemonController extends Controller
         
         // dd($user->id);
         // 寶可夢詳情
-        $pokemons = Pokemon::with(['race', 'ability', 'nature'])->get();
+        $pokemons = Pokemon::with(['race', 'ability', 'nature','user'])->get();
         return PokemonResource::collection($pokemons);
     }
 

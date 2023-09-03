@@ -196,6 +196,7 @@ function showLoginPage(){
           <p class="text-sm text-gray-600">種族: ${pokemon.race}</p>
           <p class="text-sm text-gray-600">能力: ${pokemon.ability}</p>
           <p class="text-sm text-gray-600">等級: ${pokemon.level}</p>
+          <p class="text-sm text-gray-600">主人: ${pokemon.host}</p>
       `;
         // 將此新創建的list加入到一開始先創建好的html標籤
         // 將創建的動態 DOM 元素附加到現有的 DOM 元素中

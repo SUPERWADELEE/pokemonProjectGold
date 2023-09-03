@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\Models\Race;
 use App\Models\Skill;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Auth;
@@ -22,8 +23,7 @@ class PokemonResource extends JsonResource
         // 從這個skill資料的集合中,取出所有的名稱組成陣列
         $skillNames = $selectedSkills->pluck('name')->toArray();
     
-        $userId = Auth::user()->id;
-        // dd($userId);
+        
         // 將collection中的每一個object都跑一遍
         return [
             'id' => $this->id,
@@ -34,7 +34,8 @@ class PokemonResource extends JsonResource
             'nature' => $this->nature->name,
             'photo' => $this->race->photo, // 直接從已載入的 race 關聯獲取照片
             'skills' => $skillNames,
-            'user_id' => $userId
+            'host' => $this->user->name
+            
          
         ];
     }
