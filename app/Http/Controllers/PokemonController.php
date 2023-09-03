@@ -16,6 +16,7 @@ class PokemonController extends Controller
 {
     public function index()
     {
+        $this->authorize('index', Pokemon::class);
         // 寶可夢詳情
         $pokemons = Pokemon::with(['race', 'ability', 'nature'])->get();
         return PokemonResource::collection($pokemons);
@@ -24,6 +25,12 @@ class PokemonController extends Controller
     // 寶可夢新增
     public function store(StorePokemonRequest $request)
     {
+
+        // authorization 為底層有去引用Illuminate\Foundation\Auth\Access\AuthorizesRequests trait
+        // 此方法通常會搭配policy用,後面參數傳入以註冊之model,然後就可以對應到該model設置的判斷權限方法
+        $this->authorize('create', Pokemon::class);
+// dd($canCreate);
+
         // 用validated()方法只返回在 Form Request 中定義的驗證規則對應的數據
         $validatedData = $request->toArray();
         // dd($validatedData);
