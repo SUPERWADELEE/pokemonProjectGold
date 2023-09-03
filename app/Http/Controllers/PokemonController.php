@@ -38,13 +38,13 @@ class PokemonController extends Controller
         // 用validated()方法只返回在 Form Request 中定義的驗證規則對應的數據
         $validatedData = $request->toArray();
 
-        
+
         // dd($validatedData);
         // 要如何在該陣列加入當前使用者的id
         $userId = Auth::user()->id;
         $validatedData['user_id'] = $userId;
         $createdData = Pokemon::create($validatedData);
-    
+
         return PokemonResource::make($createdData);
         // return Pokemon::create($validatedData)->load(['race', 'ability', 'nature']);
         // whenload用法
@@ -68,11 +68,18 @@ class PokemonController extends Controller
 
     public function show(Pokemon $pokemon)
     {
-        
+
         // $pokemon = Pokemon::with(['race', 'ability', 'nature'])->find($id);
-        return PokemonResource::make($pokemon);
         // return $pokemon;
         // 如何解決modelbiding錯誤問題
+
+        $currentUser = Auth::user();
+
+        if ($currentUser->id !== $pokemon->user_id) {
+            return response()->json(['message' => 'Unauthorized'], 403);
+        }
+
+        return PokemonResource::make($pokemon);
     }
 
 
