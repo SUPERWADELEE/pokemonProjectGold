@@ -25,11 +25,11 @@ class PokemonPolicy
         return in_array($user->role, ['superadmin', 'user', 'guest']);
     }
 
-
-    public function show(User $user, Pokemon $pokemon)
+    public function view(User $user, Pokemon $pokemon)
     {
-        return in_array($user->role, ['superadmin', 'user', 'guest']);
+        return $user->id === $pokemon->user_id || $user->role === 'superadmin';
     }
+
 
     public function create(User $user)
     {
@@ -48,10 +48,16 @@ class PokemonPolicy
 
     public function delete(User $user, Pokemon $pokemon)
     {
-        return $user->role === 'superadmin'; // 只有超級管理員可以刪除
+        return $user->id === $pokemon->user_id || $user->role === 'superadmin';
     }
 
     
+    public function evolution(User $user, Pokemon $pokemon)
+    {
+        return $user->id === $pokemon->user_id || $user->role === 'superadmin';
+    }
+
+
     public function suspend(User $user)
     {
         return $user->role === 'superadmin'; // 只有超級管理員可以停權

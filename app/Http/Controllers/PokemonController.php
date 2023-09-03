@@ -17,13 +17,14 @@ class PokemonController extends Controller
 {
     public function index()
     {
-        $this->authorize('index', Pokemon::class);
-        $user = Auth::user();
+        // $this->authorize('index', Pokemon::class);
+        
         // dd($user->id);
         // 寶可夢詳情
-        $pokemons = Pokemon::with(['race', 'ability', 'nature'])->where('user_id', $user->id)->get();
+        $pokemons = Pokemon::with(['race', 'ability', 'nature'])->get();
         return PokemonResource::collection($pokemons);
     }
+
 
     // 寶可夢新增
     public function store(StorePokemonRequest $request)
@@ -68,17 +69,14 @@ class PokemonController extends Controller
 
     public function show(Pokemon $pokemon)
     {
-
-        // $pokemon = Pokemon::with(['race', 'ability', 'nature'])->find($id);
-        // return $pokemon;
         // 如何解決modelbiding錯誤問題
 
+        // $currentUser = Auth::user();
+        // if ($currentUser->id !== $pokemon->user_id) {
+        //     return response()->json(['message' => 'Unauthorized'], 403);
+        // }
 
-        $currentUser = Auth::user();
-        if ($currentUser->id !== $pokemon->user_id) {
-            return response()->json(['message' => 'Unauthorized'], 403);
-        }
-
+        $this->authorize('view', $pokemon);
         return PokemonResource::make($pokemon);
     }
 
@@ -86,10 +84,7 @@ class PokemonController extends Controller
 
     public function destroy(Pokemon $pokemon)
     {
-        $currentUser = Auth::user();
-        if ($currentUser->id !== $pokemon->user_id) {
-            return response()->json(['message' => 'Unauthorized'], 403);
-        }
+        $this->authorize('delete', $pokemon);
         // 刪除該寶可夢
         $pokemon->delete();
 
@@ -101,10 +96,8 @@ class PokemonController extends Controller
 
     public function evolution(Pokemon $pokemon)
     {
-        $currentUser = Auth::user();
-        if ($currentUser->id !== $pokemon->user_id) {
-            return response()->json(['message' => 'Unauthorized'], 403);
-        }
+        
+        $this->authorize('evolution', $pokemon);
         // dd($pokemon);
         // 拿到寶可夢進化等級
         $pokemon->load('race');
@@ -131,8 +124,8 @@ class PokemonController extends Controller
 
     public function search(SearchPokemonRequest $request)
     {
-        $query = Pokemon::query();
 
+        $query = Pokemon::query();
         $name = $request->input('name');
         $nature_id = $request->input('nature_id');
         $ability_id = $request->input('ability_id');
