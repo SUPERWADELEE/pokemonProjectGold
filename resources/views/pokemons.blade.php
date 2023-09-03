@@ -53,125 +53,125 @@
   </div>
 
   <script>
-   function handleLogin() {
-    const email = document.getElementById('emailInput').value;
-    const password = document.getElementById('passwordInput').value;
+    function handleLogin() {
+      const email = document.getElementById('emailInput').value;
+      const password = document.getElementById('passwordInput').value;
 
-    login(email, password)
+      login(email, password)
         .then(token => {
-            // 保存token到localStorage
-            localStorage.setItem('jwtToken', token);
+          // 保存token到localStorage
+          localStorage.setItem('jwtToken', token);
 
-            // 顯示寶可夢的界面
-            showPokemonPage();
+          // 顯示寶可夢的界面
+          showPokemonPage();
         })
         .catch(error => {
-            console.error('Login error:', error.message);
+          console.error('Login error:', error.message);
         });
-}
+    }
 
-function login(email, password) {
-    return fetch('http://localhost:8000/api/Auth/login', {
-        method: 'POST',
-        headers: {
+    function login(email, password) {
+      return fetch('http://localhost:8000/api/Auth/login', {
+          method: 'POST',
+          headers: {
             'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
+          },
+          body: JSON.stringify({
             email: email,
             password: password
+          })
         })
-    })
-    .then(response => {
-        if (response.ok) {
+        .then(response => {
+          if (response.ok) {
             return response.json();
-        } else {
+          } else {
             return response.json().then(data => {
-                throw new Error(data.message || 'Unable to login');
+              throw new Error(data.message || 'Unable to login');
             });
-        }
-    })
-    .then(data => {
-        return data.token;
-    });
-}
+          }
+        })
+        .then(data => {
+          return data.token;
+        });
+    }
 
-function logout() {
-   
+    function logout() {
 
-    // 調用API的登出端點
-    const token = localStorage.getItem('jwtToken');
-    fetch('http://localhost:8000/api/Auth/logout', {
-        method: 'POST',
-        headers: {
+
+      // 調用API的登出端點
+      const token = localStorage.getItem('jwtToken');
+      fetch('http://localhost:8000/api/Auth/logout', {
+          method: 'POST',
+          headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + token  // 這裡添加token
-        }
-    })
-    .then(response => {
-        if (!response.ok) {
+            'Authorization': 'Bearer ' + token // 這裡添加token
+          }
+        })
+        .then(response => {
+          if (!response.ok) {
             throw new Error('Logout failed');
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Logged out successfully');
-        showLoginPage()
-    })
-    .catch(error => {
-        console.error('Logout error:', error);
-    });
-    localStorage.removeItem('jwtToken');
-
-    
-
-
-}
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log('Logged out successfully');
+          showLoginPage()
+        })
+        .catch(error => {
+          console.error('Logout error:', error);
+        });
+      localStorage.removeItem('jwtToken');
 
 
 
-function showPokemonPage() {
-    // 隱藏登錄界面
-    document.getElementById('loginPage').style.display = 'none';
-    
-    // 顯示寶可夢的界面
-    document.getElementById('pokemonContainer').style.display = 'block';
-}
+
+    }
 
 
 
-function showLoginPage(){
+    function showPokemonPage() {
+      // 隱藏登錄界面
+      document.getElementById('loginPage').style.display = 'none';
 
-  // 隱藏登錄界面
-  document.getElementById('loginPage').style.display = 'block';
-    
-    // 顯示寶可夢的界面
-  document.getElementById('pokemonContainer').style.display = 'none';
-}
+      // 顯示寶可夢的界面
+      document.getElementById('pokemonContainer').style.display = 'block';
+    }
+
+
+
+    function showLoginPage() {
+
+      // 隱藏登錄界面
+      document.getElementById('loginPage').style.display = 'block';
+
+      // 顯示寶可夢的界面
+      document.getElementById('pokemonContainer').style.display = 'none';
+    }
 
 
 
 
     // 由按鈕觸發,打api接收所有寶可夢資訊
     function pokemonIndex() {
-    const token = localStorage.getItem('jwtToken');
+      const token = localStorage.getItem('jwtToken');
 
-    fetch('http://127.0.0.1:8000/api/pokemons/', {
-        method: 'GET',
-        headers: {
+      fetch('http://127.0.0.1:8000/api/pokemons/', {
+          method: 'GET',
+          headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
-            'Authorization': 'Bearer ' + token  // 這裡添加token
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        populatePokemons(data.data);
-        console.log('Success:', data);
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
-}
+            'Authorization': 'Bearer ' + token // 這裡添加token
+          }
+        })
+        .then(response => response.json())
+        .then(data => {
+          populatePokemons(data.data);
+          console.log('Success:', data);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    }
 
 
     // 處理接收到的json擋,然後找到想填入的標籤,創建標籤
@@ -228,7 +228,7 @@ function showLoginPage(){
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
-            'Authorization': 'Bearer ' + token  // 這裡添加token
+            'Authorization': 'Bearer ' + token // 這裡添加token
           }
         })
         .then(response => response.json())
@@ -243,6 +243,8 @@ function showLoginPage(){
         });
     }
 
+
+    // 顯示所有種族姓名及圖片
     function renderPokemons(page) {
       const start = (page - 1) * pokemonsPerPage;
       const end = start + pokemonsPerPage;
@@ -280,10 +282,22 @@ function showLoginPage(){
     }
 
 
+
+
+
     // 1. 创建获取数据并填充下拉列表的函数
 
     function fetchAndPopulateDropdown(apiUrl, selectId) {
-      fetch(apiUrl)
+      const token = localStorage.getItem('jwtToken');
+      fetch(apiUrl, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer ' + token // 這裡添加token
+          }
+        })
+
         .then(response => response.json())
         .then(data => {
           const selectElement = document.getElementById(selectId);
@@ -301,20 +315,30 @@ function showLoginPage(){
     }
 
 
+    // 顯示技能下拉選單
     function fetchAndPopulateDropdownSkills(apiUrl, selectId) {
-      fetch(apiUrl)
+      const token = localStorage.getItem('jwtToken');
+      fetch(apiUrl, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer ' + token // 這裡添加token
+          }
+        })
         .then(response => {
           // 檢查伺服器響應是否正確
           if (!response.ok) {
             throw new Error(`Server responded with ${response.status}: ${response.statusText}`);
           }
-          return response.json();
+          return response.json(); // 直接解析為JSON
         })
-        .then(data => {
+        .then(responseData => {
+          console.log(responseData); // 打印已解析的JSON數據
           const selectElement = document.getElementById(selectId);
           selectElement.innerHTML = ''; // 清空现有选项
 
-          data.skills.forEach(skill => {
+          responseData.data.skills.forEach(skill => {
             const option = document.createElement('option');
             option.value = skill.id;
             option.textContent = skill.name;
@@ -329,6 +353,7 @@ function showLoginPage(){
 
 
 
+// 下拉選單標籤,由寶可夢圖片觸發
     function updatePokemonDetail(pokemon) {
       const detailContainer = document.getElementById('pokemonDetail');
       detailContainer.innerHTML = `
@@ -336,13 +361,19 @@ function showLoginPage(){
         <input type="text" id="pokemonName" name="pokemonName" >
         <h2>${pokemon.name}</h2>
         <img src="${pokemon.photo}" alt="${pokemon.name}" width="200">
-        <label>技能:</label>
-        <select id="skills"></select>
+        <label>技能1:</label>
+        <select id="skill1"></select>
+        <label>技能2:</label>
+        <select id="skill2"></select>
+        <label>技能3:</label>
+        <select id="skill3"></select>
+        <label>技能4:</label>
+        <select id="skill4"></select>
         <label>特性:</label>
         <select id="abilities"></select>
         <label>性格:</label>
         <select id="natures"></select>
-        <button class="mt-6 px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-600">新增寶可夢</button>
+        <button onclick="createPokemons()" class="mt-6 px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-600">新增寶可夢</button>
         <!-- 其他详细信息 -->
     `;
 
@@ -351,9 +382,18 @@ function showLoginPage(){
       // fetchAndPopulateDropdown('API_URL_FOR_SKILLS', 'skills');
       fetchAndPopulateDropdown('http://localhost:8000/api/abilities', 'abilities');
       fetchAndPopulateDropdown('http://localhost:8000/api/natures', 'natures');
-      fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${pokemon.id}/skill`, 'skills');
+      fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${pokemon.id}/skill`, 'skill1');
+      fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${pokemon.id}/skill`, 'skill2');
+      fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${pokemon.id}/skill`, 'skill3');
+      fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${pokemon.id}/skill`, 'skill4');
 
     }
+
+
+    
+
+
+    
   </script>
 
 
