@@ -3,6 +3,7 @@ use App\Models\Race;
 
 function valid_skills_for_race($skills) {
     // 先取得當前輸入的種族id
+    
     $pokemonId = request()->input('race_id');
     // 找到相關的種族
     $pokemon = Race::find($pokemonId);
@@ -15,5 +16,6 @@ function valid_skills_for_race($skills) {
             return false;
         }
     }
+    
     return true;
 }

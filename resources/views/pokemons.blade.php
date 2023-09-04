@@ -285,6 +285,11 @@
 
 
 
+
+
+
+
+
     // 1. 创建获取数据并填充下拉列表的函数
 
     function fetchAndPopulateDropdown(apiUrl, selectId) {
@@ -304,7 +309,7 @@
           selectElement.innerHTML = ''; // 清空现有选项
           data.forEach(item => {
             const option = document.createElement('option');
-            option.value = item.id || item.name; // 取决于你的API结构
+            option.value = item.id // 取决于你的API结构
             option.textContent = item.name;
             selectElement.appendChild(option);
           });
@@ -351,15 +356,78 @@
     }
 
 
+    // 進化等級下拉選單
+    // 這是用來填充選單的函數
+    function populateEvolutionDropdown(evolutionLevel, selectId) {
+      const selectElement = document.getElementById(selectId);
+      selectElement.innerHTML = ''; // 清空現有選項
+      if (!evolutionLevel) {
+        for (let i = 1; i <= 100; i++) {
+          const option = document.createElement('option');
+          option.value = i;
+          option.textContent = i;
+          selectElement.appendChild(option);
+        }
+      }
+
+      if (evolutionLevel) {
+        for (let i = 1; i <= evolutionLevel - 1; i++) {
+          const option = document.createElement('option');
+          option.value = i;
+          option.textContent = i;
+          selectElement.appendChild(option);
+
+        }
 
 
-// 下拉選單標籤,由寶可夢圖片觸發
+      }
+    }
+
+    // 這是用來從API獲取進化等級並呼叫上面的函數的函數
+    function fetchEvolutionLevel(apiUrl, selectId) {
+      const token = localStorage.getItem('jwtToken');
+      fetch(apiUrl, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer ' + token // 這裡添加token
+          }
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`Server responded with ${response.status}: ${response.statusText}`);
+          }
+          return response.json();
+        })
+        .then(data => {
+          const evolutionLevel = data.evolution_level;
+          populateEvolutionDropdown(evolutionLevel, selectId);
+        })
+        .catch(error => {
+          console.error("Error fetching data:", error);
+        });
+    }
+
+    // 使用範例：您可以在適當的地方呼叫下面這行代碼
+    // fetchEvolutionLevelAndPopulateDropdown('YOUR_API_URL_HERE', 'yourSelectId');
+
+
+
+
+
+
+
+
+
+
+    // 下拉選單標籤,由寶可夢圖片觸發
     function updatePokemonDetail(pokemon) {
       const detailContainer = document.getElementById('pokemonDetail');
       detailContainer.innerHTML = `
         <label for="pokemonName">寶可夢名稱:</label>
         <input type="text" id="pokemonName" name="pokemonName" >
-        <h2>${pokemon.name}</h2>
+        <h2 id="race_id" data-id="${pokemon.id}">${pokemon.name}</h2>
         <img src="${pokemon.photo}" alt="${pokemon.name}" width="200">
         <label>技能1:</label>
         <select id="skill1"></select>
@@ -373,6 +441,8 @@
         <select id="abilities"></select>
         <label>性格:</label>
         <select id="natures"></select>
+        <label>等級:</label>
+        <select id="level"></select>
         <button onclick="createPokemons()" class="mt-6 px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-600">新增寶可夢</button>
         <!-- 其他详细信息 -->
     `;
@@ -382,18 +452,66 @@
       // fetchAndPopulateDropdown('API_URL_FOR_SKILLS', 'skills');
       fetchAndPopulateDropdown('http://localhost:8000/api/abilities', 'abilities');
       fetchAndPopulateDropdown('http://localhost:8000/api/natures', 'natures');
+      fetchEvolutionLevel(`http://localhost:8000/api/races/${pokemon.id}/evolutionLevel`, 'level');
       fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${pokemon.id}/skill`, 'skill1');
       fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${pokemon.id}/skill`, 'skill2');
       fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${pokemon.id}/skill`, 'skill3');
       fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${pokemon.id}/skill`, 'skill4');
 
+
     }
 
+    // 1. 設置事件監聽器
+    document.querySelector('button').addEventListener('click', createPokemons);
 
-    
+    function createPokemons() {
+      // 2. 獲取用戶輸入
+      const pokemonName = document.getElementById('pokemonName').value;
+
+      const skill1 = document.getElementById('skill1').value;
+      const skill2 = document.getElementById('skill2').value;
+      const skill3 = document.getElementById('skill3').value;
+      const skill4 = document.getElementById('skill4').value;
+
+      const abilities = document.getElementById('abilities').value;
+      const natures = document.getElementById('natures').value;
+      const level = document.getElementById('level').value;
+      const race_id = document.getElementById('race_id').getAttribute('data-id');
 
 
-    
+
+      const newPokemon = {
+        name: pokemonName,
+        skills: [skill1, skill2, skill3, skill4],
+        ability_id: abilities,
+        nature_id: natures,
+        level:level,
+        race_id:race_id
+        // ... 其他參數
+      };
+
+      // 3. 創建和發送請求
+      const token = localStorage.getItem('jwtToken');
+      fetch('http://localhost:8000/api/pokemons', {
+        
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token // 這裡添加token
+          },
+          body: JSON.stringify(newPokemon)
+        })
+        .then(response => response.json())
+        .then(data => {
+          
+            alert('寶可夢成功新增！');
+          
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('伺服器錯誤！');
+        });
+    }
   </script>
 
 

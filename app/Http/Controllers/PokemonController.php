@@ -30,6 +30,7 @@ class PokemonController extends Controller
     public function store(StorePokemonRequest $request)
     {
 
+        // dd('final');
         // 確認目前登入者操作權限
         // authorization 為底層有去引用Illuminate\Foundation\Auth\Access\AuthorizesRequests trait
         // 此方法通常會搭配policy用,後面參數傳入以註冊之model,然後就可以對應到該model設置的判斷權限方法
