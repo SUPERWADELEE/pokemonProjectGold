@@ -66,6 +66,8 @@ Route::middleware('auth:api', 'checkStatus', 'throttle:100,1' )->group(function 
      */
 
     Route::patch('users/{user}/status', [UserController::class, 'changeUserStatus']);
+    Route::patch('users/{user}/changePassword', [UserController::class,'changePassword']);
+
 
 
     // 登出
