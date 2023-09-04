@@ -12,12 +12,13 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        try {
+            // 先針對輸入的部分做驗表單驗證       
             $credentials = $request->validate([
                 'email' => 'required|string|email',
                 'password' => 'required|string',
             ]);
     
+            // 根據進來的guard設定,去預先的表單設定查看輸入的資料是否存在
             $token = JWTAuth::attempt($credentials);
     
             if (!$token) {
@@ -29,24 +30,22 @@ class AuthController extends Controller
                 'token' => $token,
                 'user' => Auth::user()
             ], 200);
-    
-        } catch (Exception $e) {
-            // 返回一個具有錯誤信息的JSON響應
-            return response()->json(['error' => $e->getMessage()], 500);
-        }
     }
     
 
 
-    public function logout(Request $request)
+    public function logout()
     {
         try {
+            // 取出token 將其失效
             JWTAuth::invalidate(JWTAuth::getToken());
 
             return response()->json(['message' => 'Successfully logged out']);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return response()->json(['message' => 'Failed to logout'], 500);
         }
+
+        
     }
     
 }

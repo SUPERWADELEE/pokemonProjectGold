@@ -29,10 +29,8 @@ class PokemonController extends Controller
     // 寶可夢新增
     public function store(StorePokemonRequest $request)
     {
-
-        // dd('final');
         // 確認目前登入者操作權限
-        // authorization 為底層有去引用Illuminate\Foundation\Auth\Access\AuthorizesRequests trait
+        // authorize 為底層有去引用Illuminate\Foundation\Auth\Access\AuthorizesRequests trait
         // 此方法通常會搭配policy用,後面參數傳入以註冊之model,然後就可以對應到該model設置的判斷權限方法
         $this->authorize('create', Pokemon::class);
 
@@ -57,27 +55,15 @@ class PokemonController extends Controller
     // 寶可夢資料修改
     public function update(UpdatePokemonRequest $request, Pokemon $pokemon)
     {
-        // 使用此方法更新只有實際有輸入數據的欄位才會做更新
-        // $inputValue = $request->only($pokemonValue);
-
         // 你不能去修改別人的神奇寶貝
         $this->authorize('update', $pokemon);
         $pokemon->update($request->toArray());
-        // return PokemonResource::make($pokemon->load(['race', 'ability', 'nature']));
         return PokemonResource::make($pokemon);
-        // return response(['message' => 'pokemon updated successfully'], 200);
     }
 
 
     public function show(Pokemon $pokemon)
     {
-        // 如何解決modelbiding錯誤問題
-
-        // $currentUser = Auth::user();
-        // if ($currentUser->id !== $pokemon->user_id) {
-        //     return response()->json(['message' => 'Unauthorized'], 403);
-        // }
-
         $this->authorize('view', $pokemon);
         return PokemonResource::make($pokemon);
     }
@@ -166,62 +152,5 @@ class PokemonController extends Controller
 
 
 
-    // try{
-
-    // 判定進化後,更新資料,如未到達進化條件或已封頂,則不進化
-    //if (!$evolutionLevel){
-    //return ...
-    // }
-
-
-    //if($pokemon->level > $evolutionLevel < 進化條件){
-    //}} ctach()
-    //return 進化條件未達到
-
-    // $pokemon->update([
-    //     'race_id' => $pokemon->race_id + 1,
-
-    // ]);
-
-
-
-
-    // if(!$evolutionLevel){
-    //     return response(['message' => "寶可夢已是最終形態"], 400);
-    // }
-
-    // if ($pokemon->level > $evolutionLevel) {
-    //     // dd($pokemon->race_id);
-    //     $pokemon->update([
-    //         'race_id' => $pokemon->race_id + 1,
-
-    //     ]);
-    //     return response(['message' => "This Pokemon evolves."], 200);
-    // }
-
-    // return response(['message' => "寶可夢未達進化條件"], 400);
-
-
-
-
-
-
-
-
-    //     if ($evolutionLevel) {
-    //         if ($pokemon->level > $evolutionLevel) {
-    //             // dd($pokemon->race_id);
-    //             $pokemon->update([
-    //                 'race_id' => $pokemon->race_id + 1,
-
-    //             ]);
-    //             return response(['message' => "This Pokemon evolves."], 200);
-    //         } else {
-
-    //             return response(['message' => "寶可夢未達進化條件"], 400);
-    //         }
-    //     }
-
-    //     return response(['message' => "寶可夢已是最終形態"], 400);
-
+    
 }

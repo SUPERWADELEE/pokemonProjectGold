@@ -34,12 +34,15 @@ class PokemonPolicy
     public function create(User $user)
     {
         // 只有超級管理員和一般使用者可以建立
+        // 此處的$user可以由依賴注入得到,因為有經過驗證的路由
         // dd($user->role);
         return in_array($user->role, ['superadmin', 'user']);
     }
 
 
 
+    // 更新刪除進化等級判斷,都要使用者id該寶可夢id一致才可以進行操作
+    // 或是superadmin
     public function update(User $user, Pokemon $pokemon)
     {
         return $user->id === $pokemon->user_id || $user->role === 'superadmin';
@@ -58,8 +61,5 @@ class PokemonPolicy
     }
 
 
-    public function suspend(User $user)
-    {
-        return $user->role === 'superadmin'; // 只有超級管理員可以停權
-    }
+    
 }

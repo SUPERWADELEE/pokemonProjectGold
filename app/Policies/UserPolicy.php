@@ -18,8 +18,9 @@ class UserPolicy
         //
     }
 
-    public function changePermission(User $currentUser, User $userToChange)
+
+    public function changePermission(User $user)
     {
-        return $currentUser->role === 'superadmin';
+        return $user->role === 'superadmin';
     }
 }

@@ -11,13 +11,15 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         // 1. 驗證輸入
+        // 每個email在users表單都是唯一的
+        // 密碼需要做確認
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
         ]);
 
-        // 將使用者資料輸入資料庫
+        // 將使用者資料輸入資料庫, 目前role的部分預設為user
         $user = User::create([
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
