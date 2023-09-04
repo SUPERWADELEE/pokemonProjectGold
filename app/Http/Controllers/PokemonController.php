@@ -13,15 +13,30 @@ use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 
+
+
 class PokemonController extends Controller
 {
+
+    /**
+     * Create a new user.
+     *
+     * This endpoint allows you to show all pokemons.
+     *
+     * @group Pokemons
+     * @authenticated
+     *
+     * @bodyParam first_name string required The first name of the user.
+     * @bodyParam last_name string required The last name of the user.
+     * @bodyParam email string required The email address of the user.
+     */
     public function index()
     {
         // $this->authorize('index', Pokemon::class);
-        
+
         // dd($user->id);
         // 寶可夢詳情
-        $pokemons = Pokemon::with(['race', 'ability', 'nature','user'])->get();
+        $pokemons = Pokemon::with(['race', 'ability', 'nature', 'user'])->get();
         return PokemonResource::collection($pokemons);
     }
 
@@ -84,7 +99,7 @@ class PokemonController extends Controller
 
     public function evolution(Pokemon $pokemon)
     {
-        
+
         $this->authorize('evolution', $pokemon);
         // dd($pokemon);
         // 拿到寶可夢進化等級
@@ -149,8 +164,4 @@ class PokemonController extends Controller
         $pokemons = $query->get();
         return PokemonResource::collection($pokemons);
     }
-
-
-
-    
 }

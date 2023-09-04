@@ -28,10 +28,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-/**
- * pokemon管理
- */
-// pokemon列表
 
 
 Route::middleware('auth:api', 'checkStatus', 'throttle:100,1' )->group(function () {
