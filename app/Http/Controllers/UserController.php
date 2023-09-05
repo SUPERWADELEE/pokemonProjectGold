@@ -42,13 +42,14 @@ class UserController extends Controller
     $user = Auth::user();
 
     // dd($user);
-    if (!Hash::check($request->current_password, $user->password)) {
+    $checkedPassword = Hash::check($request->current_password, $user->password);
+    if (!$checkedPassword) {
         return response()->json(['error' => 'Current password is incorrect'], 400);
     }
 
     $user->password = Hash::make($request->new_password);
     $user->save();
-
+   
     return response()->json(['message' => 'Password changed successfully']);
 }
 

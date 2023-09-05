@@ -44,6 +44,17 @@
         <ul role="list" id="pokemonList" class="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
           <!-- Single Pokemon will be appended here -->
         </ul>
+
+        <div id="pokemon-detail">
+          <img id="pokemon-photo" src="" alt="Pokemon Image">
+          <h2 id="pokemon-name"></h2>
+          <p>種族: <span id="pokemon-race"></span></p>
+          <p>能力: <span id="pokemon-ability"></span></p>
+          <p>等級: <span id="pokemon-level"></span></p>
+          <p>主人: <span id="pokemon-host"></span></p>
+          <ul id="pokemon-skills"></ul>
+        </div>
+
         <div id="pagination"></div>
       </div>
     </div>
@@ -63,33 +74,7 @@
   <script src="{{ asset('js/populateEvolutionDropdown.js') }}"></script>
   <script src="{{ asset('js/updatePokemonDetail.js') }}"></script>
   <script src="{{ asset('js/createPokemons.js') }}"></script>
-<script>
-
-
-
-    
-
-
-
-
-   
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
- 
+  <script>
     // 使用範例：您可以在適當的地方呼叫下面這行代碼
     // fetchEvolutionLevelAndPopulateDropdown('YOUR_API_URL_HERE', 'yourSelectId');
 
@@ -102,10 +87,9 @@
 
 
 
-  
+
 
     // 1. 設置事件監聽器
-   
   </script>
 
 

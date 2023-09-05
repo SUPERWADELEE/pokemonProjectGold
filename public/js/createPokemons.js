@@ -28,23 +28,33 @@ function createPokemons() {
 
   // 3. 創建和發送請求
   const token = localStorage.getItem('jwtToken');
-  fetch('http://localhost:8000/api/pokemons', {
-    
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + token // 這裡添加token
-      },
-      body: JSON.stringify(newPokemon)
-    })
-    .then(response => response.json())
-    .then(data => {
-      
-        alert('寶可夢成功新增！');
-      
-    })
-    .catch(error => {
-      console.error('Error:', error);
+fetch('http://localhost:8000/api/pokemons', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token ,// 這裡添加token
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify(newPokemon)
+  })
+  .then(response => {
+    // 如果响应的 HTTP 状态码不是2xx，抛出错误
+    if (!response.ok) {
+      // 把响应主体解析为 JSON，然后抛出错误
+      return response.json().then(err => { throw err; });
+    }
+    return response.json();
+  })
+  .then(data => {
+    alert('寶可夢成功新增！');
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    if (error && error.message) {
+      alert(`伺服器錯誤：${error.message}`);
+    } else {
       alert('伺服器錯誤！');
-    });
+    }
+  });
+
 }
