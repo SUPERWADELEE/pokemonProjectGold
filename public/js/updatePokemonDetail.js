@@ -1,6 +1,7 @@
   // 下拉選單標籤,由寶可夢圖片觸發
   function updatePokemonDetail(pokemon) {
     const detailContainer = document.getElementById('pokemonDetail');
+    detailContainer.style.display = 'block';
     detailContainer.innerHTML = `
       <label for="pokemonName">寶可夢名稱:</label>
       <input type="text" id="pokemonName" name="pokemonName" >

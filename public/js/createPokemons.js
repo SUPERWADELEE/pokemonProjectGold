@@ -47,6 +47,8 @@ fetch('http://localhost:8000/api/pokemons', {
   })
   .then(data => {
     alert('寶可夢成功新增！');
+    const detailContainer = document.getElementById('pokemonDetail');
+    detailContainer.style.display = 'none';
   })
   .catch(error => {
     console.error('Error:', error);
