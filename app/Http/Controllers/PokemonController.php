@@ -32,11 +32,14 @@ class PokemonController extends Controller
      */
     public function index()
     {
-        // $this->authorize('index', Pokemon::class);
+        // 透過JWT取得當前登入的用戶
+        $user = auth()->user();
 
-        // dd($user->id);
-        // 寶可夢詳情
-        $pokemons = Pokemon::with(['race', 'ability', 'nature', 'user'])->get();
+        // 只獲取當前登入用戶新增的寶可夢
+        $pokemons = Pokemon::with(['race', 'ability', 'nature', 'user'])
+            ->where('user_id', $user->id)
+            ->get();
+
         return PokemonResource::collection($pokemons);
     }
 
@@ -59,7 +62,6 @@ class PokemonController extends Controller
         $createdData = Pokemon::create($validatedData);
 
         return PokemonResource::make($createdData);
-        
     }
 
 
@@ -161,6 +163,4 @@ class PokemonController extends Controller
         $pokemons = $query->get();
         return PokemonResource::collection($pokemons);
     }
-
-    
 }
