@@ -35,7 +35,7 @@ class PokemonController extends Controller
         // 透過JWT取得當前登入的用戶
         $user = auth()->user();
 
-        // 只獲取當前登入用戶新增的寶可夢
+        // 只獲取當前登入用戶的寶可夢
         $pokemons = Pokemon::with(['race', 'ability', 'nature', 'user'])
             ->where('user_id', $user->id)
             ->get();
@@ -78,7 +78,7 @@ class PokemonController extends Controller
 
     public function show(Pokemon $pokemon)
     {
-        $this->authorize('view', $pokemon);
+        $this->authorize('show', $pokemon);
         return PokemonResource::make($pokemon);
     }
 

@@ -51,18 +51,23 @@
 
 
   //  分頁功能
-   function renderPaginationButtons() {
-     const paginationContainer = document.getElementById('pagination');
-     paginationContainer.innerHTML = '';
+  function renderPaginationButtons() {
+    const paginationContainer = document.getElementById('pagination');
+    paginationContainer.innerHTML = '';
 
-     const totalPages = Math.ceil(pokemons.length / pokemonsPerPage);
-     for (let i = 1; i <= totalPages; i++) {
-       const button = document.createElement('button');
-       button.textContent = i;
-       button.addEventListener('click', () => {
-         currentPage = i;
-         renderPokemons(currentPage);
-       });
-       paginationContainer.appendChild(button);
-     }
-   }
+    const totalPages = Math.ceil(pokemons.length / pokemonsPerPage);
+    for (let i = 1; i <= totalPages; i++) {
+      const button = document.createElement('button');
+      button.textContent = i;
+      button.addEventListener('click', () => {
+        currentPage = i;
+        renderPokemons(currentPage);
+      });
+      paginationContainer.appendChild(button);
+    }
+
+    togglePagination(true);  // 將這行移出for迴圈
+}
+
+
+   

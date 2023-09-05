@@ -1,5 +1,7 @@
  // 由按鈕觸發,打api接收所有寶可夢資訊
  function pokemonsIndex() {
+  document.getElementById('pokemon-detail').style.display = 'none';
+  document.getElementById('pokemonList').style.display = 'block';
     const token = localStorage.getItem('jwtToken');
 
     fetch('http://127.0.0.1:8000/api/pokemons/', {
@@ -48,6 +50,7 @@
         fetchPokemonDetails(pokemonId);
       });
     });
+    togglePagination(false);
 }
 
 function fetchPokemonDetails(id) {
@@ -88,8 +91,10 @@ function fetchPokemonDetails(id) {
           skillsList.appendChild(listItem);
       });
 
+      document.getElementById('pokemon-detail').style.display = 'block';
       document.getElementById('pokemonList').style.display = 'none';
-    document.getElementById('pokemonContainer').style.display = 'block';
+
+     
   }
   
 }

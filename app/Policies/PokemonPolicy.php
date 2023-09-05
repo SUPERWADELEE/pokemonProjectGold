@@ -25,7 +25,7 @@ class PokemonPolicy
         return in_array($user->role, ['superadmin', 'user', 'guest']);
     }
 
-    public function view(User $user, Pokemon $pokemon)
+    public function show(User $user, Pokemon $pokemon)
     {
         return $user->id === $pokemon->user_id || $user->role === 'superadmin';
     }

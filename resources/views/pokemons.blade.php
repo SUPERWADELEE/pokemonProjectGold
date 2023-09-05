@@ -60,7 +60,7 @@
           <ul id="pokemon-skills"></ul>
         </div>
 
-        <div id="pagination"></div>
+        
       </div>
     </div>
   </div>
@@ -71,6 +71,8 @@
   <script src="{{ asset('js/login.js') }}"></script>
   <script src="{{ asset('js/logout.js') }}"></script>
   <script src="{{ asset('js/showPage.js') }}"></script>
+  <script src="{{ asset('js/togglePagination.js') }}"></script>
+  <script>togglePagination(false);</script>
   <script src="{{ asset('js/pokemonsIndex.js') }}"></script>
   <script src="{{ asset('js/racesIndex.js') }}"></script>
   <!-- // 1. 创建获取数据并填充下拉列表的函数 -->
@@ -79,7 +81,10 @@
   <script src="{{ asset('js/populateEvolutionDropdown.js') }}"></script>
   <script src="{{ asset('js/updatePokemonDetail.js') }}"></script>
   <script src="{{ asset('js/createPokemons.js') }}"></script>
+  
   <script>
+   
+
     // 使用範例：您可以在適當的地方呼叫下面這行代碼
     // fetchEvolutionLevelAndPopulateDropdown('YOUR_API_URL_HERE', 'yourSelectId');
 
