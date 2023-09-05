@@ -21,6 +21,6 @@ class UserPolicy
 
     public function changePermission(User $user)
     {
-        return $user->role === 'superadmin';
+        return $user->isSuperadmin();
     }
 }

@@ -63,4 +63,10 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->role === self::ROLE_SUPERADMIN;
     }
+
+    // In User.php
+    public function isHost(Pokemon $pokemon)
+    {
+        return $this->id === $pokemon->user_id || $this->isSuperadmin();
+    }
 }

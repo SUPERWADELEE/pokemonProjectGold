@@ -19,16 +19,12 @@ class PokemonPolicy
         //
     }
 
-    public function index(User $user)
-    {
-        // 所有角色都能查看
-        return in_array($user->role, ['superadmin', 'user', 'guest']);
-    }
-
+    // In PokemonPolicy.php
     public function show(User $user, Pokemon $pokemon)
     {
-        return $user->id === $pokemon->user_id || $user->role === 'superadmin';
+        return $user->isHost($pokemon);
     }
+
 
 
     public function create(User $user)
@@ -52,18 +48,18 @@ class PokemonPolicy
     // 或是superadmin
     public function update(User $user, Pokemon $pokemon)
     {
-        return $user->id === $pokemon->user_id || $user->role === 'superadmin';
+        return $user->isHost($pokemon);
     }
 
 
     public function delete(User $user, Pokemon $pokemon)
     {
-        return $user->id === $pokemon->user_id || $user->role === 'superadmin';
+        return $user->isHost($pokemon);
     }
 
 
     public function evolution(User $user, Pokemon $pokemon)
     {
-        return $user->id === $pokemon->user_id || $user->role === 'superadmin';
+        return $user->isHost($pokemon);
     }
 }
