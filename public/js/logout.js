@@ -1,13 +1,12 @@
 function logout() {
-
-
     // 調用API的登出端點
     const token = localStorage.getItem('jwtToken');
     fetch('http://localhost:8000/api/Auth/logout', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + token // 這裡添加token
+          'Authorization': 'Bearer ' + token ,
+          'Accept': 'application/json',// 這裡添加token
         }
       })
       .then(response => {
