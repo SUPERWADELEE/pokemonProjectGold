@@ -59,10 +59,7 @@ class PokemonController extends Controller
         $createdData = Pokemon::create($validatedData);
 
         return PokemonResource::make($createdData);
-        // return Pokemon::create($validatedData)->load(['race', 'ability', 'nature']);
-        // whenload用法
-        // return response(['message' => 'Pokemon saved successfully'], 201);
-        #可以回資料（mia
+        
     }
 
 
@@ -164,4 +161,6 @@ class PokemonController extends Controller
         $pokemons = $query->get();
         return PokemonResource::collection($pokemons);
     }
+
+    
 }

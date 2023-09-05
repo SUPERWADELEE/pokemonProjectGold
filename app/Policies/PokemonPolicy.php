@@ -36,7 +36,7 @@ class PokemonPolicy
         // 只有超級管理員和一般使用者可以建立
         // 此處的$user可以由依賴注入得到,因為有經過驗證的路由
         // dd($user->role);
-        return in_array($user->role, ['superadmin', 'user']);
+        return in_array($user->role, ['superadmin']);
     }
 
 
