@@ -42,6 +42,7 @@ class UserController extends Controller
     $user = Auth::user();
 
     // dd($user);
+    // 確認輸入的密碼是否與資料庫裡的相同
     $checkedPassword = Hash::check($request->current_password, $user->password);
     if (!$checkedPassword) {
         return response()->json(['error' => 'Current password is incorrect'], 400);
