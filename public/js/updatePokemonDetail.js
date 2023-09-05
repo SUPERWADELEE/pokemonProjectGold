@@ -5,7 +5,7 @@
       <label for="pokemonName">寶可夢名稱:</label>
       <input type="text" id="pokemonName" name="pokemonName" >
       <h2 id="race_id" data-id="${pokemon.id}">${pokemon.name}</h2>
-      <img src="${pokemon.photo}" alt="${pokemon.name}" width="200">
+      <img id="pokemonImage" src="${pokemon.photo}" alt="${pokemon.name}" width="200">
       <label>技能1:</label>
       <select id="skill1"></select>
       <label>技能2:</label>
