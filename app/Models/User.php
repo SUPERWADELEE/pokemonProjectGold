@@ -14,6 +14,9 @@ class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+
+    const ROLE_SUPERADMIN = 'superadmin';
+    const ROLE_USER = 'user';
     /**
      * The attributes that are mass assignable.
      *
@@ -54,5 +57,10 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function isSuperadmin()
+    {
+        return $this->role === self::ROLE_SUPERADMIN;
     }
 }

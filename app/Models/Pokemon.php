@@ -10,13 +10,17 @@ class Pokemon extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+  
+
+
     protected $table = 'pokemons';
     protected $casts = [
         'skills' => 'array',
     ];
-    
+
     protected $fillable = [
-        'name', 
+        'name',
         'race_id',
         'ability_id',
         'nature_id',
@@ -28,31 +32,31 @@ class Pokemon extends Model
 
     ];
 
-    public function race(){
+    public function race()
+    {
         return $this->belongsTo(Race::class);
-
     }
 
-    public function nature(){
+    public function nature()
+    {
         return $this->belongsTo(Nature::class);
-
     }
 
-    public function ability(){
+    public function ability()
+    {
         return $this->belongsTo(Ability::class);
-
     }
 
     public function skills()
-{
-    return $this->belongsToMany(Skill::class, 'pokemon_skill');
-}
+    {
+        return $this->belongsToMany(Skill::class, 'pokemon_skill');
+    }
     // app/Models/Pokemon.php
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-}
 
-    
+   
+}
