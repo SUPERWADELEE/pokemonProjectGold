@@ -30,6 +30,8 @@ class PokemonController extends Controller
      * @bodyParam last_name string required The last name of the user.
      * @bodyParam email string required The email address of the user.
      */
+
+    
     public function index()
     {
         // 透過JWT取得當前登入的用戶
@@ -39,7 +41,7 @@ class PokemonController extends Controller
         $pokemons = Pokemon::with(['race', 'ability', 'nature', 'user'])
             ->where('user_id', $user->id)
             ->get();
-
+        // dd('fuck');
         return PokemonResource::collection($pokemons);
     }
 

@@ -2,15 +2,15 @@
 
 namespace Database\Factories;
 
-use App\Models\Nature;
+use App\Models\Ability;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Nature>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Ability>
  */
-class NatureFactory extends Factory
+class AbilityFactory extends Factory
 {
-    protected $model = Nature::class;
+    protected $model = Ability::class;
     /**
      * Define the model's default state.
      *
@@ -20,8 +20,7 @@ class NatureFactory extends Factory
     {
         return [
             'name' => $this->faker->unique()->word,
-            
-            
+
         ];
     }
 }
