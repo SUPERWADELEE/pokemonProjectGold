@@ -16,17 +16,27 @@ class indexTest extends TestCase
      * A basic feature test example.
      */
 
+// 測試期望:
+// 此為ＡＰＩ功能為, 取得pokemon table的所有寶可夢資料：
+// 1.取得寶可夢資料
+// 2.使用resource將id的部分都去關聯數據庫取出名稱並返回
 
     public function testIndexReturnsCorrectResponse()
     {
+        // 產生使用者資訊
         $user = User::factory()->create();
+        // 產生寶可夢資訊
         Pokemon::factory()->count(3)->create(['user_id' => $user->id]);
 
-        
+        // 模擬使用者登入  並發送請求
+        // 定義預期返回的格式
         $this->actingAs($user,'api')->get(route('pokemons.index'))
             ->assertStatus(200)
             ->assertJsonStructure([
-                '*' => ['id', 'name', 'race', 'ability','level','nature','photo','skills'=>[],'host' ] // 你期望的JSON結構
-            ]);
-    }
+                'data' => [
+                    '*' => ['id', 'name', 'race', 'ability', 'level', 'nature', 'photo', 'skills', 'host' ] 
+                ]
+                ]);
+            
+}
 }

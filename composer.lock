@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e9944e9aee645e6109c27656c63d205f",
+    "content-hash": "29177aab7df4e2d3bd05084b7a8c8b93",
     "packages": [
         {
             "name": "brick/math",
@@ -6634,6 +6634,40 @@
                 }
             ],
             "time": "2023-08-07T08:03:21+00:00"
+        },
+        {
+            "name": "pcov/clobber",
+            "version": "v2.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/krakjoe/pcov-clobber.git",
+                "reference": "4c30759e912e6e5d5bf833fb3d77b5bd51709f05"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/krakjoe/pcov-clobber/zipball/4c30759e912e6e5d5bf833fb3d77b5bd51709f05",
+                "reference": "4c30759e912e6e5d5bf833fb3d77b5bd51709f05",
+                "shasum": ""
+            },
+            "require": {
+                "ext-pcov": "^1.0",
+                "nikic/php-parser": "^4.2"
+            },
+            "bin": [
+                "bin/pcov"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "pcov\\Clobber\\": "src/pcov/clobber"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "support": {
+                "issues": "https://github.com/krakjoe/pcov-clobber/issues",
+                "source": "https://github.com/krakjoe/pcov-clobber/tree/v2.0.3"
+            },
+            "time": "2019-10-29T05:03:37+00:00"
         },
         {
             "name": "phar-io/manifest",
