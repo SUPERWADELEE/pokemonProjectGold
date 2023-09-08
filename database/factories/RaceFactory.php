@@ -21,7 +21,7 @@ class RaceFactory extends Factory
         return [
             'name' => $this->faker->unique()->name(),
             'photo' => $this->faker->imageUrl(640, 480, 'animals'),  // 示例图片URL生成
-            'evolution_level' => $this->faker->numberBetween(1, 100),
+            'evolution_level' => $this->faker->numberBetween(2, 100),
             // timestamps 会自动处理
         ];
         

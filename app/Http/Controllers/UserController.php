@@ -17,7 +17,7 @@ class UserController extends Controller
 
         // 當狀態為0的時候改成1當狀態為1的時候改成0
         $status = $user->status;
-        if ($status == 0){
+        if ($status == 0) {
             $user->update(['status' => 1]);
             return response()->json(['message' => 'User role updated successfully']);
         }
@@ -26,32 +26,27 @@ class UserController extends Controller
         return response()->json(['message' => 'User role updated successfully']);
     }
 
+
+
     public function changePassword(Request $request)
-{
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|min:6|confirmed',
+            'new_password_confirmation' => 'required|min:6'
+        ]);
 
-    // dd($request->all());
+        $user = Auth::user();
 
-    // dd($request->input('current_password'));
-    
-    $request->validate([
-        'current_password' => 'required',
-        'new_password' => 'required|min:6|confirmed',
-        'new_password_confirmation' => 'required|min:6'
-    ]);
+        // 確認輸入的密碼是否與資料庫裡的相同
+        $checkedPassword = Hash::check($request->current_password, $user->password);
+        if (!$checkedPassword) {
+            return response()->json(['error' => 'Current password is incorrect'], 400);
+        }
 
-    $user = Auth::user();
+        $user->password = Hash::make($request->new_password);
+        $user->save();
 
-    // dd($user);
-    // 確認輸入的密碼是否與資料庫裡的相同
-    $checkedPassword = Hash::check($request->current_password, $user->password);
-    if (!$checkedPassword) {
-        return response()->json(['error' => 'Current password is incorrect'], 400);
+        return response()->json(['message' => 'Password changed successfully']);
     }
-
-    $user->password = Hash::make($request->new_password);
-    $user->save();
-   
-    return response()->json(['message' => 'Password changed successfully']);
-}
-
 }

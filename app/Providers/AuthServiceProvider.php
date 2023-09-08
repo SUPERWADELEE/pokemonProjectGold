@@ -16,7 +16,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         //
-        Pokemon::class => PokemonPolicy::class,
+        // Pokemon::class => PokemonPolicy::class,
     ];
 
     /**

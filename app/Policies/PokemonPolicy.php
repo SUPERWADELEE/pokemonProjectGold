@@ -31,12 +31,12 @@ class PokemonPolicy
     {
         // 只有超級管理員和一般使用者可以建立
         // 此處的$user可以由依賴注入得到,因為有經過驗證的路由
-        // dd($user->role);
         //superadmin => 常數
         //Model =>常數 設定 ex:ROLE_SUPERADMIN = 'superadmin'
         //Model method  return $user->role === ROLE_SUPERADMIN  method名字可能 isSuperadmin
         //在policy ->  return $user->isSuperadmin()
         // 這邊將會檢查$user是否是超級管理員
+        // return true;
         return $user->isSuperadmin();
     }
 

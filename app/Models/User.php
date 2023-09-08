@@ -69,4 +69,8 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->id === $pokemon->user_id || $this->isSuperadmin();
     }
+
+    public function pokemons(){
+        return $this->hasMany(Pokemon::class);
+    }
 }

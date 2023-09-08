@@ -25,21 +25,16 @@ class StorePokemonRequest extends FormRequest
      */
     public function rules(): array
     {
-        
-
         $race_id = $this->input('race_id');
         // 拿到輸入的種族id,並在race表格中查找
         $race = Race::find($race_id);
 
-        // dd($race);
         // 找到該種族後去查找最小進化等級
         $miniEvolutionLevel = $race->evolution_level;
         if (!$miniEvolutionLevel){
             $miniEvolutionLevel = 100;
         }
         
-        
-
         return [
             'name' => 'required|string|max:255',
             'race_id' => 'required|integer|exists:races,id',
@@ -51,9 +46,9 @@ class StorePokemonRequest extends FormRequest
         ];
     }
 
+    
     public function withValidator($validator)
     {
-        // dd('fuck');
         $validator->after(function ($validator) {
             // 在這裡做了一個skills的額外驗證,確認輸入的skill是否是該種族可以學的
             if (!valid_skills_for_race($this->skills)) {

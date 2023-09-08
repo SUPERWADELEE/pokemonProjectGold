@@ -37,11 +37,15 @@ class PokemonController extends Controller
         // 透過JWT取得當前登入的用戶
         $user = auth()->user();
 
+        // 可能可以用user角度去對關聯拿資料
+        
         // 只獲取當前登入用戶的寶可夢
         $pokemons = Pokemon::with(['race', 'ability', 'nature', 'user'])
             ->where('user_id', $user->id)
             ->get();
-        // dd('fuck');
+
+
+            
         return PokemonResource::collection($pokemons);
     }
 
@@ -52,7 +56,7 @@ class PokemonController extends Controller
         // 確認目前登入者操作權限
         // authorize 為底層有去引用Illuminate\Foundation\Auth\Access\AuthorizesRequests trait
         // 此方法通常會搭配policy用,後面參數傳入以註冊之model,然後就可以對應到該model設置的判斷權限方法
-        $this->authorize('create', Pokemon::class);
+        $this->authorize('create', Pokemon::class); // "App\Models\Pokemon"  //App/policy/Pokemon
 
 
         // 用validated()方法只返回在 Form Request 中定義的驗證規則對應的數據
@@ -72,7 +76,7 @@ class PokemonController extends Controller
     public function update(UpdatePokemonRequest $request, Pokemon $pokemon)
     {
         // 你不能去修改別人的神奇寶貝
-        $this->authorize('update', $pokemon);
+        $this->authorize('update', $pokemon);//path:Model/pokemon-> path:model->policy
         $pokemon->update($request->toArray());
         return PokemonResource::make($pokemon);
     }
@@ -102,7 +106,6 @@ class PokemonController extends Controller
     {
 
         $this->authorize('evolution', $pokemon);
-        // dd($pokemon);
         // 拿到寶可夢進化等級
         $pokemon->load('race');
         // $pokemon = Pokemon::with('race')->find($id);
@@ -128,7 +131,6 @@ class PokemonController extends Controller
 
     public function search(SearchPokemonRequest $request)
     {
-
         $query = Pokemon::query();
         $name = $request->input('name');
         $nature_id = $request->input('nature_id');

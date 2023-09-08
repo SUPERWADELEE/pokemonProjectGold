@@ -23,6 +23,10 @@ class Handler extends ExceptionHandler
             return response()->json(['error' => '您没有权限进行此操作'], 403);
         }
 
+        if ($exception instanceof \Illuminate\Validation\ValidationException && $request->expectsJson()) {
+            return response()->json($exception->errors(), 422);
+        }
+
 
         return parent::render($request, $exception);
 
