@@ -9,6 +9,7 @@ use App\Http\Resources\PokemonResource;
 use App\Models\Nature;
 use App\Models\Pokemon;
 use App\Models\Race;
+use App\Models\Skill;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Auth;
@@ -31,22 +32,67 @@ class PokemonController extends Controller
      * @bodyParam email string required The email address of the user.
      */
 
-    
+
     public function index()
     {
         // 透過JWT取得當前登入的用戶
         $user = auth()->user();
+        $pokemons = Pokemon::with(['race', 'user', 'ability','nature'])
+        ->where('user_id', $user->id)->get();
+
+//user->post->name// weher 一筆一筆  user::with(post)->name// whereIn
+    return PokemonResource::collection($pokemons);
 
         // 可能可以用user角度去對關聯拿資料
-        
+
         // 只獲取當前登入用戶的寶可夢
-        $pokemons = Pokemon::with(['race', 'ability', 'nature', 'user'])
-            ->where('user_id', $user->id)
-            ->get();
+        // $pokemons = Pokemon::with(['race', 'ability', 'nature', 'user','skills'])
+        //     ->where('user_id', $user->id)
+        //     ->get();
+
+        //找出user底下有什麼寶可夢
+        // $pokemons = Pokemon::with(['race', 'ability', 'nature', 'user'])
+        //     ->where('user_id', $user->id);
+        // $pokemonSkill = $pokemons->pluck('skills');
+        // // implode(',',$array);
+        // dd($pokemonSkill);
+        // $arr =[];
+        // foreach($pokemonSkill as $index => $skill){
+        //     //    $x = Skill::whereIn('id', $skill)->get()->toArray();
+        //     $x = Skill::whereIn('id', $skill)->get();
+        // //    dd($x->name);
+        //     $arr = $x[$index];
+        //     dd($arr);
+
+        //     // dd($x[1]['name']);
+        //     // $arr[] =$x;
+        //     // $x[1]['name'];
+        // }
+
+       
+
+        // $pokemons = $user->pokemons()->with(['race', 'ability', 'nature', 'skills'])->get();
 
 
-            
-        return PokemonResource::collection($pokemons);
+        // dd($pokemons);
+        // $pokemonSkill = $pokemons->pluck('skills');
+        //         // dd($pokemonSkill);
+        // dd($pokemonSkill);
+        //         $arr = [];
+        // foreach ($pokemonSkill as $index => $skill) {
+        //     // $skillsNames = Skill::whereIn('id', $skill)->pluck('name')->toArray();
+        //     $skillsNames = Skill::whereIn('id', $skill)->pluck('name');
+        //     // $skillsNames = Skill::whereIn('id', $skill)->get('name');
+
+        //     // return PokemonResource::collection($skillsNames);
+
+        //     $arr[] = $skillsNames;
+        // }
+
+        // $combined = array_merge(["skills" => $arr], $pokemons);
+
+        // return PokemonResource::collection($combined->get());//->additional(['skills' =>$arr]);
+
     }
 
 
@@ -76,7 +122,7 @@ class PokemonController extends Controller
     public function update(UpdatePokemonRequest $request, Pokemon $pokemon)
     {
         // 你不能去修改別人的神奇寶貝
-        $this->authorize('update', $pokemon);//path:Model/pokemon-> path:model->policy
+        $this->authorize('update', $pokemon); //path:Model/pokemon-> path:model->policy
         $pokemon->update($request->toArray());
         return PokemonResource::make($pokemon);
     }
