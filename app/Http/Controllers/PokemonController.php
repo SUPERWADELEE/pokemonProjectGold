@@ -41,13 +41,9 @@ class PokemonController extends Controller
 
 
     // 寶可夢資料修改
-    public function update(UpdatePokemonRequest $request, $id)
+    public function update(UpdatePokemonRequest $request, Pokemon $pokemon)
     {
-        $pokemon = Pokemon::find($id);
-        $pokemonValue = ['name', 'race_id', 'level', 'ability_id', 'nature_id', 'skills'];
-        // 使用此方法更新只有實際有輸入數據的欄位才會做更新
-        $pokemon->update($request->only($pokemonValue));
-
+        $pokemon->update($request->validated());
         return response(['message' => 'pokemon updated successfully'], 200);
     }
 

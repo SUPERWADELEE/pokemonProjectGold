@@ -31,8 +31,21 @@ class UpdatePokemonRequest extends FormRequest
             'ability_id' => 'integer|exists:abilities,id',
             'nature_id' => 'integer|exists:natures,id',
             'level' => 'integer|min:1|max:100',
-            'skills' => ['array','min:1','max:4', new SkillJudgment()]
+            'skills' => 'required|array|min:1|max:4'
         ];
+    }
+
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            // 在這裡做了一個skills的額外驗證,確認輸入的skill是否是該種族可以學的
+            if (!validSkillsForRace($this->skills)) {
+                
+                $validator->errors()->add('skills', 'The skill is not allowed for this race.');
+            }
+
+            
+        });
     }
 }
 
