@@ -17,12 +17,12 @@ class UserController extends Controller
 
         // 當狀態為0的時候改成1當狀態為1的時候改成0
         $status = $user->status;
-        if ($status == 0) {
-            $user->update(['status' => 1]);
-            return response()->json(['message' => 'User role updated successfully']);
-        }
+        // if ($status == 0) { 
+            // $user->update(['status' => 1]);
+            // return response()->json(['message' => 'User role updated successfully']);
+        // }
 
-        $user->update(['status' => 0]);
+        $user->update(['status' => !$status]);
         return response()->json(['message' => 'User role updated successfully']);
     }
 
@@ -33,7 +33,7 @@ class UserController extends Controller
         $request->validate([
             'current_password' => 'required',
             'new_password' => 'required|min:6|confirmed',
-            'new_password_confirmation' => 'required|min:6'
+            // 'new_password_confirmation' => 'required|min:6'
         ]);
 
         $user = Auth::user();

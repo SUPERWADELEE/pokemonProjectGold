@@ -46,7 +46,8 @@ class StorePokemonRequest extends FormRequest
         ];
     }
 
-    
+    // TODO validator rule
+    // 或是去race取資料這個動作, 如果裡面也要做一次的話要用注入的
     public function withValidator($validator)
     {
         $validator->after(function ($validator) {

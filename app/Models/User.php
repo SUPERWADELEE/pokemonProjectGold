@@ -69,6 +69,7 @@ class User extends Authenticatable implements JWTSubject
     public function isHost(Pokemon $pokemon)
     {
         // 當前登入者的id是否為寶可夢主人的id
+        //TODO 為何$this->id可以call到當前使用者的id
         return $this->id === $pokemon->user_id || $this->isSuperadmin();
     }
 

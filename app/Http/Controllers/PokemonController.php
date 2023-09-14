@@ -38,7 +38,7 @@ class PokemonController extends Controller
         // 透過JWT取得當前登入的用戶
         $user = auth()->user();
 
-        $pokemons = $user->pokemons()->with(['race', 'user', 'ability', 'nature'])->get();
+        $pokemons = $user->pokemons()->with([ 'user', 'ability', 'nature'])->get();
         return PokemonResource::collection($pokemons);
                 // return PokemonResource::collection($pokemons);
 
@@ -123,7 +123,9 @@ class PokemonController extends Controller
 
 
         // 用validated()方法只返回在 Form Request 中定義的驗證規則對應的數據
-        $validatedData = $request->toArray();
+        // TODO$validatedData = $request->toArray;
+        $validatedData = $request->validated();
+        // dd($validatedData);
 
         // 要如何在該陣列加入當前使用者的id
         // 記錄現在新增的寶可夢是哪個使用者的
@@ -163,7 +165,7 @@ class PokemonController extends Controller
         // 你不能去修改別人的神奇寶貝
         $this->authorize('update', $pokemon); //path:Model/pokemon-> path:model->policy
         // dd($request);
-        $pokemon->update($request->toArray());
+        $pokemon->update($request->validated());
         return PokemonResource::make($pokemon);
     }
 
@@ -183,11 +185,12 @@ class PokemonController extends Controller
         $pokemon->delete();
 
         // 返回成功響應
-        return response()->json(['message' => 'Pokemon deleted successfully'], 200);
+        return response()->noContent();
     }
 
 
 
+    // TODO寶可夢進化等級可以用一個evolution_id 儲存
     public function evolution(Pokemon $pokemon)
     {
 
@@ -206,26 +209,30 @@ class PokemonController extends Controller
             // 因為id有照順序排所以通常id+1就會是他進化的種族的id
             if ($pokemon->level > $evolutionLevel) {
                 $pokemon->update(['race_id' => $pokemon->race_id + 1]);
-                return response(['message' => "This Pokemon evolves."], 200);
+                return response(200);
             }
 
             throw new Exception("寶可夢未達進化條件");
         } catch (Exception $e) {
             return response(['message' => $e->getMessage()], 400);
+            // TODO回應結果
         }
     }
 
     public function search(SearchPokemonRequest $request)
     {
 
-       
+    //    TODO命名規則要注意  不要用＿
         $query = Pokemon::query();
-        $name = $request->input('name'); 
+        $name = $request->input('name');
         $nature_id = $request->input('nature_id');
         $ability_id = $request->input('ability_id');
         $level = $request->input('level');
         $race_id = $request->input('race_id');
 
+        // TODO$query->when($request->input('name'), function($pokemons, $name){
+        //         $pokemons->where('name', 'LIKE', "%$name%");
+        // });
         // 如果有提供名稱，則增加名稱的搜尋條件
         if ($name) {
             $query->where('name', 'LIKE', "%$name%");
