@@ -48,10 +48,9 @@ class PokemonController extends Controller
     }
 
 
-    public function show($id)
+    public function show(Pokemon $pokemon)
     {
-        $pokemon = Pokemon::with(['race', 'ability', 'nature'])->find($id);
-        return new PokemonResource($pokemon);
+        return PokemonResource::make($pokemon);
     }
 
 
