@@ -21,7 +21,6 @@ class PokemonController extends Controller
 {
     public function index()
     {
-
         // 寶可夢詳情
         $pokemons = Pokemon::with(['race', 'ability', 'nature'])->get();
         return PokemonResource::collection($pokemons);
@@ -34,10 +33,6 @@ class PokemonController extends Controller
         $validatedData = $request->validated();
 
         // 用輔助函數驗證此技能是否為寶可夢可以學
-        if (!valid_skills_for_race($request->skills)) {
-            return response(['message' => 'The skill is not allowed for this race. '], 400);
-        }
-
         Pokemon::create($validatedData);
 
         return response(['message' => 'Pokemon saved successfully'], 201);

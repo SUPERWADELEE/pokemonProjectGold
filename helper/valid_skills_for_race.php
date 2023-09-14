@@ -1,7 +1,7 @@
 <?php
 use App\Models\Race;
 
-function valid_skills_for_race($skills) {
+function validSkillsForRace($skills) {
     $pokemonId = request()->input('race_id');
     $pokemon = Race::find($pokemonId);
     $allowedSkills = $pokemon->skills->pluck('id')->toArray();

@@ -25,32 +25,39 @@ class StorePokemonRequest extends FormRequest
      */
     public function rules(): array
     {
-        $race = Race::find($this->input('race_id'));
-        $miniEvolutionLevel = $race->evolution_level;
+        $race_id = $this->input('race_id');
+        // 拿到輸入的種族id,並在race表格中查找
+        $race = Race::find($race_id);
 
+        // 找到該種族後去查找最小進化等級
+        $miniEvolutionLevel = $race->evolution_level;
+        if (!$miniEvolutionLevel){
+            $miniEvolutionLevel = 100;
+        }
+        
         return [
             'name' => 'required|string|max:255',
             'race_id' => 'required|integer|exists:races,id',
             'ability_id' => 'required|integer|exists:abilities,id',
             'nature_id' => 'required|integer|exists:natures,id',
             'level' => 'required|integer|max:' . $miniEvolutionLevel,
-            'skills' => ['required','array','min:1','max:4', new SkillJudgment()]
+            'skills' => 'required|array|min:1|max:4'
             
         ];
     }
 
-    // public function valid_skills_for_race($skills) {
-    //     $pokemonId = request()->input('race_id');
-    //     $pokemon = Race::find($pokemonId);
-    //     $allowedSkills = $pokemon->skills->pluck('id')->toArray();
-        
-    //     foreach ($skills as $skillId) {
-    //         if (!in_array($skillId, $allowedSkills)) {
-    //             return false;
-    //         }
-    //     }
-    //     return true;
-    // }
+    // TODO validator rule
+    // 或是去race取資料這個動作, 如果裡面也要做一次的話要用注入的
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            // 在這裡做了一個skills的額外驗證,確認輸入的skill是否是該種族可以學的
+            if (!validSkillsForRace($this->skills)) {
+                
+                $validator->errors()->add('skills', 'The skill is not allowed for this race.');
+            }
 
-   
+            
+        });
+    }
 }
