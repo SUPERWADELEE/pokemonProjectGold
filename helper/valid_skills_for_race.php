@@ -7,19 +7,27 @@ function valid_skills_for_race($skills) {
     // 找到相關的種族
     $pokemon = Race::find($pokemonId);
     // 找到該種族的所有技能id組成陣列
-    $allowedSkills = $pokemon->skills->pluck('id')->toArray();
+    // $allowedSkills = $pokemon->skills->pluck('id')->toArray();
+    $allowedSkills = $pokemon->skills()->select('skills.id')->pluck('id')->toArray();
 
     // $pokemon->skills -> collection Object
     // $pokemon->skills() -> belongsToMany Object (Query Builder)
-    
+    // dd($skills);
+    // dd($allowedSkills);
     // 只要輸入的技能不存在該種族能學的技能,噴錯
     // 焦急連擊
     
-    foreach ($skills as $skillId) {
-        if (!in_array($skillId, $allowedSkills)) {
-            return false;
-        }
+    if(!array_intersect($skills, $allowedSkills)){
+        return false;
     }
-    
     return true;
+
+
+    // foreach ($skills as $skillId) {
+    //     if (!in_array($skillId, $allowedSkills)) {
+    //         return false;
+    //     }
+    // }
+    
+    // return true;
 }

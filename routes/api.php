@@ -31,8 +31,9 @@ Route::middleware('auth:api', 'checkStatus', 'throttle:100,1' )->group(function 
     /**
      * pokemon管理
      */
-    Route::apiResource('pokemons', PokemonController::class);
     Route::get('pokemons/search', [PokemonController::class, 'search']);
+    Route::apiResource('pokemons', PokemonController::class);
+    
     Route::put('pokemons/{pokemon}/evolution', [PokemonController::class, 'evolution']);
 
     /**

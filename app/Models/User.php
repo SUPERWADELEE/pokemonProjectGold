@@ -61,12 +61,14 @@ class User extends Authenticatable implements JWTSubject
 
     public function isSuperadmin()
     {
+        // 是否為superadmin
         return $this->role === self::ROLE_SUPERADMIN;
     }
 
     // In User.php
     public function isHost(Pokemon $pokemon)
     {
+        // 當前登入者的id是否為寶可夢主人的id
         return $this->id === $pokemon->user_id || $this->isSuperadmin();
     }
 

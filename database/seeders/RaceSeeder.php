@@ -45,6 +45,7 @@ class RaceSeeder extends Seeder
             }
 
             // 取得進化等級,這在pokemon-species的進化鏈裡面
+            
             $pokemonData = Http::get("https://pokeapi.co/api/v2/pokemon-species/$i")->json();
             $getEvolutionChain = $pokemonData["evolution_chain"]['url'];
             $evolutionChain = Http::get($getEvolutionChain)->json();

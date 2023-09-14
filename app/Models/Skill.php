@@ -12,4 +12,9 @@ class Skill extends Model
     {
         return $this->belongsToMany(Race::class);
     }
+
+    // public function pokemons()
+    // {
+    //     return $this->belongsToMany(Pokemon::class, 'pokemon_skill');
+    // }
 }

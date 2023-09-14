@@ -37,11 +37,28 @@ class PokemonController extends Controller
     {
         // 透過JWT取得當前登入的用戶
         $user = auth()->user();
-        $pokemons = Pokemon::with(['race', 'user', 'ability','nature'])
-        ->where('user_id', $user->id)->get();
 
-//user->post->name// weher 一筆一筆  user::with(post)->name// whereIn
-    return PokemonResource::collection($pokemons);
+        $pokemons = $user->pokemons()->with(['race', 'user', 'ability', 'nature'])->get();
+        return PokemonResource::collection($pokemons);
+                // return PokemonResource::collection($pokemons);
+
+        // $pokemons = Pokemon::with(['race', 'user', 'ability', 'nature'])
+        //     ->where('user_id', $user->id)->get();
+
+        //user->post->name// weher 一筆一筆  user::with(post)->name// whereIn
+       
+        
+        // $array = ['wawde','hello'];
+        // return PokemonResource::collection($pokemons)->additional(['ooo'=>$array]);
+        
+        // return $this->addSkill($pokemon);
+        // [招式名稱陣列]
+
+
+
+
+        // PokemonResource::collection($pokemons)
+
 
         // 可能可以用user角度去對關聯拿資料
 
@@ -69,7 +86,7 @@ class PokemonController extends Controller
         //     // $x[1]['name'];
         // }
 
-       
+
 
         // $pokemons = $user->pokemons()->with(['race', 'ability', 'nature', 'skills'])->get();
 
@@ -109,11 +126,33 @@ class PokemonController extends Controller
         $validatedData = $request->toArray();
 
         // 要如何在該陣列加入當前使用者的id
+        // 記錄現在新增的寶可夢是哪個使用者的
         $userId = Auth::user()->id;
         $validatedData['user_id'] = $userId;
         $createdData = Pokemon::create($validatedData);
 
         return PokemonResource::make($createdData);
+
+
+        // 確認目前登入者操作權限
+    // $this->authorize('create', Pokemon::class);
+
+    // // 用validated()方法只返回在 Form Request 中定義的驗證規則對應的數據
+    // $validatedData = $request->validated();
+
+    // // 要如何在該陣列加入當前使用者的id
+    // $userId = Auth::user()->id;
+    // $validatedData['user_id'] = $userId;
+    
+    // $pokemon = Pokemon::create($validatedData);
+
+    // // 如果有與技能相關的數據，保存多對多關聯
+    // if ($request->has('skills')) {
+    //     $pokemon->skills()->sync($request->input('skills'));
+    // }
+
+    // return new PokemonResource($pokemon);
+
     }
 
 
@@ -123,6 +162,7 @@ class PokemonController extends Controller
     {
         // 你不能去修改別人的神奇寶貝
         $this->authorize('update', $pokemon); //path:Model/pokemon-> path:model->policy
+        // dd($request);
         $pokemon->update($request->toArray());
         return PokemonResource::make($pokemon);
     }
@@ -177,8 +217,10 @@ class PokemonController extends Controller
 
     public function search(SearchPokemonRequest $request)
     {
+
+       
         $query = Pokemon::query();
-        $name = $request->input('name');
+        $name = $request->input('name'); 
         $nature_id = $request->input('nature_id');
         $ability_id = $request->input('ability_id');
         $level = $request->input('level');
@@ -207,10 +249,18 @@ class PokemonController extends Controller
         }
 
         // $pokemons =  $query->with(['race', 'ability', 'nature'])
-        //     ->orWhere('name', 'LIKE', '%' . $name . '%')
-        //     ->orWhere('nature_id', $natureId)
+        //     ->Where('name', 'LIKE', '%' . $name . '%')
+        //     ->Where('nature_id', $nature_id)
         //     ->get();
         $pokemons = $query->get();
         return PokemonResource::collection($pokemons);
     }
+
+    // function addSkill($data =[] , $status=201){
+    //     return [
+    //         'skills' => '陣列的技能',
+    //         'data' => $data,
+    //         'status' => $status
+    //     ];
+    // }
 }
