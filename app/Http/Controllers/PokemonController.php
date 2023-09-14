@@ -38,19 +38,19 @@ class PokemonController extends Controller
         // 透過JWT取得當前登入的用戶
         $user = auth()->user();
 
-        $pokemons = $user->pokemons()->with([ 'user', 'ability', 'nature','race' ])->get();
+        $pokemons = $user->pokemons()->with(['user', 'ability', 'nature', 'race'])->get();
         return PokemonResource::collection($pokemons);
-                // return PokemonResource::collection($pokemons);
+        // return PokemonResource::collection($pokemons);
 
         // $pokemons = Pokemon::with(['race', 'user', 'ability', 'nature'])
         //     ->where('user_id', $user->id)->get();
 
         //user->post->name// weher 一筆一筆  user::with(post)->name// whereIn
-       
-        
+
+
         // $array = ['wawde','hello'];
         // return PokemonResource::collection($pokemons)->additional(['ooo'=>$array]);
-        
+
         // return $this->addSkill($pokemon);
         // [招式名稱陣列]
 
@@ -123,7 +123,7 @@ class PokemonController extends Controller
 
 
         // 用validated()方法只返回在 Form Request 中定義的驗證規則對應的數據
-        
+
         // TODO$validatedData = $request->toArray;
 
         $validatedData = $request->validated();
@@ -139,23 +139,23 @@ class PokemonController extends Controller
 
 
         // 確認目前登入者操作權限
-    // $this->authorize('create', Pokemon::class);
+        // $this->authorize('create', Pokemon::class);
 
-    // // 用validated()方法只返回在 Form Request 中定義的驗證規則對應的數據
-    // $validatedData = $request->validated();
+        // // 用validated()方法只返回在 Form Request 中定義的驗證規則對應的數據
+        // $validatedData = $request->validated();
 
-    // // 要如何在該陣列加入當前使用者的id
-    // $userId = Auth::user()->id;
-    // $validatedData['user_id'] = $userId;
-    
-    // $pokemon = Pokemon::create($validatedData);
+        // // 要如何在該陣列加入當前使用者的id
+        // $userId = Auth::user()->id;
+        // $validatedData['user_id'] = $userId;
 
-    // // 如果有與技能相關的數據，保存多對多關聯
-    // if ($request->has('skills')) {
-    //     $pokemon->skills()->sync($request->input('skills'));
-    // }
+        // $pokemon = Pokemon::create($validatedData);
 
-    // return new PokemonResource($pokemon);
+        // // 如果有與技能相關的數據，保存多對多關聯
+        // if ($request->has('skills')) {
+        //     $pokemon->skills()->sync($request->input('skills'));
+        // }
+
+        // return new PokemonResource($pokemon);
 
     }
 
@@ -172,11 +172,19 @@ class PokemonController extends Controller
     }
 
 
+    // public function show(Pokemon $pokemon)
+    // {
+    //     $this->authorize('show', $pokemon);
+    //     $pokemon = $pokemon->with([ 'user', 'ability', 'nature','race' ])->get();
+    //     return PokemonResource::make($pokemon);
+    // }
     public function show(Pokemon $pokemon)
     {
         $this->authorize('show', $pokemon);
+        $pokemon->load(['user', 'ability', 'nature', 'race']);
         return PokemonResource::make($pokemon);
     }
+
 
 
 
@@ -224,7 +232,7 @@ class PokemonController extends Controller
     public function search(SearchPokemonRequest $request)
     {
 
-    //    TODO命名規則要注意  不要用＿
+        //    TODO命名規則要注意  不要用＿
         $query = Pokemon::query();
         $name = $request->input('name');
         $nature_id = $request->input('nature_id');
