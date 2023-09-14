@@ -52,7 +52,7 @@ class StorePokemonRequest extends FormRequest
     {
         $validator->after(function ($validator) {
             // 在這裡做了一個skills的額外驗證,確認輸入的skill是否是該種族可以學的
-            if (!valid_skills_for_race($this->skills)) {
+            if (!validSkillsForRace($this->skills)) {
                 
                 $validator->errors()->add('skills', 'The skill is not allowed for this race.');
             }

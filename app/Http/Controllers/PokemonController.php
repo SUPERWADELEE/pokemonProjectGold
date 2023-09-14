@@ -38,7 +38,7 @@ class PokemonController extends Controller
         // 透過JWT取得當前登入的用戶
         $user = auth()->user();
 
-        $pokemons = $user->pokemons()->with([ 'user', 'ability', 'nature'])->get();
+        $pokemons = $user->pokemons()->with([ 'user', 'ability', 'nature','race' ])->get();
         return PokemonResource::collection($pokemons);
                 // return PokemonResource::collection($pokemons);
 
@@ -123,7 +123,9 @@ class PokemonController extends Controller
 
 
         // 用validated()方法只返回在 Form Request 中定義的驗證規則對應的數據
+        
         // TODO$validatedData = $request->toArray;
+
         $validatedData = $request->validated();
         // dd($validatedData);
 

@@ -1,9 +1,9 @@
 <?php
 use App\Models\Race;
 // TODO這個命名規則也要改
-function valid_skills_for_race($skills) {
+function validSkillsForRace($skills, $pokemonId) {
     // 先取得當前輸入的種族id
-    $pokemonId = request()->input('race_id');
+    // $pokemonId = request()->input('race_id');
     // 找到相關的種族
     $pokemon = Race::find($pokemonId);
     // 找到該種族的所有技能id組成陣列
