@@ -181,6 +181,7 @@ class PokemonController extends Controller
     public function show(Pokemon $pokemon)
     {
         $this->authorize('show', $pokemon);
+        // $pokemon->with(['user', 'ability', 'nature', 'race'])->get();
         $pokemon->load(['user', 'ability', 'nature', 'race']);
         return PokemonResource::make($pokemon);
     }
