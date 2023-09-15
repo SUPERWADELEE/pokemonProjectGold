@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\RaceResource;
+use App\Http\Resources\SkillResource;
 use App\Models\Pokemon;
 use App\Models\Race;
 use Illuminate\Http\Request;
@@ -12,26 +13,27 @@ class RaceController extends Controller
     public function index()
     {
         // 選擇所有寶可夢的名稱和照片
-        $pokemons = Race::select('name', 'photo')->get();
+        $pokemons = Race::select('id','name')->get();
     
         return $pokemons;
     }
 
-    public function evolutionLevel($id){
-        $pokemon = Race::find($id);
+    public function evolutionLevel(Race $race){
+        
         // dd($pokemon);
-        if (!$pokemon) {
+        if (!$race) {
             return response(['error' => 'Race not found'], 404);
         }
-        return response(['evolution_level' => $pokemon->evolution_level]);
+        return response(['evolution_level' => $race->evolution_level]);
 
     }
     
-
-    public function skills($id){
-        $skills = Race::with('skills')->find($id);
-        return new RaceResource($skills);
-
+    public function skills(Race $race){
+        $skills = $race->skills()->orderBy('id')->get();
+        return SkillResource::collection($skills);
     }
+    
+    
+    
 
 }
