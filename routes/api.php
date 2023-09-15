@@ -31,10 +31,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('pokemons', [PokemonController::class, 'index']);
 Route::post('pokemons', [PokemonController::class, 'store']);
 Route::get('pokemons/search', [PokemonController::class, 'search']);
-Route::get('pokemons/{id}', [PokemonController::class, 'show']);
-Route::patch('pokemons/{id}', [PokemonController::class, 'update']);
-Route::delete('pokemons/{id}', [PokemonController::class, 'destroy']);
-Route::put('pokemons/{id}/evolution', [PokemonController::class, 'evolution']);
+Route::get('pokemons/{pokemon}', [PokemonController::class, 'show']);
+Route::patch('pokemons/{pokemon}', [PokemonController::class, 'update']);
+Route::delete('pokemons/{pokemon}', [PokemonController::class, 'destroy']);
+Route::put('pokemons/{pokemon}/evolution', [PokemonController::class, 'evolution']);
 
 
 /**
@@ -42,7 +42,7 @@ Route::put('pokemons/{id}/evolution', [PokemonController::class, 'evolution']);
  */
 Route::get('natures', [NatureController::class, 'index']);
 Route::post('natures', [NatureController::class, 'store']);
-Route::patch('natures/{id}', [NatureController::class, 'update']);
+Route::patch('natures/{nature}', [NatureController::class, 'update']);
 
 
 /**
@@ -51,7 +51,7 @@ Route::patch('natures/{id}', [NatureController::class, 'update']);
 // ability列表
 Route::get('abilities', [AbilityController::class, 'index']);
 Route::post('abilities', [AbilityController::class, 'store']);
-Route::patch('abilities/{id}', [AbilityController::class, 'update']);
+Route::patch('abilities/{abilities}', [AbilityController::class, 'update']);
 
 
 /**
@@ -59,6 +59,6 @@ Route::patch('abilities/{id}', [AbilityController::class, 'update']);
  */
 // natural列表
 Route::get('races', [RaceController::class, 'index']);
-Route::get('races/{id}/evolutionLevel', [RaceController::class, 'evolutionLevel']);
-Route::get('races/{id}/skill', [RaceController::class, 'skills']);
+Route::get('races/{race}/evolutionLevel', [RaceController::class, 'evolutionLevel']);
+Route::get('races/{race}/skill', [RaceController::class, 'skills']);
 

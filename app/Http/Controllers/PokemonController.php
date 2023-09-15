@@ -50,34 +50,28 @@ class PokemonController extends Controller
 
     public function show(Pokemon $pokemon)
     {
+        // dd($pokemon);
+        $pokemon->load(['ability', 'nature', 'race']);
         return PokemonResource::make($pokemon);
     }
 
 
 
-    public function destroy($id)
+    public function destroy(Pokemon $pokemon)
     {
-        // 尋找該ID的寶可夢 
-        $pokemon = Pokemon::find($id);
-
-        // 如果找不到寶可夢，返回一個錯誤響應
-        if (!$pokemon) {
-            return response()->json(['message' => 'Pokemon not found'], 404);
-        }
-
         // 刪除該寶可夢
         $pokemon->delete();
-
+    
         // 返回成功響應
         return response()->json(['message' => 'Pokemon deleted successfully'], 200);
     }
+    
 
 
-
-    public function evolution($id)
+    public function evolution(Pokemon $pokemon)
     {
         // 拿到寶可夢進化等級
-        $pokemon = Pokemon::with('race')->find($id);
+        $pokemon->load('race');
         $evolutionLevel = $pokemon->race->evolution_level;
 
         try {
@@ -96,54 +90,54 @@ class PokemonController extends Controller
         }
     }
 
-    public function search(SearchPokemonRequest $request)
-    {
-        // dd('fuck');
-        $query = Pokemon::query();
+    // public function search(SearchPokemonRequest $request)
+    // {
+    //     // dd('fuck');
+    //     $query = Pokemon::query();
 
-        // // 加載關聯
-        // $query->with(['race', 'ability', 'nature']);
+    //     // // 加載關聯
+    //     // $query->with(['race', 'ability', 'nature']);
 
-        // 如果有提供名稱，則增加名稱的搜尋條件
-        if ($name = $request->input('name')) {
-            $query->where('name', 'LIKE', '%' . $name . '%');
-        }
+    //     // 如果有提供名稱，則增加名稱的搜尋條件
+    //     if ($name = $request->input('name')) {
+    //         $query->where('name', 'LIKE', '%' . $name . '%');
+    //     }
 
-        // 如果有提供性格 ID，則增加性格的搜尋條件
-        if ($natureId = $request->input('nature_id')) {
-            $query->where('nature_id', $natureId);
-        }
+    //     // 如果有提供性格 ID，則增加性格的搜尋條件
+    //     if ($natureId = $request->input('nature_id')) {
+    //         $query->where('nature_id', $natureId);
+    //     }
 
-        if ($abilityId = $request->input('ability_id')) {
-            $query->where('ability_id', $abilityId);
-        }
+    //     if ($abilityId = $request->input('ability_id')) {
+    //         $query->where('ability_id', $abilityId);
+    //     }
 
-        if ($level = $request->input('level')) {
-            $query->where('level', $level);
-        }
+    //     if ($level = $request->input('level')) {
+    //         $query->where('level', $level);
+    //     }
 
-        if ($race_id = $request->input('race_id')) {
-            $query->where('race_id', $race_id);
-        }
-
-
-
-        // $name = $request->input('name');
-        // $natureId = $request->input('nature_id');
-
-        // $pokemons =  $query->with(['race', 'ability', 'nature'])
-        //     ->orWhere('name', 'LIKE', '%' . $name . '%')
-        //     ->orWhere('nature_id', $natureId)
-        //     ->get();
+    //     if ($race_id = $request->input('race_id')) {
+    //         $query->where('race_id', $race_id);
+    //     }
 
 
-        // 執行查詢並獲得結果
-        $pokemons = $query->get();
-        // dd($pokemons);
 
-        // 使用 PokemonResource 格式化並回傳結果
-        return PokemonResource::collection($pokemons);
-    }
+    //     // $name = $request->input('name');
+    //     // $natureId = $request->input('nature_id');
+
+    //     // $pokemons =  $query->with(['race', 'ability', 'nature'])
+    //     //     ->orWhere('name', 'LIKE', '%' . $name . '%')
+    //     //     ->orWhere('nature_id', $natureId)
+    //     //     ->get();
+
+
+    //     // 執行查詢並獲得結果
+    //     $pokemons = $query->get();
+    //     // dd($pokemons);
+
+    //     // 使用 PokemonResource 格式化並回傳結果
+    //     return PokemonResource::collection($pokemons);
+    // }
 
 
 

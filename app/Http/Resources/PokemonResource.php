@@ -17,6 +17,7 @@ class PokemonResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+       
         // 如果 $this->skills 是一個 id 陣列
         $minutes = 60; // 設定 cache 60 分鐘後過期
         $allSkills = Cache::remember('all_skills', $minutes, function () {
@@ -44,9 +45,9 @@ class PokemonResource extends JsonResource
             'race' => $this->whenLoaded('race', function () {
                 return $this->race->name;
             }),
-            'photo' => $this->whenLoaded('race', function () {
-                return $this->race->photo;
-            }),
+            // 'photo' => $this->whenLoaded('race', function () {
+            //     return $this->race->photo;
+            // }),
             'ability' => $this->whenLoaded('ability', function () {
                 return $this->ability->name;
             }),
