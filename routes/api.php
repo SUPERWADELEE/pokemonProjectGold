@@ -51,7 +51,7 @@ Route::patch('natures/{nature}', [NatureController::class, 'update']);
 // ability列表
 Route::get('abilities', [AbilityController::class, 'index']);
 Route::post('abilities', [AbilityController::class, 'store']);
-Route::patch('abilities/{abilities}', [AbilityController::class, 'update']);
+Route::patch('abilities/{ability}', [AbilityController::class, 'update']);
 
 
 /**

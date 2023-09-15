@@ -22,7 +22,7 @@ class RaceController extends Controller
         
         // dd($pokemon);
         if (!$race) {
-            return response(['error' => 'Race not found'], 404);
+            return response(['message' => 'Race not found'], 404);
         }
         return response(['evolution_level' => $race->evolution_level]);
 
