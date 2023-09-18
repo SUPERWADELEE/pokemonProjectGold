@@ -24,7 +24,6 @@ Route::get('/pokemon/{id}', function ($id) {
 
 
 
-
 Route::get('/addRace', function () {
     return view('addRace');
 });
@@ -33,3 +32,5 @@ Route::get('/addRace', function () {
 Route::get('/addProfile', function () {
     return view('addProfile');
 });
+
+
