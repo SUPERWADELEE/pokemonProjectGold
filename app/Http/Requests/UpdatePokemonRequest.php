@@ -39,7 +39,7 @@ class UpdatePokemonRequest extends FormRequest
     public function withValidator(Validator $validator)
     {
         $validator->after(function (Validator $validator) {
-            if (!valid_skills_for_race($this->skills)) {
+            if (!validSkillsForRace($this->skills)) {
                 $validator->errors()->add('skills', 'The skill is not allowed for this race.');
             }
         });
