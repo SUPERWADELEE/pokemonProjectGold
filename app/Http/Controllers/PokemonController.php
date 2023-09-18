@@ -29,6 +29,7 @@ class PokemonController extends Controller
     // 寶可夢新增
     public function store(StorePokemonRequest $request)
     {
+        
         // 用validated()方法拿到已驗證過後的數據
         $validatedData = $request->validated();
 

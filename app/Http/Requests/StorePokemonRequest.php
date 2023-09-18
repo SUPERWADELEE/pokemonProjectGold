@@ -25,6 +25,7 @@ class StorePokemonRequest extends FormRequest
      */
     public function rules(): array
     {
+        // dd('fuck');
         $race_id = $this->input('race_id');
         // 拿到輸入的種族id,並在race表格中查找
         $race = Race::find($race_id);
@@ -34,7 +35,8 @@ class StorePokemonRequest extends FormRequest
         if (!$miniEvolutionLevel){
             $miniEvolutionLevel = 100;
         }
-        
+
+        // dd($this->input('ability_id'));
         return [
             'name' => 'required|string|max:255',
             'race_id' => 'required|integer|exists:races,id',
