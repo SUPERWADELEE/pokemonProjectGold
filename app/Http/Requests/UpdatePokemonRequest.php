@@ -18,6 +18,56 @@ class UpdatePokemonRequest extends FormRequest
         return true;  // 如果您想讓所有使用者都能發送此請求，則設為 true。否則您需要定義認證邏輯。
     }
 
+
+
+    /**
+     * Get custom attributes for body parameters.
+     *
+     * @return array
+     */
+    public function bodyParameters()
+    {
+        return [
+            'name' => [
+                'description' => 'The name of the pokemon.',
+                'example' => 'Pikachu',
+                'required' => false,  // 因為在rules中是可選的
+                'type' => 'string'
+            ],
+            'race_id' => [
+                'description' => 'The ID of the race for the pokemon.',
+                'example' => 1,
+                'required' => false,
+                'type' => 'integer'
+            ],
+            'ability_id' => [
+                'description' => 'The ID of the ability for the pokemon.',
+                'example' => 1,
+                'required' => false,
+                'type' => 'integer'
+            ],
+            'nature_id' => [
+                'description' => 'The ID of the nature for the pokemon.',
+                'example' => 1,
+                'required' => false,
+                'type' => 'integer'
+            ],
+            'level' => [
+                'description' => 'The level for the pokemon.',
+                'example' => 1,
+                'required' => false,
+                'type' => 'integer'
+            ],
+            'skills' => [
+                'description' => 'The ID of the skills for the pokemon.',
+                'example' => 1,
+                'required' => false,
+                'type' => 'integer'
+            ],
+            // ... 其他參數 ...
+        ];
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -40,13 +90,9 @@ class UpdatePokemonRequest extends FormRequest
         $validator->after(function ($validator) {
             // 在這裡做了一個skills的額外驗證,確認輸入的skill是否是該種族可以學的
             if (!validSkillsForRace($this->skills)) {
-                
+
                 $validator->errors()->add('skills', 'The skill is not allowed for this race.');
             }
-
-            
         });
     }
 }
-
-

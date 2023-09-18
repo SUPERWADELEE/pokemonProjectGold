@@ -16,7 +16,9 @@ class AbilitySeeder extends Seeder
 
         $json = file_get_contents(__DIR__ . '/allAbilities.txt');
 
+        dd($json);
         $data = json_decode($json, true);
+        
 
         foreach ($data['data']['pokemon_v2_ability'] as $item) {
             if (isset($item['pokemon_v2_abilitynames'][0]['name'])) {

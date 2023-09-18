@@ -8,6 +8,10 @@ use App\Models\Pokemon;
 use App\Models\Race;
 use Illuminate\Http\Request;
 
+/**
+ * @group Race
+ * Operations related to races.
+ */
 class RaceController extends Controller
 {
     public function index()

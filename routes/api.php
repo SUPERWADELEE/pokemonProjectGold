@@ -20,17 +20,18 @@ use App\Http\Controllers\RaceController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 /**
  * pokemon管理
+ * 
  */
 // pokemon列表
 Route::get('pokemons', [PokemonController::class, 'index']);
 Route::post('pokemons', [PokemonController::class, 'store']);
-Route::get('pokemons/search', [PokemonController::class, 'search']);
+// Route::get('pokemons/search', [PokemonController::class, 'search']);
 Route::get('pokemons/{pokemon}', [PokemonController::class, 'show']);
 Route::patch('pokemons/{pokemon}', [PokemonController::class, 'update']);
 Route::delete('pokemons/{pokemon}', [PokemonController::class, 'destroy']);

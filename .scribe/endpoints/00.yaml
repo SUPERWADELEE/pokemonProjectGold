@@ -1,0 +1,349 @@
+name: Pokemons
+description: 'Operations related to pokemons.'
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/pokemons
+    metadata:
+      groupName: Pokemons
+      groupDescription: 'Operations related to pokemons.'
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":[{"id":1,"name":"Naruto","level":16,"race":"bulbasaur","ability":"\u60e1\u81ed","nature":"\u6eab\u9806","skills":["mega-drain","leech-seed","growth","petal-dance"]}]}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '59'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/pokemons
+    metadata:
+      groupName: Pokemons
+      groupDescription: 'Operations related to pokemons.'
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'The name of the pokemon. Must not be greater than 255 characters.'
+        required: true
+        example: Pikachu
+        type: string
+        enumValues: []
+        custom: []
+      race_id:
+        name: race_id
+        description: 'The ID of the race for the pokemon.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        custom: []
+      ability_id:
+        name: ability_id
+        description: 'The ID of the ability for the pokemon.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        custom: []
+      nature_id:
+        name: nature_id
+        description: 'The ID of the nature for the pokemon.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        custom: []
+      level:
+        name: level
+        description: 'The level for the pokemon. Must not be greater than 100.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        custom: []
+      skills:
+        name: skills
+        description: 'The ID of the skills for the pokemon. Must have at least 1 items. Must not have more than 4 items.'
+        required: true
+        example: 1
+        type: object
+        enumValues: []
+        custom: []
+    cleanBodyParameters:
+      name: Pikachu
+      race_id: 1
+      ability_id: 1
+      nature_id: 1
+      level: 1
+      skills: 1
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/pokemons/{pokemon_id}'
+    metadata:
+      groupName: Pokemons
+      groupDescription: 'Operations related to pokemons.'
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      pokemon_id:
+        name: pokemon_id
+        description: 'The ID of the pokemon.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        custom: []
+    cleanUrlParameters:
+      pokemon_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":{"id":1,"name":"Naruto","level":16,"race":"bulbasaur","ability":"\u60e1\u81ed","nature":"\u6eab\u9806","skills":["mega-drain","leech-seed","growth","petal-dance"]}}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '58'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PATCH
+    uri: 'api/pokemons/{pokemon_id}'
+    metadata:
+      groupName: Pokemons
+      groupDescription: 'Operations related to pokemons.'
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      pokemon_id:
+        name: pokemon_id
+        description: 'The ID of the pokemon.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        custom: []
+    cleanUrlParameters:
+      pokemon_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'The name of the pokemon. Must not be greater than 255 characters.'
+        required: false
+        example: Pikachu
+        type: string
+        enumValues: []
+        custom: []
+      race_id:
+        name: race_id
+        description: 'The ID of the race for the pokemon.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        custom: []
+      ability_id:
+        name: ability_id
+        description: 'The ID of the ability for the pokemon.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        custom: []
+      nature_id:
+        name: nature_id
+        description: 'The ID of the nature for the pokemon.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        custom: []
+      level:
+        name: level
+        description: 'The level for the pokemon. Must be at least 1. Must not be greater than 100.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        custom: []
+      skills:
+        name: skills
+        description: 'The ID of the skills for the pokemon. Must have at least 1 items. Must not have more than 4 items.'
+        required: true
+        example: 1
+        type: object
+        enumValues: []
+        custom: []
+    cleanBodyParameters:
+      name: Pikachu
+      race_id: 1
+      ability_id: 1
+      nature_id: 1
+      level: 1
+      skills: 1
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/pokemons/{pokemon_id}'
+    metadata:
+      groupName: Pokemons
+      groupDescription: 'Operations related to pokemons.'
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      pokemon_id:
+        name: pokemon_id
+        description: 'The ID of the pokemon.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        custom: []
+    cleanUrlParameters:
+      pokemon_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/pokemons/{pokemon_id}/evolution'
+    metadata:
+      groupName: Pokemons
+      groupDescription: 'Operations related to pokemons.'
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      pokemon_id:
+        name: pokemon_id
+        description: 'The ID of the pokemon.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        custom: []
+    cleanUrlParameters:
+      pokemon_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

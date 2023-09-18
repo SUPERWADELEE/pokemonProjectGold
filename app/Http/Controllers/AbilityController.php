@@ -5,17 +5,22 @@ namespace App\Http\Controllers;
 use App\Models\Ability;
 use Illuminate\Http\Request;
 
+/**
+ * @group Ability
+ * Operations related to abilities.
+ */
 class AbilityController extends Controller
 {
+
     // 性格詳情
     public function index()
     {
-        $allNatures = Ability::select('id','name')->get();
+        $allNatures = Ability::select('id', 'name')->get();
         return $allNatures;
     }
-    
 
-    
+
+
     // 性格新增
     public function store(Request $request)
     {

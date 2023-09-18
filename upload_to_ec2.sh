@@ -1,7 +1,7 @@
 
 #!/bin/bash
 echo "Script started: $(/bin/date)" >> /Users/liweide/upload.log
-SCP_OUTPUT=$(/usr/bin/scp -i /Users/liweide/.ssh/aws.pem /Users/liweide/laravel/pokemon/database/seeders/pokemonsTest.json ubuntu@54.238.70.16:/var/www/pokemonProjectGold/database/seeders 2>&1)
+SCP_OUTPUT=$(/usr/bin/scp -i /Users/liweide/.ssh/aws.pem /Users/liweide/laravel/pokemon/database/seeders/pokemons.json ubuntu@54.238.70.16:/var/www/pokemonProjectGold/database/seeders 2>&1)
 
 if [ $? -eq 0 ]; then
     echo "Uploading file to EC2 at $(/bin/date)" >> /Users/liweide/upload.log

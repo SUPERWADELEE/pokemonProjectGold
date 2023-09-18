@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Nature;
 use Illuminate\Http\Request;
 
+/**
+ * @group Nature
+ * Operations related to natures.
+ */
 class NatureController extends Controller
 {
     // 性格詳情

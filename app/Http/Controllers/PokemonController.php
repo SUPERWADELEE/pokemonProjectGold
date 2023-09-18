@@ -16,7 +16,10 @@ use Mockery\Expectation;
 use GuzzleHttp\Client;
 use GuzzleHttp\Pool;
 use GuzzleHttp\Psr7\Request as LaravelRequest;
-
+/**
+ * @group Pokemons
+ * Operations related to pokemons.
+ */
 class PokemonController extends Controller
 {
     public function index()
@@ -29,7 +32,7 @@ class PokemonController extends Controller
     // 寶可夢新增
     public function store(StorePokemonRequest $request)
     {
-        
+
         // 用validated()方法拿到已驗證過後的數據
         $validatedData = $request->validated();
 

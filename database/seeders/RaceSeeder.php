@@ -84,8 +84,8 @@ class RaceSeeder extends Seeder
 
         // 使用存到檔案的方式
             // dd('fuck');
-        $batchSize = 1;
-        $totalPokemons = 2;
+        $batchSize = 100;
+        $totalPokemons = 1011;
         $pokemons = [];
 
         // 讀取最後成功的位置
@@ -389,6 +389,9 @@ class RaceSeeder extends Seeder
         //         $race->skills()->attach($move->id);
         //     }
         // }
+
+
+
 
 
 
