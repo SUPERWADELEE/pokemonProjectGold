@@ -14,6 +14,7 @@ class NatureController extends Controller
     // 性格詳情
     public function index()
     {
+        // dd('fuck');
         $allNatures = Nature::all();
         return $allNatures;
     }

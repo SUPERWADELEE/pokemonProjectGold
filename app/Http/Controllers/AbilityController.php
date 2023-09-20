@@ -24,10 +24,12 @@ class AbilityController extends Controller
     // 性格新增
     public function store(Request $request)
     {
+        
         $validationData = $request->validate([
-            'name' => 'required|max:255',
+            'name' => 'required|string|max:255',
         ]);
 
+        // dd($validationData);
         Ability::create([
             'name' => $validationData['name']
         ]);
@@ -40,12 +42,12 @@ class AbilityController extends Controller
     public function update(Request $request, Ability $ability)
     {
         $validationData = $request->validate([
-            'name' => 'required|max:255',
+            'name' => 'required|string|max:255',
         ]);
 
-        if (!$ability) {
-            return response(['message' => 'Ability not found'], 404);
-        }
+        // if (!$ability) {
+        //     return response(['message' => 'Ability not found'], 404);
+        // }
 
         $ability->update([
             'name' => $validationData['name']
