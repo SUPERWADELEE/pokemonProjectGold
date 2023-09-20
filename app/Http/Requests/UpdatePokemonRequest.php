@@ -75,19 +75,31 @@ class UpdatePokemonRequest extends FormRequest
      */
     public function rules(): array
     {
+        // dd('fuck');
         return [
-            'name' => 'string|max:255',
+            'name' => 'string|max:15|alpha_unicode|unique:pokemons,name',
             'race_id' => 'integer|exists:races,id',
             'ability_id' => 'integer|exists:abilities,id',
             'nature_id' => 'integer|exists:natures,id',
-            'level' => 'integer|min:1|max:100',
-            'skills' => 'required|array|min:1|max:4'
+            'level' => 'integer|min:1|max:100', //. $miniEvolutionLevel,
+            'skills' => 'sometimes|array|min:1|max:4',
+            'skills.*' => 'sometimes|exists:skills,id'
+
         ];
     }
 
     public function withValidator($validator)
     {
         $validator->after(function ($validator) {
+
+            // 如果沒有提供任何參數，則添加一個錯誤。
+            if (empty($this->all())) {
+                $validator->errors()->add('parameters', 'At least one parameter is required.');
+                return;
+            }
+            if (is_null($this->skills)) {
+                return true;  // 如果沒有提供技能，則直接返回true
+            }
             // 在這裡做了一個skills的額外驗證,確認輸入的skill是否是該種族可以學的
             if (!validSkillsForRace($this->skills)) {
 

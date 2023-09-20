@@ -84,7 +84,7 @@ class StorePokemonRequest extends FormRequest
         
         // dd($this->input('ability_id'));
         return [
-            'name' => 'required|string|max:15',
+            'name' => 'required|string|max:15|alpha_unicode|unique:pokemons,name',
             'race_id' => 'required|integer|exists:races,id',
             'ability_id' => 'required|integer|exists:abilities,id',
             'nature_id' => 'required|integer|exists:natures,id',
@@ -97,6 +97,16 @@ class StorePokemonRequest extends FormRequest
     
     }
 
+    public function messages()
+    {
+        return [
+            'name.alpha_unicode' => '名稱只能包含中文和英文字符。',
+            // ... 其他自訂的錯誤訊息 ...
+        ];
+    }
+
+    
+
     // TODO validator rule
     // 或是去race取資料這個動作, 如果裡面也要做一次的話要用注入的
     public function withValidator($validator)
@@ -105,8 +115,8 @@ class StorePokemonRequest extends FormRequest
         // dd('fuck');
         $validator->after(function ($validator) {
             // 如果已有錯誤，則直接返回不做後續驗證
-            if ($validator->errors()->isNotEmpty()) {
-                return;
+            if (is_null($this->skills)) {
+                return true;  // 如果沒有提供技能，則直接返回true
             }
             // 在這裡做了一個skills的額外驗證,確認輸入的skill是否是該種族可以學的
             if (!validSkillsForRace($this->skills)) {
