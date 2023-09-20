@@ -67,7 +67,8 @@ class PokemonController extends Controller
         $pokemon->delete();
     
         // 返回成功響應
-        return response()->json(['message' => 'Pokemon deleted successfully'], 200);
+        return response(['message' => 'pokemon deleted successfully'], 200);
+
     }
     
 
@@ -90,7 +91,7 @@ class PokemonController extends Controller
 
             throw new Exception("寶可夢未達進化條件");
         } catch (Exception $e) {
-            return response(['message' => $e->getMessage()], 400);
+            return response(['message' => $e->getMessage()], 200);
         }
     }
 
