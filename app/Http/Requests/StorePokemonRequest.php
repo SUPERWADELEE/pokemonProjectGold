@@ -84,7 +84,7 @@ class StorePokemonRequest extends FormRequest
         
         // dd($this->input('ability_id'));
         return [
-            'name' => 'required|string|max:15|alpha_unicode|unique:pokemons,name',
+            'name' => 'required|string|max:15|unique:pokemons,name',
             'race_id' => 'required|integer|exists:races,id',
             'ability_id' => 'required|integer|exists:abilities,id',
             'nature_id' => 'required|integer|exists:natures,id',
@@ -97,13 +97,13 @@ class StorePokemonRequest extends FormRequest
     
     }
 
-    public function messages()
-    {
-        return [
-            'name.alpha_unicode' => '名稱只能包含中文和英文字符。',
-            // ... 其他自訂的錯誤訊息 ...
-        ];
-    }
+    // public function messages()
+    // {
+    //     return [
+    //         'name.alpha_unicode' => '名稱只能包含中文和英文字符。',
+    //         // ... 其他自訂的錯誤訊息 ...
+    //     ];
+    // }
 
     
 

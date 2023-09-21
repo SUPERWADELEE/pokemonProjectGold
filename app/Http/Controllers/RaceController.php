@@ -17,7 +17,7 @@ class RaceController extends Controller
     public function index()
     {
         // 選擇所有寶可夢的名稱和照片
-        $pokemons = Race::select('id','name')->get();
+        $pokemons = Race::select('id','name','photo')->get();
     
         return $pokemons;
     }

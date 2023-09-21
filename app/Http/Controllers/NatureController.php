@@ -15,7 +15,7 @@ class NatureController extends Controller
     public function index()
     {
         // dd('fuck');
-        $allNatures = Nature::all();
+        $allNatures = Nature::select('id', 'name')->get();
         return $allNatures;
     }
 
@@ -23,9 +23,14 @@ class NatureController extends Controller
     // 性格新增
     public function store(Request $request)
     {
-        $validationData = $request->validate([
-            'name' => 'required|max:255',
-        ]);
+        $validationData = $request->validate(
+            [
+                'name' => 'required|max:255|string|unique:natures,name',
+            ],
+            [
+                'name.alpha_unicode' => '名稱只能包含中文和英文字符。',
+            ]
+        );
 
         Nature::create([
             'name' => $validationData['name']
@@ -34,15 +39,20 @@ class NatureController extends Controller
         return response(['message' => 'Nature saved successfully'], 201);
     }
 
-    
+
     // 性格修改
     public function update(Request $request, Nature $nature)
     {
-        $validationData = $request->validate([
-            'name' => 'required|max:255',
-        ]);
+        $validationData = $request->validate(
+            [
+                'name' => 'required|max:255|alpha_unicode|unique:natures,name',
+            ],
+            [
+                'name.alpha_unicode' => '名稱只能包含中文和英文字符。',
+            ]
+        );
 
-        
+
 
         if (!$nature) {
             return response(['message' => 'Nature not found'], 404);

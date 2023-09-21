@@ -45,6 +45,9 @@ class PokemonResource extends JsonResource
             'race' => $this->whenLoaded('race', function () {
                 return $this->race->name;
             }),
+            'photo' => $this->whenLoaded('race', function () {
+                return $this->race->photo;
+            }),
             // 'photo' => $this->whenLoaded('race', function () {
             //     return $this->race->photo;
             // }),
@@ -57,9 +60,10 @@ class PokemonResource extends JsonResource
             // 'nature' => $this->whenLoaded('nature', $this->nature->name),
             'skills' => $selectedSkillNames,
 
-            'host' => $this->whenLoaded('user', function () {
-                return $this->user->name;
-            }),
+
+            // 'host' => $this->whenLoaded('user', function () {
+            //     return $this->user->name;
+            // }),
         ];
 
 

@@ -24,10 +24,15 @@ class AbilityController extends Controller
     // 性格新增
     public function store(Request $request)
     {
-        
-        $validationData = $request->validate([
-            'name' => 'required|string|max:255',
-        ]);
+
+        $validationData = $request->validate(
+            [
+                'name' => 'required|max:255|alpha_unicode|unique:abilities,name',
+            ],
+            [
+                'name.alpha_unicode' => '名稱只能包含中文和英文字符。',
+            ]
+        );
 
         // dd($validationData);
         Ability::create([
@@ -41,9 +46,14 @@ class AbilityController extends Controller
     // 性格修改
     public function update(Request $request, Ability $ability)
     {
-        $validationData = $request->validate([
-            'name' => 'required|string|max:255',
-        ]);
+        $validationData = $request->validate(
+            [
+                'name' => 'required|max:255|alpha_unicode|unique:abilities,name',
+            ],
+            [
+                'name.alpha_unicode' => '名稱只能包含中文和英文字符。',
+            ]
+        );
 
         // if (!$ability) {
         //     return response(['message' => 'Ability not found'], 404);
