@@ -2,43 +2,51 @@
 
 namespace Tests\Feature;
 
+use Illuminate\Support\Str;
+
 use App\Models\Ability;
 use App\Models\Nature;
+use App\Models\Pokemon;
 use App\Models\Race;
 use App\Models\Skill;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class PokemonStoreTest extends TestCase
+class PokemonUpdateTest extends TestCase
 {
     use RefreshDatabase;
     /**
      * A basic feature test example.
      */
-        public function testPokemonStore()
+    public function testUpdateReturnsCorrectResponse()
     {
+        // 使用 Pokemon 工廠創建 3 個寶可夢
+        $pokemons = Pokemon::factory()->count(3)->create();
+
         // 模擬要傳入的參數
-
-        // 返回值為一個模型實例的陣列
         $mockedData = $this->createMockData();
-        // 從該實例陣列取得user實例
-        // $getUser = $mockedData['user'];
 
-        // 將模型實例傳入,以便於在函式裡面取得id
-        // 第二個參數為, 可以複寫屬性
-        $data = $this->getMockData($mockedData,[
+        $data = $this->getMockData($mockedData, [
             'level' => 100
         ]);
-
         // dd($data);
 
-        // 模擬使用者登入  並發送請求
-        $response = $this->post('api/pokemons', $data);
+        // 從上面創建的寶可夢中取得其中一個寶可夢的ID
+        $pokemonId = $pokemons->first()->id;
+
+        // 模擬使用者登入 並發送請求
+        $response = $this->patch("api/pokemons/{$pokemonId}", $data);
 
         // 定義預期返回的格式
-        $response->assertStatus(201);  // Assuming 201 means created
+        $response->assertStatus(200);  // Assuming 201 means created
+    }
 
+    public function testUpdateReturnsNotFoundForInvalidId()
+    {
+        // 選擇一個不太可能存在的ID，例如99999
+        $this->patch("api/pokemons/99999")
+            ->assertStatus(404);  // 預期獲得404 NotFound響應
     }
 
 
@@ -50,7 +58,7 @@ class PokemonStoreTest extends TestCase
 
         // 接收數據  組裝
         $data = [
-            "name" => "god",
+            "name" => Str::random(10),
             "race_id" => $mockData['race']->id,
             "skills" => $mockData['skills']->pluck('id')->toArray(),
             "ability_id" => $mockData['ability']->id,
@@ -78,5 +86,4 @@ class PokemonStoreTest extends TestCase
 
         return compact('race', 'nature', 'ability', 'skills');
     }
-    }
-
+}

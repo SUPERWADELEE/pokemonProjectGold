@@ -77,7 +77,7 @@ class UpdatePokemonRequest extends FormRequest
     {
         // dd('fuck');
         return [
-            'name' => 'string|max:15|alpha_unicode|unique:pokemons,name',
+            'name' => 'string|max:15|unique:pokemons,name',
             'race_id' => 'integer|exists:races,id',
             'ability_id' => 'integer|exists:abilities,id',
             'nature_id' => 'integer|exists:natures,id',
