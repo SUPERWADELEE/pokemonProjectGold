@@ -93,7 +93,6 @@ class StorePokemonRequest extends FormRequest
             'skills.*' => 'integer|exists:skills,id'
             
         ];
-        // dd('fuck');
     
     }
 

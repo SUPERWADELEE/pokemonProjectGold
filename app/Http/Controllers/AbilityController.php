@@ -30,7 +30,7 @@ class AbilityController extends Controller
                 'name' => 'required|max:255|alpha_unicode|unique:abilities,name',
             ],
             [
-                'name.alpha_unicode' => '名稱只能包含中文和英文字符。',
+                'name.alpha_unicode' => '名稱只能包含中文和英文字。',
             ]
         );
 

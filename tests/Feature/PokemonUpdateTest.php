@@ -11,6 +11,7 @@ use App\Models\Race;
 use App\Models\Skill;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Arr;
 use Tests\TestCase;
 
 class PokemonUpdateTest extends TestCase
@@ -21,32 +22,30 @@ class PokemonUpdateTest extends TestCase
      */
     public function testUpdateReturnsCorrectResponse()
     {
-        // 使用 Pokemon 工廠創建 3 個寶可夢
-        $pokemons = Pokemon::factory()->count(3)->create();
-
+        // 使用 Pokemon 工廠創建 1 個寶可夢
+        $pokemon = Pokemon::factory()->create();
+    
         // 模擬要傳入的參數
         $mockedData = $this->createMockData();
-
-        $data = $this->getMockData($mockedData, [
-            'level' => 100
-        ]);
-        // dd($data);
-
-        // 從上面創建的寶可夢中取得其中一個寶可夢的ID
-        $pokemonId = $pokemons->first()->id;
-
-        // 模擬使用者登入 並發送請求
-        $response = $this->patch("api/pokemons/{$pokemonId}", $data);
-
-        // 定義預期返回的格式
-        $response->assertStatus(200);  // Assuming 201 means created
+    
+        $data = $this->getMockData($mockedData, ['level' => 100]);
+    
+        $response = $this->patch("api/pokemons/{$pokemon->id}", $data)
+            ->assertStatus(200);
+    
+        $this->assertDatabaseHas('pokemons', Arr::except($data, ['skills']));
+        $this->assertDatabaseCount('pokemons', 1); // 现在这个断言应该是正确的，因为数据表中只有一行数据
     }
+    
 
     public function testUpdateReturnsNotFoundForInvalidId()
     {
         // 選擇一個不太可能存在的ID，例如99999
         $this->patch("api/pokemons/99999")
-            ->assertStatus(404);  // 預期獲得404 NotFound響應
+            ->assertStatus(404)
+            ->assertJson([
+                "message"=>"The pokemons data not found"
+            ]);  // 預期獲得404 NotFound響應
     }
 
 

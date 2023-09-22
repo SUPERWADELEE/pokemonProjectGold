@@ -8,6 +8,7 @@ use App\Models\Race;
 use App\Models\Skill;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Arr;
 use Tests\TestCase;
 
 class PokemonStoreTest extends TestCase
@@ -16,7 +17,7 @@ class PokemonStoreTest extends TestCase
     /**
      * A basic feature test example.
      */
-        public function testPokemonStore()
+    public function testPokemonStore()
     {
         // 模擬要傳入的參數
 
@@ -27,17 +28,24 @@ class PokemonStoreTest extends TestCase
 
         // 將模型實例傳入,以便於在函式裡面取得id
         // 第二個參數為, 可以複寫屬性
-        $data = $this->getMockData($mockedData,[
+        $data = $this->getMockData($mockedData, [
             'level' => 100
         ]);
 
         // dd($data);
 
         // 模擬使用者登入  並發送請求
-        $response = $this->post('api/pokemons', $data);
+        $response = $this->post('api/pokemons', $data)
+            ->assertStatus(201);
 
-        // 定義預期返回的格式
-        $response->assertStatus(201);  // Assuming 201 means created
+
+            $this->assertDatabaseHas('pokemons', Arr::except($data, ['skills']));
+            $this->assertDatabaseCount('pokemons', 1); // 该行应该存在
+            $this->assertDatabaseMissing('pokemons', ['skills' => '[1,2,3,4]']); // 这行应该不存在，因为skills的格式不匹配
+            
+
+            // 定義預期返回的格式
+        ;  // Assuming 201 means created
 
     }
 
@@ -78,5 +86,4 @@ class PokemonStoreTest extends TestCase
 
         return compact('race', 'nature', 'ability', 'skills');
     }
-    }
-
+}
