@@ -114,7 +114,7 @@ class StorePokemonRequest extends FormRequest
         // dd('fuck');
         $validator->after(function ($validator) {
             // 如果已有錯誤，則直接返回不做後續驗證
-            if (is_null($this->skills)) {
+            if ($validator->failed() || is_null($this->skills) || !is_array($this->skills)) {
                 return true;  // 如果沒有提供技能，則直接返回true
             }
             // 在這裡做了一個skills的額外驗證,確認輸入的skill是否是該種族可以學的

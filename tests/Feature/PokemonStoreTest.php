@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Ability;
 use App\Models\Nature;
+use App\Models\Pokemon;
 use App\Models\Race;
 use App\Models\Skill;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -17,37 +18,202 @@ class PokemonStoreTest extends TestCase
     /**
      * A basic feature test example.
      */
+
+    //  Happy Path
+    // 確認傳入正確的參數後, 是否有正確的狀態馬, 是否有存入資料庫
     public function testPokemonStore()
     {
         // 模擬要傳入的參數
-
-        // 返回值為一個模型實例的陣列
         $mockedData = $this->createMockData();
-        // 從該實例陣列取得user實例
-        // $getUser = $mockedData['user'];
+
+        // 保存你隨機生成的技能ID，以便於後面驗證
+        $expectedSkills = $mockedData['skills']->pluck('id')->toArray();
 
         // 將模型實例傳入,以便於在函式裡面取得id
-        // 第二個參數為, 可以複寫屬性
-        $data = $this->getMockData($mockedData, [
-            'level' => 100
-        ]);
+        $data = $this->getMockData($mockedData);
 
-        // dd($data);
-
-        // 模擬使用者登入  並發送請求
+        //發送請求
         $response = $this->post('api/pokemons', $data)
-            ->assertStatus(201);
+            ->assertStatus(201); // Assuming 201 means created
 
+        // 檢查數據庫是否有相對應的數據
+        $this->assertDatabaseHas('pokemons', Arr::except($data, ['skills']));
+        // $this->assertDatabaseCount('pokemons', 1);
 
-            $this->assertDatabaseHas('pokemons', Arr::except($data, ['skills']));
-            $this->assertDatabaseCount('pokemons', 1); // 该行应该存在
-            $this->assertDatabaseMissing('pokemons', ['skills' => '[1,2,3,4]']); // 这行应该不存在，因为skills的格式不匹配
-            
+        // 獲取剛剛創建的 Pokemon
+        $pokemonStored = \App\Models\Pokemon::where('name', $data['name'])->firstOrFail();
 
-            // 定義預期返回的格式
-        ;  // Assuming 201 means created
+        // 檢查存儲的技能是否與預期的技能相匹配
 
+        $this->assertEqualsCanonicalizing($expectedSkills, $pokemonStored->skills);
     }
+
+
+
+    // validation-name
+    public function testPokemonStoreValidationIfNameIsNull()
+    {
+        // 模擬要傳入的參數
+        $mockedData = $this->createMockData();
+
+        // 將模型實例傳入,以便於在函式裡面取得id
+        $data = $this->getMockData($mockedData, ['name' => '']);
+
+        //發送請求
+        $response = $this->withHeaders([
+            'Accept' => 'application/json',
+        ])->post('api/pokemons', $data)
+            ->assertStatus(422) // 422 Unprocessable Entity，用於檢查請求格式正確但含有邏輯錯誤的情況
+            ->assertJson([
+                "message" => "The name field is required."
+            ]);
+    }
+
+    public function testPokemonStoreValidationIfNameIsGreaterThan15()
+    {
+        // 模擬要傳入的參數
+        $mockedData = $this->createMockData();
+
+        // 將模型實例傳入,以便於在函式裡面取得id
+        $data = $this->getMockData($mockedData, ['name' => 'wdefefrgthyjukil']);
+
+        //發送請求
+        $response = $this->withHeaders([
+            'Accept' => 'application/json',
+        ])->post('api/pokemons', $data)
+            ->assertStatus(422) // 422 Unprocessable Entity，用於檢查請求格式正確但含有邏輯錯誤的情況
+            ->assertJson([
+                "message" => "The name field must not be greater than 15 characters."
+            ]);
+    }
+
+    // public function testPokemonStoreValidationNameIsRepeated()
+    // {
+    //     // 模擬要傳入的參數
+    //     $mockedData = $this->createMockData();
+
+    //     $pokemons = Pokemon::factory()->count(3)->create();
+    //     $pokemon = $pokemons->pluck('name')->first();
+
+    //     dd($pokemon);
+    //     // 將模型實例傳入,以便於在函式裡面取得id
+    //     $data = $this->getMockData($mockedData, ['name' => $pokemon]);
+
+    //     //發送請求
+    //     $response = $this->withHeaders([
+    //         'Accept' => 'application/json',
+    //     ])->post('api/pokemons', $data)
+    //         ->assertStatus(422) // 422 Unprocessable Entity，用於檢查請求格式正確但含有邏輯錯誤的情況
+    //         ->assertJson([
+    //             "message" => "The name has already been taken."
+    //         ]);
+    // }
+
+    public function testPokemonStoreValidationIfNameIsNotAString()
+    {
+        // 模擬要傳入的參數
+        $mockedData = $this->createMockData();
+
+        // 將模型實例傳入,以便於在函式裡面取得id
+        $data = $this->getMockData($mockedData, ['name' => 12]);
+
+        //發送請求
+        $response = $this->withHeaders([
+            'Accept' => 'application/json',
+        ])->post('api/pokemons', $data)
+            ->assertStatus(422) // 422 Unprocessable Entity，用於檢查請求格式正確但含有邏輯錯誤的情況
+            ->assertJson([
+                "message" => "The name field must be a string."
+            ]);
+    }
+
+
+
+    // 等級的邊界測試
+    public function testPokemonStoreValidationLevelBoundary()
+    {
+
+        $mockedData = $this->createMockData();
+
+        // Test lower boundary
+        $data = $this->getMockData($mockedData, ['level' => 0]);
+        $this->withHeaders([
+            'Accept' => 'application/json',
+        ])->post('api/pokemons', $data)
+            ->assertStatus(422)
+            ->assertJson(['message' => 'The level field must be at least 1.']);
+
+        $mockedData = $this->createMockData();
+        $data = $this->getMockData($mockedData, ['level' => 1]);
+        $this->withHeaders([
+            'Accept' => 'application/json',
+        ])->post('api/pokemons', $data)
+            ->assertStatus(201); // Assuming 201 means created
+
+        $mockedData = $this->createMockData();
+        // Test upper boundary
+        $data = $this->getMockData($mockedData, ['level' => 100]);
+        $this->withHeaders([
+            'Accept' => 'application/json',
+        ])->post('api/pokemons', $data)
+            ->assertStatus(201); // Assuming 201 means created
+
+        $mockedData = $this->createMockData();
+        $data = $this->getMockData($mockedData, ['level' => 101]);
+        $this->withHeaders([
+            'Accept' => 'application/json',
+        ])->post('api/pokemons', $data)
+            ->assertStatus(422)
+            ->assertJson(['message' => 'The level field must not be greater than 100.']);
+    }
+
+
+
+
+    // public function testPokemonStoreValidationSkillsBoundary()
+    // {
+    //     // 模擬要傳入的參數
+    //     $mockedData = $this->createMockData();
+
+    //     // 將模型實例傳入,以便於在函式裡面取得id
+    //     $data = $this->getMockData($mockedData, ['race_id' => 1,'skills' => [13,14,15,20,22]]);
+
+    //     dd($data);
+    //     //發送請求
+    //     $response = $this->withHeaders([
+    //         'Accept' => 'application/json',
+    //     ])->post('api/pokemons', $data)
+    //         ->assertStatus(422) // 422 Unprocessable Entity，用於檢查請求格式正確但含有邏輯錯誤的情況
+    //         ->assertJson([
+    //             "message" =>  "The skills field must not have more than 4 items."
+    //         ]);
+    // }
+
+    public function testPokemonStoreValidationIfSkillsIsNotAnArray()
+    {
+        // 模擬要傳入的參數
+        $mockedData = $this->createMockData();
+
+        // 將模型實例傳入,以便於在函式裡面取得id
+        $data = $this->getMockData($mockedData, ['skills' => 12]);
+
+        //發送請求
+        $response = $this->withHeaders([
+            'Accept' => 'application/json',
+        ])->post('api/pokemons', $data)
+            ->assertStatus(422) // 422 Unprocessable Entity，用於檢查請求格式正確但含有邏輯錯誤的情況
+            ->assertJson([
+                "message" =>  "The skills field must be an array."
+            ]);
+    }
+
+
+
+
+
+
+
+
 
 
 
@@ -56,9 +222,11 @@ class PokemonStoreTest extends TestCase
 
         // $mockData = $this->createMockData($role);
 
+        $pokemon = Pokemon::factory()->make();
         // 接收數據  組裝
+        // dd($pokemon->name);
         $data = [
-            "name" => "god",
+            "name" => $pokemon->name,
             "race_id" => $mockData['race']->id,
             "skills" => $mockData['skills']->pluck('id')->toArray(),
             "ability_id" => $mockData['ability']->id,
@@ -73,7 +241,7 @@ class PokemonStoreTest extends TestCase
 
 
 
-    private function createMockData($evolution_level = null)
+    private function createMockData($evolution_level = 15)
     {
         // 創造數據返回id
         $race = Race::factory()->create(['evolution_level' => $evolution_level]);
