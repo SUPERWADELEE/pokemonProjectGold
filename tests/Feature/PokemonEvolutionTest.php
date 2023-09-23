@@ -13,6 +13,7 @@ class PokemonEvolutionTest extends TestCase
 {
     use RefreshDatabase;
 
+    // 如果寶可夢可以進化, 回傳的狀態馬以及資料庫是否更新
     public function testPokemonCanEvolve()
     {
         $race = Race::factory()->create(['evolution_level' => 10]);
@@ -31,6 +32,7 @@ class PokemonEvolutionTest extends TestCase
         ]);
     }
 
+    // 如果寶可夢已在最終形態
     public function testPokemonCannotEvolveWhenAlreadyAtFinalForm()
     {
         // Arrange: Create a Pokemon which is already at its final form.
@@ -46,6 +48,7 @@ class PokemonEvolutionTest extends TestCase
         $response->assertJson(['message' => '寶可夢已是最終形態']);
     }
 
+    // 如果寶可夢還不能進化
     public function testPokemonCannotEvolveWhenLevelIsNotEnough()
     {
         // Arrange: Create a Pokemon with a level lower than its evolution level.
@@ -61,14 +64,14 @@ class PokemonEvolutionTest extends TestCase
 
 
 
-public function testEvolutionReturnsNotFoundForInvalidId()
-{
-    // 選擇一個不太可能存在的ID，例如99999
-    $this->put("api/pokemons/99999/evolution")
-        ->assertStatus(404)
-        ->assertJson([
-            "message"=>"The pokemons data not found"
-        ]);// 預期獲得404 NotFound響應
-}
-
+    // 如果找不到寶可夢
+    public function testEvolutionReturnsNotFoundForInvalidId()
+    {
+        // 選擇一個不太可能存在的ID，例如99999
+        $this->put("api/pokemons/99999/evolution")
+            ->assertStatus(404)
+            ->assertJson([
+                "message" => "The pokemons data not found"
+            ]); // 預期獲得404 NotFound響應
+    }
 }

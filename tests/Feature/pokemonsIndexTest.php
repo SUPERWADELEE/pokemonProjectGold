@@ -21,6 +21,7 @@ class PokemonsIndexTest extends TestCase
 // 1.取得寶可夢資料
 // 2.使用resource將id的部分都去關聯數據庫取出名稱並返回
 
+    
     public function testIndexReturnsCorrectResponse()
     {
         // 產生使用者資訊
@@ -40,5 +41,5 @@ class PokemonsIndexTest extends TestCase
                 ]
                 ]);
             
-}
+    }
 }

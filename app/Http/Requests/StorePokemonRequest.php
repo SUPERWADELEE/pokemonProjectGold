@@ -73,7 +73,7 @@ class StorePokemonRequest extends FormRequest
         // $race_id = $this->input('race_id');
         // $race = Race::find($race_id);
         // // $miniEvolutionLevel = optional($race)->evolution_level ?? 100;  // 使用 optional 函數
-    
+
 
         // // 找到該種族後去查找最小進化等級
         // $miniEvolutionLevel = $race->evolution_level;
@@ -81,19 +81,18 @@ class StorePokemonRequest extends FormRequest
         //     $miniEvolutionLevel = 100;
         // }
 
-        
+
         // dd($this->input('ability_id'));
         return [
             'name' => 'required|string|max:15|unique:pokemons,name',
             'race_id' => 'required|integer|exists:races,id',
             'ability_id' => 'required|integer|exists:abilities,id',
             'nature_id' => 'required|integer|exists:natures,id',
-            'level' => 'required|integer|min:1|max:100',//. $miniEvolutionLevel,
+            'level' => 'required|integer|min:1|max:100', //. $miniEvolutionLevel,
             'skills' => 'required|array|min:1|max:4',
             'skills.*' => 'integer|exists:skills,id'
-            
+
         ];
-    
     }
 
     // public function messages()
@@ -104,13 +103,13 @@ class StorePokemonRequest extends FormRequest
     //     ];
     // }
 
-    
+
 
     // TODO validator rule
     // 或是去race取資料這個動作, 如果裡面也要做一次的話要用注入的
     public function withValidator($validator)
     {
-    
+
         // dd('fuck');
         $validator->after(function ($validator) {
             // 如果已有錯誤，則直接返回不做後續驗證
@@ -118,12 +117,12 @@ class StorePokemonRequest extends FormRequest
                 return true;  // 如果沒有提供技能，則直接返回true
             }
             // 在這裡做了一個skills的額外驗證,確認輸入的skill是否是該種族可以學的
-            if (!validSkillsForRace($this->skills)) {
-                
+            $raceId = $this->input('race_id'); // 假设 race_id 是在请求中的一个字段
+            $race = Race::find($raceId);
+
+            if (!validSkillsForRace($this->skills, request(), $race)) {
                 $validator->errors()->add('skills', 'The skill is not allowed for this race.');
             }
-
-            
         });
     }
 }

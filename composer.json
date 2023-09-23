@@ -23,7 +23,10 @@
     },
     "autoload": {
         "files": [
-            "helper/valid_skills_for_race.php"
+            "helper/valid_skills_for_race.php",
+            "helper/create_mock_data.php",
+            "helper/get_mock_data.php"
+
         ],
         "psr-4": {
             "App\\": "app/",
