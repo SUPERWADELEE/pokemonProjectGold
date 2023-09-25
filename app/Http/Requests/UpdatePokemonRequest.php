@@ -103,7 +103,7 @@ class UpdatePokemonRequest extends FormRequest
             $raceId = $this->input('race_id'); // 假设 race_id 是在请求中的一个字段
             $race = Race::find($raceId);
             // 在這裡做了一個skills的額外驗證,確認輸入的skill是否是該種族可以學的
-            if (!validSkillsForRace($this->skills, request(), $race )) {
+            if (!validSkillsForRace($this->skills, $race )) {
                 $validator->errors()->add('skills', 'The skill is not allowed for this race.');
             }
         });

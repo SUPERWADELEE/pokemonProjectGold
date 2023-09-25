@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('pokemons');
 });
+// Route::get('/', function () {
+//         dd('fuck');
+//     });
 
 
 Route::get('/pokemon/{id}', function ($id) {

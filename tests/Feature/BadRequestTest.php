@@ -15,9 +15,8 @@ class BadRequestTest extends TestCase
      */
     public function testNonexistentApiPathReturns404()
     {
-        $response = $this->get('/api/nonexistentpath');
-
-        $response->assertStatus(404);
+        $response = $this->get('/api/nonexistentpath')
+            ->assertStatus(404);
     }
 
     // 針對錯誤的http method 給予405錯誤
@@ -25,15 +24,12 @@ class BadRequestTest extends TestCase
     public function it_returns_405_for_unallowed_method()
     {
         // Arrange: set up any needed preconditions
-        $url = '/api/pokemons'; // replace with your actual endpoint
-
         // Act: make a PATCH request to a POST-only endpoint
-        $response = $this->json('DELETE', $url);
-
+        $this->delete("api/pokemons")
+            ->assertStatus(405)
+            ->assertJson([
+                'error' => 'Method not allowed'
+            ]);
         // Assert: check that the response has a 405 status code and the correct error message
-        $response->assertStatus(405);
-        $response->assertExactJson([
-            'error' => 'Method not allowed'
-        ]);
     }
 }

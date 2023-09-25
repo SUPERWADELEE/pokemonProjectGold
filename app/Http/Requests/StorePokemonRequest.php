@@ -120,7 +120,7 @@ class StorePokemonRequest extends FormRequest
             $raceId = $this->input('race_id'); // 假设 race_id 是在请求中的一个字段
             $race = Race::find($raceId);
 
-            if (!validSkillsForRace($this->skills, request(), $race)) {
+            if (!validSkillsForRace($this->skills, $race)) {
                 $validator->errors()->add('skills', 'The skill is not allowed for this race.');
             }
         });

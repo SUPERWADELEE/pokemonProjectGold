@@ -1,10 +1,9 @@
 <?php
 use App\Models\Race;
+use Illuminate\Http\Request;
 
-function validSkillsForRace($skills, Illuminate\Http\Request $request, Race $race) {
-    $pokemonId = $request->input('race_id');
-    $pokemon = $race->find($pokemonId);
-    $allowedSkills = $pokemon->skills->pluck('id')->toArray();
+function validSkillsForRace($skills, $race) {
+    $allowedSkills = $race->skills->pluck('id')->toArray();
     
     foreach ($skills as $skillId) {
         if (!in_array($skillId, $allowedSkills)) {
@@ -13,3 +12,6 @@ function validSkillsForRace($skills, Illuminate\Http\Request $request, Race $rac
     }
     return true;
 }
+
+
+
