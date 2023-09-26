@@ -15,6 +15,7 @@ class BadRequestTest extends TestCase
      */
     public function testNonexistentApiPathReturns404()
     {
+        // dd(config('database.connections.mysql.host'));
         $response = $this->get('/api/nonexistentpath')
             ->assertStatus(404);
     }

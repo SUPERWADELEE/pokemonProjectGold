@@ -17,6 +17,8 @@ class PokemonDeleteTest extends TestCase
     // TODO檢查資料庫是否真的刪除
     public function testDeleteReturnsCorrectResponse()
     {
+        // dd('fuck');
+        // dd(config('database.connections.mysql.host'));
         // 產生寶可夢資訊
         $pokemons = Pokemon::factory()->count(3)->create();
 
