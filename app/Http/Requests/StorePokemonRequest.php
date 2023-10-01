@@ -109,8 +109,6 @@ class StorePokemonRequest extends FormRequest
     // 或是去race取資料這個動作, 如果裡面也要做一次的話要用注入的
     public function withValidator($validator)
     {
-
-        // dd('fuck');
         $validator->after(function ($validator) {
             // 如果已有錯誤，則直接返回不做後續驗證
             if ($validator->failed() || is_null($this->skills) || !is_array($this->skills)) {

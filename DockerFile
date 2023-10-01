@@ -1,6 +1,6 @@
-FROM bitnami/laravel:latest
+# FROM bitnami/laravel:latest
 
-WORKDIR /var/www/html
+# WORKDIR 
 
 # 其他指令，如 RUN, COPY 等
 
