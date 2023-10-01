@@ -193,11 +193,6 @@ return [
 
         /**
          * The base URL for the API tester to use (for example, you can set this to your staging URL).
-<<<<<<< HEAD
-         * Leave as null to use the current app URL when generating (config("app.url")).
-=======
-         * Leave as null to use the current app URL (config(app.url)).
->>>>>>> unitTest練習
          */
         'base_url' => null,
 
