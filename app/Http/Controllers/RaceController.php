@@ -24,14 +24,15 @@ class RaceController extends Controller
 
     public function evolutionLevel(Race $race){
         
-        
-        return response(['evolution_level' => $race->evolution_level]);
-
+        $pokemons = Race::select('id','name', 'photo')->get();
+        return $pokemons;
     }
+
     
     public function skills(Race $race){
         $skills = $race->skills()->orderBy('id')->get();
         return SkillResource::collection($skills);
+
     }
     
     

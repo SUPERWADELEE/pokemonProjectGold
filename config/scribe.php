@@ -17,8 +17,11 @@ return [
     'description' => '',
 
     /*
+
      * The base URL displayed in the docs. If this is empty, Scribe will use the value of config('app.url') at generation time.
      * If you're using `laravel`` type, you can set this to a dynamic string, like '{{ config("app.tenant_url") }}' to get a dynamic base URL.
+     * The base URL displayed in the docs. If this is empty, Scribe will use the value of config('app.url').
+
      */
     'base_url' => null,
 
@@ -190,7 +193,11 @@ return [
 
         /**
          * The base URL for the API tester to use (for example, you can set this to your staging URL).
+<<<<<<< HEAD
          * Leave as null to use the current app URL when generating (config("app.url")).
+=======
+         * Leave as null to use the current app URL (config(app.url)).
+>>>>>>> unitTest練習
          */
         'base_url' => null,
 

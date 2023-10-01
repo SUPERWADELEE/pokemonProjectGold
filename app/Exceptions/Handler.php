@@ -3,13 +3,47 @@
 namespace App\Exceptions;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class Handler extends ExceptionHandler
 {
+
+    public function render($request, Throwable $exception)
+    {
+        
+        if ($exception instanceof ModelNotFoundException) {
+            return response()->json(['error' => 'Resource not found'], 404);
+        }
+
+        if ($exception instanceof AuthorizationException) {
+            
+            return response()->json(['error' => '您没有权限进行此操作'], 403);
+        }
+
+        if ($exception instanceof \Illuminate\Validation\ValidationException && $request->expectsJson()) {
+            return response()->json($exception->errors(), 422);
+        }
+
+        if ($exception instanceof MethodNotAllowedHttpException) {
+            return response()->json(['error' => 'Method not allowed'], 405);
+        }
+
+
+        return parent::render($request, $exception);
+
+
+
+        
+    
+       
+        
+    }
+
     /**
      * The list of the inputs that are never flashed to the session on validation exceptions.
      *
@@ -42,16 +76,5 @@ class Handler extends ExceptionHandler
 
 
 
-    public function render($request, Throwable $exception)
-    {
-        // if ($exception instanceof ModelNotFoundException && $request->wantsJson()) {
-        //     return response()->json(["message" => $exception->getMessage()], 404);
-        // }
-        if ($exception instanceof MethodNotAllowedHttpException) {
-            return response()->json(['error' => 'Method not allowed'], 405);
-        }
     
-
-        return parent::render($request, $exception);
-    }
 }

@@ -20,7 +20,6 @@ class AbilityController extends Controller
     }
 
 
-
     // 性格新增
     public function store(Request $request)
     {

@@ -4,8 +4,10 @@ namespace App\Http\Resources;
 
 use App\Models\Race;
 use App\Models\Skill;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 
 class PokemonResource extends JsonResource
@@ -17,14 +19,15 @@ class PokemonResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-       
-        // 如果 $this->skills 是一個 id 陣列
+
+        // TODO設定可能cache可以一個小時後刪除
+        // TODOcache可以研究存在哪裡？
         $minutes = 60; // 設定 cache 60 分鐘後過期
         $allSkills = Cache::remember('all_skills', $minutes, function () {
             return Skill::all();
         });
-
         $allSkillsArray = $allSkills->pluck('name', 'id')->toArray();
+
         // 取得 $this->skills 中指定的技能名稱
         $selectedSkillNames = array_intersect_key($allSkillsArray, array_flip($this->skills));
         // 如果需要，將其重新整理為索引陣列
@@ -59,11 +62,10 @@ class PokemonResource extends JsonResource
             }),
             // 'nature' => $this->whenLoaded('nature', $this->nature->name),
             'skills' => $selectedSkillNames,
+            'host' => $this->whenLoaded('user', function () {
+                return $this->user->name;
+            }),
 
-
-            // 'host' => $this->whenLoaded('user', function () {
-            //     return $this->user->name;
-            // }),
         ];
 
 
@@ -71,4 +73,15 @@ class PokemonResource extends JsonResource
         // return $data;
 
     }
+
+
+    // protected function getRaceSkills()
+    // {
+    //     return $this->race->skills->whereIn('id', $this->skills)->pluck('name');
+    // }
+    // public function skillNames(){
+    //     return $skillNames = $selectedSkills->pluck('name')->toArray();
+    // }
+
 }
+

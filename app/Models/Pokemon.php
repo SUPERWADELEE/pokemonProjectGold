@@ -11,30 +11,40 @@ class Pokemon extends Model
 {
     use SoftDeletes;
     use HasFactory;
+    use SoftDeletes;
+
+  
+
+
     protected $table = 'pokemons';
     protected $casts = [
         'skills' => 'array',
     ];
-    
+
     protected $fillable = [
-        'name', 
+        'name',
         'race_id',
         'ability_id',
         'nature_id',
         'level',
-        'skills'
+        'skills',
+        'user_id'
+
         // ... 其他允許的屬性 ...
     ];
 
-    public function race(){
+    public function race()
+    {
         return $this->belongsTo(Race::class);
     }
 
-    public function nature(){
+    public function nature()
+    {
         return $this->belongsTo(Nature::class);
     }
 
-    public function ability(){
+    public function ability()
+    {
         return $this->belongsTo(Ability::class);
     }
 
@@ -63,4 +73,10 @@ class Pokemon extends Model
 
     //     return $result;
     // }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+   
 }

@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('pokemons');
+    return view('test');
 });
 // Route::get('/', function () {
 //         dd('fuck');

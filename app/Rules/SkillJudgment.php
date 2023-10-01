@@ -20,16 +20,18 @@ class SkillJudgment implements ValidationRule
 
     public function passes($attribute, $value)
     {
-        $pokemonId = request()->input('race_id');
-        $pokemon = Race::find($pokemonId);
-        $allowedSkills = $pokemon->skills->pluck('id')->toArray();
+    //     dd('fuck');
+    //     $pokemonId = request()->input('race_id');
+    //     $pokemon = Race::find($pokemonId);
+    //     $allowedSkills = $pokemon->skills->pluck('id')->toArray();
         
-        foreach ($value as $skillId) {
-            if (!in_array($skillId, $allowedSkills)) {
-                return false;
-            }
-        }
-        return true;
+    //     foreach ($value as $skillId) {
+    //         if (!in_array($skillId, $allowedSkills)) {
+    //             return false;
+    //         }
+    //     }
+    //     return true;
+    return false;
     }
 
     public function message()

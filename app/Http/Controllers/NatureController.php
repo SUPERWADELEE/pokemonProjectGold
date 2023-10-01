@@ -39,7 +39,6 @@ class NatureController extends Controller
         return response(['message' => 'Nature saved successfully'], 201);
     }
 
-
     // 性格修改
     public function update(Request $request, Nature $nature)
     {
@@ -51,8 +50,6 @@ class NatureController extends Controller
                 'name.alpha_unicode' => '名稱只能包含中文和英文字符。',
             ]
         );
-
-
 
         if (!$nature) {
             return response(['message' => 'Nature not found'], 404);

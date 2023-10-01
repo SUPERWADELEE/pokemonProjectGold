@@ -378,6 +378,7 @@ class RaceSeeder extends Seeder
         $pokemons = json_decode(file_get_contents(__DIR__ . '/pokemons.json'), true);
 
         foreach ($pokemons as $pokemon) {
+
             $race = Race::create([
                 'name' => $pokemon['name'],
                 'photo' => $pokemon['photo'],

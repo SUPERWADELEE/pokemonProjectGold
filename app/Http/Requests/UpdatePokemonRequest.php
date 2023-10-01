@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Race;
 use App\Rules\SkillJudgment;
+use Illuminate\Contracts\Validation\Validator;
 
 class UpdatePokemonRequest extends FormRequest
 {
@@ -104,6 +105,7 @@ class UpdatePokemonRequest extends FormRequest
             $race = Race::find($raceId);
             // 在這裡做了一個skills的額外驗證,確認輸入的skill是否是該種族可以學的
             if (!validSkillsForRace($this->skills, $race )) {
+
                 $validator->errors()->add('skills', 'The skill is not allowed for this race.');
             }
         });

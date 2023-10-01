@@ -20,7 +20,6 @@ class NatureFactory extends Factory
     {
         return [
             'name' => $this->faker->unique()->word,
-
         ];
     }
 }

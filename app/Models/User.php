@@ -8,10 +8,15 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+use Tymon\JWTAuth\Contracts\JWTSubject;
+
+class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+
+    const ROLE_SUPERADMIN = 'superadmin';
+    const ROLE_USER = 'user';
     /**
      * The attributes that are mass assignable.
      *
@@ -21,6 +26,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'status'
     ];
 
     /**
@@ -42,4 +48,32 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+
+    public function isSuperadmin()
+    {
+        // 是否為superadmin
+        return $this->role === self::ROLE_SUPERADMIN;
+    }
+
+    // In User.php
+    public function isHost(Pokemon $pokemon)
+    {
+        // 當前登入者的id是否為寶可夢主人的id
+        //TODO 為何$this->id可以call到當前使用者的id
+        return $this->id === $pokemon->user_id || $this->isSuperadmin();
+    }
+
+    public function pokemons(){
+        return $this->hasMany(Pokemon::class);
+    }
 }

@@ -12,8 +12,6 @@ class Nature extends Model
     use HasFactory;
     protected $fillable = [
         'name', 
-        
-        // ... 其他允許的屬性 ...
     ];
 
     // public function resolveRouteBinding($value, $field = null)
