@@ -8,6 +8,19 @@ services:
     environment:
       XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
       IGNITION_LOCAL_SITES_PATH: '${PWD}'
+      DB_CONNECTION: mysql
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_DATABASE: pokemon
+      DB_USERNAME: wade
+      DB_PASSWORD: Elvis790510
+
+      TEST_DB_CONNECTION: mysql
+      TEST_DB_HOST: mysql
+      TEST_DB_PORT: 3306
+      TEST_DB_DATABASE: my_testing_database
+      TEST_DB_USERNAME: wade
+      TEST_DB_PASSWORD: Elvis790510
     volumes:
       - '.:/var/www/html'
     networks:
