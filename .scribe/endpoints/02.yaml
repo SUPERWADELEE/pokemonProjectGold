@@ -3,6 +3,45 @@ description: 'Operations related to abilities.'
 endpoints:
   -
     httpMethods:
+      - GET
+    uri: api/abilities
+    metadata:
+      groupName: Ability
+      groupDescription: 'Operations related to abilities.'
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
       - POST
     uri: api/abilities
     metadata:
@@ -26,12 +65,12 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: bwzumkgrpv
+        example: ojsnkrelbbzrvtdgs
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: bwzumkgrpv
+      name: ojsnkrelbbzrvtdgs
     fileParameters: []
     responses: []
     responseFields: []
@@ -61,12 +100,12 @@ endpoints:
         name: ability_id
         description: 'The ID of the ability.'
         required: true
-        example: 8
+        example: 1
         type: integer
         enumValues: []
         custom: []
     cleanUrlParameters:
-      ability_id: 8
+      ability_id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -74,12 +113,12 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: kgscaj
+        example: xtkyxjprfhhesuc
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: kgscaj
+      name: xtkyxjprfhhesuc
     fileParameters: []
     responses: []
     responseFields: []

@@ -8,6 +8,27 @@ servers:
     url: 'http://localhost'
 paths:
   /api/abilities:
+    get:
+      summary: ''
+      operationId: getApiAbilities
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Ability
+      security: []
     post:
       summary: ''
       operationId: postApiAbilities
@@ -26,7 +47,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: bwzumkgrpv
+                  example: ojsnkrelbbzrvtdgs
               required:
                 - name
       security: []
@@ -49,7 +70,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: kgscaj
+                  example: xtkyxjprfhhesuc
               required:
                 - name
       security: []
@@ -58,11 +79,159 @@ paths:
         in: path
         name: ability_id
         description: 'The ID of the ability.'
-        example: 8
+        example: 1
         required: true
         schema:
           type: integer
+  '/api/users/{user_id}/status':
+    patch:
+      summary: ''
+      operationId: patchApiUsersUser_idStatus
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: user_id
+        description: 'The ID of the user.'
+        example: 3
+        required: true
+        schema:
+          type: integer
+  '/api/users/{user}/changePassword':
+    patch:
+      summary: ''
+      operationId: patchApiUsersUserChangePassword
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                current_password:
+                  type: string
+                  description: ''
+                  example: sunt
+                new_password:
+                  type: string
+                  description: 'Must be at least 6 characters.'
+                  example: sffptmhchhrirmdnrkejlwfksbsflkhjwhiqmfuannrhhxftspwdkhdxgmbzhnqoam
+              required:
+                - current_password
+                - new_password
+      security: []
+    parameters:
+      -
+        in: path
+        name: user
+        description: 'The user.'
+        example: 3
+        required: true
+        schema:
+          type: integer
+  /api/Auth/logout:
+    post:
+      summary: ''
+      operationId: postApiAuthLogout
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/register:
+    post:
+      summary: ''
+      operationId: postApiRegister
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: kydo
+                email:
+                  type: string
+                  description: 'Must be a valid email address. Must not be greater than 255 characters.'
+                  example: delia92@example.net
+                password:
+                  type: string
+                  description: 'Must be at least 6 characters.'
+                  example: '.C:(l83neH!r>%._wO+a'
+              required:
+                - name
+                - email
+                - password
+      security: []
+  /api/Auth/login:
+    post:
+      summary: ''
+      operationId: postApiAuthLogin
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: heller.tatyana@example.com
+                password:
+                  type: string
+                  description: ''
+                  example: 2-<dT0co
+              required:
+                - email
+                - password
+      security: []
   /api/natures:
+    get:
+      summary: ''
+      operationId: getApiNatures
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Nature
+      security: []
     post:
       summary: ''
       operationId: postApiNatures
@@ -81,7 +250,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: wpnxw
+                  example: bziluojxihlzs
               required:
                 - name
       security: []
@@ -104,7 +273,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: asppyprqpedkujpclxu
+                  example: thyiwbtpdzbtjdaigzacdhyk
               required:
                 - name
       security: []
@@ -113,11 +282,54 @@ paths:
         in: path
         name: nature_id
         description: 'The ID of the nature.'
-        example: 15
+        example: 1
         required: true
         schema:
           type: integer
   /api/pokemons:
+    get:
+      summary: 'Create a new user.'
+      operationId: createANewUser
+      description: 'This endpoint allows you to show all pokemons.'
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Pokemons
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  description: 'The first name of the user.'
+                  example: non
+                last_name:
+                  type: string
+                  description: 'The last name of the user.'
+                  example: sit
+                email:
+                  type: string
+                  description: 'The email address of the user.'
+                  example: matt41@example.com
+              required:
+                - first_name
+                - last_name
+                - email
     post:
       summary: ''
       operationId: postApiPokemons
@@ -136,28 +348,28 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 15 characters.'
-                  example: immmyymtppjp
+                  example: wpikbj
                 race_id:
                   type: integer
                   description: ''
-                  example: 8
+                  example: 7
                 ability_id:
                   type: integer
                   description: ''
-                  example: 1
+                  example: 19
                 nature_id:
                   type: integer
                   description: ''
-                  example: 17
+                  example: 12
                 level:
                   type: integer
                   description: 'Must be at least 1. Must not be greater than 100.'
-                  example: 24
+                  example: 10
                 skills:
                   type: array
                   description: ''
                   example:
-                    - 15
+                    - 13
                   items:
                     type: integer
               required:
@@ -167,10 +379,31 @@ paths:
                 - nature_id
                 - level
       security: []
-  '/api/pokemons/{pokemon_id}':
-    patch:
+  '/api/pokemons/{id}':
+    get:
       summary: ''
-      operationId: patchApiPokemonsPokemon_id
+      operationId: getApiPokemonsId
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Pokemons
+      security: []
+    put:
+      summary: ''
+      operationId: putApiPokemonsId
       description: ''
       parameters: []
       responses: {  }
@@ -212,7 +445,7 @@ paths:
       security: []
     delete:
       summary: ''
-      operationId: deleteApiPokemonsPokemon_id
+      operationId: deleteApiPokemonsId
       description: ''
       parameters: []
       responses: {  }
@@ -222,9 +455,9 @@ paths:
     parameters:
       -
         in: path
-        name: pokemon_id
+        name: id
         description: 'The ID of the pokemon.'
-        example: 5
+        example: 1
         required: true
         schema:
           type: integer
@@ -243,7 +476,91 @@ paths:
         in: path
         name: pokemon_id
         description: 'The ID of the pokemon.'
-        example: 4
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/races:
+    get:
+      summary: ''
+      operationId: getApiRaces
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Race
+      security: []
+  '/api/races/{race_id}/evolutionLevel':
+    get:
+      summary: ''
+      operationId: getApiRacesRace_idEvolutionLevel
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Race
+      security: []
+    parameters:
+      -
+        in: path
+        name: race_id
+        description: 'The ID of the race.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/races/{race_id}/skill':
+    get:
+      summary: ''
+      operationId: getApiRacesRace_idSkill
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Race
+      security: []
+    parameters:
+      -
+        in: path
+        name: race_id
+        description: 'The ID of the race.'
+        example: 1
         required: true
         schema:
           type: integer
@@ -252,8 +569,14 @@ tags:
     name: Ability
     description: 'Operations related to abilities.'
   -
+    name: Endpoints
+    description: ''
+  -
     name: Nature
     description: 'Operations related to natures.'
   -
     name: Pokemons
     description: 'Operations related to pokemons.'
+  -
+    name: Race
+    description: 'Operations related to races.'

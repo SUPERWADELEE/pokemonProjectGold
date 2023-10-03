@@ -34,6 +34,7 @@ Route::middleware('auth:api', 'checkStatus', 'throttle:100,1')->group(function (
      * 
      */
     // pokemon列表
+ 
     Route::apiResource('pokemons', PokemonController::class);
     // Route::get('pokemons', [PokemonController::class, 'index']);
     // Route::post('pokemons', [PokemonController::class, 'store']);
@@ -120,3 +121,5 @@ Route::post('/register', [RegisterController::class, 'register']);
 
 // 登入
 Route::post('/Auth/login', [AuthController::class, 'login']);
+
+Route::post('pokemons/add', [PokemonController::class, 'add']);

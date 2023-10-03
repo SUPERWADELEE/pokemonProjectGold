@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 
 class StorePokemonRequest extends FormRequest
 {
+    
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -69,6 +70,7 @@ class StorePokemonRequest extends FormRequest
      */
     public function rules(): array
     {
+        // dd('fuck');
 
         // dd('fuck');
         // $race_id = $this->input('race_id');
@@ -99,6 +101,7 @@ class StorePokemonRequest extends FormRequest
 
     public function messages()
     {
+        // dd('fuck');
         return [
             'name.alpha_unicode' => '名稱只能包含中文和英文字符。',
             // ... 其他自訂的錯誤訊息 ...
@@ -127,6 +130,7 @@ class StorePokemonRequest extends FormRequest
     // 或是去race取資料這個動作, 如果裡面也要做一次的話要用注入的
     public function withValidator($validator)
     {
+        // dd('fuck');
         $validator->after(function ($validator) {
             // 如果已有錯誤，則直接返回不做後續驗證
             if ($validator->failed() || is_null($this->skills) || !is_array($this->skills)) {
@@ -141,4 +145,6 @@ class StorePokemonRequest extends FormRequest
             }
         });
     }
+
+    
 }

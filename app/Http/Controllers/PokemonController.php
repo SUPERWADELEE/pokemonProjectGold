@@ -18,14 +18,14 @@ use Mockery\Expectation;
 use GuzzleHttp\Client;
 use GuzzleHttp\Pool;
 use GuzzleHttp\Psr7\Request as LaravelRequest;
+
 /**
  * @group Pokemons
  * Operations related to pokemons.
  */
+
 use Illuminate\Support\Facades\Auth;
-
-
-
+use Illuminate\Support\Facades\Cache;
 
 class PokemonController extends Controller
 {
@@ -127,47 +127,110 @@ class PokemonController extends Controller
     // 寶可夢新增
     public function store(StorePokemonRequest $request)
     {
+
+        // dd('fuck');
         // 確認目前登入者操作權限
         // authorize 為底層有去引用Illuminate\Foundation\Auth\Access\AuthorizesRequests trait
         // 此方法通常會搭配policy用,後面參數傳入以註冊之model,然後就可以對應到該model設置的判斷權限方法
         $this->authorize('create', Pokemon::class); // "App\Models\Pokemon"  //App/policy/Pokemon
 
-
+        
         // 用validated()方法只返回在 Form Request 中定義的驗證規則對應的數據
 
         // TODO$validatedData = $request->toArray;
 
+        
         $validatedData = $request->validated();
+        $userId = Auth::user()->id;
+        $validatedData['user_id'] = $userId;
+        Cache::put("payment_data_", $validatedData, now()->addMinutes(30));
+
+
+        // dd($validatedData);
+        if ($validatedData) {
+            $key = "elc4GSPBWy0RDGAEAp4E7onj8i0qJkLw";
+            $iv = "Ch5qOsn98vjTFDBP";
+            $mid = "MS150428218";
+            $data1 = http_build_query(array(
+                'MerchantID' => $mid,
+                'RespondType' => 'JSON',
+                'TimeStamp' => time(),
+                'Version' => '2.0',
+                'MerchantOrderNo' => "test0315001" . time(),
+                'Amt' => '30',
+                'ItemDesc' => 'test',
+                'NotifyURL' => 'https://1449-203-204-111-149.ngrok.io/api/pokemons/add',
+                'ReturnURL' => 'http://localhost:8000/payment',
+            ));
+            // echo "Data=[" . $data1 . "]<br><br>";
+            $edata1 = bin2hex(openssl_encrypt(
+                $data1,
+                "AES-256-CBC",
+                $key,
+                OPENSSL_RAW_DATA,
+                $iv
+            ));
+            $hashs = "HashKey=" . $key . "&" . $edata1 . "&HashIV=" . $iv;
+            $hash = strtoupper(hash("sha256", $hashs));
+            // echo "MerchantID=" . $mid . "&";
+            //  藍新科技股份有限公司 32
+            //  線上交易-幕前支付技術串接手冊
+            // echo "Version=2.0&";
+            // echo "TradeInfo=" . $edata1 . "&";
+            // echo "TradeSha=" . $hash;
+
+            // dd('shout');
+            return view('test', [
+                'mid' => $mid,
+                'edata1' => $edata1,
+                'hash' => $hash
+            ]);
+        }
+
+
+
         // dd($validatedData);
         // 要如何在該陣列加入當前使用者的id
         // 記錄現在新增的寶可夢是哪個使用者的
-        $userId = Auth::user()->id;
-        $validatedData['user_id'] = $userId;
-        $createdData = Pokemon::create($validatedData);
+        
+    }
 
-        return PokemonResource::make($createdData);
+    // 確認目前登入者操作權限
+    // $this->authorize('create', Pokemon::class);
 
+    // // 用validated()方法只返回在 Form Request 中定義的驗證規則對應的數據
+    // $validatedData = $request->validated();
 
-        // 確認目前登入者操作權限
-        // $this->authorize('create', Pokemon::class);
+    // // 要如何在該陣列加入當前使用者的id
+    // $userId = Auth::user()->id;
+    // $validatedData['user_id'] = $userId;
 
-        // // 用validated()方法只返回在 Form Request 中定義的驗證規則對應的數據
-        // $validatedData = $request->validated();
+    // $pokemon = Pokemon::create($validatedData);
 
-        // // 要如何在該陣列加入當前使用者的id
-        // $userId = Auth::user()->id;
-        // $validatedData['user_id'] = $userId;
+    // // 如果有與技能相關的數據，保存多對多關聯
+    // if ($request->has('skills')) {
+    //     $pokemon->skills()->sync($request->input('skills'));
+    // }
 
-        // $pokemon = Pokemon::create($validatedData);
+    // return new PokemonResource($pokemon);
 
-        // // 如果有與技能相關的數據，保存多對多關聯
-        // if ($request->has('skills')) {
-        //     $pokemon->skills()->sync($request->input('skills'));
-        // }
+    public function add(){       
+        // dd('fuck');
+        $cacheKey = "payment_data_";
+        // 這只是一個示範，你應該使用正確的 key
+        $validatedData = Cache::get($cacheKey);
+        // $validatedData = Cache::get($cacheKey);
 
-        // return new PokemonResource($pokemon);
+        if ($validatedData) {
+            Pokemon::create($validatedData);
+            Cache::forget($cacheKey);
+        }
+        // return response('你尚未付款', 403);
+        // return PokemonResource::make($createdData);
 
     }
+    
+
 
 
 
@@ -207,12 +270,12 @@ class PokemonController extends Controller
         $this->authorize('delete', $pokemon);
         // 刪除該寶可夢
         $pokemon->delete();
-    
+
         // 返回成功響應
         return response(['message' => 'pokemon deleted successfully'], 200);
         return response()->noContent();
     }
-    
+
 
 
     // TODO寶可夢進化等級可以用一個evolution_id 儲存

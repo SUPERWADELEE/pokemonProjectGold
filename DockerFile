@@ -1,6 +1,31 @@
-# FROM bitnami/laravel:latest
+# 使用官方 Python 基底映像
+FROM bitnami/laravel:latest
 
-# WORKDIR 
+# 設定工作目錄
+WORKDIR /app
+
+# 將當前目錄的內容複製到容器的 /app 目錄中
+COPY . .
+
+# 安裝任何所需的套件
+# RUN pip install -no-cache-dir -r requirements.txt
+
+# 定義環境變數
+ENV PORT=8080
+
+EXPOSE 8080
+
+# 設定容器啟動時執行的命令
+# CMD [ "python", "app.py" ]
+
+# 您的 chown 命令或其他需要 root 權限的命令
+
+
+
+# 設定容器的開放連接埠
+EXPOSE $PORT
+
+
 
 # 其他指令，如 RUN, COPY 等
 
