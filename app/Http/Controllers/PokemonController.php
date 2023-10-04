@@ -159,7 +159,7 @@ class PokemonController extends Controller
                 'MerchantOrderNo' => "test0315001" . time(),
                 'Amt' => '30',
                 'ItemDesc' => 'test',
-                'NotifyURL' => 'https://1449-203-204-111-149.ngrok.io/api/pokemons/add',
+                'NotifyURL' => 'https://bc88-203-204-111-149.ngrok.io/api/pokemons/add',
                 'ReturnURL' => 'http://localhost:8000/payment',
             ));
             // echo "Data=[" . $data1 . "]<br><br>";
