@@ -18,6 +18,8 @@ use Mockery\Expectation;
 use GuzzleHttp\Client;
 use GuzzleHttp\Pool;
 use GuzzleHttp\Psr7\Request as LaravelRequest;
+use Illuminate\Support\Facades\Log;
+
 
 /**
  * @group Pokemons
@@ -159,7 +161,7 @@ class PokemonController extends Controller
                 'MerchantOrderNo' => "test0315001" . time(),
                 'Amt' => '30',
                 'ItemDesc' => 'test',
-                'NotifyURL' => 'https://bc88-203-204-111-149.ngrok.io/api/pokemons/add',
+                'NotifyURL' => 'https://71a2-114-33-138-55.ngrok.io/api/payResult',
                 'ReturnURL' => 'http://localhost:8000/payment',
             ));
             // echo "Data=[" . $data1 . "]<br><br>";
@@ -170,6 +172,8 @@ class PokemonController extends Controller
                 OPENSSL_RAW_DATA,
                 $iv
             ));
+
+            // log::info('Received notification:', ['all' => $request->input('TradeInfo')]);
             $hashs = "HashKey=" . $key . "&" . $edata1 . "&HashIV=" . $iv;
             $hash = strtoupper(hash("sha256", $hashs));
             // echo "MerchantID=" . $mid . "&";
@@ -216,10 +220,15 @@ class PokemonController extends Controller
 
     public function add(){       
         // dd('fuck');
+        // log::info('Received notification:', $request->all());
+
+        
         $cacheKey = "payment_data_";
         // 這只是一個示範，你應該使用正確的 key
         $validatedData = Cache::get($cacheKey);
         // $validatedData = Cache::get($cacheKey);
+
+
 
         if ($validatedData) {
             Pokemon::create($validatedData);

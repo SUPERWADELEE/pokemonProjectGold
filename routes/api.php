@@ -9,6 +9,7 @@ use App\Http\Controllers\NatureController;
 use App\Http\Controllers\AbilityController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\RaceController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
@@ -122,4 +123,7 @@ Route::post('/register', [RegisterController::class, 'register']);
 // 登入
 Route::post('/Auth/login', [AuthController::class, 'login']);
 
-Route::post('pokemons/add', [PokemonController::class, 'add']);
+// Route::post('pokemons/add', [PokemonController::class, 'add']);
+Route::post('/payResult',[PaymentsController::class, 'notifyResponse']);
+
+// Route::get('/add', [PokemonController::class, 'add']);
