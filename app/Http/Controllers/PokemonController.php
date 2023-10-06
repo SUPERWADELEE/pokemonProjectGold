@@ -136,12 +136,13 @@ class PokemonController extends Controller
         // 此方法通常會搭配policy用,後面參數傳入以註冊之model,然後就可以對應到該model設置的判斷權限方法
         $this->authorize('create', Pokemon::class); // "App\Models\Pokemon"  //App/policy/Pokemon
 
-        
+
         // 用validated()方法只返回在 Form Request 中定義的驗證規則對應的數據
 
         // TODO$validatedData = $request->toArray;
 
-        
+        dd('fuck');
+
         $validatedData = $request->validated();
         $userId = Auth::user()->id;
         $validatedData['user_id'] = $userId;
@@ -150,10 +151,13 @@ class PokemonController extends Controller
 
         // dd($validatedData);
         if ($validatedData) {
-            $key = "elc4GSPBWy0RDGAEAp4E7onj8i0qJkLw";
-            $iv = "Ch5qOsn98vjTFDBP";
-            $mid = "MS150428218";
-            $data1 = http_build_query(array(
+            $key = config('payment.key');
+            $iv = config('payment.iv');
+            $mid = config('payment.id');
+            $notifyURL = config('payment.notify_url');
+            $returnURL = config('payment.return_url');
+
+            $tradeInfo = http_build_query(array(
                 'MerchantID' => $mid,
                 'RespondType' => 'JSON',
                 'TimeStamp' => time(),
@@ -161,12 +165,12 @@ class PokemonController extends Controller
                 'MerchantOrderNo' => "test0315001" . time(),
                 'Amt' => '30',
                 'ItemDesc' => 'test',
-                'NotifyURL' => 'https://71a2-114-33-138-55.ngrok.io/api/payResult',
-                'ReturnURL' => 'http://localhost:8000/payment',
+                'NotifyURL' => $notifyURL,
+                'ReturnURL' => $returnURL,
             ));
             // echo "Data=[" . $data1 . "]<br><br>";
-            $edata1 = bin2hex(openssl_encrypt(
-                $data1,
+            $encodedData = bin2hex(openssl_encrypt(
+                $tradeInfo,
                 "AES-256-CBC",
                 $key,
                 OPENSSL_RAW_DATA,
@@ -174,29 +178,16 @@ class PokemonController extends Controller
             ));
 
             // log::info('Received notification:', ['all' => $request->input('TradeInfo')]);
-            $hashs = "HashKey=" . $key . "&" . $edata1 . "&HashIV=" . $iv;
+            $hashs = "HashKey=" . $key . "&" . $encodedData . "&HashIV=" . $iv;
             $hash = strtoupper(hash("sha256", $hashs));
-            // echo "MerchantID=" . $mid . "&";
-            //  藍新科技股份有限公司 32
-            //  線上交易-幕前支付技術串接手冊
-            // echo "Version=2.0&";
-            // echo "TradeInfo=" . $edata1 . "&";
-            // echo "TradeSha=" . $hash;
-
-            // dd('shout');
+            
             return view('test', [
                 'mid' => $mid,
-                'edata1' => $edata1,
+                'edata1' => $encodedData,
                 'hash' => $hash
             ]);
         }
 
-
-
-        // dd($validatedData);
-        // 要如何在該陣列加入當前使用者的id
-        // 記錄現在新增的寶可夢是哪個使用者的
-        
     }
 
     // 確認目前登入者操作權限
@@ -218,11 +209,8 @@ class PokemonController extends Controller
 
     // return new PokemonResource($pokemon);
 
-    public function add(){       
-        // dd('fuck');
-        // log::info('Received notification:', $request->all());
-
-        
+    public function add()
+    {
         $cacheKey = "payment_data_";
         // 這只是一個示範，你應該使用正確的 key
         $validatedData = Cache::get($cacheKey);
@@ -234,11 +222,8 @@ class PokemonController extends Controller
             Pokemon::create($validatedData);
             Cache::forget($cacheKey);
         }
-        // return response('你尚未付款', 403);
-        // return PokemonResource::make($createdData);
-
     }
-    
+
 
 
 

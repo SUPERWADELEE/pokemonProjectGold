@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "e98f0764-f855-42fd-bbc0-ba5c68185db7",
+        "_postman_id": "7d1187d6-df56-40ab-b60d-33609ff2be65",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -89,7 +89,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"ojsnkrelbbzrvtdgs\"}"
+                            "raw": "{\"name\":\"uilnzsj\"}"
                         },
                         "description": "",
                         "auth": {
@@ -128,7 +128,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"xtkyxjprfhhesuc\"}"
+                            "raw": "{\"name\":\"lbwirrguzmwnscftwys\"}"
                         },
                         "description": "",
                         "auth": {
@@ -209,7 +209,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"current_password\":\"sunt\",\"new_password\":\"sffptmhchhrirmdnrkejlwfksbsflkhjwhiqmfuannrhhxftspwdkhdxgmbzhnqoam\"}"
+                            "raw": "{\"current_password\":\"minima\",\"new_password\":\"gazpekdmbbrlmxnfbmqynmjdrmgrxyliqpknuupehgxlyj\"}"
                         },
                         "description": "",
                         "auth": {
@@ -268,7 +268,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"kydo\",\"email\":\"delia92@example.net\",\"password\":\".C:(l83neH!r>%._wO+a\"}"
+                            "raw": "{\"name\":\"jjtfihjxabfvgvqwqtogsbvc\",\"email\":\"uking@example.com\",\"password\":\"Qu[a.;AQ1\"}"
                         },
                         "description": "",
                         "auth": {
@@ -299,8 +299,36 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"heller.tatyana@example.com\",\"password\":\"2-<dT0co\"}"
+                            "raw": "{\"email\":\"iquigley@example.com\",\"password\":\"uVKTbJ7\\\"*d-9)${U\"}"
                         },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/payResult",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/payResult",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/payResult"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
                         "description": "",
                         "auth": {
                             "type": "noauth"
@@ -384,7 +412,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"bziluojxihlzs\"}"
+                            "raw": "{\"name\":\"fwkblrybazjxvnyepmiokr\"}"
                         },
                         "description": "",
                         "auth": {
@@ -423,7 +451,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"thyiwbtpdzbtjdaigzacdhyk\"}"
+                            "raw": "{\"name\":\"bolyjhjgbxycfusorw\"}"
                         },
                         "description": "",
                         "auth": {
@@ -460,7 +488,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"first_name\":\"non\",\"last_name\":\"sit\",\"email\":\"matt41@example.com\"}"
+                            "raw": "{\"first_name\":\"sed\",\"last_name\":\"possimus\",\"email\":\"jeffery.graham@example.org\"}"
                         },
                         "description": "This endpoint allows you to show all pokemons."
                     },
@@ -508,7 +536,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"wpikbj\",\"race_id\":7,\"ability_id\":19,\"nature_id\":12,\"level\":10,\"skills\":[13]}"
+                            "raw": "{\"name\":\"xfky\",\"race_id\":4,\"ability_id\":8,\"nature_id\":18,\"level\":6,\"skills\":[1]}"
                         },
                         "description": "",
                         "auth": {

@@ -34,7 +34,7 @@
     
 
     function submitForm() {
-    const apiToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL0F1dGgvbG9naW4iLCJpYXQiOjE2OTY0OTI5MDEsImV4cCI6MTY5NjQ5NjUwMSwibmJmIjoxNjk2NDkyOTAxLCJqdGkiOiJaOEJydlhwSDYxVVMwTjdSIiwic3ViIjoiNCIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.mYbWHH44VkeCRuOT_93mWKMROT8rzxIS6GSZAe5XqDo';  // 請將此值更改為您的API token
+    const apiToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL0F1dGgvbG9naW4iLCJpYXQiOjE2OTY0OTc2NDQsImV4cCI6MTY5NjUwMTI0NCwibmJmIjoxNjk2NDk3NjQ0LCJqdGkiOiJtTXFsY25jZ3J2ZFN0blpSIiwic3ViIjoiNCIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.6MvKAOwIQfX8c_CEp2eQ0h5E4J0RsHdbzxky6ZZTyws';  // 請將此值更改為您的API token
     const formData = new FormData(document.getElementById('pokemonForm'));
     
     fetch('/api/pokemons', {

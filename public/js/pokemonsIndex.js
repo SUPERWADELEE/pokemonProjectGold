@@ -44,6 +44,7 @@
       pokemonList.appendChild(listItem);
 
       // 在這裡為圖片添加事件監聽器
+      // 也就是說也就是說這裡是我想在圖片加上連結
       const img = listItem.querySelector('.pokemon-image');
       img.addEventListener('click', function() {
         const pokemonId = this.dataset.id;

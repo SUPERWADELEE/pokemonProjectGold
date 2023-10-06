@@ -47,7 +47,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: ojsnkrelbbzrvtdgs
+                  example: uilnzsj
               required:
                 - name
       security: []
@@ -70,7 +70,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: xtkyxjprfhhesuc
+                  example: lbwirrguzmwnscftwys
               required:
                 - name
       security: []
@@ -121,11 +121,11 @@ paths:
                 current_password:
                   type: string
                   description: ''
-                  example: sunt
+                  example: minima
                 new_password:
                   type: string
                   description: 'Must be at least 6 characters.'
-                  example: sffptmhchhrirmdnrkejlwfksbsflkhjwhiqmfuannrhhxftspwdkhdxgmbzhnqoam
+                  example: gazpekdmbbrlmxnfbmqynmjdrmgrxyliqpknuupehgxlyj
               required:
                 - current_password
                 - new_password
@@ -168,15 +168,15 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: kydo
+                  example: jjtfihjxabfvgvqwqtogsbvc
                 email:
                   type: string
                   description: 'Must be a valid email address. Must not be greater than 255 characters.'
-                  example: delia92@example.net
+                  example: uking@example.com
                 password:
                   type: string
                   description: 'Must be at least 6 characters.'
-                  example: '.C:(l83neH!r>%._wO+a'
+                  example: 'Qu[a.;AQ1'
               required:
                 - name
                 - email
@@ -201,14 +201,24 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: heller.tatyana@example.com
+                  example: iquigley@example.com
                 password:
                   type: string
                   description: ''
-                  example: 2-<dT0co
+                  example: 'uVKTbJ7"*d-9)${U'
               required:
                 - email
                 - password
+      security: []
+  /api/payResult:
+    post:
+      summary: ''
+      operationId: postApiPayResult
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
       security: []
   /api/natures:
     get:
@@ -250,7 +260,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: bziluojxihlzs
+                  example: fwkblrybazjxvnyepmiokr
               required:
                 - name
       security: []
@@ -273,7 +283,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: thyiwbtpdzbtjdaigzacdhyk
+                  example: bolyjhjgbxycfusorw
               required:
                 - name
       security: []
@@ -317,15 +327,15 @@ paths:
                 first_name:
                   type: string
                   description: 'The first name of the user.'
-                  example: non
+                  example: sed
                 last_name:
                   type: string
                   description: 'The last name of the user.'
-                  example: sit
+                  example: possimus
                 email:
                   type: string
                   description: 'The email address of the user.'
-                  example: matt41@example.com
+                  example: jeffery.graham@example.org
               required:
                 - first_name
                 - last_name
@@ -348,28 +358,28 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 15 characters.'
-                  example: wpikbj
+                  example: xfky
                 race_id:
                   type: integer
                   description: ''
-                  example: 7
+                  example: 4
                 ability_id:
                   type: integer
                   description: ''
-                  example: 19
+                  example: 8
                 nature_id:
                   type: integer
                   description: ''
-                  example: 12
+                  example: 18
                 level:
                   type: integer
                   description: 'Must be at least 1. Must not be greater than 100.'
-                  example: 10
+                  example: 6
                 skills:
                   type: array
                   description: ''
                   example:
-                    - 13
+                    - 1
                   items:
                     type: integer
               required:

@@ -130,11 +130,10 @@ class StorePokemonRequest extends FormRequest
     // 或是去race取資料這個動作, 如果裡面也要做一次的話要用注入的
     public function withValidator($validator)
     {
-        // dd('fuck');
         $validator->after(function ($validator) {
             // 如果已有錯誤，則直接返回不做後續驗證
             if ($validator->failed() || is_null($this->skills) || !is_array($this->skills)) {
-                return true;  // 如果沒有提供技能，則直接返回true
+                return true;  // 如果沒有提供技能，則直接返回，不進行後續操作
             }
             // 在這裡做了一個skills的額外驗證,確認輸入的skill是否是該種族可以學的
             $raceId = $this->input('race_id'); // 假设 race_id 是在请求中的一个字段

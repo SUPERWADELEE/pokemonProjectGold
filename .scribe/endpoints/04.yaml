@@ -74,7 +74,7 @@ endpoints:
         name: current_password
         description: ''
         required: true
-        example: sunt
+        example: minima
         type: string
         enumValues: []
         custom: []
@@ -82,13 +82,13 @@ endpoints:
         name: new_password
         description: 'Must be at least 6 characters.'
         required: true
-        example: sffptmhchhrirmdnrkejlwfksbsflkhjwhiqmfuannrhhxftspwdkhdxgmbzhnqoam
+        example: gazpekdmbbrlmxnfbmqynmjdrmgrxyliqpknuupehgxlyj
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      current_password: sunt
-      new_password: sffptmhchhrirmdnrkejlwfksbsflkhjwhiqmfuannrhhxftspwdkhdxgmbzhnqoam
+      current_password: minima
+      new_password: gazpekdmbbrlmxnfbmqynmjdrmgrxyliqpknuupehgxlyj
     fileParameters: []
     responses: []
     responseFields: []
@@ -152,7 +152,7 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: kydo
+        example: jjtfihjxabfvgvqwqtogsbvc
         type: string
         enumValues: []
         custom: []
@@ -160,7 +160,7 @@ endpoints:
         name: email
         description: 'Must be a valid email address. Must not be greater than 255 characters.'
         required: true
-        example: delia92@example.net
+        example: uking@example.com
         type: string
         enumValues: []
         custom: []
@@ -168,14 +168,14 @@ endpoints:
         name: password
         description: 'Must be at least 6 characters.'
         required: true
-        example: '.C:(l83neH!r>%._wO+a'
+        example: 'Qu[a.;AQ1'
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: kydo
-      email: delia92@example.net
-      password: '.C:(l83neH!r>%._wO+a'
+      name: jjtfihjxabfvgvqwqtogsbvc
+      email: uking@example.com
+      password: 'Qu[a.;AQ1'
     fileParameters: []
     responses: []
     responseFields: []
@@ -209,7 +209,7 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: heller.tatyana@example.com
+        example: iquigley@example.com
         type: string
         enumValues: []
         custom: []
@@ -217,13 +217,43 @@ endpoints:
         name: password
         description: ''
         required: true
-        example: 2-<dT0co
+        example: 'uVKTbJ7"*d-9)${U'
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      email: heller.tatyana@example.com
-      password: 2-<dT0co
+      email: iquigley@example.com
+      password: 'uVKTbJ7"*d-9)${U'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/payResult
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
     fileParameters: []
     responses: []
     responseFields: []

@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Log;
 
 class NewebpayMpgResponse
 {
-    protected $key = "elc4GSPBWy0RDGAEAp4E7onj8i0qJkLw";
-    protected $iv = "Ch5qOsn98vjTFDBP";
+    protected $key; 
+    protected $iv; 
     public $status;
     public $message;
     public $result;
@@ -18,6 +18,8 @@ class NewebpayMpgResponse
 
     public function __construct($params)
     {
+        $this->key = config('payment.key');
+        $this->iv = config('payment.iv');
         // 1. 檢查TradeInfo是否存在於$params
         if (!isset($params)) {
             Log::error('TradeInfo not found in params:', $params);

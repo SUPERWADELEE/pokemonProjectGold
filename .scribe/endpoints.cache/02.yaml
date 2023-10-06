@@ -67,12 +67,12 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: ojsnkrelbbzrvtdgs
+        example: uilnzsj
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: ojsnkrelbbzrvtdgs
+      name: uilnzsj
     fileParameters: []
     responses: []
     responseFields: []
@@ -115,12 +115,12 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: xtkyxjprfhhesuc
+        example: lbwirrguzmwnscftwys
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: xtkyxjprfhhesuc
+      name: lbwirrguzmwnscftwys
     fileParameters: []
     responses: []
     responseFields: []
