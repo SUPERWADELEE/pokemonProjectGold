@@ -1,6 +1,4 @@
 <?php
-use App\Models\Race;
-use Illuminate\Http\Request;
 
 function validSkillsForRace($skills, $race) {
     $allowedSkills = $race->skills->pluck('id')->toArray();

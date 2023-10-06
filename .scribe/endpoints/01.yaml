@@ -3,6 +3,45 @@ description: 'Operations related to natures.'
 endpoints:
   -
     httpMethods:
+      - GET
+    uri: api/natures
+    metadata:
+      groupName: Nature
+      groupDescription: 'Operations related to natures.'
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
       - POST
     uri: api/natures
     metadata:
@@ -26,12 +65,12 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: wpnxw
+        example: fwkblrybazjxvnyepmiokr
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: wpnxw
+      name: fwkblrybazjxvnyepmiokr
     fileParameters: []
     responses: []
     responseFields: []
@@ -61,12 +100,12 @@ endpoints:
         name: nature_id
         description: 'The ID of the nature.'
         required: true
-        example: 15
+        example: 1
         type: integer
         enumValues: []
         custom: []
     cleanUrlParameters:
-      nature_id: 15
+      nature_id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -74,12 +113,12 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: asppyprqpedkujpclxu
+        example: bolyjhjgbxycfusorw
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: asppyprqpedkujpclxu
+      name: bolyjhjgbxycfusorw
     fileParameters: []
     responses: []
     responseFields: []

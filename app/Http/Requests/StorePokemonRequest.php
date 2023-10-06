@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 
 class StorePokemonRequest extends FormRequest
 {
+    
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -69,6 +70,7 @@ class StorePokemonRequest extends FormRequest
      */
     public function rules(): array
     {
+        // dd('fuck');
 
         // dd('fuck');
         // $race_id = $this->input('race_id');
@@ -99,6 +101,7 @@ class StorePokemonRequest extends FormRequest
 
     public function messages()
     {
+        // dd('fuck');
         return [
             'name.alpha_unicode' => '名稱只能包含中文和英文字符。',
             // ... 其他自訂的錯誤訊息 ...
@@ -130,7 +133,7 @@ class StorePokemonRequest extends FormRequest
         $validator->after(function ($validator) {
             // 如果已有錯誤，則直接返回不做後續驗證
             if ($validator->failed() || is_null($this->skills) || !is_array($this->skills)) {
-                return true;  // 如果沒有提供技能，則直接返回true
+                return true;  // 如果沒有提供技能，則直接返回，不進行後續操作
             }
             // 在這裡做了一個skills的額外驗證,確認輸入的skill是否是該種族可以學的
             $raceId = $this->input('race_id'); // 假设 race_id 是在请求中的一个字段
@@ -141,4 +144,6 @@ class StorePokemonRequest extends FormRequest
             }
         });
     }
+
+    
 }

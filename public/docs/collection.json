@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "003355b4-305c-443b-8297-3b29c5960407",
+        "_postman_id": "7d1187d6-df56-40ab-b60d-33609ff2be65",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -19,6 +19,54 @@
             "name": "Ability",
             "description": "Operations related to abilities.",
             "item": [
+                {
+                    "name": "GET api\/abilities",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/abilities",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/abilities"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
                 {
                     "name": "POST api\/abilities",
                     "request": {
@@ -41,7 +89,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"bwzumkgrpv\"}"
+                            "raw": "{\"name\":\"uilnzsj\"}"
                         },
                         "description": "",
                         "auth": {
@@ -62,7 +110,7 @@
                                 {
                                     "id": "ability_id",
                                     "key": "ability_id",
-                                    "value": "8",
+                                    "value": "1",
                                     "description": "The ID of the ability."
                                 }
                             ]
@@ -80,8 +128,207 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"kgscaj\"}"
+                            "raw": "{\"name\":\"lbwirrguzmwnscftwys\"}"
                         },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Endpoints",
+            "description": "",
+            "item": [
+                {
+                    "name": "PATCH api\/users\/{user_id}\/status",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/users\/:user_id\/status",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/users\/:user_id\/status",
+                            "variable": [
+                                {
+                                    "id": "user_id",
+                                    "key": "user_id",
+                                    "value": "3",
+                                    "description": "The ID of the user."
+                                }
+                            ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "PATCH api\/users\/{user}\/changePassword",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/users\/:user\/changePassword",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/users\/:user\/changePassword",
+                            "variable": [
+                                {
+                                    "id": "user",
+                                    "key": "user",
+                                    "value": "3",
+                                    "description": "The user."
+                                }
+                            ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"current_password\":\"minima\",\"new_password\":\"gazpekdmbbrlmxnfbmqynmjdrmgrxyliqpknuupehgxlyj\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/Auth\/logout",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/Auth\/logout",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/Auth\/logout"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/register",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/register",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/register"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"jjtfihjxabfvgvqwqtogsbvc\",\"email\":\"uking@example.com\",\"password\":\"Qu[a.;AQ1\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/Auth\/login",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/Auth\/login",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/Auth\/login"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"iquigley@example.com\",\"password\":\"uVKTbJ7\\\"*d-9)${U\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/payResult",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/payResult",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/payResult"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
                         "description": "",
                         "auth": {
                             "type": "noauth"
@@ -95,6 +342,54 @@
             "name": "Nature",
             "description": "Operations related to natures.",
             "item": [
+                {
+                    "name": "GET api\/natures",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/natures",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/natures"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
                 {
                     "name": "POST api\/natures",
                     "request": {
@@ -117,7 +412,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"wpnxw\"}"
+                            "raw": "{\"name\":\"fwkblrybazjxvnyepmiokr\"}"
                         },
                         "description": "",
                         "auth": {
@@ -138,7 +433,7 @@
                                 {
                                     "id": "nature_id",
                                     "key": "nature_id",
-                                    "value": "15",
+                                    "value": "1",
                                     "description": "The ID of the nature."
                                 }
                             ]
@@ -156,7 +451,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"asppyprqpedkujpclxu\"}"
+                            "raw": "{\"name\":\"bolyjhjgbxycfusorw\"}"
                         },
                         "description": "",
                         "auth": {
@@ -171,6 +466,54 @@
             "name": "Pokemons",
             "description": "Operations related to pokemons.",
             "item": [
+                {
+                    "name": "Create a new user.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/pokemons",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/pokemons"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"first_name\":\"sed\",\"last_name\":\"possimus\",\"email\":\"jeffery.graham@example.org\"}"
+                        },
+                        "description": "This endpoint allows you to show all pokemons."
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
                 {
                     "name": "POST api\/pokemons",
                     "request": {
@@ -193,7 +536,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"immmyymtppjp\",\"race_id\":8,\"ability_id\":1,\"nature_id\":17,\"level\":24,\"skills\":[15]}"
+                            "raw": "{\"name\":\"xfky\",\"race_id\":4,\"ability_id\":8,\"nature_id\":18,\"level\":6,\"skills\":[1]}"
                         },
                         "description": "",
                         "auth": {
@@ -203,23 +546,79 @@
                     "response": []
                 },
                 {
-                    "name": "PATCH api\/pokemons\/{pokemon_id}",
+                    "name": "GET api\/pokemons\/{id}",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/pokemons\/:pokemon_id",
+                            "path": "api\/pokemons\/:id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/pokemons\/:pokemon_id",
+                            "raw": "{{baseUrl}}\/api\/pokemons\/:id",
                             "variable": [
                                 {
-                                    "id": "pokemon_id",
-                                    "key": "pokemon_id",
-                                    "value": "5",
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
                                     "description": "The ID of the pokemon."
                                 }
                             ]
                         },
-                        "method": "PATCH",
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "PUT api\/pokemons\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/pokemons\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/pokemons\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the pokemon."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
                         "header": [
                             {
                                 "key": "Content-Type",
@@ -242,18 +641,18 @@
                     "response": []
                 },
                 {
-                    "name": "DELETE api\/pokemons\/{pokemon_id}",
+                    "name": "DELETE api\/pokemons\/{id}",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/pokemons\/:pokemon_id",
+                            "path": "api\/pokemons\/:id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/pokemons\/:pokemon_id",
+                            "raw": "{{baseUrl}}\/api\/pokemons\/:id",
                             "variable": [
                                 {
-                                    "id": "pokemon_id",
-                                    "key": "pokemon_id",
-                                    "value": "7",
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
                                     "description": "The ID of the pokemon."
                                 }
                             ]
@@ -289,7 +688,7 @@
                                 {
                                     "id": "pokemon_id",
                                     "key": "pokemon_id",
-                                    "value": "4",
+                                    "value": "1",
                                     "description": "The ID of the pokemon."
                                 }
                             ]
@@ -312,6 +711,172 @@
                         }
                     },
                     "response": []
+                }
+            ]
+        },
+        {
+            "name": "Race",
+            "description": "Operations related to races.",
+            "item": [
+                {
+                    "name": "GET api\/races",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/races",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/races"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/races\/{race_id}\/evolutionLevel",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/races\/:race_id\/evolutionLevel",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/races\/:race_id\/evolutionLevel",
+                            "variable": [
+                                {
+                                    "id": "race_id",
+                                    "key": "race_id",
+                                    "value": "1",
+                                    "description": "The ID of the race."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/races\/{race_id}\/skill",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/races\/:race_id\/skill",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/races\/:race_id\/skill",
+                            "variable": [
+                                {
+                                    "id": "race_id",
+                                    "key": "race_id",
+                                    "value": "1",
+                                    "description": "The ID of the race."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
                 }
             ]
         }

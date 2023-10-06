@@ -8,19 +8,19 @@ services:
     environment:
       XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
       IGNITION_LOCAL_SITES_PATH: '${PWD}'
-      DB_CONNECTION: mysql
-      DB_HOST: mysql
-      DB_PORT: 3306
-      DB_DATABASE: pokemon
-      DB_USERNAME: wade
-      DB_PASSWORD: Elvis790510
+      # DB_CONNECTION: mysql
+      # DB_HOST: mysql
+      # DB_PORT: 3306
+      # DB_DATABASE: pokemon
+      # DB_USERNAME: wade
+      # DB_PASSWORD: Elvis790510
 
-      TEST_DB_CONNECTION: mysql
-      TEST_DB_HOST: mysql
-      TEST_DB_PORT: 3306
-      TEST_DB_DATABASE: my_testing_database
-      TEST_DB_USERNAME: wade
-      TEST_DB_PASSWORD: Elvis790510
+      # TEST_DB_CONNECTION: mysql
+      # TEST_DB_HOST: mysql
+      # TEST_DB_PORT: 3306
+      # TEST_DB_DATABASE: my_testing_database
+      # TEST_DB_USERNAME: wade
+      # TEST_DB_PASSWORD: Elvis790510
     volumes:
       - '.:/var/www/html'
     networks:
@@ -32,11 +32,11 @@ services:
     ports:
       - '${FORWARD_DB_PORT:-3307}:3306'
     environment:
-      MYSQL_ROOT_PASSWORD: Elvis790510
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_ROOT_HOST: '%'
       MYSQL_DATABASE: 'pokemon'
       MYSQL_USER: 'wade'
-      MYSQL_PASSWORD: Elvis790510
+      MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_ALLOW_EMPTY_PASSWORD: 'no' # 已修正的缩进
     volumes: # 已修正的缩进
       - 'sail-mysql:/var/lib/mysql'

@@ -83,78 +83,79 @@ class RaceSeeder extends Seeder
 
 
         // 使用存到檔案的方式
-            // dd('fuck');
-        // $batchSize = 100;
-        // $totalPokemons = 1011;
-        // $pokemons = [];
+        // dd('fuck');
+        $batchSize = 100;
+        $totalPokemons = 1011;
+        $pokemons = [];
 
-        // // 讀取最後成功的位置
-        // $lastIndex = @file_get_contents('/Users/liweide/laravel/pokemon/database/seeders/index.json') ?: 1;
-        // // 讀取之前已存儲的所有寶可夢數據
-        // $existingPokemons = @file_get_contents('/Users/liweide/laravel/pokemon/database/seeders/pokemons.json');
-        // if ($existingPokemons) {
-        //     $pokemons = json_decode($existingPokemons, true);
-        // }
-
-
-        // for ($i = $lastIndex; $i <= $totalPokemons; $i += $batchSize) {
-        //     $endRange = $i + $batchSize - 1;
-        //     if ($endRange > $totalPokemons) {
-        //         $endRange = $totalPokemons;
-        //     }
-
-            
-        //     for ($j = $i; $j <= $endRange; $j++) {
-        //         try {
-        //             // ... 你原本的 API 請求和數據處理 ...
-        //             $response1 = Http::get("https://pokeapi.co/api/v2/pokemon/$j");
-        //             $pokemonDetail = $response1->json();
-        //             $name = $pokemonDetail['name'];
-        //             $photo = $pokemonDetail["sprites"]['front_default'];
-        //             $moves = $pokemonDetail['moves'];
-        //             $moveNames = [];
-
-        //             // 取出此寶可夢所能學的所有的招式名稱
-        //             foreach ($moves as $move) {
-        //                 $moveNames[] = $move['move']['name'];
-        //             }
-
-        //             // 取得進化等級,這在pokemon-species的進化鏈裡面
-        //             $pokemonData = Http::get("https://pokeapi.co/api/v2/pokemon-species/$j")->json();
-        //             $getEvolutionChain = $pokemonData["evolution_chain"]['url'];
-        //             $evolutionChain = Http::get($getEvolutionChain)->json();
-        //             $minLevel = $this->getEvolutionMinLevel($evolutionChain, $name);
-
-        //             $pokemons[] = [
-        //                 'name' => $name,
-        //                 'photo' => $photo,
-        //                 'evolution_level' => $minLevel,
-        //                 'skills' => $moveNames
-        //             ];
-
-        //             // dd($pokemons);
-        //             // 每次成功請求一筆資料後，立即保存數據和更新成功的索引
-        //             $result1 = file_put_contents('/Users/liweide/laravel/pokemon/database/seeders/pokemons.json', json_encode($pokemons, JSON_PRETTY_PRINT));
-        //             $result2 = file_put_contents('/Users/liweide/laravel/pokemon/database/seeders/index.json', $j + 1);
-
-        //             if ($result1 === false || $result2 === false) {
-        //                 // 寫入失敗，可以在這裡記錄或拋出異常
-        //                 throw new \Exception("Failed to write to file");
-        //             }
-        //         } catch (\Exception $e) {
-        //             // 處理或記錄異常，然後繼續下一筆
-        //             continue;
-        //         }
-        //     }
-
-        //     sleep(5);
-        // }
+        // 讀取最後成功的位置
+        $lastIndex = file_get_contents('/Users/liweide/laravel/pokemon/database/seeders/index.json') ?: 1;
+        // 讀取之前已存儲的所有寶可夢數據
+        $existingPokemons = file_get_contents('/Users/liweide/laravel/pokemon/database/seeders/pokemons.json');
+        if ($existingPokemons) {
+            $pokemons = json_decode($existingPokemons, true);
+        }
 
 
+        for ($i = $lastIndex; $i <= $totalPokemons; $i += $batchSize) {
+            // 防止超過設定得請求上限還繼續打
+            $endRange = $i + $batchSize - 1;
+            if ($endRange > $totalPokemons) {
+                $endRange = $totalPokemons;
+            }
+
+            // 每次都從上次最後跑完的數字開始
+            // 一次跑設定的batchSize
+            for ($j = $i; $j <= $endRange; $j++) {
+                try {
+                    // ... 原本的 API 請求和數據處理 ...
+                    $response1 = Http::get("https://pokeapi.co/api/v2/pokemon/$j");
+                    $pokemonDetail = $response1->json();
+                    $name = $pokemonDetail['name'];
+                    $photo = $pokemonDetail["sprites"]['front_default'];
+                    $moves = $pokemonDetail['moves'];
+                    $moveNames = [];
+                    // 取出此寶可夢所能學的所有的招式名稱
+                    foreach ($moves as $move) {
+                        $moveNames[] = $move['move']['name'];
+                    }
+                    // 取得進化等級,這在pokemon-species的進化鏈裡面
+                    $pokemonData = Http::get("https://pokeapi.co/api/v2/pokemon-species/$j")->json();
+                    $getEvolutionChain = $pokemonData["evolution_chain"]['url'];
+                    $evolutionChain = Http::get($getEvolutionChain)->json();
+                    $minLevel = $this->getEvolutionMinLevel($evolutionChain, $name);
+
+                    $pokemons[] = [
+                        'name' => $name,
+                        'photo' => $photo,
+                        'evolution_level' => $minLevel,
+                        'skills' => $moveNames
+                    ];
+
+                    // 每次成功請求一筆資料後，立即保存數據和更新成功的索引
+                    $result1 = file_put_contents('/Users/liweide/laravel/pokemon/database/seeders/pokemons.json', json_encode($pokemons, JSON_PRETTY_PRINT));
+                    $result2 = file_put_contents('/Users/liweide/laravel/pokemon/database/seeders/index.json', $j + 1);
+
+                    if ($result1 === false || $result2 === false) {
+                        // 寫入失敗，可以在這裡記錄或拋出異常
+                        throw new \Exception("Failed to write to file");
+                    }
+                } catch (\Exception $e) {
+                    // 處理或記錄異常，然後繼續下一筆
+                    // continue;
+                    error_log('Error on Pokemon ID ' . $j . ': ' . $e->getMessage());
+                    file_put_contents(storage_path('error-log.txt'), 'Error on Pokemon ID ' . $j . ': ' . $e->getMessage() . "\n", FILE_APPEND);
+                }
+            }
+
+            sleep(5);
+        }
 
 
 
-// 使用病發方法（未解決）
+
+
+        // 使用病發方法（未解決）
         // $totalPokemons = 4;
         // $batchSize = 2;
         // $pokemons = [];
@@ -375,21 +376,20 @@ class RaceSeeder extends Seeder
 
 
         // 從檔案取出資料存入資料庫
-        $pokemons = json_decode(file_get_contents(__DIR__ . '/pokemons.json'), true);
+        // $pokemons = json_decode(file_get_contents('/Users/liweide/laravel/pokemon/database/seeders/pokemons.json'), true);
 
-        foreach ($pokemons as $pokemon) {
+        // foreach ($pokemons as $pokemon) {
+        //     $race = Race::create([
+        //         'name' => $pokemon['name'],
+        //         'photo' => $pokemon['photo'],
+        //         'evolution_level' => $pokemon['evolution_level']
+        //     ]);
 
-            $race = Race::create([
-                'name' => $pokemon['name'],
-                'photo' => $pokemon['photo'],
-                'evolution_level' => $pokemon['evolution_level']
-            ]);
-
-            foreach ($pokemon['skills'] as $moveName) {
-                $move = Skill::firstOrCreate(['name' => $moveName]);
-                $race->skills()->attach($move->id);
-            }
-        }
+        //     foreach ($pokemon['skills'] as $moveName) {
+        //         $move = Skill::firstOrCreate(['name' => $moveName]);
+        //         $race->skills()->attach($move->id);
+        //     }
+        // }
 
 
 
