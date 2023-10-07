@@ -8,7 +8,7 @@
    // 取得所有寶可夢種族及圖片
    function fetchPokemons() {
      const token = localStorage.getItem('jwtToken');
-     fetch('http://127.0.0.1:8000/api/races/', {
+     fetch('http://localhost:8000/api/races/', {
          method: 'GET',
          headers: {
            'Content-Type': 'application/json',
@@ -33,6 +33,7 @@
    function renderPokemons(page) {
      const start = (page - 1) * pokemonsPerPage;
      const end = start + pokemonsPerPage;
+    //  顯示從現在當前數再到結束
      const pokemonsToDisplay = pokemons.slice(start, end);
 
      const pokemonList = document.getElementById('pokemonList');

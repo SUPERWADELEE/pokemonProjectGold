@@ -141,7 +141,7 @@ class PokemonController extends Controller
 
         // TODO$validatedData = $request->toArray;
 
-        dd('fuck');
+        // dd('fuck');
 
         $validatedData = $request->validated();
         $userId = Auth::user()->id;
@@ -149,6 +149,7 @@ class PokemonController extends Controller
         Cache::put("payment_data_", $validatedData, now()->addMinutes(30));
 
 
+        // dd('fuck');
         // dd($validatedData);
         if ($validatedData) {
             $key = config('payment.key');
@@ -156,6 +157,7 @@ class PokemonController extends Controller
             $mid = config('payment.id');
             $notifyURL = config('payment.notify_url');
             $returnURL = config('payment.return_url');
+            $payment = config('payment.payment_url');
 
             $tradeInfo = http_build_query(array(
                 'MerchantID' => $mid,
@@ -181,11 +183,22 @@ class PokemonController extends Controller
             $hashs = "HashKey=" . $key . "&" . $encodedData . "&HashIV=" . $iv;
             $hash = strtoupper(hash("sha256", $hashs));
             
-            return view('test', [
+
+            // dd('fuck');
+            return response()->json([
+                'payment_url' => $payment,
                 'mid' => $mid,
                 'edata1' => $encodedData,
                 'hash' => $hash
             ]);
+            
+            // dd($mid);
+            // return view('payment_form', [
+            //     'payment_url' => $payment,
+            //     'mid' => $mid,
+            //     'edata1' => $encodedData,
+            //     'hash' => $hash
+            // ]);
         }
 
     }

@@ -4,7 +4,7 @@
   document.getElementById('pokemonList').style.display = 'block';
     const token = localStorage.getItem('jwtToken');
 
-    fetch('http://127.0.0.1:8000/api/pokemons/', {
+    fetch('http://localhost:8000/api/pokemons/', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -46,6 +46,7 @@
       // 在這裡為圖片添加事件監聽器
       // 也就是說也就是說這裡是我想在圖片加上連結
       const img = listItem.querySelector('.pokemon-image');
+
       img.addEventListener('click', function() {
         const pokemonId = this.dataset.id;
         fetchPokemonDetails(pokemonId);
@@ -56,7 +57,7 @@
 
 function fetchPokemonDetails(id) {
   const token = localStorage.getItem('jwtToken');
-  fetch(`http://127.0.0.1:8000/api/pokemons/${id}`, {
+  fetch(`http://localhost:8000/api/pokemons/${id}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

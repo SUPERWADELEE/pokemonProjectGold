@@ -17,17 +17,17 @@
         return response.json(); // 直接解析為JSON
       })
       .then(responseData => {
-        console.log(responseData); // 打印已解析的JSON數據
         const selectElement = document.getElementById(selectId);
         selectElement.innerHTML = ''; // 清空现有选项
-
-        responseData.data.skills.forEach(skill => {
-          const option = document.createElement('option');
-          option.value = skill.id;
-          option.textContent = skill.name;
-          selectElement.appendChild(option);
+    
+        responseData.data.forEach(skill => {
+            const option = document.createElement('option');
+            option.value = skill.id;
+            option.textContent = skill.name;
+            selectElement.appendChild(option);
         });
-      })
+    })
+    
       .catch(error => {
         console.error("Error fetching data:", error);
       });

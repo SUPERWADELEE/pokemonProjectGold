@@ -113,8 +113,7 @@ Route::middleware('auth:api', 'checkStatus', 'throttle:100,1')->group(function (
 
 
 
-    // 登出
-    Route::post('/Auth/logout', [AuthController::class, 'logout']);
+    
 });
 
 // 註冊
@@ -122,7 +121,8 @@ Route::post('/register', [RegisterController::class, 'register']);
 
 // 登入
 Route::post('/Auth/login', [AuthController::class, 'login']);
-
+// 登出
+Route::post('/Auth/logout', [AuthController::class, 'logout']);
 // Route::post('pokemons/add', [PokemonController::class, 'add']);
 Route::post('/payResult',[PaymentsController::class, 'notifyResponse']);
 
