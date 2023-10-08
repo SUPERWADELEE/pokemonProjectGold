@@ -22,9 +22,12 @@
         <h2 class="text-3xl font-bold mb-4">請登入</h2>
         <input type="text" id="emailInput" placeholder="帳號" class="p-2 w-full mb-4 border rounded">
         <input type="password" id="passwordInput" placeholder="密碼" class="p-2 w-full mb-4 border rounded">
-
         <button onclick="handleLogin()" class="px-4 py-2 font-bold text-white bg-blue-500 w-full rounded-full hover:bg-blue-600">登入</button>
 
+
+        <a href="/login/google" class="block mt-4 text-center">
+                <alt= Google 登入 class="w-6 h-6 inline-block"> 使用Google帳號登入
+            </a>
       </div>
     </div>
   </div>
@@ -70,6 +73,21 @@
   </div>
   </div>
 
+  <script>
+    window.onload = function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+    if (token) {
+        // 存儲 token
+        localStorage.setItem('jwtToken', token);
+
+        console.log(token);
+        // 更改 UI 以反映用戶已登入的狀態
+        document.getElementById('loginPage').style.display = 'none';
+        document.getElementById('pokemonContainer').style.display = 'block';
+    }
+}
+</script>
   <script src="{{ asset('js/login.js') }}"></script>
   <script src="{{ asset('js/logout.js') }}"></script>
   <script src="{{ asset('js/showPage.js') }}"></script>

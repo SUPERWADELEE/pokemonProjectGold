@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,5 +44,9 @@ Route::get('/addRace', function () {
 Route::get('/addProfile', function () {
     return view('addProfile');
 });
+
+// 第三方登入
+Route::get('login/google', [LoginController::class, 'redirectToProvider']);
+Route::get('login/google/callback', [LoginController::class,'handleProviderCallback']);
 
 

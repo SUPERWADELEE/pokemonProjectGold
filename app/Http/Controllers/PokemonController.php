@@ -134,7 +134,7 @@ class PokemonController extends Controller
         // 確認目前登入者操作權限
         // authorize 為底層有去引用Illuminate\Foundation\Auth\Access\AuthorizesRequests trait
         // 此方法通常會搭配policy用,後面參數傳入以註冊之model,然後就可以對應到該model設置的判斷權限方法
-        $this->authorize('create', Pokemon::class); // "App\Models\Pokemon"  //App/policy/Pokemon
+        // $this->authorize('create', Pokemon::class); // "App\Models\Pokemon"  //App/policy/Pokemon
 
 
         // 用validated()方法只返回在 Form Request 中定義的驗證規則對應的數據

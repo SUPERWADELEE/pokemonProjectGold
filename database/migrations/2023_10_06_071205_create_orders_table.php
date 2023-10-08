@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('total_price');
             $table->unsignedBigInteger('payment_status');
             $table->unsignedBigInteger('payment_method');
+            $table->string('status');
             $table->timestamps();
         });
     }
