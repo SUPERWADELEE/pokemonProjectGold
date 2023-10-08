@@ -127,3 +127,4 @@ Route::post('/Auth/logout', [AuthController::class, 'logout']);
 Route::post('/payResult',[PaymentsController::class, 'notifyResponse']);
 
 // Route::get('/add', [PokemonController::class, 'add']);
+
