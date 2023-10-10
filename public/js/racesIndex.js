@@ -40,14 +40,19 @@
      pokemonList.innerHTML = '';
 
      pokemonsToDisplay.forEach(pokemon => {
-       const li = document.createElement('li');
-       li.innerHTML = `
-     <h3>${pokemon.name}</h3>
-     <img src="${pokemon.photo}" alt="${pokemon.name}" width="100">
-   `;
-       li.addEventListener('click', () => updatePokemonDetail(pokemon)); // 添加点击事件
-       pokemonList.appendChild(li);
-     });
+      const li = document.createElement('li');
+        
+      li.className = 'w-1/3 p-4 border rounded-lg mb-2 hover:bg-gray-200 cursor-pointer text-center'; // 使用 Tailwind CSS 樣式
+      
+      li.innerHTML = `
+          <h3 class="text-xl font-bold">${pokemon.name}</h3>
+          <img src="${pokemon.photo}" alt="${pokemon.name}" class="w-24 mt-2">
+      `;
+      li.addEventListener('click', () => updatePokemonDetail(pokemon)); 
+      pokemonList.appendChild(li);
+  });
+  
+    
    }
 
 

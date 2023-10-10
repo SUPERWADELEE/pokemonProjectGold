@@ -112,6 +112,14 @@ Route::middleware('auth:api', 'checkStatus', 'throttle:100,1')->group(function (
     Route::patch('users/{user}/changePassword', [UserController::class, 'changePassword']);
 
 
+    // 購物車
+    Route::get('shopping_carts/{shopping_cart_id}/cart_items', [UserController::class, 'changeUserStatus']);
+
+    // 購物車詳情
+
+    // 訂單
+
+    // 訂單詳情
 
     
 });

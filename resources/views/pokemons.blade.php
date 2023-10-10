@@ -51,9 +51,11 @@
         <div id="pokemonDetail"></div>
 
         <!-- Pokemon List Container -->
-        <ul role="list" id="pokemonList" class="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
-          <!-- Single Pokemon will be appended here -->
-        </ul>
+        <ul role="list" id="pokemonList" class="grid gap-x-8 gap-y-12 grid-cols-3 sm:gap-y-16">
+
+    <!-- Single Pokemon will be appended here -->
+</ul>
+
 
         <div id="pokemon-detail">
           <img id="pokemon-photo" src="" alt="Pokemon Image">
