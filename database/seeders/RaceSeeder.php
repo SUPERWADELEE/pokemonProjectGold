@@ -380,14 +380,13 @@ class RaceSeeder extends Seeder
 
         
         foreach ($pokemons as $pokemon) {
-            $randomPrice = rand(100, 100000) / 100; // 這樣生成的價格可能會有多餘的小數位
-            $formattedPrice = number_format($randomPrice, 2); // 這樣會將其四捨五入到兩位小數
+            
             $race = Race::create([
                 'name' => $pokemon['name'],
                 'photo' => $pokemon['photo'],
                 'evolution_level' => $pokemon['evolution_level'],
                 'stock' => rand(1, 1000), // 例如：生成 1 到 100 之間的隨機數作為庫存數量
-                'price' => $formattedPrice, // 例如：生成 100 到 1000 之間的隨機數作為價格
+                'price' => rand(1, 1000), // 例如：生成 100 到 1000 之間的隨機數作為價格
 
             ]);
 

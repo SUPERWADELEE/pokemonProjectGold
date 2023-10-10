@@ -12,7 +12,9 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\RaceController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\UserController;
+use App\Models\ShoppingCart;
 
 /*
 |--------------------------------------------------------------------------
@@ -113,7 +115,7 @@ Route::middleware('auth:api', 'checkStatus', 'throttle:100,1')->group(function (
 
 
     // 購物車
-    Route::get('shopping_carts/{shopping_cart_id}/cart_items', [UserController::class, 'changeUserStatus']);
+    Route::post('shopping_carts', [ShoppingCartController::class, 'store']);
 
     // 購物車詳情
 

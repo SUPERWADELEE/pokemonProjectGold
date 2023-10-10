@@ -8,7 +8,12 @@ use Illuminate\Http\Request;
 class CartItemController extends Controller
 {
     public function index(ShoppingCart $shoppingCart){
-        
+        $user = auth()->user();
         
     }
+
+    
 }
+
+
+
