@@ -397,7 +397,7 @@ class RaceSeeder extends Seeder
                 // 將技能id存在pivot表中
                 $race->skills()->attach($move->id);
             }
-            dd('fuck');
+            
         }
 
 
