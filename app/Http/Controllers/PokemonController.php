@@ -148,9 +148,6 @@ class PokemonController extends Controller
         $validatedData['user_id'] = $userId;
         Cache::put("payment_data_", $validatedData, now()->addMinutes(30));
 
-
-        // dd('fuck');
-        // dd($validatedData);
         if ($validatedData) {
             $key = config('payment.key');
             $iv = config('payment.iv');

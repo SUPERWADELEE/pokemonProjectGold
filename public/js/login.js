@@ -11,7 +11,7 @@ function handleLogin() {
         showPokemonPage();
       })
       .catch(error => {
-        console.error('Login error:', error.message);
+        console.error('error', error.message);
       });
   }
 
