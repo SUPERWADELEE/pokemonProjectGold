@@ -62,7 +62,8 @@ class CartItemController extends Controller
         }
     }
 
-    public function update(Request $request,CartItem $cartItem){
+    public function update(Request $request, CartItem $cartItem)
+    {
 
         $race = Race::find($cartItem->race_id);
         $raceStock = $race->stock;
@@ -74,5 +75,11 @@ class CartItemController extends Controller
         $cartItem->update([
             'quantity' => $validationData['quantity']
         ]);
+    }
+
+    public function destroy(CartItem $cartItem)
+    {
+        $cartItem->delete();
+        return response()->noContent();
     }
 }
