@@ -81,9 +81,9 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
         return $this->hasMany(Pokemon::class);
     }
 
-    public function shoppingCart()
+    public function cartItems()
     {
-        return $this->hasOne(ShoppingCart::class);
+        return $this->hasOne(CartItem::class);
     }
     public function orders()
     {

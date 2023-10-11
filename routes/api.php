@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NatureController;
 use App\Http\Controllers\AbilityController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartItemController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\RaceController;
@@ -115,10 +116,11 @@ Route::middleware('auth:api', 'checkStatus', 'throttle:100,1')->group(function (
 
 
     // 購物車
-    Route::post('shopping_carts', [ShoppingCartController::class, 'store']);
+    Route::get('cart_items', [CartItemController::class, 'index']);
 
     // 購物車詳情
 
+   
     // 訂單
 
     // 訂單詳情
