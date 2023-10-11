@@ -8,6 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class CartItem extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'quantity',
+        'current_price',
+        'race_id', 
+    ];
+
+
+
     public function shoppingCart()
     {
         return $this->belongsTo(ShoppingCart::class);

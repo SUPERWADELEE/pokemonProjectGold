@@ -117,7 +117,7 @@ Route::middleware('auth:api', 'checkStatus', 'throttle:100,1')->group(function (
 
     // 購物車
     Route::get('cart_items', [CartItemController::class, 'index']);
-
+    Route::post('cart_items', [CartItemController::class, 'store']);
     // 購物車詳情
 
    
