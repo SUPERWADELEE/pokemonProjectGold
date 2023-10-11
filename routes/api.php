@@ -126,7 +126,7 @@ Route::middleware('auth:api', 'checkStatus', 'throttle:100,1')->group(function (
     
     // 訂單
     Route::post('orders', [OrderController::class, 'store']);
-
+    Route::get('orders', [OrderController::class, 'show']);
 
 
 
