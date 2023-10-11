@@ -10,6 +10,7 @@ use App\Http\Controllers\AbilityController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartItemController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\RaceController;
 use App\Http\Controllers\RegisterController;
@@ -124,6 +125,10 @@ Route::middleware('auth:api', 'checkStatus', 'throttle:100,1')->group(function (
    
     
     // 訂單
+    Route::post('orders', [OrderController::class, 'store']);
+
+
+
 
     // 訂單詳情
 

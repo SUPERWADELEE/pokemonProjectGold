@@ -12,10 +12,11 @@ class OrderController extends Controller
         $validatedData = $request->validated();
         $userId = auth()->user()->id;
         Order::create([
-            'user_id' => $userId,
-            'total_price'=> $validatedData['total_price'],
-            'payment_status' =>$validatedData['payment_status'],
-            'payment_method' =>$validatedData['payment_method']
+        'user_id' => $userId,
+        'total_price'=> $validatedData['total_price'],
+        'payment_status' => $validatedData['payment_status'],   // 自动应用 setPaymentStatusAttribute
+        'payment_method' => $validatedData['payment_method'],   // 自动应用 setPaymentMethodAttribute
+        'status' => 'Pending'
         ]);
     }
 }
