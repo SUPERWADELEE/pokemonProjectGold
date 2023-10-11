@@ -75,6 +75,15 @@ class CartItemController extends Controller
         $cartItem->update([
             'quantity' => $validationData['quantity']
         ]);
+        // 計算當前購物車總金額
+        $userId = auth()->user()->id;
+
+        // 查詢該用戶的所有購物車項目的總價格
+        $totalPrice = CartItem::where('user_id', $userId)
+                   ->selectRaw('SUM(current_price * quantity) as total')
+                   ->value('total');
+
+        return response(['total_price' => $totalPrice], 200);
     }
 
     public function destroy(CartItem $cartItem)
@@ -82,4 +91,32 @@ class CartItemController extends Controller
         $cartItem->delete();
         return response()->noContent();
     }
+
+
+    public function calculateTotalPrice(Request $request) {
+        $request->validate([
+            'cart_item_ids' => 'required|array|exists:cart_items,id',
+        ]);
+    
+        // 確保這些項目都屬於當前用戶
+        $userId = auth()->user()->id;
+        $cartItems = CartItem::whereIn('id', $request->cart_item_ids)
+                             ->where('user_id', $userId)
+                             ->get();
+    
+        // 當你輸入不是這個使用者的購物車的時候
+        // 數量會對不起來
+        if(count($cartItems) != count($request->cart_item_ids)) {
+            return response(['error' => 'Some cart items do not belong to the user or do not exist'], 403);
+        }
+    
+        // 計算總價格
+        $totalPrice = $cartItems->sum(function($item) {
+            return $item->current_price * $item->quantity;
+        });
+    
+        return response(['data' => ['total_price' => $totalPrice]], 200);
+    }
+    
+
 }

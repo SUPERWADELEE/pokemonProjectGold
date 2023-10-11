@@ -52,7 +52,7 @@ class AuthController extends Controller
     }
 
     public function verifyEmail(Request $request, $id, $hash)
-{
+    {
     $user = User::findOrFail($id);
 
     if (! hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
@@ -68,7 +68,7 @@ class AuthController extends Controller
     }
 
     return response(['message' => 'Email verified successfully.']);
-}
+    }
 
     
 }

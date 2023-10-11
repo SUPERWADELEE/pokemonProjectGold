@@ -118,8 +118,10 @@ Route::middleware('auth:api', 'checkStatus', 'throttle:100,1')->group(function (
     // 購物車詳情
     Route::get('cart_items', [CartItemController::class, 'index']);
     Route::post('cart_items', [CartItemController::class, 'store']);
+    Route::get('cart_items/total_price', [CartItemController::class, 'calculateTotalPrice']);
     Route::put('cart_items/{cart_item}', [CartItemController::class, 'update']);
     Route::delete('cart_items/{cart_item}', [CartItemController::class, 'destroy']);
+   
     
     // 訂單
 
