@@ -14,8 +14,6 @@ function createPokemons() {
   const level = document.getElementById('level').value;
   const race_id = document.getElementById('race_id').getAttribute('data-id');
 
-
-
   const newPokemon = {
     name: pokemonName,
     skills: [skill1, skill2, skill3, skill4],

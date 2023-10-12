@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\OrderRequst;
 use App\Http\Resources\OrderResource;
 use App\Models\Order;
+use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -21,12 +22,13 @@ class OrderController extends Controller
         ]);
     }
 
-    public function show(){
+    public function index(){
         $user = auth()->user();
         $orders = $user->orders;
         return OrderResource::collection($orders);
     }
 
 
+ 
 
 }

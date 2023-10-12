@@ -11,6 +11,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartItemController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\RaceController;
 use App\Http\Controllers\RegisterController;
@@ -39,7 +40,7 @@ Route::middleware('auth:api', 'checkStatus', 'throttle:100,1')->group(function (
      * 
      */
     // pokemon列表
- 
+
     Route::apiResource('pokemons', PokemonController::class);
     // Route::get('pokemons', [PokemonController::class, 'index']);
     // Route::post('pokemons', [PokemonController::class, 'store']);
@@ -122,17 +123,18 @@ Route::middleware('auth:api', 'checkStatus', 'throttle:100,1')->group(function (
     Route::get('cart_items/total_price', [CartItemController::class, 'calculateTotalPrice']);
     Route::put('cart_items/{cart_item}', [CartItemController::class, 'update']);
     Route::delete('cart_items/{cart_item}', [CartItemController::class, 'destroy']);
-   
-    
+
+
     // 訂單
     Route::post('orders', [OrderController::class, 'store']);
-    Route::get('orders', [OrderController::class, 'show']);
+    Route::get('orders', [OrderController::class, 'index']);
 
 
 
     // 訂單詳情
-
-    
+    Route::get('order_details/{order_detail}', [OrderDetailController::class, 'show']);
+    Route::get('orders/{order}/order_details', [OrderDetailController::class, 'index']);
+    Route::post('orders_details', [OrderDetailController::class, 'store']);
 });
 
 // 註冊
@@ -143,7 +145,7 @@ Route::post('/Auth/login', [AuthController::class, 'login']);
 // 登出
 Route::post('/Auth/logout', [AuthController::class, 'logout']);
 // Route::post('pokemons/add', [PokemonController::class, 'add']);
-Route::post('/payResult',[PaymentsController::class, 'notifyResponse']);
+Route::post('/payResult', [PaymentsController::class, 'notifyResponse']);
 
 // Route::get('/add', [PokemonController::class, 'add']);
 
