@@ -150,3 +150,4 @@ Route::post('/payResult', [PaymentsController::class, 'notifyResponse']);
 // Route::get('/add', [PokemonController::class, 'add']);
 
 Route::get('email/verify/{id}/{hash}', [AuthController::class, 'verifyEmail'])->name('verification.verify');
+Route::get('/checkVerificationStatus/{email}', [AuthController::class, 'checkVerificationStatus']);

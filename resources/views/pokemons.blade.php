@@ -10,6 +10,12 @@
     #pokemon-detail {
       display: none;
     }
+
+    #registerPage {
+      display: none;
+    }
+
+   
   </style>
 </head>
 
@@ -23,6 +29,9 @@
         <input type="text" id="emailInput" placeholder="帳號" class="p-2 w-full mb-4 border rounded">
         <input type="password" id="passwordInput" placeholder="密碼" class="p-2 w-full mb-4 border rounded">
         <button onclick="handleLogin()" class="px-4 py-2 font-bold text-white bg-blue-500 w-full rounded-full hover:bg-blue-600">登入</button>
+      <div>
+        <button onclick="handleRegister()" class="px-4 py-2 font-bold text-white bg-red-500 w-full rounded-full hover:bg-blue-600">註冊</button>
+      </div>
 
 
         <a href="/login/google" class="block mt-4 text-center">
@@ -32,10 +41,45 @@
     </div>
   </div>
 
+  <!-- 註冊畫面 -->
+  <div id="registerPage">
+    <div class="flex justify-center mt-24">
+      <div class="w-1/3 bg-white p-6 rounded shadow-lg">
+        <h2 class="text-3xl font-bold mb-4">註冊頁面</h2>
+        <input type="text" id="nameInput" placeholder="姓名" class="p-2 w-full mb-4 border rounded">
+        <input type="text" id="register_emailInput" placeholder="帳號" class="p-2 w-full mb-4 border rounded">
+        <input type="password" id="register_passwordInput" placeholder="密碼" class="p-2 w-full mb-4 border rounded">
+        <input type="password" id="register_confirm_passwordInput" placeholder="密碼確認" class="p-2 w-full mb-4 border rounded">
+        <button onclick="handleRegister()" class="px-4 py-2 font-bold text-white bg-blue-500 w-full rounded-full hover:bg-blue-600">註冊</button>
+
+        <div>
+        <button onclick="handleLogin()" class="px-4 py-2 font-bold text-white bg-red-500 w-full rounded-full hover:bg-blue-600">登入</button>
+      </div>
+
+
+        <a href="/login/google" class="block mt-4 text-center">
+                <alt= Google 登入 class="w-6 h-6 inline-block"> 使用Google帳號登入
+            </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 等待頁面 -->
+<div id="waitPage" style="display: none;">
+    <h2>等待驗證</h2>
+    <p>請檢查您的電子郵件以完成驗證。</p>
+    <button onclick="resendVerificationEmail()">重新發送驗證郵件</button>
+    <button onclick="redirectToLoginPage()">返回登錄頁面</button>
+</div>
+
+
   <!-- 寶可夢的畫面 -->
   <div id="pokemonContainer" style="display: none;">
     <div class="flex justify-end space-x-4 mr-4 mt-4">
       <button onclick="logout()" class="px-4 py-2 font-bold text-white bg-red-500 rounded-full hover:bg-red-600">登出</button>
+    </div>
+    <div class="flex justify-end space-x-4 mr-4 mt-4">
+      <button onclick="shoppingCart()" class="px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-red-600">購物車</button>
     </div>
 
     <div class="bg-white py-24 sm:py-32">
@@ -44,7 +88,7 @@
           <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">寶可夢清單</h2>
           <p class="mt-6 text-lg leading-8 text-gray-600">我家的寶可夢,會後空翻</p>
           <button onclick="pokemonsIndex()" class="mt-6 px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-600">所有寶可夢</button>
-          <button onclick="fetchPokemons()" class="mt-6 px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-600">新增寶可夢</button>
+          <button onclick="fetchPokemons()" class="mt-6 px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-600">寶可夢商品列表</button>
         </div>
 
         
@@ -91,10 +135,12 @@
 }
 </script>
   <script src="{{ asset('js/login.js') }}"></script>
+  <script src="{{ asset('js/register.js') }}"></script>
   <script src="{{ asset('js/logout.js') }}"></script>
+  <script src="{{ asset('js/waitEmailVerification.js') }}"></script>
   <script src="{{ asset('js/showPage.js') }}"></script>
   <script src="{{ asset('js/togglePagination.js') }}"></script>
-  <script>togglePagination(false);</script>
+  <!-- <script>togglePagination(false);</script> -->
   <script src="{{ asset('js/pokemonsIndex.js') }}"></script>
   <script src="{{ asset('js/racesIndex.js') }}"></script>
   <!-- // 1. 创建获取数据并填充下拉列表的函数 -->

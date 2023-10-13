@@ -71,4 +71,22 @@ class AuthController extends Controller
     }
 
     
+  
+
+public function checkVerificationStatus($email) {
+    // Find the user by email
+    $user = User::where('email', $email)->first();
+
+    // If the user doesn't exist, return an error
+    if (!$user) {
+        return response()->json(['error' => 'User not found'], 404);
+    }
+
+    // Check if the user's email is verified
+    $isVerified = !is_null($user->email_verified_at);
+
+    // Return the verification status
+    return response()->json(['isVerified' => $isVerified]);
+}
+
 }

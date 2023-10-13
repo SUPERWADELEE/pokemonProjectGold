@@ -1,4 +1,9 @@
 function handleLogin() {
+   // 隱藏登錄界面
+   document.getElementById('loginPage').style.display = 'block';
+   document.getElementById('waitPage').style.display = 'none';
+   // 顯示寶可夢的界面
+   document.getElementById('registerPage').style.display = 'none';
     const email = document.getElementById('emailInput').value;
     const password = document.getElementById('passwordInput').value;
 
