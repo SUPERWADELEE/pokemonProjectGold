@@ -14,8 +14,6 @@
     #registerPage {
       display: none;
     }
-
-   
   </style>
 </head>
 
@@ -29,14 +27,14 @@
         <input type="text" id="emailInput" placeholder="帳號" class="p-2 w-full mb-4 border rounded">
         <input type="password" id="passwordInput" placeholder="密碼" class="p-2 w-full mb-4 border rounded">
         <button onclick="handleLogin()" class="px-4 py-2 font-bold text-white bg-blue-500 w-full rounded-full hover:bg-blue-600">登入</button>
-      <div>
-        <button onclick="handleRegister()" class="px-4 py-2 font-bold text-white bg-red-500 w-full rounded-full hover:bg-blue-600">註冊</button>
-      </div>
+        <div>
+          <button onclick="handleRegister()" class="px-4 py-2 font-bold text-white bg-red-500 w-full rounded-full hover:bg-blue-600">註冊</button>
+        </div>
 
 
         <a href="/login/google" class="block mt-4 text-center">
-                <alt= Google 登入 class="w-6 h-6 inline-block"> 使用Google帳號登入
-            </a>
+          <alt= Google 登入 class="w-6 h-6 inline-block"> 使用Google帳號登入
+        </a>
       </div>
     </div>
   </div>
@@ -53,24 +51,24 @@
         <button onclick="handleRegister()" class="px-4 py-2 font-bold text-white bg-blue-500 w-full rounded-full hover:bg-blue-600">註冊</button>
 
         <div>
-        <button onclick="handleLogin()" class="px-4 py-2 font-bold text-white bg-red-500 w-full rounded-full hover:bg-blue-600">登入</button>
-      </div>
+          <button onclick="handleLogin()" class="px-4 py-2 font-bold text-white bg-red-500 w-full rounded-full hover:bg-blue-600">登入</button>
+        </div>
 
 
         <a href="/login/google" class="block mt-4 text-center">
-                <alt= Google 登入 class="w-6 h-6 inline-block"> 使用Google帳號登入
-            </a>
+          <alt= Google 登入 class="w-6 h-6 inline-block"> 使用Google帳號登入
+        </a>
       </div>
     </div>
   </div>
 
   <!-- 等待頁面 -->
-<div id="waitPage" style="display: none;">
+  <div id="waitPage" style="display: none;">
     <h2>等待驗證</h2>
     <p>請檢查您的電子郵件以完成驗證。</p>
     <button onclick="resendVerificationEmail()">重新發送驗證郵件</button>
     <button onclick="redirectToLoginPage()">返回登錄頁面</button>
-</div>
+  </div>
 
 
   <!-- 寶可夢的畫面 -->
@@ -79,7 +77,7 @@
       <button onclick="logout()" class="px-4 py-2 font-bold text-white bg-red-500 rounded-full hover:bg-red-600">登出</button>
     </div>
     <div class="flex justify-end space-x-4 mr-4 mt-4">
-      <button onclick="shoppingCart()" class="px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-red-600">購物車</button>
+      <button onclick="fetchShoppingCart()" class="px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-red-600">購物車</button>
     </div>
 
     <div class="bg-white py-24 sm:py-32">
@@ -91,14 +89,16 @@
           <button onclick="fetchPokemons()" class="mt-6 px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-600">寶可夢商品列表</button>
         </div>
 
-        
+
         <div id="pokemonDetail"></div>
+
+
 
         <!-- Pokemon List Container -->
         <ul role="list" id="pokemonList" class="grid gap-x-8 gap-y-12 grid-cols-3 sm:gap-y-16">
 
-    <!-- Single Pokemon will be appended here -->
-</ul>
+          <!-- Single Pokemon will be appended here -->
+        </ul>
 
 
         <div id="pokemon-detail">
@@ -111,19 +111,20 @@
           <ul id="pokemon-skills"></ul>
         </div>
 
-        
+
       </div>
     </div>
   </div>
   <div id="pagination"></div>
+  <div id="shoppingCart"></div>
   </div>
   </div>
 
   <script>
     window.onload = function() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const token = urlParams.get('token');
-    if (token) {
+      const urlParams = new URLSearchParams(window.location.search);
+      const token = urlParams.get('token');
+      if (token) {
         // 存儲 token
         localStorage.setItem('jwtToken', token);
 
@@ -131,14 +132,15 @@
         // 更改 UI 以反映用戶已登入的狀態
         document.getElementById('loginPage').style.display = 'none';
         document.getElementById('pokemonContainer').style.display = 'block';
+      }
     }
-}
-</script>
+  </script>
   <script src="{{ asset('js/login.js') }}"></script>
   <script src="{{ asset('js/register.js') }}"></script>
   <script src="{{ asset('js/logout.js') }}"></script>
   <script src="{{ asset('js/waitEmailVerification.js') }}"></script>
   <script src="{{ asset('js/showPage.js') }}"></script>
+  <script src="{{ asset('js/shoppingcart.js') }}"></script>
   <script src="{{ asset('js/togglePagination.js') }}"></script>
   <!-- <script>togglePagination(false);</script> -->
   <script src="{{ asset('js/pokemonsIndex.js') }}"></script>
@@ -149,10 +151,8 @@
   <script src="{{ asset('js/populateEvolutionDropdown.js') }}"></script>
   <script src="{{ asset('js/updatePokemonDetail.js') }}"></script>
   <script src="{{ asset('js/createPokemons.js') }}"></script>
-  
-  <script>
-   
 
+  <script>
     // 使用範例：您可以在適當的地方呼叫下面這行代碼
     // fetchEvolutionLevelAndPopulateDropdown('YOUR_API_URL_HERE', 'yourSelectId');
 

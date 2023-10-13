@@ -57,7 +57,8 @@ class CartItemController extends Controller
                 'user_id' => $userId,
                 'quantity' => $validationData['quantity'],
                 'current_price' => $racePrice,
-                'race_id' => $request->race_id
+                'race_id' => $request->race_id,
+                
             ]);
         }
     }
