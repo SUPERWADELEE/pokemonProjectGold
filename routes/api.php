@@ -12,6 +12,7 @@ use App\Http\Controllers\CartItemController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderDetailController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\RaceController;
 use App\Http\Controllers\RegisterController;
@@ -129,12 +130,13 @@ Route::middleware('auth:api', 'checkStatus', 'throttle:100,1')->group(function (
     Route::post('orders', [OrderController::class, 'store']);
     Route::get('orders', [OrderController::class, 'index']);
 
-
-
     // 訂單詳情
     Route::get('order_details/{order_detail}', [OrderDetailController::class, 'show']);
     Route::get('orders/{order}/order_details', [OrderDetailController::class, 'index']);
     Route::post('orders_details', [OrderDetailController::class, 'store']);
+
+    // 購買金流
+    Route::post('payments', [PaymentController::class, 'checkout']);
 });
 
 // 註冊

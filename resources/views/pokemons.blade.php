@@ -135,6 +135,7 @@
       }
     }
   </script>
+  <script src="{{ asset('js/checkout.js') }}"></script>
   <script src="{{ asset('js/login.js') }}"></script>
   <script src="{{ asset('js/register.js') }}"></script>
   <script src="{{ asset('js/logout.js') }}"></script>

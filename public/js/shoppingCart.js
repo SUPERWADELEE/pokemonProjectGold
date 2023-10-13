@@ -96,7 +96,7 @@ function displayShoppingCart(cartData) {
 
             <span class="text-lg font-semibold text-gray-800" id="totalAmount">NT$ 0.00</span>
 
-            <button onclick="checkout()" class="checkout-btn w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300">前往結帳</button>
+            <button onclick="checkout(${totalAmount.toFixed(2)})" class="checkout-btn w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300">前往結帳</button>
         </div>
     </div>
     `;
