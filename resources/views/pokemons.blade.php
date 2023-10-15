@@ -140,6 +140,7 @@
 
     
   </script>
+   <script src="{{ Vite::asset('resources/js/createOrder.js') }}"></script> 
  <script src="{{ Vite::asset('resources/js/returnIndex.js') }}"></script> 
   <script src="{{ Vite::asset('resources/js/showPurchasedPokemon.js') }}"></script>
   <script src="{{ Vite::asset('resources/js/checkout.js') }}"></script>

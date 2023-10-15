@@ -22,7 +22,6 @@ class OrderRequst extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'required|int|exists:users,id',
             'total_price' => 'required|int|min:1',
             'payment_method' => 'required|string|in:credit_card,cash_on_delivery',
             'payment_status' => 'required|string|in:paid,unpaid,canceled',
