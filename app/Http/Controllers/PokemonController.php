@@ -28,6 +28,7 @@ use Illuminate\Support\Facades\Log;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class PokemonController extends Controller
 {
@@ -144,94 +145,13 @@ class PokemonController extends Controller
         // dd('fuck');
 
         $validatedData = $request->validated();
-        $userId = Auth::user()->id;
+
+        $user = JWTAuth::parseToken()->authenticate();
+        $userId = $user->id;
+
         $validatedData['user_id'] = $userId;
-        Cache::put("payment_data_", $validatedData, now()->addMinutes(30));
+        Pokemon::create($validatedData);
 
-        if ($validatedData) {
-            $key = config('payment.key');
-            $iv = config('payment.iv');
-            $mid = config('payment.id');
-            $notifyURL = config('payment.notify_url');
-            $returnURL = config('payment.return_url');
-            $payment = config('payment.payment_url');
-
-            $tradeInfo = http_build_query(array(
-                'MerchantID' => $mid,
-                'RespondType' => 'JSON',
-                'TimeStamp' => time(),
-                'Version' => '2.0',
-                'MerchantOrderNo' => "test0315001" . time(),
-                'Amt' => '30',
-                'ItemDesc' => 'test',
-                'NotifyURL' => $notifyURL,
-                'ReturnURL' => $returnURL,
-            ));
-            // echo "Data=[" . $data1 . "]<br><br>";
-            $encodedData = bin2hex(openssl_encrypt(
-                $tradeInfo,
-                "AES-256-CBC",
-                $key,
-                OPENSSL_RAW_DATA,
-                $iv
-            ));
-
-            // log::info('Received notification:', ['all' => $request->input('TradeInfo')]);
-            $hashs = "HashKey=" . $key . "&" . $encodedData . "&HashIV=" . $iv;
-            $hash = strtoupper(hash("sha256", $hashs));
-            
-
-            // dd('fuck');
-            return response()->json([
-                'payment_url' => $payment,
-                'mid' => $mid,
-                'edata1' => $encodedData,
-                'hash' => $hash
-            ]);
-            
-            // dd($mid);
-            // return view('payment_form', [
-            //     'payment_url' => $payment,
-            //     'mid' => $mid,
-            //     'edata1' => $encodedData,
-            //     'hash' => $hash
-            // ]);
-        }
-
-    }
-
-    // 確認目前登入者操作權限
-    // $this->authorize('create', Pokemon::class);
-
-    // // 用validated()方法只返回在 Form Request 中定義的驗證規則對應的數據
-    // $validatedData = $request->validated();
-
-    // // 要如何在該陣列加入當前使用者的id
-    // $userId = Auth::user()->id;
-    // $validatedData['user_id'] = $userId;
-
-    // $pokemon = Pokemon::create($validatedData);
-
-    // // 如果有與技能相關的數據，保存多對多關聯
-    // if ($request->has('skills')) {
-    //     $pokemon->skills()->sync($request->input('skills'));
-    // }
-
-    // return new PokemonResource($pokemon);
-
-    public function add()
-    {
-        $cacheKey = "payment_data_";
-        // 這只是一個示範，你應該使用正確的 key
-        $validatedData = Cache::get($cacheKey);
-        // $validatedData = Cache::get($cacheKey);
-
-
-
-        if ($validatedData) {
-            Pokemon::create($validatedData);
-            Cache::forget($cacheKey);
-        }
     }
 
 

@@ -1,6 +1,10 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+// use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\Client\Request as ClientRequest;
+use Illuminate\Http\Request; 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,8 +22,12 @@ Route::get('index', function () {
 });
 
 
-Route::post('/payment', function () {
-    return view('payment');
+Route::post('/payment', function (Request $request) {
+    // Log所有回傳的資料
+    // Log::info($request->all());
+
+    return view('pokemons', ['paymentData' => $request->all()]);
+
 });
 
 Route::get('/', function () {

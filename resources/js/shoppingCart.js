@@ -1,9 +1,9 @@
 // 由使用者點選購物車後觸發
 function fetchShoppingCart() {
     // 假設API的URL是 'https://your-backend.com/api/cart'
-    const apiURL = 'http://localhost:8000/api/cart_items';
+    const apiUrl = 'http://localhost:8000/api/cart_items';
     const token = localStorage.getItem('jwtToken');
-    fetch(apiURL, {
+    fetch(apiUrl, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -100,7 +100,7 @@ function displayShoppingCart(cartData) {
         </div>
     </div>
     `;
-
+    localStorage.setItem('totalPrice',totalAmount.toFixed(2) );
     // 將購物車的 HTML 內容添加到 shoppingCart 標籤的位置
     shoppingCart.innerHTML = cartContent;
     // 在購物車渲染完畢後，初始化總計

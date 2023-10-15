@@ -27,6 +27,9 @@ class CartItemResource extends JsonResource
             }),
             'race_photo' => $this->whenloaded('race', function(){
                 return $this->race->photo;
+            }),
+            'race_id' => $this->whenloaded('race', function(){
+                return $this->race->id;
             })
 
         ];

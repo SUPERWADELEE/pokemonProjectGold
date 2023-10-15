@@ -91,7 +91,7 @@
 
 
         <div id="pokemonDetail"></div>
-
+      
 
 
         <!-- Pokemon List Container -->
@@ -117,6 +117,7 @@
   </div>
   <div id="pagination"></div>
   <div id="shoppingCart"></div>
+  <div id="purchasedDetail"></div>
   </div>
   </div>
 
@@ -134,30 +135,43 @@
         document.getElementById('pokemonContainer').style.display = 'block';
       }
     }
+   
+    
+
+    
   </script>
-  <script src="{{ asset('js/checkout.js') }}"></script>
-  <script src="{{ asset('js/login.js') }}"></script>
-  <script src="{{ asset('js/register.js') }}"></script>
-  <script src="{{ asset('js/logout.js') }}"></script>
-  <script src="{{ asset('js/waitEmailVerification.js') }}"></script>
-  <script src="{{ asset('js/showPage.js') }}"></script>
-  <script src="{{ asset('js/shoppingcart.js') }}"></script>
-  <script src="{{ asset('js/togglePagination.js') }}"></script>
+ <script src="{{ Vite::asset('resources/js/returnIndex.js') }}"></script> 
+  <script src="{{ Vite::asset('resources/js/showPurchasedPokemon.js') }}"></script>
+  <script src="{{ Vite::asset('resources/js/checkout.js') }}"></script>
+  <script src="{{ Vite::asset('resources/js/login.js') }}"></script>
+  <script src="{{ Vite::asset('resources/js/register.js') }}"></script>
+  <script src="{{ Vite::asset('resources/js/logout.js') }}"></script>
+  <script src="{{ Vite::asset('resources/js/waitEmailVerification.js') }}"></script>
+  <script src="{{ Vite::asset('resources/js/showPage.js') }}"></script>
+  <script src="{{ Vite::asset('resources/js/shoppingcart.js') }}"></script>
+  <script src="{{ Vite::asset('resources/js/togglePagination.js') }}"></script>
   <!-- <script>togglePagination(false);</script> -->
-  <script src="{{ asset('js/pokemonsIndex.js') }}"></script>
-  <script src="{{ asset('js/racesIndex.js') }}"></script>
+  <script src="{{ Vite::asset('resources/js/pokemonsIndex.js') }}"></script>
+  <script src="{{ Vite::asset('resources/js/racesIndex.js') }}"></script>
   <!-- // 1. 创建获取数据并填充下拉列表的函数 -->
-  <script src="{{ asset('js/fetchAndPopulateDropdown.js') }}"></script>
-  <script src="{{ asset('js/fetchAndPopulateDropdownSkills.js') }}"></script>
-  <script src="{{ asset('js/populateEvolutionDropdown.js') }}"></script>
-  <script src="{{ asset('js/updatePokemonDetail.js') }}"></script>
-  <script src="{{ asset('js/createPokemons.js') }}"></script>
+  <script src="{{ Vite::asset('resources/js/fetchAndPopulateDropdown.js') }}"></script>
+  <script src="{{ Vite::asset('resources/js/fetchAndPopulateDropdownSkills.js') }}"></script>
+  <script src="{{ Vite::asset('resources/js/populateEvolutionDropdown.js') }}"></script>
+  <script src="{{ Vite::asset('resources/js/updatePokemonDetail.js') }}"></script>
+  <script src="{{ Vite::asset('resources/js/createPokemons.js') }}"></script>
 
   <script>
     // 使用範例：您可以在適當的地方呼叫下面這行代碼
     // fetchEvolutionLevelAndPopulateDropdown('YOUR_API_URL_HERE', 'yourSelectId');
 
+    @isset($paymentData)
+    var paymentData = @json($paymentData);
 
+    if (paymentData.Status === 'SUCCESS') {
+        // 呼叫你的 updatePokemonDetail 函數
+        showPurchasedPokemon();
+    }
+    @endisset
 
 
 

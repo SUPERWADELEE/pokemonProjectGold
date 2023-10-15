@@ -34,7 +34,7 @@ use App\Models\ShoppingCart;
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
-Route::middleware('auth:api', 'checkStatus', 'throttle:100,1')->group(function () {
+Route::middleware('auth:api', 'checkStatus', 'throttle:100000,1')->group(function () {
 
     /**
      * pokemon管理
