@@ -36,28 +36,31 @@ function createOrder() {
     });
 }
 
-
 function createOrderdetails(orderId, race_id){
-    // 3. 創建和發送請求
-  const token = localStorage.getItem('jwtToken');
-//   const totalPrice = localStorage.getItem('totalPrice'); 
-  fetch('http://localhost:8000/api/orders_details', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + token, // 這裡添加token
-      'Accept': 'application/json'
-    },
-    body: JSON.stringify({
-        order_id: orderId,
-        race_id: race_id,
-        
-      })
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }})
+    const token = localStorage.getItem('jwtToken');
 
+    fetch('http://localhost:8000/api/orders_details', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token,
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            order_id: orderId,
+            race_id: race_id,
+        })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+    })
+    .then(() => {
+        returnIndex();
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error.message);
+    });
+}
 
-} 

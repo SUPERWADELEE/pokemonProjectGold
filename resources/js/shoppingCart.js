@@ -37,7 +37,6 @@ function fetchShoppingCart() {
 
 
 
-
 function displayShoppingCart(cartData) {
     const shoppingCart = document.getElementById('shoppingCart');
     document.getElementById("pokemonContainer").style.display = 'none';
@@ -51,17 +50,14 @@ function displayShoppingCart(cartData) {
 
         return `
             <div class="cart-item flex items-center justify-between border-b pb-4 mb-4">
-                <input type="checkbox" class="mr-4 form-checkbox h-5 w-5 text-blue-600" checked>
+                <input type="checkbox" class="mr-4 form-checkbox h-5 w-5 text-blue-600 cart-item-checkbox" checked onchange="updateTotal()">
 
                 <img src="${item.race_photo}" alt="${item.race_name}" class="w-24 h-24 object-cover rounded-lg mr-4">
-
 
                 <div class="cart-item-details flex-grow">
                     <span class="cart-item-title block text-lg font-semibold text-gray-800 mb-2">${item.race_name}</span>
                     <span class="cart-item-price text-gray-800">NT$ ${item.current_price}</span>
                 </div>
-
-                
 
                 <div class="cart-item-quantity w-20 mr-4">
                     <select class="w-full border rounded p-1 quantity-select" data-price="${item.current_price}" onchange="updateTotal()">
@@ -69,44 +65,40 @@ function displayShoppingCart(cartData) {
                             num === item.amount
                                 ? `<option value="${num}" selected>${num}</option>`
                                 : `<option value="${num}">${num}</option>`
-                        ).join('')
-                            }
+                        ).join('')}
                     </select>
                 </div>
-
 
                 <button class="text-red-500 hover:text-red-700 focus:outline-none">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
         `;
-    }).join(''); // 將每個商品項目的HTML連接起來
+    }).join('');
 
     // 購物車的整體 HTML 內容
     const cartContent = `
     <div class="cart bg-white p-8 shadow-md rounded-lg w-full max-w-2xl mx-auto mt-12">
-        ${cartItems} <!-- 插入動態生成的商品項目 -->
-
-        <!-- 總計部分 -->
+        ${cartItems}
         <div class="cart-summary">
             <div class="cart-total flex justify-between mb-4">
                 <span class="text-lg font-semibold text-gray-800">總計</span>
-                <span class="text-lg font-semibold text-gray-800">NT$ ${totalAmount.toFixed(2)}</span>
+                <span class="text-lg font-semibold text-gray-800" id="totalAmount">NT$ ${totalAmount.toFixed(2)}</span>
             </div>
-
-            <span class="text-lg font-semibold text-gray-800" id="totalAmount">NT$ 0.00</span>
-
             <button onclick="checkout(${totalAmount.toFixed(2)})" class="checkout-btn w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300">前往結帳</button>
+            <!-- 新增的返回首頁按鈕 -->
+            <button onclick="returnIndex()" class="return-btn w-full bg-gray-500 text-white py-2 rounded-lg hover:bg-gray-600 transition duration-300 mt-4">返回首頁</button>
         </div>
     </div>
     `;
-    localStorage.setItem('totalPrice',totalAmount.toFixed(2) );
+
+    localStorage.setItem('totalPrice', totalAmount.toFixed(2));
     // 將購物車的 HTML 內容添加到 shoppingCart 標籤的位置
     shoppingCart.innerHTML = cartContent;
     // 在購物車渲染完畢後，初始化總計
     updateTotal();
-
 }
+
 
 
 function updateTotal() {
