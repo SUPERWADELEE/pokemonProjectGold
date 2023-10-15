@@ -24,7 +24,7 @@ class OrderDetailRequest extends FormRequest
         return [
             'order_id'=>'required|int|exists:orders,id',
             'race_id' => 'required|int|exists:races,id',
-            'quantity' => 'required|int|min:1',
+            // 'quantity' => 'required|int|min:1',
            
 
         ];

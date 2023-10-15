@@ -50,7 +50,7 @@
     const detailContainer = document.getElementById('purchasedDetail');
     detailContainer.style.display = 'block';
     detailContainer.innerHTML = ''; // 清空原有內容
-
+    let orderDetails = [];
     pokemons.forEach(pokemon => {
         const pokemonDiv = document.createElement('div'); // 為每個寶可夢創建一個新的div
         
@@ -77,7 +77,7 @@
 
     `;
 
-
+  orderDetails.push(pokemon.race_id);
   detailContainer.appendChild(pokemonDiv);
 
   // fetchAndPopulateDropdown('http://localhost:8000/api/abilities', 'abilities');
@@ -105,6 +105,7 @@ fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${pokemon.race_i
 fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${pokemon.race_id}/skill`, skill1DropdownId);
 
 });
+localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
 const returnButton = document.createElement('button');
     returnButton.innerText = '新增完成';  // or whatever text you want on the button
     returnButton.onclick = createOrder;

@@ -17,37 +17,47 @@ function createOrder() {
             payment_status: "paid"
         })
     })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-        })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();  // 這裡解析響應為JSON
+    })
+    .then(orderData => {
+        const orderId = orderData.id;
 
-    // .then(createOrderdetails())
+        // 使用得到的訂單ID創建訂單細節
+        const storedOrderDetails = JSON.parse(localStorage.getItem('orderDetails'));
+    
+        storedOrderDetails.forEach(race_id => {
+            createOrderdetails(orderId, race_id);
+        });
+        
+    });
 }
 
 
-// function createOrderdetails(){
-//     // 3. 創建和發送請求
-//   const token = localStorage.getItem('jwtToken');
+function createOrderdetails(orderId, race_id){
+    // 3. 創建和發送請求
+  const token = localStorage.getItem('jwtToken');
 //   const totalPrice = localStorage.getItem('totalPrice'); 
-//   fetch('http://localhost:8000/api/orders', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//       'Authorization': 'Bearer ' + token, // 這裡添加token
-//       'Accept': 'application/json'
-//     },
-//     body: JSON.stringify({
-//         order_id: ,
-//         race_id: ,
-//         quantity: "paid"
-//       })
-//   })
-//   .then(response => {
-//     if (!response.ok) {
-//       throw new Error('Network response was not ok');
-//     }})
+  fetch('http://localhost:8000/api/orders_details', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token, // 這裡添加token
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify({
+        order_id: orderId,
+        race_id: race_id,
+        
+      })
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }})
 
-//     .then(createOrderdetails())
-// } 
+
+} 
