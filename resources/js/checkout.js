@@ -40,19 +40,17 @@ fetch('http://localhost:8000/api/payments', {
     { name: 'TradeSha', value: data.hash, label: 'TradeSha' }
   ];
 
-  fieldInfo.forEach(field => {
-    const label = document.createElement('label');
-    label.textContent = `${field.label}: `;
-
+ fieldInfo.forEach(field => {
     const input = document.createElement('input');
+    input.type = 'hidden';
     input.name = field.name;
     input.value = field.value;
     input.readOnly = true;
 
-    form.appendChild(label);
+    // 只添加 input 到表單，移除了 label 和 br 的创建和附加
     form.appendChild(input);
-    form.appendChild(document.createElement('br'));
-  });
+});
+
 
   const submitButton = document.createElement('input');
   submitButton.type = 'submit';
@@ -68,26 +66,26 @@ fetch('http://localhost:8000/api/payments', {
 
   
 
-  .then(response => {
-    // 如果响应的 HTTP 状态码不是2xx，抛出错误
-    if (!response.ok) {
-      // 把响应主体解析为 JSON，然后抛出错误
-      return response.json().then(err => { throw err; });
-    }
-    return response.json();
-  })
-  .then(data => {
-    alert('寶可夢成功新增！');
-    const detailContainer = document.getElementById('pokemonDetail');
-    detailContainer.style.display = 'none';
-  })
-  .catch(error => {
-    console.error('Error:', error);
-    if (error && error.message) {
-      alert(`伺服器錯誤：${error.message}`);
-    } else {
-      alert('伺服器錯誤！');
-    }
-  });
+  // .then(response => {
+  //   // 如果响应的 HTTP 状态码不是2xx，抛出错误
+  //   if (!response.ok) {
+  //     // 把响应主体解析为 JSON，然后抛出错误
+  //     return response.json().then(err => { throw err; });
+  //   }
+  //   // return response.json();
+  // })
+  // .then(data => {
+  //   alert('寶可夢成功新增！');
+  //   const detailContainer = document.getElementById('pokemonDetail');
+  //   detailContainer.style.display = 'none';
+  // })
+  // .catch(error => {
+  //   console.error('Error:', error);
+  //   if (error && error.message) {
+  //     alert(`伺服器錯誤：${error.message}`);
+  //   } else {
+  //     alert('伺服器錯誤！');
+  //   }
+  // });
 
 }

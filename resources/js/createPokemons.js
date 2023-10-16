@@ -1,4 +1,4 @@
-document.querySelector('pokemonImage').addEventListener('click', createPokemons);
+// document.querySelector('pokemonImage').addEventListener('click', createPokemons);
 
 function createPokemons(raceId, buttonElement) {
   // 2. 獲取用戶輸入

@@ -4,16 +4,12 @@
     const detailContainer = document.getElementById('pokemonDetail');
     detailContainer.style.display = 'block';
     detailContainer.innerHTML = `
-      <label for="pokemonName">寶可夢名稱:</label>
-      <input type="text" id="pokemonName" name="pokemonName" >
-      <h2 id="race_id" data-id="${pokemon.id}">${pokemon.name}</h2>
-      <img id="pokemonImage" src="${pokemon.photo}" alt="${pokemon.name}" width="200">
-      <button id="addToCartBtn">加入購物車</button>
-      <div id="notification" class="mt-2"></div>
-  
+    <h2 id="race_id" data-id="${pokemon.id}" class="text-xl font-bold mb-4">${pokemon.name}</h2>
+    <img id="pokemonImage" src="${pokemon.photo}" alt="${pokemon.name}" width="200" class="mb-4 rounded shadow">
+    <button id="addToCartBtn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline-blue transition duration-200">加入購物車</button>
+    <div id="notification" class="mt-2"></div>
+`;
 
-      
-  `;
   const addToCartBtn = document.getElementById('addToCartBtn');
   const notification = document.getElementById('notification');
   
@@ -107,7 +103,24 @@ fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${pokemon.race_i
 });
 localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
 const returnButton = document.createElement('button');
-    returnButton.innerText = '新增完成';  // or whatever text you want on the button
-    returnButton.onclick = createOrder;
-    detailContainer.appendChild(returnButton);
+returnButton.innerText = '新增完成';  
+returnButton.onclick = createOrder;
+
+// Adding Tailwind CSS styles to the button
+returnButton.classList.add(
+    'bg-green-500', 
+    'hover:bg-green-600', 
+    'text-white', 
+    'font-bold', 
+    'py-2', 
+    'px-4', 
+    'rounded-full', 
+    'focus:outline-none', 
+    'focus:shadow-outline-green', 
+    'transition', 
+    'duration-200'
+);
+
+detailContainer.appendChild(returnButton);
+
 }

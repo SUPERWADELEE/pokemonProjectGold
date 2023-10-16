@@ -1,5 +1,6 @@
 // 由使用者點選購物車後觸發
 function fetchShoppingCart() {
+    document.getElementById('shoppingCart').style.display = 'block';
     // 假設API的URL是 'https://your-backend.com/api/cart'
     const apiUrl = 'http://localhost:8000/api/cart_items';
     const token = localStorage.getItem('jwtToken');
@@ -50,7 +51,9 @@ function displayShoppingCart(cartData) {
 
         return `
             <div class="cart-item flex items-center justify-between border-b pb-4 mb-4">
-                <input type="checkbox" class="mr-4 form-checkbox h-5 w-5 text-blue-600 cart-item-checkbox" checked onchange="updateTotal()">
+           
+            
+            <input type="checkbox" class="mr-4 form-checkbox h-5 w-5 text-blue-600 cart-item-checkbox" checked onchange="updateTotal()">
 
                 <img src="${item.race_photo}" alt="${item.race_name}" class="w-24 h-24 object-cover rounded-lg mr-4">
 
@@ -79,18 +82,19 @@ function displayShoppingCart(cartData) {
     // 購物車的整體 HTML 內容
     const cartContent = `
     <div class="cart bg-white p-8 shadow-md rounded-lg w-full max-w-2xl mx-auto mt-12">
-        ${cartItems}
-        <div class="cart-summary">
-            <div class="cart-total flex justify-between mb-4">
-                <span class="text-lg font-semibold text-gray-800">總計</span>
-                <span class="text-lg font-semibold text-gray-800" id="totalAmount">NT$ ${totalAmount.toFixed(2)}</span>
-            </div>
-            <button onclick="checkout(${totalAmount.toFixed(2)})" class="checkout-btn w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300">前往結帳</button>
-            <!-- 新增的返回首頁按鈕 -->
-            <button onclick="returnIndex()" class="return-btn w-full bg-gray-500 text-white py-2 rounded-lg hover:bg-gray-600 transition duration-300 mt-4">返回首頁</button>
+    <h2 class="text-2xl font-bold mb-6 text-gray-800">購物車清單</h2>
+    ${cartItems}
+    <div class="cart-summary">
+        <div class="cart-total flex justify-between mb-4">
+            <span class="text-lg font-semibold text-gray-800">總計</span>
+            <span class="text-lg font-semibold text-gray-800" id="totalAmount">NT$ ${totalAmount.toFixed(2)}</span>
         </div>
+        <button onclick="checkout(${totalAmount.toFixed(2)})" class="checkout-btn w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300">前往結帳</button>
+        <!-- 新增的返回首頁按鈕 -->
+        <button onclick="returnIndex()" class="return-btn w-full bg-gray-500 text-white py-2 rounded-lg hover:bg-gray-600 transition duration-300 mt-4">返回首頁</button>
     </div>
-    `;
+</div>
+`;
 
     localStorage.setItem('totalPrice', totalAmount.toFixed(2));
     // 將購物車的 HTML 內容添加到 shoppingCart 標籤的位置

@@ -3,6 +3,7 @@ let currentPage = 1;
 
 // 取得所有寶可夢種族及圖片
 function fetchPokemons() {
+    document.getElementById('pagination').style.display = 'block';
     const token = localStorage.getItem('jwtToken');
     fetch(`http://localhost:8000/api/races?page=${currentPage}`, {  // 加入 ?page= 查詢參數
         method: 'GET',

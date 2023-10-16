@@ -43,6 +43,7 @@ class PokemonResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'level' => $this->level,
+            'race_id'=> $this->race_id,
             // 'race' => $this->whenLoaded('race', $this->race),
             // 'race' => $this->whenLoaded('race', $this->race->name),
             'race' => $this->whenLoaded('race', function () {
@@ -65,6 +66,7 @@ class PokemonResource extends JsonResource
             'host' => $this->whenLoaded('user', function () {
                 return $this->user->name;
             }),
+            
 
         ];
 
