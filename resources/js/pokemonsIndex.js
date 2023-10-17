@@ -3,6 +3,8 @@ function pokemonsIndex() {
   document.getElementById('pokemon-detail').style.display = 'none';
   document.getElementById('pokemonDetail').style.display = 'none';
   document.getElementById('pokemonList').style.display = 'block';
+  document.getElementById('ordersIndex').style.display = 'none';
+    document.getElementById('orderDetails').style.display = 'none'; 
   const token = localStorage.getItem('jwtToken');
 
   fetch('http://localhost:8000/api/pokemons/', {

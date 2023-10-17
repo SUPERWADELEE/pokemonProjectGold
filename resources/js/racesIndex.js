@@ -4,6 +4,9 @@ let currentPage = 1;
 // 取得所有寶可夢種族及圖片
 function fetchPokemons() {
     document.getElementById('pagination').style.display = 'block';
+    document.getElementById('ordersIndex').style.display = 'none';
+    document.getElementById('orderDetails').style.display = 'none';
+    document.getElementById('pokemonList').style.display = 'block'; 
     const token = localStorage.getItem('jwtToken');
     fetch(`http://localhost:8000/api/races?page=${currentPage}`, {  // 加入 ?page= 查詢參數
         method: 'GET',
@@ -16,8 +19,8 @@ function fetchPokemons() {
     .then(response => response.json())
     .then(data => {
         console.log('Success:', data);
-        pokemons = data.data;  // 使用 data.data
-        renderPokemons();
+        const pokemons = data.data;  // 使用 data.data
+        renderPokemons(pokemons);
         const totalPages = data.last_page; 
 
         renderPaginationButtons(totalPages);
@@ -30,7 +33,7 @@ function fetchPokemons() {
 }
 
 // 顯示所有種族姓名及圖片
-function renderPokemons() {
+function renderPokemons(pokemons) {
     const pokemonList = document.getElementById('pokemonList');
     pokemonList.innerHTML = '';
 
