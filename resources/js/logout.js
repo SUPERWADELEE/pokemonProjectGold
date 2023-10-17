@@ -20,7 +20,7 @@ function logout() {
       showLoginPage();
       
       // 强制重新加载页面  
-      window.location.reload(true);
+      // window.location.reload(true);
       
     })
     .catch(error => {

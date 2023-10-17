@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GoogleLoginController;
 use App\Http\Controllers\LoginController;
 // use GuzzleHttp\Psr7\Request;
 use Illuminate\Http\Client\Request as ClientRequest;
@@ -54,7 +55,7 @@ Route::get('/addProfile', function () {
 });
 
 // 第三方登入
-Route::get('login/google', [LoginController::class, 'redirectToProvider']);
-Route::get('login/google/callback', [LoginController::class,'handleProviderCallback']);
+Route::get('login/google', [GoogleLoginController::class, 'redirectToProvider']);
+Route::get('login/google/callback', [GoogleLoginController::class,'handleProviderCallback']);
 
 

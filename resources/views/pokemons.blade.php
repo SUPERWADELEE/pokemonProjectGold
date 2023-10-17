@@ -131,7 +131,7 @@
         // 存儲 token
         localStorage.setItem('jwtToken', token);
 
-        console.log(token);
+       
         // 更改 UI 以反映用戶已登入的狀態
         document.getElementById('loginPage').style.display = 'none';
         document.getElementById('pokemonContainer').style.display = 'block';

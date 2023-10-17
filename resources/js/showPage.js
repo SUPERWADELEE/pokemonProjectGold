@@ -17,4 +17,12 @@ function showPokemonPage() {
 
     // 影藏寶可夢的界面
     document.getElementById('pokemonContainer').style.display = 'none';
+    
+
+    document.getElementById('registerPage').style.display = 'none';
+    document.getElementById('waitPage').style.display = 'none';
+    document.getElementById('pagination').style.display = 'none';
+    document.getElementById('ordersIndex').style.display = 'none';
+    document.getElementById('orderDetails').style.display = 'none';
+    
   }

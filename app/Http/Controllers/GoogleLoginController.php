@@ -9,7 +9,7 @@ use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
-class LoginController extends Controller
+class GoogleLoginController extends Controller
 {
     public function redirectToProvider()
 {
