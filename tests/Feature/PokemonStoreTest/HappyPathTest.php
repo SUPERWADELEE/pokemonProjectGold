@@ -3,7 +3,6 @@
 namespace Tests\Feature\PokemonStoreTest;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Arr;
 use Tests\TestCase;
 
@@ -34,9 +33,7 @@ class HappyPathTest extends TestCase
             ->assertStatus(201); // Assuming 201 means created
 
         // 檢查數據庫是否有相對應的數據
-        // TODO這裡的邏輯要再確認是能辨識skill有存入資料庫
         $this->assertDatabaseHas('pokemons', Arr::except($data, ['skills']));
-        // $this->assertDatabaseCount('pokemons', 1);
 
         // 獲取剛剛創建的 Pokemon
         $pokemonStored = \App\Models\Pokemon::where('name', $data['name'])->firstOrFail();

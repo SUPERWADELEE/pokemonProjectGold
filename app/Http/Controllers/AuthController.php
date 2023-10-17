@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Auth\Events\Verified;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -47,5 +50,43 @@ class AuthController extends Controller
 
         
     }
+
+    public function verifyEmail(Request $request, $id, $hash)
+    {
+    $user = User::findOrFail($id);
+
+    if (! hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
+        throw new AuthorizationException();
+    }
+
+    if ($user->hasVerifiedEmail()) {
+        return response(['message' => 'Email already verified.']);
+    }
+
+    if ($user->markEmailAsVerified()) {
+        event(new Verified($user));
+    }
+
+    return response(['message' => 'Email verified successfully.']);
+    }
+
     
+  
+
+public function checkVerificationStatus($email) {
+    // Find the user by email
+    $user = User::where('email', $email)->first();
+
+    // If the user doesn't exist, return an error
+    if (!$user) {
+        return response()->json(['error' => 'User not found'], 404);
+    }
+
+    // Check if the user's email is verified
+    $isVerified = !is_null($user->email_verified_at);
+
+    // Return the verification status
+    return response()->json(['isVerified' => $isVerified]);
+}
+
 }

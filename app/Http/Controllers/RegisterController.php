@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -10,6 +11,7 @@ class RegisterController extends Controller
 {
     public function register(Request $request)
     {
+        // dd('fuck');
         // 1. 驗證輸入
         // 每個email在users表單都是唯一的
         // 密碼需要做確認
@@ -26,6 +28,9 @@ class RegisterController extends Controller
             'password' => Hash::make($validatedData['password']),
             'role'=>'user'
         ]);
+
+        event(new Registered($user));
+
         return response(['message' => 'User registered successfully!', 'user' => $user], 201);
     }  
     }
