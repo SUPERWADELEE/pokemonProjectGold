@@ -39,8 +39,8 @@ class NewebpayMpgResponse
         }
 
         $this->status = $tradeData['Status'] ?? null;
-        // $this->status = $tradeData['Result']['Status'];
-        // return $this->isSuccess();
+      
+        return $tradeData;
     }
 
 

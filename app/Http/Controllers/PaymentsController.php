@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\TransactionSuccessMail;
 use App\Models\Pokemon;
 use Illuminate\Http\Request;
 use App\Services\NewebpayMpgResponse;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class PaymentsController extends Controller
 {
@@ -24,6 +26,15 @@ class PaymentsController extends Controller
             Log::info('Payment Callback Received:', ['TradeInfo' => 'fuckme']);
         } 
         // 交易成功後續動作
+
+        $userData = [
+            'name' => 'wade', // 請用真正的使用者名稱替代
+            // 'transactionDetails' => $tradeData->result, // 假設您想將交易細節傳給視圖
+        ];
+
+        Log::info('Payment Callback Received:', ['TradeInfo' => $tradeData]);
+        Mail::to('elvis122545735@gmail.com') // 使用者的電子郵件地址
+        ->send(new TransactionSuccessMail($userData));
           
 
 
