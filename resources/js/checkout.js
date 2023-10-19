@@ -40,6 +40,7 @@ fetch('http://localhost:8000/api/payments', {
     { name: 'TradeSha', value: data.hash, label: 'TradeSha' }
   ];
 
+  // 將上述陣列中的每一個物件都創建input
  fieldInfo.forEach(field => {
     const input = document.createElement('input');
     input.type = 'hidden';
@@ -52,6 +53,7 @@ fetch('http://localhost:8000/api/payments', {
 });
 
 
+// 創建submit到form表單裡
   const submitButton = document.createElement('input');
   submitButton.type = 'submit';
   form.appendChild(submitButton);
@@ -63,29 +65,5 @@ fetch('http://localhost:8000/api/payments', {
   form.submit();
 })
 
-
-  
-
-  // .then(response => {
-  //   // 如果响应的 HTTP 状态码不是2xx，抛出错误
-  //   if (!response.ok) {
-  //     // 把响应主体解析为 JSON，然后抛出错误
-  //     return response.json().then(err => { throw err; });
-  //   }
-  //   // return response.json();
-  // })
-  // .then(data => {
-  //   alert('寶可夢成功新增！');
-  //   const detailContainer = document.getElementById('pokemonDetail');
-  //   detailContainer.style.display = 'none';
-  // })
-  // .catch(error => {
-  //   console.error('Error:', error);
-  //   if (error && error.message) {
-  //     alert(`伺服器錯誤：${error.message}`);
-  //   } else {
-  //     alert('伺服器錯誤！');
-  //   }
-  // });
 
 }

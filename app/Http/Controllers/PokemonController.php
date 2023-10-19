@@ -54,101 +54,15 @@ class PokemonController extends Controller
 
         $pokemons = $user->pokemons()->with(['user', 'ability', 'nature', 'race'])->get();
         return PokemonResource::collection($pokemons);
-        // return PokemonResource::collection($pokemons);
-
-        // $pokemons = Pokemon::with(['race', 'user', 'ability', 'nature'])
-        //     ->where('user_id', $user->id)->get();
-
-        //user->post->name// weher 一筆一筆  user::with(post)->name// whereIn
-
-
-        // $array = ['wawde','hello'];
-        // return PokemonResource::collection($pokemons)->additional(['ooo'=>$array]);
-
-        // return $this->addSkill($pokemon);
-        // [招式名稱陣列]
-
-
-
-
-        // PokemonResource::collection($pokemons)
-
-
-        // 可能可以用user角度去對關聯拿資料
-
-        // 只獲取當前登入用戶的寶可夢
-        // $pokemons = Pokemon::with(['race', 'ability', 'nature', 'user','skills'])
-        //     ->where('user_id', $user->id)
-        //     ->get();
-
-        //找出user底下有什麼寶可夢
-        // $pokemons = Pokemon::with(['race', 'ability', 'nature', 'user'])
-        //     ->where('user_id', $user->id);
-        // $pokemonSkill = $pokemons->pluck('skills');
-        // // implode(',',$array);
-        // dd($pokemonSkill);
-        // $arr =[];
-        // foreach($pokemonSkill as $index => $skill){
-        //     //    $x = Skill::whereIn('id', $skill)->get()->toArray();
-        //     $x = Skill::whereIn('id', $skill)->get();
-        // //    dd($x->name);
-        //     $arr = $x[$index];
-        //     dd($arr);
-
-        //     // dd($x[1]['name']);
-        //     // $arr[] =$x;
-        //     // $x[1]['name'];
-        // }
-
-
-
-        // $pokemons = $user->pokemons()->with(['race', 'ability', 'nature', 'skills'])->get();
-
-
-        // dd($pokemons);
-        // $pokemonSkill = $pokemons->pluck('skills');
-        //         // dd($pokemonSkill);
-        // dd($pokemonSkill);
-        //         $arr = [];
-        // foreach ($pokemonSkill as $index => $skill) {
-        //     // $skillsNames = Skill::whereIn('id', $skill)->pluck('name')->toArray();
-        //     $skillsNames = Skill::whereIn('id', $skill)->pluck('name');
-        //     // $skillsNames = Skill::whereIn('id', $skill)->get('name');
-
-        //     // return PokemonResource::collection($skillsNames);
-
-        //     $arr[] = $skillsNames;
-        // }
-
-        // $combined = array_merge(["skills" => $arr], $pokemons);
-
-        // return PokemonResource::collection($combined->get());//->additional(['skills' =>$arr]);
-
     }
 
 
     // 寶可夢新增
     public function store(StorePokemonRequest $request)
     {
-
-        // dd('fuck');
-        // 確認目前登入者操作權限
-        // authorize 為底層有去引用Illuminate\Foundation\Auth\Access\AuthorizesRequests trait
-        // 此方法通常會搭配policy用,後面參數傳入以註冊之model,然後就可以對應到該model設置的判斷權限方法
-        // $this->authorize('create', Pokemon::class); // "App\Models\Pokemon"  //App/policy/Pokemon
-
-
-        // 用validated()方法只返回在 Form Request 中定義的驗證規則對應的數據
-
-        // TODO$validatedData = $request->toArray;
-
-        // dd('fuck');
-
         $validatedData = $request->validated();
-
         $user = JWTAuth::parseToken()->authenticate();
         $userId = $user->id;
-
         $validatedData['user_id'] = $userId;
         Pokemon::create($validatedData);
 
@@ -161,32 +75,19 @@ class PokemonController extends Controller
     // 寶可夢資料修改
     public function update(UpdatePokemonRequest $request, Pokemon $pokemon)
     {
-
-        // dd($pokemon);
         $pokemon->load(['ability', 'nature', 'race']);
         // 你不能去修改別人的神奇寶貝
         $this->authorize('update', $pokemon); //path:Model/pokemon-> path:model->policy
-        // dd($request);
         $pokemon->update($request->validated());
         return PokemonResource::make($pokemon);
     }
 
-
-    // public function show(Pokemon $pokemon)
-    // {
-    //     $this->authorize('show', $pokemon);
-    //     $pokemon = $pokemon->with([ 'user', 'ability', 'nature','race' ])->get();
-    //     return PokemonResource::make($pokemon);
-    // }
     public function show(Pokemon $pokemon)
     {
         $this->authorize('show', $pokemon);
-        // $pokemon->with(['user', 'ability', 'nature', 'race'])->get();
         $pokemon->load(['user', 'ability', 'nature', 'race']);
         return PokemonResource::make($pokemon);
     }
-
-
 
 
     public function destroy(Pokemon $pokemon)
@@ -194,7 +95,6 @@ class PokemonController extends Controller
         $this->authorize('delete', $pokemon);
         // 刪除該寶可夢
         $pokemon->delete();
-
         // 返回成功響應
         return response(['message' => 'pokemon deleted successfully'], 200);
         return response()->noContent();
@@ -205,7 +105,6 @@ class PokemonController extends Controller
     // TODO寶可夢進化等級可以用一個evolution_id 儲存
     public function evolution(Pokemon $pokemon)
     {
-
         $this->authorize('evolution', $pokemon);
         // 拿到寶可夢進化等級
         $pokemon->load('race');
@@ -230,59 +129,6 @@ class PokemonController extends Controller
             return response(['message' => $e->getMessage()], 200);
         }
     }
-
-    // public function search(SearchPokemonRequest $request)
-    // {
-    //     // dd('fuck');
-    //     $query = Pokemon::query();
-
-    //     // // 加載關聯
-    //     // $query->with(['race', 'ability', 'nature']);
-
-    //     // 如果有提供名稱，則增加名稱的搜尋條件
-    //     if ($name = $request->input('name')) {
-    //         $query->where('name', 'LIKE', '%' . $name . '%');
-    //     }
-
-    //     // 如果有提供性格 ID，則增加性格的搜尋條件
-    //     if ($natureId = $request->input('nature_id')) {
-    //         $query->where('nature_id', $natureId);
-    //     }
-
-    //     if ($abilityId = $request->input('ability_id')) {
-    //         $query->where('ability_id', $abilityId);
-    //     }
-
-    //     if ($level = $request->input('level')) {
-    //         $query->where('level', $level);
-    //     }
-
-    //     if ($race_id = $request->input('race_id')) {
-    //         $query->where('race_id', $race_id);
-    //     }
-
-
-
-    //     // $name = $request->input('name');
-    //     // $natureId = $request->input('nature_id');
-
-    //     // $pokemons =  $query->with(['race', 'ability', 'nature'])
-    //     //     ->orWhere('name', 'LIKE', '%' . $name . '%')
-    //     //     ->orWhere('nature_id', $natureId)
-    //     //     ->get();
-
-
-    //     // 執行查詢並獲得結果
-    //     $pokemons = $query->get();
-    //     // dd($pokemons);
-
-    //     // 使用 PokemonResource 格式化並回傳結果
-    //     return PokemonResource::collection($pokemons);
-    // }
-    //         return response(['message' => $e->getMessage()], 400);
-    //         // TODO回應結果
-    //     }
-    // }
 
     public function search(SearchPokemonRequest $request)
     {
@@ -328,11 +174,4 @@ class PokemonController extends Controller
         return PokemonResource::collection($pokemons);
     }
 
-    // function addSkill($data =[] , $status=201){
-    //     return [
-    //         'skills' => '陣列的技能',
-    //         'data' => $data,
-    //         'status' => $status
-    //     ];
-    // }
 }

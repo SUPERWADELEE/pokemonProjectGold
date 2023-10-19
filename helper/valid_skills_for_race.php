@@ -2,8 +2,6 @@
 
 function validSkillsForRace($skills, $race) {
     $allowedSkills = $race->skills->pluck('id')->toArray();
-
-
     // // TODO這個命名規則也要改
 // function validSkillsForRace($skills) {
 //     // 先取得當前輸入的種族id

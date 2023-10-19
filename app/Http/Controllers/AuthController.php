@@ -15,26 +15,26 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-            // 先針對輸入的部分做驗表單驗證       
-            $credentials = $request->validate([
-                'email' => 'required|string|email',
-                'password' => 'required|string',
-            ]);
-    
-            // 根據進來的guard設定,去預先的表單設定查看輸入的資料是否存在
-            $token = JWTAuth::attempt($credentials);
-    
-            if (!$token) {
-                return response()->json(['error' => 'Invalid credentials'], 401);
-            }
-    
-            return response()->json([
-                'message' => 'Login successful',
-                'token' => $token,
-                'user' => Auth::user()
-            ], 200);
+        // 先針對輸入的部分做驗表單驗證       
+        $credentials = $request->validate([
+            'email' => 'required|string|email',
+            'password' => 'required|string',
+        ]);
+
+        // 根據進來的guard設定,去預先的表單設定查看輸入的資料是否存在
+        $token = JWTAuth::attempt($credentials);
+
+        if (!$token) {
+            return response()->json(['error' => 'Invalid credentials'], 401);
+        }
+
+        return response()->json([
+            'message' => 'Login successful',
+            'token' => $token,
+            'user' => Auth::user()
+        ], 200);
     }
-    
+
 
 
     public function logout()
@@ -47,46 +47,44 @@ class AuthController extends Controller
         } catch (\Exception $e) {
             return response()->json(['message' => 'Failed to logout'], 500);
         }
-
-        
     }
 
     public function verifyEmail(Request $request, $id, $hash)
     {
-    $user = User::findOrFail($id);
+        $user = User::findOrFail($id);
 
-    if (! hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
-        throw new AuthorizationException();
+        if (!hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
+            throw new AuthorizationException();
+        }
+
+        if ($user->hasVerifiedEmail()) {
+            return response(['message' => 'Email already verified.']);
+        }
+
+        if ($user->markEmailAsVerified()) {
+            event(new Verified($user));
+        }
+
+        return response(['message' => 'Email verified successfully.']);
     }
 
-    if ($user->hasVerifiedEmail()) {
-        return response(['message' => 'Email already verified.']);
+
+
+
+    public function checkVerificationStatus($email)
+    {
+        // Find the user by email
+        $user = User::where('email', $email)->first();
+
+        // If the user doesn't exist, return an error
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+
+        // Check if the user's email is verified
+        $isVerified = !is_null($user->email_verified_at);
+
+        // Return the verification status
+        return response()->json(['isVerified' => $isVerified]);
     }
-
-    if ($user->markEmailAsVerified()) {
-        event(new Verified($user));
-    }
-
-    return response(['message' => 'Email verified successfully.']);
-    }
-
-    
-  
-
-public function checkVerificationStatus($email) {
-    // Find the user by email
-    $user = User::where('email', $email)->first();
-
-    // If the user doesn't exist, return an error
-    if (!$user) {
-        return response()->json(['error' => 'User not found'], 404);
-    }
-
-    // Check if the user's email is verified
-    $isVerified = !is_null($user->email_verified_at);
-
-    // Return the verification status
-    return response()->json(['isVerified' => $isVerified]);
-}
-
 }

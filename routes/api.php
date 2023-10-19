@@ -150,6 +150,8 @@ Route::post('/Auth/logout', [AuthController::class, 'logout']);
 Route::post('/payResult', [PaymentsController::class, 'notifyResponse']);
 
 // Route::get('/add', [PokemonController::class, 'add']);
-
+// 驗證信回傳接收
 Route::get('email/verify/{id}/{hash}', [AuthController::class, 'verifyEmail'])->name('verification.verify');
+
+
 Route::get('/checkVerificationStatus/{email}', [AuthController::class, 'checkVerificationStatus']);
