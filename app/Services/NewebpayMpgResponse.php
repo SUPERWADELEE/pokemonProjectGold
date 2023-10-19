@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 namespace App\Services;
 
 use Illuminate\Support\Facades\Crypt;
@@ -8,8 +9,8 @@ use Illuminate\Support\Facades\Log;
 
 class NewebpayMpgResponse
 {
-    protected $key; 
-    protected $iv; 
+    protected $key;
+    protected $iv;
     public $status;
     public $message;
     public $result;
@@ -25,10 +26,10 @@ class NewebpayMpgResponse
             Log::error('TradeInfo not found in params:', $params);
             return;
         }
-
+        
         // 2. 解密TradeInfo
         $decryptedString = $this->decrypt($params);
-    
+
         // 3. 將解密的字符串從JSON轉為陣列
         $tradeData = json_decode($decryptedString, true);
         if (json_last_error() !== JSON_ERROR_NONE) {
@@ -37,28 +38,24 @@ class NewebpayMpgResponse
             return;
         }
 
-        $this->status = $tradeData['Result']['Status'];
-        return $this->isSuccess();
-    
+        $this->status = $tradeData['Status'] ?? null;
+        // $this->status = $tradeData['Result']['Status'];
+        // return $this->isSuccess();
     }
-    
+
 
     public function isSuccess()
     {
-        return $this->status === 'Success';
+        return $this->status === 'SUCCESS';
     }
 
     private function decrypt($encrypted_data)
     {
-        $edata1=$this->strippadding(openssl_decrypt(hex2bin($encrypted_data), "AES-256-CBC",
-        $this->key, OPENSSL_RAW_DATA|OPENSSL_ZERO_PADDING, $this->iv));
-
-        
-        // $decipher = openssl_decrypt($encrypted_data, 'AES-256-CBC', $this->key, OPENSSL_RAW_DATA, $this->iv);
-        return $this->stripPadding($edata1);
+        return $this->stripPadding(openssl_decrypt(hex2bin($encrypted_data), "AES-256-CBC", $this->key, OPENSSL_RAW_DATA | OPENSSL_ZERO_PADDING, $this->iv));
     }
-    
-    function strippadding($string) {
+
+    function stripPadding($string)
+    {
         $slast = ord(substr($string, -1));
         $slastc = chr($slast);
         $pcheck = substr($string, -$slast);
@@ -67,5 +64,6 @@ class NewebpayMpgResponse
             return $string;
         } else {
             return false;
-        }}
+        }
+    }
 }

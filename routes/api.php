@@ -146,6 +146,8 @@ Route::post('/register', [RegisterController::class, 'register']);
 Route::post('/Auth/login', [AuthController::class, 'login']);
 // 登出
 Route::post('/Auth/logout', [AuthController::class, 'logout']);
+
+
 // Route::post('pokemons/add', [PokemonController::class, 'add']);
 Route::post('/payResult', [PaymentsController::class, 'notifyResponse']);
 
