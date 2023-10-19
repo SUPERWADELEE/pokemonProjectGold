@@ -11,7 +11,7 @@ class RegisterController extends Controller
 {
     public function register(Request $request)
     {
-        // dd('fuck');
+       
         // 1. 驗證輸入
         // 每個email在users表單都是唯一的
         // 密碼需要做確認
