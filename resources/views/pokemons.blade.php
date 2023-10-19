@@ -90,6 +90,7 @@
           <button onclick="pokemonsIndex()" class="mt-6 px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-600">我的寶可夢</button>
           <button onclick="fetchPokemons()" class="mt-6 px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-600">寶可夢商品列表</button>
           <button onclick="ordersIndex()" class="mt-6 px-4 py-2 font-bold text-white bg-red-500 rounded-full hover:bg-blue-600">訂單列表</button>
+          <button onclick="userProfile()" class="mt-6 px-4 py-2 font-bold text-white bg-red-500 rounded-full hover:bg-blue-600">個人頁面</button>
         </div>
 
 
@@ -115,10 +116,9 @@
   <div id="ordersIndex"></div>
   <div id="orderDetails"></div>
   <div id="pagination"></div>
-  <div id="shoppingCart">
-    
-  </div>
+  <div id="shoppingCart"></div>
   <div id="purchasedDetail"></div>
+  <div id="userProfile"></div>
   </div>
   </div>
 

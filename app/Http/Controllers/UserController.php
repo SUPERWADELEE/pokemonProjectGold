@@ -6,9 +6,31 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UserController extends Controller
 {
+    
+    public function show(){
+        $user = JWTAuth::parseToken()->authenticate();
+
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+
+        $userData = User::select('id', 'name')->where('id', $user->id)->first();
+
+        return response()->json($userData);
+
+    }
+
+    // public function show(Pokemon $pokemon)
+    // {
+    //     $this->authorize('show', $pokemon);
+    //     $pokemon->load(['user', 'ability', 'nature', 'race']);
+    //     return PokemonResource::make($pokemon);
+    // }
+
     // 超級使用者更改權限功能
     public function changeUserStatus(User $user)
     {

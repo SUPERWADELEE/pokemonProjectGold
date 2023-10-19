@@ -113,7 +113,8 @@ Route::middleware('auth:api', 'checkStatus', 'throttle:100000,1')->group(functio
     /**
      * user管理
      */
-
+        // 使用者細節
+    Route::get('user', [UserController::class, 'show']);
     Route::patch('users/{user}/status', [UserController::class, 'changeUserStatus']);
     Route::patch('users/{user}/changePassword', [UserController::class, 'changePassword']);
 
@@ -137,6 +138,8 @@ Route::middleware('auth:api', 'checkStatus', 'throttle:100000,1')->group(functio
 
     // 購買金流
     Route::post('payments', [PaymentController::class, 'checkout']);
+    
+    
 });
 
 // 註冊
@@ -150,6 +153,8 @@ Route::post('/Auth/logout', [AuthController::class, 'logout']);
 
 // Route::post('pokemons/add', [PokemonController::class, 'add']);
 Route::post('/payResult', [PaymentsController::class, 'notifyResponse']);
+
+
 
 // Route::get('/add', [PokemonController::class, 'add']);
 // 驗證信回傳接收
