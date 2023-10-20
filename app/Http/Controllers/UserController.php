@@ -6,23 +6,67 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UserController extends Controller
 {
     
     public function show(){
+  
         $user = JWTAuth::parseToken()->authenticate();
 
         if (!$user) {
             return response()->json(['error' => 'User not found'], 404);
         }
 
-        $userData = User::select('id', 'name')->where('id', $user->id)->first();
+        $userData = User::select('name','photo','email')->where('id', $user->id)->first();
 
         return response()->json($userData);
 
     }
+
+    public function update(Request $request)
+{
+    $user = JWTAuth::parseToken()->authenticate();
+
+    // 驗證上傳的檔案以及其他輸入字段
+    $validatedData = $request->validate([
+        'userPhoto' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // "sometimes" 代表此欄位為可選
+        'name' => 'sometimes|required|max:255', // "sometimes" 代表此欄位為可選
+        'email' => 'sometimes|required|email|unique:users,email,' . $user->id // "sometimes" 代表此欄位為可選
+    ]);
+
+    // 檢查是否上傳了圖片
+    if ($request->hasFile('userPhoto')) {
+        // 刪除舊圖片
+        if ($user->photo && file_exists(public_path($user->photo))) {
+            unlink(public_path($user->photo));
+        }
+    
+        // 獲取檔案的副檔名
+        $extension = $request->userPhoto->extension();
+    
+        // 創建一個新的檔案名稱，這裡是使用當前時間戳加上副檔名
+        $imageName = time() . '.' . $extension;
+    
+        // 將檔案移動到 public/images 目錄下
+        $request->userPhoto->move(public_path('images'), $imageName);
+    
+        // 更新使用者的照片欄位
+        $user->photo = 'images/' . $imageName;
+        $user->save();  // 保存更新的圖片路徑
+    }
+    
+
+    // dd('fuck');
+    // 更新其他已驗證的請求數據
+    
+    // unset($validatedData['userPhoto']);  // 去掉userPhoto，因為我們已經手動處理了
+    $user->update($validatedData);
+
+    return response()->json(['message' => 'Profile updated successfully!', 'image_path' => $user->photo ?? null], 200);
+}
 
     // public function show(Pokemon $pokemon)
     // {

@@ -13,12 +13,30 @@ class PaymentsController extends Controller
 {
     public function notifyResponse(Request $request)
     {
-        Log::info('Payment Callback Received:', ['TradeInfo' => $request->all()]);
+        Log::info('Payment Callback Received:', ['TradeInfo' => $request->input()]);
 
+
+        Log::info('Payment Callback Received:', ['TradeInfo' => $request->input('TradeInfo')]);
 
         // 解碼
         $tradeData = new NewebpayMpgResponse($request->input('TradeInfo'));
+        $key = config('payment.key');
+        $iv = config('payment.iv');
 
+        $tradeSha = $request->input('TradeSha');
+        
+
+        $hashs = "HashKey=" . $key . "&" .$request->input('TradeInfo') . "&HashIV=" . $iv;
+        $hash = strtoupper(hash("sha256", $hashs ));
+
+        Log::info('Payment Callback Received:', ['result8' => $hash]);
+
+        if($hash == $tradeSha){
+            Log::info('Payment Callback Received:', ['result7' => 'success']);
+        }
+        // if($tradeData->checkSha($tradeSha)){
+        //     Log::info('result5', ['MerchantID' => 'success']);
+        // }
 
         // 確認交易是否成功
         if (!$tradeData->isSuccess()) {
@@ -32,9 +50,9 @@ class PaymentsController extends Controller
             // 'transactionDetails' => $tradeData->result, // 假設您想將交易細節傳給視圖
         ];
 
-        Log::info('Payment Callback Received:', ['TradeInfo' => $tradeData]);
-        Mail::to('elvis122545735@gmail.com') // 使用者的電子郵件地址
-        ->send(new TransactionSuccessMail($userData));
+        // Log::info('Payment Callback Received:', ['TradeInfo' => $tradeData]);
+        // Mail::to('elvis122545735@gmail.com') // 使用者的電子郵件地址
+        // ->send(new TransactionSuccessMail($userData));
           
 
 

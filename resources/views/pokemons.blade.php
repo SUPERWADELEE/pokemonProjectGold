@@ -141,6 +141,7 @@
 
     
   </script>
+    <script src="{{ Vite::asset('resources/js/userProfile.js') }}"></script> 
   <script src="{{ Vite::asset('resources/js/ordersIndex.js') }}"></script> 
    <script src="{{ Vite::asset('resources/js/createOrder.js') }}"></script> 
  <script src="{{ Vite::asset('resources/js/returnIndex.js') }}"></script> 

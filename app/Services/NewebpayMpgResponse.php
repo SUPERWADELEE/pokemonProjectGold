@@ -16,6 +16,12 @@ class NewebpayMpgResponse
     public $result;
     public $order_no;
     public $trans_no;
+    public $MerchantID;
+    public $Amt;
+    public $MerchantOrderNo;
+    public $TradeNo;
+
+   
 
     public function __construct($params)
     {
@@ -39,7 +45,26 @@ class NewebpayMpgResponse
         }
 
         $this->status = $tradeData['Status'] ?? null;
-      
+        Log::error('result', $tradeData);
+        // Log::error('result1', ['MerchantID' => $tradeData["Result"]["MerchantID"]]);
+        $this->MerchantID =$tradeData["Result"]["MerchantID"]; 
+
+        $this->Amt=$tradeData["Result"]["Amt"];
+
+        $this->MerchantOrderNo=$tradeData["Result"]["MerchantOrderNo"];
+
+        $this->TradeNo=$tradeData["Result"]["TradeNo"];
+
+        
+
+
+        Log::error('result1', ['MerchantID' => $this->MerchantID]);
+
+        Log::error('result2', ['MerchantID' => $this->Amt]);
+
+
+        Log::error('result3', ['MerchantID' => $this->MerchantOrderNo]);
+        Log::error('result4', ['MerchantID' => $this->TradeNo]);
         return $tradeData;
     }
 
@@ -64,6 +89,26 @@ class NewebpayMpgResponse
             return $string;
         } else {
             return false;
+        }
+    }
+
+    function checkSha($tradeSha){
+        $check_code = array(
+            "MerchantID" =>$this->MerchantID,
+            "Amt" => $this->Amt,
+            "MerchantOrderNo" => $this->MerchantOrderNo,
+            "TradeNo" => $this->TradeNo
+        );
+        ksort($check_code);
+        $check_str = http_build_query($check_code);
+        $CheckCode = "HashIV=".$this->iv."&$check_str&HashKey=".$this->key."";
+        $CheckCode = strtoupper(hash("sha256", $CheckCode));
+
+        Log::error('result5', ['MerchantID' => $CheckCode]);
+         
+
+        if ($tradeSha ==$CheckCode){
+            return true;
         }
     }
 }

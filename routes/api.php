@@ -115,6 +115,7 @@ Route::middleware('auth:api', 'checkStatus', 'throttle:100000,1')->group(functio
      */
         // 使用者細節
     Route::get('user', [UserController::class, 'show']);
+    Route::post('user', [UserController::class, 'update']);
     Route::patch('users/{user}/status', [UserController::class, 'changeUserStatus']);
     Route::patch('users/{user}/changePassword', [UserController::class, 'changePassword']);
 
