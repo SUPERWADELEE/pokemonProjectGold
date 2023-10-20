@@ -1,6 +1,8 @@
 function userProfile(){
     document.getElementById('pokemonContainer').style.display = 'none';
-
+    document.getElementById('userProfile').style.display = 'block';
+    document.getElementById('ordersIndex').style.display = 'none';
+    document.getElementById('pagination').style.display = 'none';
     const apiURL = 'http://localhost:8000/api/user';
     const token = localStorage.getItem('jwtToken');
     fetch(apiURL, {
@@ -49,6 +51,8 @@ function userProfile(){
             <input type="file" id="userPhoto" name="userPhoto" class="mb-4">
     
             <button onclick="updateUserDetails()" class="px-4 py-2 font-bold text-white bg-blue-500 w-full rounded-full hover:bg-blue-600">更新資料</button>
+
+            <button onclick="returnIndex()" class="px-4 py-2 font-bold text-white bg-red-500 w-full rounded-full hover:bg-blue-600">返回主頁</button>
         `;
     
         userDiv.appendChild(userDetailsContainer);
@@ -83,6 +87,11 @@ function userProfile(){
         .then(response => response.json())
         .then(data => {
             // 處理返回的資料，例如更新畫面或提示使用者
+            document.getElementById('pokemonContainer').style.display = 'block';
+            document.getElementById('userProfile').style.display = 'none';
+            alert('你已新增成功');
+
+
         })
         .catch(error => {
             console.error('Error:', error);

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UserController extends Controller
@@ -39,24 +40,31 @@ class UserController extends Controller
 
     // 檢查是否上傳了圖片
     if ($request->hasFile('userPhoto')) {
-        // 刪除舊圖片
-        if ($user->photo && file_exists(public_path($user->photo))) {
-            unlink(public_path($user->photo));
+        // 刪除 S3 上的舊圖片
+        if ($user->photo) {
+            $parsedUrl = parse_url($user->photo);
+            $path = ltrim($parsedUrl['path'], '/');
+            Storage::disk('s3')->delete($path);
         }
+        
     
         // 獲取檔案的副檔名
         $extension = $request->userPhoto->extension();
     
-        // 創建一個新的檔案名稱，這裡是使用當前時間戳加上副檔名
+        // 創建一個新的檔案名稱
         $imageName = time() . '.' . $extension;
     
-        // 將檔案移動到 public/images 目錄下
-        $request->userPhoto->move(public_path('images'), $imageName);
+        // 上傳圖片到 S3
+        Storage::disk('s3')->put($imageName, file_get_contents($request->userPhoto));
+    
+        // 獲取檔案的完整 URL
+        $imageUrl = Storage::disk('s3')->url($imageName);
     
         // 更新使用者的照片欄位
-        $user->photo = 'images/' . $imageName;
-        $user->save();  // 保存更新的圖片路徑
+        $user->photo = $imageUrl;
+        $user->save();
     }
+    
     
 
     // dd('fuck');
