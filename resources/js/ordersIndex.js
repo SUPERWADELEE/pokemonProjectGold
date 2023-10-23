@@ -3,7 +3,8 @@ function ordersIndex(){
     document.getElementById('pokemonDetail').style.display = 'none';
     document.getElementById('pokemonList').style.display = 'none';
     document.getElementById('ordersIndex').style.display = 'block';
-    document.getElementById('orderDetails').style.display = 'none'; 
+    document.getElementById('orderDetails').style.display = 'none';
+    document.getElementById('pagination').style.display = 'none';  
     const token = localStorage.getItem('jwtToken');
 
   fetch('http://localhost:8000/api/orders/', {

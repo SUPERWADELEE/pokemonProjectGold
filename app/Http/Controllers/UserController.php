@@ -31,14 +31,14 @@ class UserController extends Controller
 
     public function update(UserRequest $request)
     {
-       
+
         $user = JWTAuth::parseToken()->authenticate();
         $validatedData = $request->validated();
-        
-       
+
+
         // 更新其他已驗證的請求數據
         $user->update($validatedData);
-        
+
         // 如果上傳了檔案，生成 presigned URL
         if ($request->hasFile('userPhoto')) {
             $file = $request->file('userPhoto');

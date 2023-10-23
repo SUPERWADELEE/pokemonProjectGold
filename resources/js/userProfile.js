@@ -106,17 +106,18 @@ function userProfile(){
                 // 使用前端 fetch API 上傳檔案到 AWS S3
                 return fetch(data.presignedUrl, {
                     method: 'PUT',
-                    // headers: {
-                    //     'Content-Type': userPhotoFile.type,
-                    //     'x-amz-content-sha256': 'UNSIGNED-PAYLOAD' // 如前述說明，可能需要這一行，視您的 AWS 設定而定
-                    // },
+                   
                     body: userPhotoFile
                 })
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
                     }
+                    alert('您已更新成功');
+                    fetchUserAvatar(); 
+                    returnIndex();
                     return response.statusText;
+                    
                 });
             }
         })
@@ -125,33 +126,6 @@ function userProfile(){
         });
     }        
     
-    
-    // function updateUserDetails() {
-    //     const apiURL = 'http://localhost:8000/api/user';  // 請注意路徑可能需要修改
-    
-    //     // 使用 JavaScript 原生物件來創建請求主體
-    //     const requestBody = {
-    //         name: document.getElementById('userName').value,
-    //         email: document.getElementById('userEmail').value
-    //     };
-    
-    //     const token = localStorage.getItem('jwtToken');
-    //     fetch(apiURL, {
-    //         method: 'PATCH',  // 或者 'PUT'，取決於你的API
-    //         headers: {
-    //             'Accept': 'application/json',
-    //             'Content-Type': 'application/json', // 設定內容類型為 JSON
-    //             'Authorization': 'Bearer ' + token
-    //         },
-    //         body: JSON.stringify(requestBody) // 把 JavaScript 物件轉換為 JSON 字串
-    //     })
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         // 處理返回的資料，例如更新畫面或提示使用者
-    //     })
-    //     .catch(error => {
-    //         console.error('Error:', error);
-    //     });
-    // }
+  
     
 
