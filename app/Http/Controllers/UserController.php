@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,40 +29,26 @@ class UserController extends Controller
         return response()->json($userData);
     }
 
-    public function update(Request $request)
+    public function update(UserRequest $request)
     {
-
+       
         $user = JWTAuth::parseToken()->authenticate();
-        // 驗證上傳的檔案以及其他輸入字段...
-        // ...
-        $validatedData = $request->validate([
-            'userPhoto' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // "sometimes" 代表此欄位為可選
-            'name' => 'sometimes|required|max:255', // "sometimes" 代表此欄位為可選
-            'email' => 'sometimes|required|email|unique:users,email,' . $user->id // "sometimes" 代表此欄位為可選
-        ]);
+        $validatedData = $request->validated();
+        
+       
         // 更新其他已驗證的請求數據
         $user->update($validatedData);
-
-        // 初始化回應數據
-        $responseData = ['message' => 'Profile updated successfully!'];
-
+        
         // 如果上傳了檔案，生成 presigned URL
         if ($request->hasFile('userPhoto')) {
             $file = $request->file('userPhoto');
             $filename = time() . '.' . $file->extension();
             $filetype = $file->getClientMimeType();
 
-            // 
-            $s3Client = new S3Client([
-                'version' => 'latest',
-                'region' => env('AWS_DEFAULT_REGION'),
-                'credentials' => [
-                    'key'    => env('AWS_ACCESS_KEY_ID'),
-                    'secret' => env('AWS_SECRET_ACCESS_KEY'),
-                ]
-            ]);
+            //產生Ｓ３client物件
+            $s3Client = $this->createS3Client();
 
-            // 取得路徑x
+            // 取得路物件
             // 設定Ｓ3檔案路徑
             $filePath = 'userPhotos/' . $filename;
 
@@ -71,17 +58,8 @@ class UserController extends Controller
             // 最終此上傳圖片的ＵＲＬ
             $fullS3Url = $baseS3Url . $filePath;
 
-            //    定義presigned URL
-            $cmd = $s3Client->getCommand('PutObject', [
-                'Bucket' => env('AWS_BUCKET'),
-                'Key'    => $filePath,
-                // 'ACL'    => 'public-read',
-                'ContentType' => $filetype,
-            ]);
-
-            // 使用 AWS SDK 來生成 presigned URL
-            $requestObj = $s3Client->createPresignedRequest($cmd, '+10 minutes');
-            $presignedUrl = (string) $requestObj->getUri();
+            // 產生presignedUrl
+            $presignedUrl = $this->generatePresignedUrl($s3Client, $filePath, $filetype);
 
             // 這個URL會給前端拿來當成ＵＲＬ
             $responseData['presignedUrl'] = $presignedUrl;
@@ -97,6 +75,31 @@ class UserController extends Controller
             // 注意：這邊你應該將 $responseData 回傳給前端
             return response()->json($responseData);
         }
+    }
+
+
+    public function createS3Client()
+    {
+        return new S3Client([
+            'version' => 'latest',
+            'region' => config('filesystems.disks.s3.region'),
+            'credentials' => [
+                'key' => config('filesystems.disks.s3.key'),
+                'secret' => config('filesystems.disks.s3.secret'),
+            ],
+        ]);
+    }
+
+    public function generatePresignedUrl(S3Client $s3Client, $filePath, $filetype)
+    {
+        $cmd = $s3Client->getCommand('PutObject', [
+            'Bucket' => config('filesystems.disks.s3.bucket'),
+            'Key'    => $filePath,
+            'ContentType' => $filetype,
+        ]);
+
+        $requestObj = $s3Client->createPresignedRequest($cmd, '+10 minutes');
+        return (string) $requestObj->getUri();
     }
 
     // 超級使用者更改權限功能
