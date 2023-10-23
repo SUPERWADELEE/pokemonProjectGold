@@ -54,7 +54,19 @@ function userProfile(){
 
             <button onclick="returnIndex()" class="px-4 py-2 font-bold text-white bg-red-500 w-full rounded-full hover:bg-blue-600">返回主頁</button>
         `;
-    
+        const userPhotoInput = userDetailsContainer.querySelector('#userPhoto');
+        const userPhotoImage = userDetailsContainer.querySelector('#userPhotoImage');
+        
+        userPhotoInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    userPhotoImage.src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
         userDiv.appendChild(userDetailsContainer);
         userProfile.appendChild(userDiv);
     }
@@ -70,33 +82,48 @@ function userProfile(){
     
         // 添加檔案到 FormData
         const userPhotoFile = document.getElementById('userPhoto').files[0];
-        // console.log(userPhotoFile);
         if (userPhotoFile) {
             formData.append('userPhoto', userPhotoFile);
         }
-       
+    
         const token = localStorage.getItem('jwtToken');
+
         fetch(apiURL, {
             method: 'POST',  // 或者 'PUT'，取決於你的API
             headers: {
-                // 'Accept': 'application/json',
                 'Authorization': 'Bearer ' + token
             },
             body: formData
         })
-        .then(response => response.json())
+        .then(response => {
+            console.log('Raw response:', response);
+            return response.json();
+        })
+        
         .then(data => {
-            // 處理返回的資料，例如更新畫面或提示使用者
-            document.getElementById('pokemonContainer').style.display = 'block';
-            document.getElementById('userProfile').style.display = 'none';
-            alert('你已新增成功');
-
-
+            console.log(data.presignedUrl);
+            if (data.presignedUrl && userPhotoFile) {
+                // 使用前端 fetch API 上傳檔案到 AWS S3
+                return fetch(data.presignedUrl, {
+                    method: 'PUT',
+                    // headers: {
+                    //     'Content-Type': userPhotoFile.type,
+                    //     'x-amz-content-sha256': 'UNSIGNED-PAYLOAD' // 如前述說明，可能需要這一行，視您的 AWS 設定而定
+                    // },
+                    body: userPhotoFile
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.statusText;
+                });
+            }
         })
         .catch(error => {
-            console.error('Error:', error);
+            console.log('There was a problem with the fetch operation:', error.message);
         });
-    }
+    }        
     
     
     // function updateUserDetails() {
