@@ -54,6 +54,7 @@ return [
             'endpoint' => env('AWS_ENDPOINT'),
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
             'throw' => false,
+            'base_s3_url'=>env('BASE_S3_URL')
         ],
 
     ],

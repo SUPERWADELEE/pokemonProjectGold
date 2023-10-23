@@ -82,7 +82,12 @@
     <div class="flex justify-end space-x-4 mr-4 mt-4">
       <button onclick="fetchShoppingCart()" class="px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-red-600">購物車</button>
     </div>
+    <div id="avatarContainer" class="ml-4 mt-4">
+    <img id="avatar" src="" alt="User Avatar" class="w-64 h-64 rounded-full">
+</div>
 
+
+    
     <div class="bg-white py-24 sm:py-32">
       <div class="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
         <div class="max-w-2xl">
@@ -90,6 +95,7 @@
           <button onclick="pokemonsIndex()" class="mt-6 px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-600">我的寶可夢</button>
           <button onclick="fetchPokemons()" class="mt-6 px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-600">寶可夢商品列表</button>
           <button onclick="ordersIndex()" class="mt-6 px-4 py-2 font-bold text-white bg-red-500 rounded-full hover:bg-blue-600">訂單列表</button>
+          <button onclick="userProfile()" class="mt-6 px-4 py-2 font-bold text-white bg-red-500 rounded-full hover:bg-blue-600">個人頁面</button>
         </div>
 
 
@@ -115,10 +121,9 @@
   <div id="ordersIndex"></div>
   <div id="orderDetails"></div>
   <div id="pagination"></div>
-  <div id="shoppingCart">
-    
-  </div>
+  <div id="shoppingCart"></div>
   <div id="purchasedDetail"></div>
+  <div id="userProfile"></div>
   </div>
   </div>
 
@@ -140,7 +145,10 @@
     
 
     
+    </script>
+    <script src="{{ Vite::asset('resources/js/fetchUserAvatar.js') }}"></script>    
   </script>
+    <script src="{{ Vite::asset('resources/js/userProfile.js') }}"></script> 
   <script src="{{ Vite::asset('resources/js/ordersIndex.js') }}"></script> 
    <script src="{{ Vite::asset('resources/js/createOrder.js') }}"></script> 
  <script src="{{ Vite::asset('resources/js/returnIndex.js') }}"></script> 

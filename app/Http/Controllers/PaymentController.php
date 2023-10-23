@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 
 class PaymentController extends Controller
 {
@@ -44,12 +45,13 @@ class PaymentController extends Controller
         $hash = strtoupper(hash("sha256", $hashs));
 
 
-        // dd('fuck');
+       
         return response()->json([
             'payment_url' => $payment,
             'mid' => $mid,
             'edata1' => $encodedData,
             'hash' => $hash
         ]);
-    }
+
+           }
 }

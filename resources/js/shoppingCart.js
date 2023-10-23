@@ -1,6 +1,8 @@
 // 由使用者點選購物車後觸發
 function fetchShoppingCart() {
     document.getElementById('shoppingCart').style.display = 'block';
+    document.getElementById('shoppingCart').style.display = 'block';
+    document.getElementById('ordersIndex').style.display = 'none';
     // 假設API的URL是 'https://your-backend.com/api/cart'
     const apiUrl = 'http://localhost:8000/api/cart_items';
     const token = localStorage.getItem('jwtToken');

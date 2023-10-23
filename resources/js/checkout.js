@@ -12,12 +12,8 @@ fetch('http://localhost:8000/api/payments', {
       'Accept': 'application/json'
     },
 
-    body: JSON.stringify(dataToSend)
-
-    
+    body: JSON.stringify(dataToSend) 
   })
-
-
 
   .then(response => {
     if (!response.ok) {
