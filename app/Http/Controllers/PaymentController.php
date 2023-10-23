@@ -2,15 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CartItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class PaymentController extends Controller
 {
     public function checkout(Request $request)
     {
+        // 获取当前经过身份验证的用户
+        $user = JWTAuth::parseToken()->authenticate();
+
+        // 获取用户的ID
+        $userId = $user->id;
+
+        // 更新与该用户关联的购物车项目的结账状态
+        CartItem::where('user_id', $userId)->update(['checkout_status' => 'checked']);
+
         $totalPrice = $request->input('totalPrice');
 
         $key = config('payment.key');
@@ -45,13 +56,12 @@ class PaymentController extends Controller
         $hash = strtoupper(hash("sha256", $hashs));
 
 
-       
+
         return response()->json([
             'payment_url' => $payment,
             'mid' => $mid,
             'edata1' => $encodedData,
             'hash' => $hash
         ]);
-
-           }
+    }
 }

@@ -14,6 +14,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PaymentsController;
+use App\Http\Controllers\PaymentsResponseController;
 use App\Http\Controllers\RaceController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ShoppingCartController;
@@ -77,43 +78,10 @@ Route::middleware('auth:api', 'checkStatus', 'throttle:100000,1')->group(functio
     Route::get('races/{race}/evolutionLevel', [RaceController::class, 'evolutionLevel']);
     Route::get('races/{race}/skill', [RaceController::class, 'skills']);
 
-
-    // Route::middleware('auth:api', 'checkStatus', 'throttle:100,1' )->group(function () {
-
-    //     /**
-    //      * pokemon管理
-    //      */
-    //     Route::get('pokemons/search', [PokemonController::class, 'search']);
-
-
-    //     Route::put('pokemons/{pokemon}/evolution', [PokemonController::class, 'evolution']);
-
-    //     /**
-    //      * natural管理
-    //      */
-    //     Route::get('natures', [NatureController::class, 'index']);
-    //     Route::post('natures', [NatureController::class, 'store']);
-    //     Route::patch('natures/{nature}', [NatureController::class, 'update']);
-
-    //     /**
-    //      * ability管理
-    //      */
-    //     Route::get('abilities', [AbilityController::class, 'index']);
-    //     Route::post('abilities', [AbilityController::class, 'store']);
-    //     Route::patch('abilities/{ability}', [AbilityController::class, 'update']);
-
-    //     /**
-    //      * race管理
-    //      */
-    //     Route::get('races', [RaceController::class, 'index']);
-    //     Route::get('races/{race}/evolutionLevel', [RaceController::class, 'evolutionLevel']);
-    //     Route::get('races/{race}/skill', [RaceController::class, 'skills']);
-
-
     /**
      * user管理
      */
-        // 使用者細節
+    // 使用者細節
     Route::get('user', [UserController::class, 'show']);
     Route::post('user', [UserController::class, 'update']);
     Route::patch('users/{user}/status', [UserController::class, 'changeUserStatus']);
@@ -139,8 +107,6 @@ Route::middleware('auth:api', 'checkStatus', 'throttle:100000,1')->group(functio
 
     // 購買金流
     Route::post('payments', [PaymentController::class, 'checkout']);
-    
-    
 });
 
 // 註冊
@@ -153,7 +119,7 @@ Route::post('/Auth/logout', [AuthController::class, 'logout']);
 
 
 // Route::post('pokemons/add', [PokemonController::class, 'add']);
-Route::post('/payResult', [PaymentsController::class, 'notifyResponse']);
+Route::post('/payResult', [PaymentsResponseController::class, 'notifyResponse']);
 
 
 

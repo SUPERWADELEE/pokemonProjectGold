@@ -8,6 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class TransactionSuccessMail extends Mailable
 {
@@ -22,11 +23,7 @@ class TransactionSuccessMail extends Mailable
         $this->data = $data;
     }
 
-    // public function build()
-    // {
-    //     return $this->view('emails/transaction_success')
-    //                 ->with('data', $this->data);
-    // }
+   
 
     /**
      * Get the message envelope.
@@ -43,6 +40,7 @@ class TransactionSuccessMail extends Mailable
      */
     public function content(): Content
     {
+        Log::info('Payment Callback Received:', ['Result' => 'Success']);
         return new Content(
             view: 'emails/transaction_success',
         );
