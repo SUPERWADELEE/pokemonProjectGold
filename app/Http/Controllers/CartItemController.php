@@ -59,6 +59,7 @@ class CartItemController extends Controller
                 'current_price' => $racePrice,
                 'race_id' => $request->race_id,
                 
+                
             ]);
         }
     }
