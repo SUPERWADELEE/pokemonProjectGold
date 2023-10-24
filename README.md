@@ -1,66 +1,70 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## **項目名稱**：
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+寶可夢購物車。
 
-## About Laravel
+## **項目簡介**：
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+這個是一個用來線習開發API、前端畫面的專案，後端主要用laravel，前端用html、css、搭配原生js。
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 主要功能：
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 註冊、登入、登出
 
-## Learning Laravel
+基本的註冊功能(使用者輸入email及密碼認證)。
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+登入除了一般登入以外還有第三方登入。
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+![截圖 2023-10-17 下午10.10.01.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dc365df8-45a7-4023-bb4d-d8ccfc3d31e5/391eb16c-e84e-470d-8ed5-6abf8d879682/%E6%88%AA%E5%9C%96_2023-10-17_%E4%B8%8B%E5%8D%8810.10.01.png)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 寶可夢商品列表
 
-## Laravel Sponsors
+我的商品就是很多的寶可夢。
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+然後點選寶可夢列表，他會出現一千多隻寶可夢。
 
-### Premium Partners
+點選寶可夢圖片可以加入購物車。
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+![截圖 2023-10-17 下午10.13.31.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dc365df8-45a7-4023-bb4d-d8ccfc3d31e5/d33ab481-77a9-4080-b31d-5940dd2037c9/%E6%88%AA%E5%9C%96_2023-10-17_%E4%B8%8B%E5%8D%8810.13.31.png)
 
-## Contributing
+### 購物車選單
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+加入購物車的寶可夢會進到購物車清單裡
 
-## Code of Conduct
+![截圖 2023-10-17 下午10.16.07.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dc365df8-45a7-4023-bb4d-d8ccfc3d31e5/8109186e-d8a7-460d-9169-bc5f874de293/%E6%88%AA%E5%9C%96_2023-10-17_%E4%B8%8B%E5%8D%8810.16.07.png)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 結帳頁面
 
-## Security Vulnerabilities
+這裡我是去串藍星金流API。
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+![截圖 2023-10-17 下午10.18.09.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dc365df8-45a7-4023-bb4d-d8ccfc3d31e5/8cf03761-f1b4-459c-afef-60ae63da6239/%E6%88%AA%E5%9C%96_2023-10-17_%E4%B8%8B%E5%8D%8810.18.09.png)
 
-## License
+### 結帳成功後出現新增寶可夢頁面
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+![截圖 2023-10-17 下午10.21.33.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dc365df8-45a7-4023-bb4d-d8ccfc3d31e5/b23ab123-4b30-43f9-a7db-3dde71b000f0/%E6%88%AA%E5%9C%96_2023-10-17_%E4%B8%8B%E5%8D%8810.21.33.png)
+
+### 新增完以後點選我的寶可夢會出現剛剛新增的寶可夢
+
+![截圖 2023-10-17 下午10.24.08.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dc365df8-45a7-4023-bb4d-d8ccfc3d31e5/7e789293-65b1-4b40-bf5e-24b989c60795/%E6%88%AA%E5%9C%96_2023-10-17_%E4%B8%8B%E5%8D%8810.24.08.png)
+
+### 可以對自己的寶可夢做修改和刪除
+
+![截圖 2023-10-17 下午10.27.27.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dc365df8-45a7-4023-bb4d-d8ccfc3d31e5/ac575c7c-9909-46ad-8052-9ffafcee3630/%E6%88%AA%E5%9C%96_2023-10-17_%E4%B8%8B%E5%8D%8810.27.27.png)
+
+## 用到的技術
+
+部署的基本(AWS)
+
+Token Authentication
+
+- 使用laravel開發API
+    - Ｍiddleware設定
+    - 表單驗證
+    - 自定義表單驗證
+    - 使用resource
+    - ORM操作
+    - 錯誤處理
+- 前端畫面
+    - 基本的html表單操作
+    - 基本的css設定顏色(tailwind)
+    - 基本javascript操作
+        - 使用fetch發api，接收並分析回傳資料，操作html渲染畫面
