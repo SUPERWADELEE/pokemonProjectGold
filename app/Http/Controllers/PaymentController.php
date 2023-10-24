@@ -42,7 +42,7 @@ class PaymentController extends Controller
             'NotifyURL' => $notifyURL,
             'ReturnURL' => $returnURL,
         ));
-        // echo "Data=[" . $data1 . "]<br><br>";
+       
         $encodedData = bin2hex(openssl_encrypt(
             $tradeInfo,
             "AES-256-CBC",
@@ -51,7 +51,7 @@ class PaymentController extends Controller
             $iv
         ));
 
-        // log::info('Received notification:', ['all' => $request->input('TradeInfo')]);
+        
         $hashs = "HashKey=" . $key . "&" . $encodedData . "&HashIV=" . $iv;
         $hash = strtoupper(hash("sha256", $hashs));
 

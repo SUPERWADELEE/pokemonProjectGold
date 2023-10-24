@@ -72,20 +72,6 @@ class PaymentsResponseController extends Controller
     }
     
 
-    // public function sendEmail($emails)
-    // {
-    //     // 交易成功後續動作
-    //     Log::info('Payment Callback Received:', ['Result' => $emails]);
-
-    //     $userData = [
-    //         'name' => 'wade', // 請用真正的使用者名稱替代
-    //         // 'transactionDetails' => $tradeData->result, // 假設您想將交易細節傳給視圖
-    //     ];
-
-        
-    //     Mail::to($emails) // 使用者的電子郵件地址
-    //         ->send(new TransactionSuccessMail($userData));
-    // }
 }
 
 
