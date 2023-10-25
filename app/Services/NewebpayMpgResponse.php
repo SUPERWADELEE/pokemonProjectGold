@@ -45,7 +45,6 @@ class NewebpayMpgResponse
         }
 
         $this->status = $tradeData['Status'] ?? null;
-        Log::error('result', $tradeData);
         // Log::error('result1', ['MerchantID' => $tradeData["Result"]["MerchantID"]]);
         $this->MerchantID =$tradeData["Result"]["MerchantID"]; 
 
@@ -54,17 +53,6 @@ class NewebpayMpgResponse
         $this->MerchantOrderNo=$tradeData["Result"]["MerchantOrderNo"];
 
         $this->TradeNo=$tradeData["Result"]["TradeNo"];
-
-        
-
-
-        Log::error('result1', ['MerchantID' => $this->MerchantID]);
-
-        Log::error('result2', ['MerchantID' => $this->Amt]);
-
-
-        Log::error('result3', ['MerchantID' => $this->MerchantOrderNo]);
-        Log::error('result4', ['MerchantID' => $this->TradeNo]);
         return $tradeData;
     }
 
