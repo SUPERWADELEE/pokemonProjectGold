@@ -8,7 +8,7 @@ function fetchPokemons() {
     document.getElementById('orderDetails').style.display = 'none';
     document.getElementById('pokemonList').style.display = 'block'; 
     const token = localStorage.getItem('jwtToken');
-    fetch(`http://localhost:8000/api/races?page=${currentPage}`, {  // 加入 ?page= 查詢參數
+    fetch(`https://wade.monster/api/races?page=${currentPage}`, {  // 加入 ?page= 查詢參數
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

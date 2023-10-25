@@ -20,7 +20,7 @@
 
   // register function
   function register(name, email, password, password_confirmation) {
-      return fetch('http://localhost:8000/api/register', {
+      return fetch('https://wade.monster/api/register', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

@@ -19,7 +19,7 @@
       race_id:pokemon.id
     };
     const token = localStorage.getItem('jwtToken');
-    fetch('http://localhost:8000/api/cart_items', {
+    fetch('https://wade.monster/api/cart_items', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -76,13 +76,13 @@
   orderDetails.push(pokemon.race_id);
   detailContainer.appendChild(pokemonDiv);
 
-  // fetchAndPopulateDropdown('http://localhost:8000/api/abilities', 'abilities');
-  // fetchAndPopulateDropdown('http://localhost:8000/api/natures', 'natures');
-  // fetchEvolutionLevel(`http://localhost:8000/api/races/${pokemon.race_id}/evolutionLevel`, 'level');
-  // fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${pokemon.race_id}/skill`, 'skill2');
-  // fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${pokemon.race_id}/skill`, 'skill3');
-  // fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${pokemon.race_id}/skill`, 'skill4');
-  // fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${pokemon.race_id}/skill`, 'skill1');
+  // fetchAndPopulateDropdown('https//wade.monster/api/abilities', 'abilities');
+  // fetchAndPopulateDropdown('https//wade.monster/api/natures', 'natures');
+  // fetchEvolutionLevel(`https//wade.monster/api/races/${pokemon.race_id}/evolutionLevel`, 'level');
+  // fetchAndPopulateDropdownSkills(`https//wade.monster/api/races/${pokemon.race_id}/skill`, 'skill2');
+  // fetchAndPopulateDropdownSkills(`https//wade.monster/api/races/${pokemon.race_id}/skill`, 'skill3');
+  // fetchAndPopulateDropdownSkills(`https//wade.monster/api/races/${pokemon.race_id}/skill`, 'skill4');
+  // fetchAndPopulateDropdownSkills(`https//wade.monster/api/races/${pokemon.race_id}/skill`, 'skill1');
   // 為每一個技能和屬性創建下拉菜單
 const abilityDropdownId = `abilities${pokemon.race_id}`;
 const natureDropdownId = `natures${pokemon.race_id}`;
@@ -92,13 +92,13 @@ const skill2DropdownId = `skill2${pokemon.race_id}`;
 const skill3DropdownId = `skill3${pokemon.race_id}`;
 const skill4DropdownId = `skill4${pokemon.race_id}`;
 
-fetchAndPopulateDropdown('http://localhost:8000/api/abilities', abilityDropdownId);
-fetchAndPopulateDropdown('http://localhost:8000/api/natures', natureDropdownId);
-fetchEvolutionLevel(`http://localhost:8000/api/races/${pokemon.race_id}/evolutionLevel`, levelDropdownId);
-fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${pokemon.race_id}/skill`, skill2DropdownId);
-fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${pokemon.race_id}/skill`, skill3DropdownId);
-fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${pokemon.race_id}/skill`, skill4DropdownId);
-fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${pokemon.race_id}/skill`, skill1DropdownId);
+fetchAndPopulateDropdown('https://wade.monster/api/abilities', abilityDropdownId);
+fetchAndPopulateDropdown('https//wade.monster/api/natures', natureDropdownId);
+fetchEvolutionLevel(`https//wade.monster/api/races/${pokemon.race_id}/evolutionLevel`, levelDropdownId);
+fetchAndPopulateDropdownSkills(`https//wade.monster/api/races/${pokemon.race_id}/skill`, skill2DropdownId);
+fetchAndPopulateDropdownSkills(`https//wade.monster/api/races/${pokemon.race_id}/skill`, skill3DropdownId);
+fetchAndPopulateDropdownSkills(`https//wade.monster/api/races/${pokemon.race_id}/skill`, skill4DropdownId);
+fetchAndPopulateDropdownSkills(`https//wade.monster/api/races/${pokemon.race_id}/skill`, skill1DropdownId);
 
 });
 localStorage.setItem('orderDetails', JSON.stringify(orderDetails));

@@ -7,7 +7,7 @@ function ordersIndex(){
     document.getElementById('pagination').style.display = 'none';  
     const token = localStorage.getItem('jwtToken');
 
-  fetch('http://localhost:8000/api/orders/', {
+  fetch('https:/wade.monster/api/orders/', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ function showOrder(orders){
 
 function orderDetailsIndex(order_id){
   const token = localStorage.getItem('jwtToken');
-  fetch(`http://localhost:8000/api/orders/${order_id}/order_details`, {
+  fetch(`https:/wade.monster/api/orders/${order_id}/order_details`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

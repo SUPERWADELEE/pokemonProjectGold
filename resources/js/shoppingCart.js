@@ -4,7 +4,7 @@ function fetchShoppingCart() {
     document.getElementById('shoppingCart').style.display = 'block';
     document.getElementById('ordersIndex').style.display = 'none';
     // 假設API的URL是 'https://your-backend.com/api/cart'
-    const apiUrl = 'http://localhost:8000/api/cart_items';
+    const apiUrl = 'https://wade.monster/api/cart_items';
     const token = localStorage.getItem('jwtToken');
     fetch(apiUrl, {
         method: 'GET',

@@ -4,7 +4,7 @@ function createOrder() {
     const totalPrice = parseInt(localStorage.getItem('totalPrice'), 10);
 
     console.log(totalPrice);
-    fetch('http://localhost:8000/api/orders', {
+    fetch('https://wade.monster/api/orders', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ function createOrder() {
 function createOrderdetails(orderId, race_id){
     const token = localStorage.getItem('jwtToken');
 
-    fetch('http://localhost:8000/api/orders_details', {
+    fetch('https://wade.monster/api/orders_details', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

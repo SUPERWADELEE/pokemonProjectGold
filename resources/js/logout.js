@@ -1,6 +1,6 @@
 function logout() {
   const token = localStorage.getItem('jwtToken');
-  fetch('http://localhost:8000/api/Auth/logout', {
+  fetch('https://wade.monster/api/Auth/logout', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
