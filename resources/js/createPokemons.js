@@ -26,7 +26,7 @@ function createPokemons(raceId, buttonElement) {
 
   // 3. 創建和發送請求
   const token = localStorage.getItem('jwtToken');
-  fetch('http://localhost:8000/api/pokemons', {
+  fetch('https://wade.monster/api/pokemons', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

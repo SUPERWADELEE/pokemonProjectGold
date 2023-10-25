@@ -12,7 +12,7 @@ function showWaitPage(email) {
 
 
 function checkVerificationStatus(email) {
-    fetch(`http://localhost:8000/api/checkVerificationStatus/${email}`)
+    fetch(`https://wade.monster/api/checkVerificationStatus/${email}`)
     .then(response => response.json())
     .then(data => {
         if (data.isVerified) {

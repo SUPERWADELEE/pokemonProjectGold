@@ -10,7 +10,7 @@ function showPurchasedPokemon(){
     document.getElementById('loginPage').style.display = 'none';
     // 由使用者點選購物車後觸發function fetchShoppingCart() {
     // 假設API的URL是 'https://your-backend.com/api/cart'
-    const apiURL = 'http://localhost:8000/api/cart_items';
+    const apiURL = 'https://wade.monster/api/cart_items';
     const token = localStorage.getItem('jwtToken');
     fetch(apiURL, {
         method: 'GET',

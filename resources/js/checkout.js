@@ -4,7 +4,7 @@ const dataToSend = {
     totalPrice: totalPrice
 };
 const token = localStorage.getItem('jwtToken');
-fetch('http://localhost:8000/api/payments', {
+fetch('https://wade.monster/api/payments', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

@@ -7,7 +7,7 @@ function pokemonsIndex() {
     document.getElementById('orderDetails').style.display = 'none'; 
   const token = localStorage.getItem('jwtToken');
 
-  fetch('http://localhost:8000/api/pokemons/', {
+  fetch('https://wade.monster/api/pokemons/', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ function populatePokemons(pokemons) {
 
 function fetchPokemonDetails(id) {
   const token = localStorage.getItem('jwtToken');
-  fetch(`http://localhost:8000/api/pokemons/${id}`, {
+  fetch(`https://wade.monster/api/pokemons/${id}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -123,13 +123,13 @@ pokemonDetail.innerHTML = `
 `;
 
 // 使用您先前的方法填充這些下拉選單
-fetchAndPopulateDropdown('http://localhost:8000/api/abilities', 'abilitiesDropdown');
-fetchAndPopulateDropdown('http://localhost:8000/api/natures', 'naturesDropdown');
-fetchEvolutionLevel(`http://localhost:8000/api/races/${data.race_id}/evolutionLevel`, 'levelDropdown');
-fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${data.race_id}/skill`, 'skill1Dropdown');
-fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${data.race_id}/skill`, 'skill2Dropdown');
-fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${data.race_id}/skill`, 'skill3Dropdown');
-fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${data.race_id}/skill`, 'skill4Dropdown');
+fetchAndPopulateDropdown('https://wade.monster/api/abilities', 'abilitiesDropdown');
+fetchAndPopulateDropdown('https://wade.monster/api/natures', 'naturesDropdown');
+fetchEvolutionLevel(`https://wade.monster/api/races/${data.race_id}/evolutionLevel`, 'levelDropdown');
+fetchAndPopulateDropdownSkills(`https://wade.monster/api/races/${data.race_id}/skill`, 'skill1Dropdown');
+fetchAndPopulateDropdownSkills(`https://wade.monster/api/races/${data.race_id}/skill`, 'skill2Dropdown');
+fetchAndPopulateDropdownSkills(`https://wade.monster/api/races/${data.race_id}/skill`, 'skill3Dropdown');
+fetchAndPopulateDropdownSkills(`https://wade.monster/api/races/${data.race_id}/skill`, 'skill4Dropdown');
 
 
     document.getElementById('pokemon-detail').style.display = 'block';
@@ -173,7 +173,7 @@ fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${data.race_id}/
 
 function sendUpdateRequest(raceId, updatedData) {
   const token = localStorage.getItem('jwtToken');
-  fetch(`http://localhost:8000/api/pokemons/${raceId}`, {
+  fetch(`https://wade.monster/api/pokemons/${raceId}`, {
       method: 'PATCH', // 或其他適當的HTTP方法
       headers: {
         'Content-Type': 'application/json',
@@ -196,7 +196,7 @@ function sendUpdateRequest(raceId, updatedData) {
 
 function deletePokemons(pokemonId){
   const token = localStorage.getItem('jwtToken');
-  fetch(`http://localhost:8000/api/pokemons/${pokemonId}`, {
+  fetch(`https://wade.monster/api/pokemons/${pokemonId}`, {
       method: 'DELETE', // 或其他適當的HTTP方法
       headers: {
         'Content-Type': 'application/json',

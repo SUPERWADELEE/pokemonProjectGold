@@ -21,7 +21,7 @@ function handleLogin() {
   }
 
   function login(email, password) {
-    return fetch('http://localhost:8000/api/Auth/login', {
+    return fetch('https://wade.monster/api/Auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
