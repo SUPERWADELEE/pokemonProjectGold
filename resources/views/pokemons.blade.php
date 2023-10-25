@@ -7,35 +7,35 @@
  
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <script src="http://localhost:8000/js/populateEvolutionDropdown.js"></script>
-  <script src="http://localhost:8000/js/register.js"></script>
-  <script src="http://localhost:8000/js/checkout.js"></script>
-  <script src="http://localhost:8000/js/login.js"></script>
-  <script src="http://localhost:8000/js/createOrder.js"></script>
-  <script src="http://localhost:8000/js/fetchAndPopulateDropdown.js"></script>
-  <script src="http://localhost:8000/js/fetchAndPopulateDropdownSkills.js"></script>
-  <script src="http://localhost:8000/js/fetchUserAvatar.js"></script>
+  <script src="http://localhost/js/populateEvolutionDropdown.js"></script>
+  <script src="http://localhost/js/register.js"></script>
+  <script src="http://localhost/js/checkout.js"></script>
+  <script src="http://localhost/js/login.js"></script>
+  <script src="http://localhost/js/createOrder.js"></script>
+  <script src="http://localhost/js/fetchAndPopulateDropdown.js"></script>
+  <script src="http://localhost/js/fetchAndPopulateDropdownSkills.js"></script>
+  <script src="http://localhost/js/fetchUserAvatar.js"></script>
   
   
-  <script src="http://localhost:8000/js/login.js"></script>
+  <script src="http://localhost/js/login.js"></script>
   
-  <script src="http://localhost:8000/js/logout.js"></script>
+  <script src="http://localhost/js/logout.js"></script>
   
-  <script src="http://localhost:8000/js/ordersIndex.js"></script>
+  <script src="http://localhost/js/ordersIndex.js"></script>
   
-  <script src="http://localhost:8000/js/pokemonsIndex.js"></script>
+  <script src="http://localhost/js/pokemonsIndex.js"></script>
  
-  <script src="http://localhost:8000/js/racesIndex.js"></script>
-  <script src="http://localhost:8000/js/returnIndex.js"></script>
-  <script src="http://localhost:8000/js/shoppingCart.js"></script>
-  <script src="http://localhost:8000/js/showPage.js"></script>
-  <script src="http://localhost:8000/js/showPurchasedPokemon.js"></script>
-  <script src="http://localhost:8000/js/togglePagination.js"></script>
-  <script src="http://localhost:8000/js/updatePokemonDetail.js"></script>
-  <script src="http://localhost:8000/js/userProfile.js"></script>
-  <script src="http://localhost:8000/js/waitEmailVerification.js"></script>
+  <script src="http://localhost/js/racesIndex.js"></script>
+  <script src="http://localhost/js/returnIndex.js"></script>
+  <script src="http://localhost/js/shoppingCart.js"></script>
+  <script src="http://localhost/js/showPage.js"></script>
+  <script src="http://localhost/js/showPurchasedPokemon.js"></script>
+  <script src="http://localhost/js/togglePagination.js"></script>
+  <script src="http://localhost/js/updatePokemonDetail.js"></script>
+  <script src="http://localhost/js/userProfile.js"></script>
+  <script src="http://localhost/js/waitEmailVerification.js"></script>
   
-  <!-- <script src="http://localhost:8000/fetchUserAvatar.js"></script> -->
+  <!-- <script src="http://localhost/fetchUserAvatar.js"></script> -->
   
 
   
