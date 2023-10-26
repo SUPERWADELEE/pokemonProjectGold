@@ -1,6 +1,8 @@
+ // // otherFile.js
+ import { API_DOMAIN } from './config.js';
 function logout() {
   const token = localStorage.getItem('jwtToken');
-  fetch('http://localhost:8000/api/Auth/logout', {
+  fetch(`${API_DOMAIN}/api/Auth/logout`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -27,3 +29,4 @@ function logout() {
       console.error('Logout error:', error);
     });
 }
+window.logout = logout;

@@ -1,10 +1,12 @@
+ // // otherFile.js
+ import { API_DOMAIN } from './config.js';
 function checkout(totalPrice){
 // 3. 創建和發送請求
 const dataToSend = {
     totalPrice: totalPrice
 };
 const token = localStorage.getItem('jwtToken');
-fetch('http://localhost:8000/api/payments', {
+fetch(`${API_DOMAIN}/api/payments`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -63,3 +65,4 @@ fetch('http://localhost:8000/api/payments', {
 
 
 }
+window.checkout = checkout;

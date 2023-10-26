@@ -1,4 +1,5 @@
-
+ // // otherFile.js
+ import { API_DOMAIN } from './config.js';
 
 
 
@@ -10,7 +11,7 @@ function showPurchasedPokemon(){
     document.getElementById('loginPage').style.display = 'none';
     // 由使用者點選購物車後觸發function fetchShoppingCart() {
     // 假設API的URL是 'https://your-backend.com/api/cart'
-    const apiURL = 'http://localhost:8000/api/cart_items';
+    const apiURL = `${API_DOMAIN}/api/cart_items`;
     const token = localStorage.getItem('jwtToken');
     fetch(apiURL, {
         method: 'GET',
@@ -36,9 +37,8 @@ function showPurchasedPokemon(){
             console.error('There was a problem fetching the cart data:', error);
         });
 
-    // function displayCartData(cartData) {
-    //   // 使用DOM操作或使用你的前端框架來渲染購物車數據
-    //   // 例如: 更新商品列表、價格等...
-    // }
-
 }
+window.showPurchasedPokemon = showPurchasedPokemon;
+// 在 showPurchasedPokemon.js 的最後
+let event = new Event('scriptLoaded');
+window.dispatchEvent(event);

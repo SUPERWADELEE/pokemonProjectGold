@@ -1,7 +1,9 @@
+ // // otherFile.js
+ import { API_DOMAIN } from './config.js';
 async function fetchUserAvatar() {
     const token = localStorage.getItem('jwtToken');
     try {
-        const response = await fetch('http://localhost:8000/api/user', {
+        const response = await fetch(`${API_DOMAIN}/api/user`, {
             method: 'GET', // 或者其他HTTP方法，如 'POST'，如果需要
             headers: {
                 'Content-Type': 'application/json',
@@ -24,3 +26,4 @@ async function fetchUserAvatar() {
 
 // 当页面加载时调用函数
 window.onload = fetchUserAvatar;
+window.fetchUserAvatar = fetchUserAvatar;

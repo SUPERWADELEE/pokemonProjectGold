@@ -1,4 +1,5 @@
-  
+   // // otherFile.js
+ import { API_DOMAIN } from './config.js';
   // 購買前讓你看清楚商品並加入購物車
   function PokemonDetail(pokemon) {
     const detailContainer = document.getElementById('pokemonDetail');
@@ -19,7 +20,7 @@
       race_id:pokemon.id
     };
     const token = localStorage.getItem('jwtToken');
-    fetch('http://localhost:8000/api/cart_items', {
+    fetch(`${API_DOMAIN}/api/cart_items`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -76,13 +77,13 @@
   orderDetails.push(pokemon.race_id);
   detailContainer.appendChild(pokemonDiv);
 
-  // fetchAndPopulateDropdown('http://localhost:8000/api/abilities', 'abilities');
-  // fetchAndPopulateDropdown('http://localhost:8000/api/natures', 'natures');
-  // fetchEvolutionLevel(`http://localhost:8000/api/races/${pokemon.race_id}/evolutionLevel`, 'level');
-  // fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${pokemon.race_id}/skill`, 'skill2');
-  // fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${pokemon.race_id}/skill`, 'skill3');
-  // fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${pokemon.race_id}/skill`, 'skill4');
-  // fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${pokemon.race_id}/skill`, 'skill1');
+  // fetchAndPopulateDropdown('${API_DOMAIN}/api/abilities', 'abilities');
+  // fetchAndPopulateDropdown('${API_DOMAIN}/api/natures', 'natures');
+  // fetchEvolutionLevel(`${API_DOMAIN}/api/races/${pokemon.race_id}/evolutionLevel`, 'level');
+  // fetchAndPopulateDropdownSkills(`${API_DOMAIN}/api/races/${pokemon.race_id}/skill`, 'skill2');
+  // fetchAndPopulateDropdownSkills(`${API_DOMAIN}/api/races/${pokemon.race_id}/skill`, 'skill3');
+  // fetchAndPopulateDropdownSkills(`${API_DOMAIN}/api/races/${pokemon.race_id}/skill`, 'skill4');
+  // fetchAndPopulateDropdownSkills(`${API_DOMAIN}/api/races/${pokemon.race_id}/skill`, 'skill1');
   // 為每一個技能和屬性創建下拉菜單
 const abilityDropdownId = `abilities${pokemon.race_id}`;
 const natureDropdownId = `natures${pokemon.race_id}`;
@@ -92,13 +93,13 @@ const skill2DropdownId = `skill2${pokemon.race_id}`;
 const skill3DropdownId = `skill3${pokemon.race_id}`;
 const skill4DropdownId = `skill4${pokemon.race_id}`;
 
-fetchAndPopulateDropdown('http://localhost:8000/api/abilities', abilityDropdownId);
-fetchAndPopulateDropdown('http://localhost:8000/api/natures', natureDropdownId);
-fetchEvolutionLevel(`http://localhost:8000/api/races/${pokemon.race_id}/evolutionLevel`, levelDropdownId);
-fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${pokemon.race_id}/skill`, skill2DropdownId);
-fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${pokemon.race_id}/skill`, skill3DropdownId);
-fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${pokemon.race_id}/skill`, skill4DropdownId);
-fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${pokemon.race_id}/skill`, skill1DropdownId);
+fetchAndPopulateDropdown(`${API_DOMAIN}/api/abilities`, abilityDropdownId);
+fetchAndPopulateDropdown(`${API_DOMAIN}/api/natures`, natureDropdownId);
+fetchEvolutionLevel(`${API_DOMAIN}/api/races/${pokemon.race_id}/evolutionLevel`, levelDropdownId);
+fetchAndPopulateDropdownSkills(`${API_DOMAIN}/api/races/${pokemon.race_id}/skill`, skill2DropdownId);
+fetchAndPopulateDropdownSkills(`${API_DOMAIN}/api/races/${pokemon.race_id}/skill`, skill3DropdownId);
+fetchAndPopulateDropdownSkills(`${API_DOMAIN}/api/races/${pokemon.race_id}/skill`, skill4DropdownId);
+fetchAndPopulateDropdownSkills(`${API_DOMAIN}/api/races/${pokemon.race_id}/skill`, skill1DropdownId);
 
 });
 localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
@@ -124,3 +125,5 @@ returnButton.classList.add(
 detailContainer.appendChild(returnButton);
 
 }
+window.PokemonDetail = PokemonDetail;
+window.updatePokemonDetails = updatePokemonDetails;
