@@ -164,6 +164,7 @@
   </div>
 
   <script>
+
     window.onload = function() {
       const urlParams = new URLSearchParams(window.location.search);
       const token = urlParams.get('token');
@@ -199,6 +200,7 @@
 
 
 
+  
     window.addEventListener('scriptLoaded', function() {
     @isset($paymentData)
     var paymentData = @json($paymentData);
