@@ -1,5 +1,6 @@
 // document.querySelector('pokemonImage').addEventListener('click', createPokemons);
-
+ // // otherFile.js
+ import { API_DOMAIN } from './config.js';
 function createPokemons(raceId, buttonElement) {
   // 2. 獲取用戶輸入
   const pokemonName = document.getElementById(`pokemonName${raceId}`).value;
@@ -26,7 +27,7 @@ function createPokemons(raceId, buttonElement) {
 
   // 3. 創建和發送請求
   const token = localStorage.getItem('jwtToken');
-  fetch('http://localhost:8000/api/pokemons', {
+  fetch(`${API_DOMAIN}/api/pokemons`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -124,3 +125,4 @@ function createPokemons(raceId, buttonElement) {
 //   });
 
 }
+window.createPokemons = createPokemons;

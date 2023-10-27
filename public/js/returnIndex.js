@@ -5,3 +5,4 @@ function returnIndex(){
     document.getElementById('pokemonContainer').style.display = 'block';
     document.getElementById('userProfile').style.display = 'none';
 }
+window.returnIndex = returnIndex;

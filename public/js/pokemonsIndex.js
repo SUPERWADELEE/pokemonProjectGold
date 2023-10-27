@@ -1,4 +1,6 @@
 // 由按鈕觸發,打api接收所有寶可夢資訊
+ // // otherFile.js
+ import { API_DOMAIN } from './config.js';
 function pokemonsIndex() {
   document.getElementById('pokemon-detail').style.display = 'none';
   document.getElementById('pokemonDetail').style.display = 'none';
@@ -7,7 +9,7 @@ function pokemonsIndex() {
     document.getElementById('orderDetails').style.display = 'none'; 
   const token = localStorage.getItem('jwtToken');
 
-  fetch('http://localhost:8000/api/pokemons/', {
+  fetch(`${API_DOMAIN}/api/pokemons/`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -60,7 +62,7 @@ function populatePokemons(pokemons) {
 
 function fetchPokemonDetails(id) {
   const token = localStorage.getItem('jwtToken');
-  fetch(`http://localhost:8000/api/pokemons/${id}`, {
+  fetch(`${API_DOMAIN}/api/pokemons/${id}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -123,13 +125,13 @@ pokemonDetail.innerHTML = `
 `;
 
 // 使用您先前的方法填充這些下拉選單
-fetchAndPopulateDropdown('http://localhost:8000/api/abilities', 'abilitiesDropdown');
-fetchAndPopulateDropdown('http://localhost:8000/api/natures', 'naturesDropdown');
-fetchEvolutionLevel(`http://localhost:8000/api/races/${data.race_id}/evolutionLevel`, 'levelDropdown');
-fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${data.race_id}/skill`, 'skill1Dropdown');
-fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${data.race_id}/skill`, 'skill2Dropdown');
-fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${data.race_id}/skill`, 'skill3Dropdown');
-fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${data.race_id}/skill`, 'skill4Dropdown');
+fetchAndPopulateDropdown(`${API_DOMAIN}/api/abilities`, 'abilitiesDropdown');
+fetchAndPopulateDropdown(`${API_DOMAIN}/api/natures`, 'naturesDropdown');
+fetchEvolutionLevel(`${API_DOMAIN}/api/races/${data.race_id}/evolutionLevel`, 'levelDropdown');
+fetchAndPopulateDropdownSkills(`${API_DOMAIN}/api/races/${data.race_id}/skill`, 'skill1Dropdown');
+fetchAndPopulateDropdownSkills(`${API_DOMAIN}/api/races/${data.race_id}/skill`, 'skill2Dropdown');
+fetchAndPopulateDropdownSkills(`${API_DOMAIN}/api/races/${data.race_id}/skill`, 'skill3Dropdown');
+fetchAndPopulateDropdownSkills(`${API_DOMAIN}/api/races/${data.race_id}/skill`, 'skill4Dropdown');
 
 
     document.getElementById('pokemon-detail').style.display = 'block';
@@ -173,7 +175,7 @@ fetchAndPopulateDropdownSkills(`http://localhost:8000/api/races/${data.race_id}/
 
 function sendUpdateRequest(raceId, updatedData) {
   const token = localStorage.getItem('jwtToken');
-  fetch(`http://localhost:8000/api/pokemons/${raceId}`, {
+  fetch(`${API_DOMAIN}/api/pokemons/${raceId}`, {
       method: 'PATCH', // 或其他適當的HTTP方法
       headers: {
         'Content-Type': 'application/json',
@@ -196,7 +198,7 @@ function sendUpdateRequest(raceId, updatedData) {
 
 function deletePokemons(pokemonId){
   const token = localStorage.getItem('jwtToken');
-  fetch(`http://localhost:8000/api/pokemons/${pokemonId}`, {
+  fetch(`${API_DOMAIN}/api/pokemons/${pokemonId}`, {
       method: 'DELETE', // 或其他適當的HTTP方法
       headers: {
         'Content-Type': 'application/json',
@@ -210,3 +212,6 @@ function deletePokemons(pokemonId){
 })
 }
 
+window.pokemonsIndex = pokemonsIndex;
+window.deletePokemons = deletePokemons;
+window.updatePokemons = updatePokemons;

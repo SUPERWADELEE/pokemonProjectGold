@@ -1,4 +1,6 @@
  // 顯示技能下拉選單
+  // // otherFile.js
+  import { API_DOMAIN } from './config.js';
  function fetchAndPopulateDropdownSkills(apiUrl, selectId) {
     const token = localStorage.getItem('jwtToken');
     fetch(apiUrl, {
@@ -32,3 +34,4 @@
         console.error("Error fetching data:", error);
       });
   }
+  window.fetchAndPopulateDropdownSkills = fetchAndPopulateDropdownSkills;

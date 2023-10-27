@@ -1,3 +1,5 @@
+ // // otherFile.js
+ import { API_DOMAIN } from './config.js';
 function ordersIndex(){
     document.getElementById('pokemon-detail').style.display = 'none';
     document.getElementById('pokemonDetail').style.display = 'none';
@@ -7,7 +9,7 @@ function ordersIndex(){
     document.getElementById('pagination').style.display = 'none';  
     const token = localStorage.getItem('jwtToken');
 
-  fetch('http://localhost:8000/api/orders/', {
+  fetch(`${API_DOMAIN}/api/orders/`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -48,7 +50,7 @@ function showOrder(orders){
 
 function orderDetailsIndex(order_id){
   const token = localStorage.getItem('jwtToken');
-  fetch(`http://localhost:8000/api/orders/${order_id}/order_details`, {
+  fetch(`${API_DOMAIN}/api/orders/${order_id}/order_details`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -88,3 +90,5 @@ orders.forEach(orderDetail => {
     orderDetailsList.appendChild(listItem);
 });
 }
+window.ordersIndex = ordersIndex;
+window.orderDetailsIndex = orderDetailsIndex;

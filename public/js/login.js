@@ -1,4 +1,9 @@
+ // // otherFile.js
+ import { API_DOMAIN } from './config.js';
+ 
+console.log(API_DOMAIN);
 function handleLogin() {
+ 
    // 隱藏登錄界面
    document.getElementById('loginPage').style.display = 'block';
    document.getElementById('waitPage').style.display = 'none';
@@ -11,6 +16,7 @@ function handleLogin() {
       .then(token => {
         // 保存token到localStorage
         localStorage.setItem('jwtToken', token);
+        fetchUserAvatar();
 
         // 顯示寶可夢的界面
         showPokemonPage();
@@ -21,7 +27,8 @@ function handleLogin() {
   }
 
   function login(email, password) {
-    return fetch('http://localhost:8000/api/Auth/login', {
+    
+    return fetch(`${API_DOMAIN}/api/Auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -44,3 +51,6 @@ function handleLogin() {
         return data.token;
       });
   }
+
+
+  window.handleLogin = handleLogin;

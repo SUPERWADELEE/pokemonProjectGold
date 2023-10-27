@@ -1,5 +1,7 @@
 // 進化等級下拉選單
     // 這是用來填充選單的函數
+     // // otherFile.js
+ import { API_DOMAIN } from './config.js';
     function populateEvolutionDropdown(evolutionLevel, selectId) {
         const selectElement = document.getElementById(selectId);
         selectElement.innerHTML = ''; // 清空現有選項
@@ -52,4 +54,4 @@
             console.error("Error fetching data:", error);
           });
       }
-  
+      window.fetchEvolutionLevel = fetchEvolutionLevel;
