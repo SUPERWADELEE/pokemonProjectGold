@@ -26,7 +26,7 @@ endpoints:
         name: first_name
         description: 'The first name of the user.'
         required: true
-        example: accusamus
+        example: dolores
         type: string
         enumValues: []
         custom: []
@@ -34,7 +34,7 @@ endpoints:
         name: last_name
         description: 'The last name of the user.'
         required: true
-        example: et
+        example: eaque
         type: string
         enumValues: []
         custom: []
@@ -42,14 +42,14 @@ endpoints:
         name: email
         description: 'The email address of the user.'
         required: true
-        example: rsipes@example.org
+        example: monserrate89@example.net
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      first_name: accusamus
-      last_name: et
-      email: rsipes@example.org
+      first_name: dolores
+      last_name: eaque
+      email: monserrate89@example.net
     fileParameters: []
     responses:
       -
@@ -92,7 +92,7 @@ endpoints:
         name: name
         description: 'Must not be greater than 15 characters.'
         required: true
-        example: pnixyprlmhateb
+        example: u
         type: string
         enumValues: []
         custom: []
@@ -100,7 +100,7 @@ endpoints:
         name: race_id
         description: ''
         required: true
-        example: 2
+        example: 7
         type: integer
         enumValues: []
         custom: []
@@ -108,7 +108,7 @@ endpoints:
         name: ability_id
         description: ''
         required: true
-        example: 19
+        example: 18
         type: integer
         enumValues: []
         custom: []
@@ -116,7 +116,7 @@ endpoints:
         name: nature_id
         description: ''
         required: true
-        example: 15
+        example: 3
         type: integer
         enumValues: []
         custom: []
@@ -124,7 +124,7 @@ endpoints:
         name: level
         description: 'Must be at least 1. Must not be greater than 100.'
         required: true
-        example: 23
+        example: 11
         type: integer
         enumValues: []
         custom: []
@@ -133,18 +133,18 @@ endpoints:
         description: ''
         required: false
         example:
-          - 8
+          - 12
         type: 'integer[]'
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: pnixyprlmhateb
-      race_id: 2
-      ability_id: 19
-      nature_id: 15
-      level: 23
+      name: u
+      race_id: 7
+      ability_id: 18
+      nature_id: 3
+      level: 11
       skills:
-        - 8
+        - 12
     fileParameters: []
     responses: []
     responseFields: []

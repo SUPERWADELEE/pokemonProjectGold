@@ -10,7 +10,7 @@ endpoints:
       groupDescription: 'Operations related to abilities.'
       subgroup: ''
       subgroupDescription: ''
-      title: ''
+      title: 性格列表
       description: ''
       authenticated: false
       custom: []
@@ -49,7 +49,7 @@ endpoints:
       groupDescription: 'Operations related to abilities.'
       subgroup: ''
       subgroupDescription: ''
-      title: ''
+      title: 性格新增
       description: ''
       authenticated: false
       custom: []
@@ -65,12 +65,12 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: aqp
+        example: ysstvdreay
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: aqp
+      name: ysstvdreay
     fileParameters: []
     responses: []
     responseFields: []
@@ -88,7 +88,7 @@ endpoints:
       groupDescription: 'Operations related to abilities.'
       subgroup: ''
       subgroupDescription: ''
-      title: ''
+      title: 性格修改
       description: ''
       authenticated: false
       custom: []
@@ -113,12 +113,12 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: xuxppzexexqvorhd
+        example: jgjvlkpmqi
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: xuxppzexexqvorhd
+      name: jgjvlkpmqi
     fileParameters: []
     responses: []
     responseFields: []

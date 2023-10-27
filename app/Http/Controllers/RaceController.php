@@ -14,28 +14,33 @@ use Illuminate\Http\Request;
  */
 class RaceController extends Controller
 {
+    /**
+     * 種族列表
+     */
     public function index()
     {
         // 選擇所有寶可夢的名稱和照片
-        $pokemons = Race::select('id','name','photo')->paginate(10);
-    
+        $pokemons = Race::select('id', 'name', 'photo')->paginate(10);
+
         return $pokemons;
     }
 
-    public function evolutionLevel(Race $race){
-        
-        $pokemons = Race::select('id','name', 'photo')->get();
+    /**
+     * 種族進化等級
+     */
+    public function evolutionLevel(Race $race)
+    {
+
+        $pokemons = Race::select('id', 'name', 'photo')->get();
         return $pokemons;
     }
 
-    
-    public function skills(Race $race){
+    /**
+     * 種族技能
+     */
+    public function skills(Race $race)
+    {
         $skills = $race->skills()->orderBy('id')->get();
         return SkillResource::collection($skills);
-
     }
-    
-    
-    
-
 }

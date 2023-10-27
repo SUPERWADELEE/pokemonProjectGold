@@ -15,6 +15,9 @@ use Tymon\JWTAuth\Facades\JWTAuth;
  */
 class PaymentController extends Controller
 {
+    /**
+     * 請求藍星金流結帳頁面
+     */
     public function checkout(Request $request)
     {
         // 获取当前经过身份验证的用户

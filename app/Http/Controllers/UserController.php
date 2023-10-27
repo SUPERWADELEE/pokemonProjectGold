@@ -14,12 +14,15 @@ use Aws\S3\S3Client;
 
 
 /**
- * @group Race
- * Operations related to races.
+ * @group User
+ * Operations related to users.
  */
 class UserController extends Controller
 {
 
+    /**
+     * 使用者個人資訊
+     */
     public function show()
     {
 
@@ -33,6 +36,10 @@ class UserController extends Controller
 
         return response()->json($userData);
     }
+
+    /**
+     * 更新使用者個人資訊並上傳圖片
+     */
 
     public function update(UserRequest $request)
     {

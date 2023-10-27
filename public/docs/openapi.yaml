@@ -9,8 +9,8 @@ servers:
 paths:
   /api/abilities:
     get:
-      summary: ''
-      operationId: getApiAbilities
+      summary: 性格列表
+      operationId: ''
       description: ''
       parameters: []
       responses:
@@ -30,8 +30,8 @@ paths:
         - Ability
       security: []
     post:
-      summary: ''
-      operationId: postApiAbilities
+      summary: 性格新增
+      operationId: ''
       description: ''
       parameters: []
       responses: {  }
@@ -47,14 +47,14 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: aqp
+                  example: ysstvdreay
               required:
                 - name
       security: []
   '/api/abilities/{ability_id}':
     patch:
-      summary: ''
-      operationId: patchApiAbilitiesAbility_id
+      summary: 性格修改
+      operationId: ''
       description: ''
       parameters: []
       responses: {  }
@@ -70,7 +70,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: xuxppzexexqvorhd
+                  example: jgjvlkpmqi
               required:
                 - name
       security: []
@@ -85,8 +85,8 @@ paths:
           type: integer
   /api/Auth/login:
     post:
-      summary: ''
-      operationId: postApiAuthLogin
+      summary: 登入
+      operationId: ''
       description: ''
       parameters: []
       responses: {  }
@@ -102,19 +102,19 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: antwon45@example.com
+                  example: dovie.langworth@example.net
                 password:
                   type: string
                   description: ''
-                  example: 'gB/a=.):!'
+                  example: 'rR_ZO7Q{wM'
               required:
                 - email
                 - password
       security: []
   /api/Auth/logout:
     post:
-      summary: ''
-      operationId: postApiAuthLogout
+      summary: 登出
+      operationId: ''
       description: ''
       parameters: []
       responses: {  }
@@ -123,8 +123,8 @@ paths:
       security: []
   '/api/email/verify/{id}/{hash}':
     get:
-      summary: ''
-      operationId: getApiEmailVerifyIdHash
+      summary: 註冊email驗證信確認
+      operationId: email
       description: ''
       parameters: []
       responses:
@@ -148,7 +148,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the verify.'
-        example: non
+        example: ipsa
         required: true
         schema:
           type: string
@@ -156,14 +156,14 @@ paths:
         in: path
         name: hash
         description: ''
-        example: quibusdam
+        example: cumque
         required: true
         schema:
           type: string
   '/api/checkVerificationStatus/{email}':
     get:
-      summary: ''
-      operationId: getApiCheckVerificationStatusEmail
+      summary: 確認user表註冊驗證信狀態
+      operationId: user
       description: ''
       parameters: []
       responses:
@@ -187,14 +187,14 @@ paths:
         in: path
         name: email
         description: ''
-        example: cprice@example.net
+        example: carter55@example.com
         required: true
         schema:
           type: string
   /api/cart_items:
     get:
-      summary: ''
-      operationId: getApiCart_items
+      summary: 顯示購物車商品
+      operationId: ''
       description: ''
       parameters: []
       responses:
@@ -214,8 +214,8 @@ paths:
         - CartItem
       security: []
     post:
-      summary: ''
-      operationId: postApiCart_items
+      summary: 加入購物車
+      operationId: ''
       description: ''
       parameters: []
       responses: {  }
@@ -235,14 +235,14 @@ paths:
                 race_id:
                   type: integer
                   description: ''
-                  example: 13
+                  example: 18
               required:
                 - race_id
       security: []
   /api/cart_items/total_price:
     get:
-      summary: ''
-      operationId: getApiCart_itemsTotal_price
+      summary: 購物車總價格計算
+      operationId: ''
       description: ''
       parameters: []
       responses:
@@ -277,8 +277,8 @@ paths:
       security: []
   '/api/cart_items/{cart_item_id}':
     put:
-      summary: ''
-      operationId: putApiCart_itemsCart_item_id
+      summary: 購物車更新
+      operationId: ''
       description: ''
       parameters: []
       responses: {  }
@@ -297,8 +297,8 @@ paths:
                   example: null
       security: []
     delete:
-      summary: ''
-      operationId: deleteApiCart_itemsCart_item_id
+      summary: 購物車刪除
+      operationId: ''
       description: ''
       parameters: []
       responses: {  }
@@ -316,8 +316,8 @@ paths:
           type: integer
   /api/natures:
     get:
-      summary: ''
-      operationId: getApiNatures
+      summary: 性格詳情
+      operationId: ''
       description: ''
       parameters: []
       responses:
@@ -337,8 +337,8 @@ paths:
         - Nature
       security: []
     post:
-      summary: ''
-      operationId: postApiNatures
+      summary: 性格新增
+      operationId: ''
       description: ''
       parameters: []
       responses: {  }
@@ -354,14 +354,14 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: gccdpsbfjamlk
+                  example: sjfu
               required:
                 - name
       security: []
   '/api/natures/{nature_id}':
     patch:
-      summary: ''
-      operationId: patchApiNaturesNature_id
+      summary: 性格修改
+      operationId: ''
       description: ''
       parameters: []
       responses: {  }
@@ -377,7 +377,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: vsryebleriyfewts
+                  example: puiiohgpjinxz
               required:
                 - name
       security: []
@@ -392,8 +392,8 @@ paths:
           type: integer
   /api/orders:
     post:
-      summary: ''
-      operationId: postApiOrders
+      summary: 訂單新增
+      operationId: ''
       description: ''
       parameters: []
       responses: {  }
@@ -409,18 +409,18 @@ paths:
                 total_price:
                   type: integer
                   description: 'Must be at least 1.'
-                  example: 18
+                  example: 9
                 payment_method:
                   type: string
                   description: ''
-                  example: credit_card
+                  example: cash_on_delivery
                   enum:
                     - credit_card
                     - cash_on_delivery
                 payment_status:
                   type: string
                   description: ''
-                  example: canceled
+                  example: unpaid
                   enum:
                     - paid
                     - unpaid
@@ -431,8 +431,8 @@ paths:
                 - payment_status
       security: []
     get:
-      summary: ''
-      operationId: getApiOrders
+      summary: 訂單列表
+      operationId: ''
       description: ''
       parameters: []
       responses:
@@ -484,8 +484,8 @@ paths:
           type: integer
   '/api/orders/{order_id}/order_details':
     get:
-      summary: ''
-      operationId: getApiOrdersOrder_idOrder_details
+      summary: 訂單細節列表
+      operationId: ''
       description: ''
       parameters: []
       responses:
@@ -515,8 +515,8 @@ paths:
           type: integer
   /api/orders_details:
     post:
-      summary: ''
-      operationId: postApiOrders_details
+      summary: 訂單細節新增
+      operationId: ''
       description: ''
       parameters: []
       responses: {  }
@@ -532,19 +532,19 @@ paths:
                 order_id:
                   type: integer
                   description: ''
-                  example: 9
+                  example: 17
                 race_id:
                   type: integer
                   description: ''
-                  example: 10
+                  example: 8
               required:
                 - order_id
                 - race_id
       security: []
   /api/payments:
     post:
-      summary: ''
-      operationId: postApiPayments
+      summary: 請求藍星金流結帳頁面
+      operationId: ''
       description: ''
       parameters: []
       responses: {  }
@@ -553,8 +553,8 @@ paths:
       security: []
   /api/payResult:
     post:
-      summary: ''
-      operationId: postApiPayResult
+      summary: 藍星金流結帳完後結果返回確認，寄通知信給使用者
+      operationId: ''
       description: ''
       parameters: []
       responses: {  }
@@ -592,15 +592,15 @@ paths:
                 first_name:
                   type: string
                   description: 'The first name of the user.'
-                  example: accusamus
+                  example: dolores
                 last_name:
                   type: string
                   description: 'The last name of the user.'
-                  example: et
+                  example: eaque
                 email:
                   type: string
                   description: 'The email address of the user.'
-                  example: rsipes@example.org
+                  example: monserrate89@example.net
               required:
                 - first_name
                 - last_name
@@ -623,28 +623,28 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 15 characters.'
-                  example: pnixyprlmhateb
+                  example: u
                 race_id:
                   type: integer
                   description: ''
-                  example: 2
+                  example: 7
                 ability_id:
                   type: integer
                   description: ''
-                  example: 19
+                  example: 18
                 nature_id:
                   type: integer
                   description: ''
-                  example: 15
+                  example: 3
                 level:
                   type: integer
                   description: 'Must be at least 1. Must not be greater than 100.'
-                  example: 23
+                  example: 11
                 skills:
                   type: array
                   description: ''
                   example:
-                    - 8
+                    - 12
                   items:
                     type: integer
               required:
@@ -757,8 +757,8 @@ paths:
           type: integer
   /api/races:
     get:
-      summary: ''
-      operationId: getApiRaces
+      summary: 種族列表
+      operationId: ''
       description: ''
       parameters: []
       responses:
@@ -779,8 +779,8 @@ paths:
       security: []
   '/api/races/{race_id}/evolutionLevel':
     get:
-      summary: ''
-      operationId: getApiRacesRace_idEvolutionLevel
+      summary: 種族進化等級
+      operationId: ''
       description: ''
       parameters: []
       responses:
@@ -810,8 +810,8 @@ paths:
           type: integer
   '/api/races/{race_id}/skill':
     get:
-      summary: ''
-      operationId: getApiRacesRace_idSkill
+      summary: 種族技能
+      operationId: ''
       description: ''
       parameters: []
       responses:
@@ -839,10 +839,43 @@ paths:
         required: true
         schema:
           type: integer
+  /api/register:
+    post:
+      summary: '註冊,寄註冊信'
+      operationId: ''
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Register
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: bxygokfrhbtjdjfrj
+                email:
+                  type: string
+                  description: 'Must be a valid email address. Must not be greater than 255 characters.'
+                  example: nikolaus.sonya@example.org
+                password:
+                  type: string
+                  description: 'Must be at least 6 characters.'
+                  example: 'X_"6G_e>'
+              required:
+                - name
+                - email
+                - password
+      security: []
   /api/user:
     get:
-      summary: ''
-      operationId: getApiUser
+      summary: 使用者個人資訊
+      operationId: ''
       description: ''
       parameters: []
       responses:
@@ -859,7 +892,7 @@ paths:
                     type: string
                     example: Unauthenticated.
       tags:
-        - Race
+        - User
       security: []
   '/api/users/{user_id}/status':
     patch:
@@ -869,7 +902,7 @@ paths:
       parameters: []
       responses: {  }
       tags:
-        - Race
+        - User
       security: []
     parameters:
       -
@@ -888,7 +921,7 @@ paths:
       parameters: []
       responses: {  }
       tags:
-        - Race
+        - User
       requestBody:
         required: true
         content:
@@ -899,11 +932,11 @@ paths:
                 current_password:
                   type: string
                   description: ''
-                  example: corrupti
+                  example: itaque
                 new_password:
                   type: string
                   description: 'Must be at least 6 characters.'
-                  example: yrcrghxkzkmjnfqmjoirsoywwmurwkgpnwpzxkdofhvanoihzeeqliuoaoqygfgmd
+                  example: qjjuszkiuvwshsdlkywphihzxodwofoiinxcosdcqlexxfjcightwpconpcttwshzhtkwjdmgovtiempaxoz
               required:
                 - current_password
                 - new_password
@@ -917,46 +950,13 @@ paths:
         required: true
         schema:
           type: integer
-  /api/register:
-    post:
-      summary: ''
-      operationId: postApiRegister
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Race
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: 'Must not be greater than 255 characters.'
-                  example: wbskbgzttitlrmgnjp
-                email:
-                  type: string
-                  description: 'Must be a valid email address. Must not be greater than 255 characters.'
-                  example: spinka.lisa@example.org
-                password:
-                  type: string
-                  description: 'Must be at least 6 characters.'
-                  example: '+7XOh9xK&'
-              required:
-                - name
-                - email
-                - password
-      security: []
 tags:
   -
     name: Ability
     description: 'Operations related to abilities.'
   -
     name: Auth
-    description: 'Operations related to auths.'
+    description: 'Operations related to auth.'
   -
     name: CartItem
     description: 'Operations related to cartItems.'
@@ -981,3 +981,9 @@ tags:
   -
     name: Race
     description: 'Operations related to races.'
+  -
+    name: Register
+    description: 'Operations related to register.'
+  -
+    name: User
+    description: 'Operations related to users.'

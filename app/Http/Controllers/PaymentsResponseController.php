@@ -19,6 +19,9 @@ use Illuminate\Support\Facades\Mail;
 
 class PaymentsResponseController extends Controller
 {
+    /**
+     * 藍星金流結帳完後結果返回確認，寄通知信給使用者
+     */
     public function notifyResponse(Request $request)
     {
         $tradeInfo = $request->input('TradeInfo');

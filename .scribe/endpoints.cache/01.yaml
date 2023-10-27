@@ -12,7 +12,7 @@ endpoints:
       groupDescription: 'Operations related to natures.'
       subgroup: ''
       subgroupDescription: ''
-      title: ''
+      title: 性格詳情
       description: ''
       authenticated: false
       custom: []
@@ -51,7 +51,7 @@ endpoints:
       groupDescription: 'Operations related to natures.'
       subgroup: ''
       subgroupDescription: ''
-      title: ''
+      title: 性格新增
       description: ''
       authenticated: false
       custom: []
@@ -67,12 +67,12 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: gccdpsbfjamlk
+        example: sjfu
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: gccdpsbfjamlk
+      name: sjfu
     fileParameters: []
     responses: []
     responseFields: []
@@ -90,7 +90,7 @@ endpoints:
       groupDescription: 'Operations related to natures.'
       subgroup: ''
       subgroupDescription: ''
-      title: ''
+      title: 性格修改
       description: ''
       authenticated: false
       custom: []
@@ -115,12 +115,12 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: vsryebleriyfewts
+        example: puiiohgpjinxz
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: vsryebleriyfewts
+      name: puiiohgpjinxz
     fileParameters: []
     responses: []
     responseFields: []
