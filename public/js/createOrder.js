@@ -1,10 +1,12 @@
+ // // otherFile.js
+ import { API_DOMAIN } from './config.js';
 function createOrder() {
     // 3. 創建和發送請求
     const token = localStorage.getItem('jwtToken');
     const totalPrice = parseInt(localStorage.getItem('totalPrice'), 10);
 
     console.log(totalPrice);
-    fetch('http://localhost:8000/api/orders', {
+    fetch(`${API_DOMAIN}/api/orders`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -39,7 +41,7 @@ function createOrder() {
 function createOrderdetails(orderId, race_id){
     const token = localStorage.getItem('jwtToken');
 
-    fetch('http://localhost:8000/api/orders_details', {
+    fetch(`${API_DOMAIN}/api/orders_details`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -64,3 +66,4 @@ function createOrderdetails(orderId, race_id){
     });
 }
 
+window.createOrder = createOrder;

@@ -1,3 +1,5 @@
+ // // otherFile.js
+ import { API_DOMAIN } from './config.js';
 function fetchAndPopulateDropdown(apiUrl, selectId) {
     const token = localStorage.getItem('jwtToken');
     fetch(apiUrl, {
@@ -24,3 +26,4 @@ function fetchAndPopulateDropdown(apiUrl, selectId) {
         console.error("Error fetching data:", error);
       });
   }
+  window.fetchAndPopulateDropdown = fetchAndPopulateDropdown;

@@ -1,4 +1,7 @@
-let pokemons = [];
+ // // otherFile.js
+ import { API_DOMAIN } from './config.js';
+
+
 let currentPage = 1;
 
 // 取得所有寶可夢種族及圖片
@@ -8,7 +11,7 @@ function fetchPokemons() {
     document.getElementById('orderDetails').style.display = 'none';
     document.getElementById('pokemonList').style.display = 'block'; 
     const token = localStorage.getItem('jwtToken');
-    fetch(`http://localhost:8000/api/races?page=${currentPage}`, {  // 加入 ?page= 查詢參數
+    fetch(`${API_DOMAIN}/api/races?page=${currentPage}`, {  // 加入 ?page= 查詢參數
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -85,5 +88,4 @@ function renderPaginationButtons(totalPages) {
   }
 }
 
-
-
+window.fetchPokemons = fetchPokemons;

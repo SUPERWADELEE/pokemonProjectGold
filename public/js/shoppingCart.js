@@ -1,10 +1,12 @@
 // 由使用者點選購物車後觸發
+// // otherFile.js
+import { API_DOMAIN } from './config.js';
 function fetchShoppingCart() {
     document.getElementById('shoppingCart').style.display = 'block';
     document.getElementById('shoppingCart').style.display = 'block';
     document.getElementById('ordersIndex').style.display = 'none';
     // 假設API的URL是 'https://your-backend.com/api/cart'
-    const apiUrl = 'http://localhost:8000/api/cart_items';
+    const apiUrl = `${API_DOMAIN}/api/cart_items`;
     const token = localStorage.getItem('jwtToken');
     fetch(apiUrl, {
         method: 'GET',
@@ -67,10 +69,10 @@ function displayShoppingCart(cartData) {
                 <div class="cart-item-quantity w-20 mr-4">
                     <select class="w-full border rounded p-1 quantity-select" data-price="${item.current_price}" onchange="updateTotal()">
                         ${Array.from({ length: 10 }, (_, i) => i + 1).map(num =>
-                            num === item.amount
-                                ? `<option value="${num}" selected>${num}</option>`
-                                : `<option value="${num}">${num}</option>`
-                        ).join('')}
+            num === item.amount
+                ? `<option value="${num}" selected>${num}</option>`
+                : `<option value="${num}">${num}</option>`
+        ).join('')}
                     </select>
                 </div>
 
@@ -118,3 +120,6 @@ function updateTotal() {
     });
     document.getElementById('totalAmount').textContent = `NT$ ${total.toFixed(2)}`;
 }
+
+
+window.fetchShoppingCart = fetchShoppingCart;

@@ -1,3 +1,5 @@
+ // // otherFile.js
+ import { API_DOMAIN } from './config.js';
 let verificationInterval;
 
 function showWaitPage(email) {
@@ -12,7 +14,7 @@ function showWaitPage(email) {
 
 
 function checkVerificationStatus(email) {
-    fetch(`http://localhost:8000/api/checkVerificationStatus/${email}`)
+    fetch(`${API_DOMAIN}/api/checkVerificationStatus/${email}`)
     .then(response => response.json())
     .then(data => {
         if (data.isVerified) {
@@ -34,3 +36,5 @@ function redirectToLoginPage() {
     document.getElementById('waitPage').style.display = 'none';
     document.getElementById('loginPage').style.display = 'block';
 }
+
+window.showWaitPage = showWaitPage;

@@ -26,3 +26,4 @@ function showPokemonPage() {
     document.getElementById('orderDetails').style.display = 'none';
     
   }
+  window.showPokemonPage = showPokemonPage;

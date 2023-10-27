@@ -1,9 +1,12 @@
+ // // otherFile.js
+ import { API_DOMAIN } from './config.js';
 function userProfile(){
     document.getElementById('pokemonContainer').style.display = 'none';
     document.getElementById('userProfile').style.display = 'block';
     document.getElementById('ordersIndex').style.display = 'none';
     document.getElementById('pagination').style.display = 'none';
-    const apiURL = 'http://localhost:8000/api/user';
+    document.getElementById('orderDetails').style.display = 'none';
+    const apiURL = `${API_DOMAIN}/api/user`;
     const token = localStorage.getItem('jwtToken');
     fetch(apiURL, {
         method: 'GET',
@@ -72,7 +75,7 @@ function userProfile(){
     }
 
     function updateUserDetails() {
-        const apiURL = 'http://localhost:8000/api/user';  // 請注意路徑可能需要修改
+        const apiURL = `${API_DOMAIN}/api/user`;  // 請注意路徑可能需要修改
     
         const formData = new FormData();
     
@@ -127,5 +130,7 @@ function userProfile(){
     }        
     
   
-    
+    window.userProfile = userProfile;
+    window.updateUserDetails = updateUserDetails;
+
 

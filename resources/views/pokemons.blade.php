@@ -7,40 +7,42 @@
  
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <script src="http://localhost/js/populateEvolutionDropdown.js"></script>
-  <script src="http://localhost/js/register.js"></script>
-  <script src="http://localhost/js/checkout.js"></script>
-  <script src="http://localhost/js/login.js"></script>
-  <script src="http://localhost/js/createOrder.js"></script>
-  <script src="http://localhost/js/fetchAndPopulateDropdown.js"></script>
-  <script src="http://localhost/js/fetchAndPopulateDropdownSkills.js"></script>
-  <script src="http://localhost/js/fetchUserAvatar.js"></script>
-  
-  
-  <script src="http://localhost/js/login.js"></script>
-  
-  <script src="http://localhost/js/logout.js"></script>
-  
-  <script src="http://localhost/js/ordersIndex.js"></script>
-  
-  <script src="http://localhost/js/pokemonsIndex.js"></script>
- 
-  <script src="http://localhost/js/racesIndex.js"></script>
-  <script src="http://localhost/js/returnIndex.js"></script>
-  <script src="http://localhost/js/shoppingCart.js"></script>
-  <script src="http://localhost/js/showPage.js"></script>
-  <script src="http://localhost/js/showPurchasedPokemon.js"></script>
-  <script src="http://localhost/js/togglePagination.js"></script>
-  <script src="http://localhost/js/updatePokemonDetail.js"></script>
-  <script src="http://localhost/js/userProfile.js"></script>
-  <script src="http://localhost/js/waitEmailVerification.js"></script>
-  
-  <!-- <script src="http://localhost/fetchUserAvatar.js"></script> -->
-  
+  <script type="module" src="https://wade.monster/js/fetchUserAvatar.js"></script>
+
+  <script type="module" src="https://wade.monster/js/config.js"></script>
+  <script type="module" src="https://wade.monster/js/login.js"></script>
+  <script type="module" src="https://wade.monster/js/logout.js"></script>
+  <script type="module" src="https://wade.monster/js/register.js"></script>
+  <script  src="https://wade.monster/js/showPage.js"></script>
+  <script type="module" src="https://wade.monster/js/pokemonsIndex.js"></script>
+  <script type="module" src="https://wade.monster/js/racesIndex.js"></script>
+  <script type="module" src="https://wade.monster/js/ordersIndex.js"></script>
+  <script type="module" src="https://wade.monster/js/shoppingCart.js"></script>
+  <script  defer type="module" src="https://wade.monster/js/showPurchasedPokemon.js"></script>
+  <script type="module" src="https://wade.monster/js/returnIndex.js"></script>
+  <script type="module" src="https://wade.monster/js/userProfile.js"></script>
+  <script type="module" src="https://wade.monster/js/updatePokemonDetail.js"></script>
+  <script  type="module" src="https://wade.monster/js/showPurchasedPokemon.js"></script>
+  <script  src="https://wade.monster/js/togglePagination.js"></script>
 
   
+
+
+  <script type="module" src="https://wade.monster/js/populateEvolutionDropdown.js"></script>
+  <script type="module" src="https://wade.monster/js/checkout.js"></script>
+  <script type="module" src="https://wade.monster/js/createOrder.js"></script>
+  <script type="module" src="https://wade.monster/js/createPokemons.js"></script>
+  <script type="module" src="https://wade.monster/js/fetchAndPopulateDropdown.js"></script>
+ 
+
+  <script type="module" src="https://wade.monster/js/fetchAndPopulateDropdownSkills.js"></script>
+  <script type="module" src="https://wade.monster/js/waitEmailVerification.js"></script>
+
+  <!-- <script type="module" src="https://wade.monster/fetchUserAvatar.js"></script> -->
+
+
+
   <style>
-    
     #pokemon-detail {
       display: none;
     }
@@ -162,6 +164,7 @@
   </div>
 
   <script>
+
     window.onload = function() {
       const urlParams = new URLSearchParams(window.location.search);
       const token = urlParams.get('token');
@@ -177,27 +180,6 @@
     }
   </script>
 
-@vite(['resources/css/app.css',
-  'resources/js/app.js',
-  'resources/js/register.js',
-  'resources/js/fetchUserAvatar.js',
-  'resources/js/userProfile.js',
-  'resources/js/ordersIndex.js',
-  'resources/js/showPurchasedPokemon.js',
-  'resources/js/checkout.js',
-  'resources/js/login.js',
-  'resources/js/logout.js',
-  'resources/js/waitEmailVerification.js',
-  'resources/js/showPage.js',
-  'resources/js/shoppingCart.js',
-  'resources/js/togglePagination.js',
-  'resources/js/pokemonsIndex.js',
-  'resources/js/racesIndex.js',
-  'resources/js/fetchAndPopulateDropdown.js',
-  'resources/js/fetchAndPopulateDropdownSkills.js',
-  'resources/js/populateEvolutionDropdown.js',
-  'resources/js/updatePokemonDetail.js',
-  'resources/js/createPokemons.js'])
 
 
 
@@ -205,18 +187,29 @@
     // 使用範例：您可以在適當的地方呼叫下面這行代碼
     // fetchEvolutionLevelAndPopulateDropdown('YOUR_API_URL_HERE', 'yourSelectId');
 
+    // @isset($paymentData)
+    // var paymentData = @json($paymentData);
+
+    // if (paymentData.Status === 'SUCCESS') {
+    //   // 呼叫你的 updatePokemonDetail 函數
+    //   showPurchasedPokemon();
+    // }
+    // @endisset
+
+
+
+
+
+  
+    window.addEventListener('scriptLoaded', function() {
     @isset($paymentData)
     var paymentData = @json($paymentData);
 
     if (paymentData.Status === 'SUCCESS') {
-      // 呼叫你的 updatePokemonDetail 函數
-      showPurchasedPokemon();
+        showPurchasedPokemon();
     }
     @endisset
-
-
-
-
+});
 
 
 

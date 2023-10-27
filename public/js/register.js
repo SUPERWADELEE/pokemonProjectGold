@@ -1,3 +1,5 @@
+ // // otherFile.js
+ import { API_DOMAIN } from './config.js';
 (function(global) {
   // handleRegister function
   function handleRegister() {
@@ -20,7 +22,7 @@
 
   // register function
   function register(name, email, password, password_confirmation) {
-      return fetch('http://localhost:8000/api/register', {
+      return fetch(`${API_DOMAIN}/api/register`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
