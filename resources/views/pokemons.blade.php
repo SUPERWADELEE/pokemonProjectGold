@@ -171,6 +171,7 @@
       if (token) {
         // 存儲 token
         localStorage.setItem('jwtToken', token);
+        fetchUserAvatar(); 
 
 
         // 更改 UI 以反映用戶已登入的狀態
