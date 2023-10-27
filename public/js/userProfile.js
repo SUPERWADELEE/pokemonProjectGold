@@ -5,6 +5,7 @@ function userProfile(){
     document.getElementById('userProfile').style.display = 'block';
     document.getElementById('ordersIndex').style.display = 'none';
     document.getElementById('pagination').style.display = 'none';
+    document.getElementById('orderDetails').style.display = 'none';
     const apiURL = `${API_DOMAIN}/api/user`;
     const token = localStorage.getItem('jwtToken');
     fetch(apiURL, {

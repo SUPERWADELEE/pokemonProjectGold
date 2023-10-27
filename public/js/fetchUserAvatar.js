@@ -3,6 +3,7 @@
  
  async function fetchUserAvatar() {
     const token = localStorage.getItem('jwtToken');
+    
     try {
         const response = await fetch(`${API_DOMAIN}/api/user`, {
             method: 'GET',
@@ -26,5 +27,5 @@
 
 
 // 当页面加载时调用函数
-window.onload = fetchUserAvatar;
+// window.onload = fetchUserAvatar;
 window.fetchUserAvatar = fetchUserAvatar;

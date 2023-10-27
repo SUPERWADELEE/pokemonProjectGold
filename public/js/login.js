@@ -16,6 +16,7 @@ function handleLogin() {
       .then(token => {
         // 保存token到localStorage
         localStorage.setItem('jwtToken', token);
+        fetchUserAvatar();
 
         // 顯示寶可夢的界面
         showPokemonPage();
