@@ -39,12 +39,12 @@ public function handleProviderCallback()
     $token = JWTAuth::fromUser($user);
 
     // 返回令牌給前端
-    return response()->json([
-        'message' => 'Login successful via Google',
-        'token' => $token,
-        'user' => $user
-    ], 200);
-    // return redirect("/?token={$token}");
+    // return response()->json([
+    //     'message' => 'Login successful via Google',
+    //     'token' => $token,
+    //     'user' => $user
+    // ], 200);
+    return redirect("/?token={$token}");
 
 
 }
