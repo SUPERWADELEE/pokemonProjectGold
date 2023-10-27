@@ -9,6 +9,11 @@ use App\Models\ShoppingCart;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+/**
+ * @group CartItem
+ * Operations related to cartItems.
+ */
+
 class CartItemController extends Controller
 {
     public function index()

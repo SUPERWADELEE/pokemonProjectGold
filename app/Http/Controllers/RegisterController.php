@@ -7,6 +7,11 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
+
+/**
+ * @group Race
+ * Operations related to races.
+ */
 class RegisterController extends Controller
 {
     public function register(Request $request)

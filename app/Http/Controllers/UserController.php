@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Storage;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Aws\S3\S3Client;
 
+
+/**
+ * @group Race
+ * Operations related to races.
+ */
 class UserController extends Controller
 {
 

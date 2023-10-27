@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Auth;
 
 use Tymon\JWTAuth\Facades\JWTAuth;
 
+
+/**
+ * @group Auth
+ * Operations related to auths.
+ */
 class AuthController extends Controller
 {
     public function login(Request $request)

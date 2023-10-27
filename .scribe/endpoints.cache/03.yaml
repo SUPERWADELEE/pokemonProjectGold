@@ -138,3 +138,195 @@ endpoints:
     method: null
     route: null
     custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/user
+    metadata:
+      groupName: Race
+      groupDescription: 'Operations related to races.'
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PATCH
+    uri: 'api/users/{user_id}/status'
+    metadata:
+      groupName: Race
+      groupDescription: 'Operations related to races.'
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      user_id:
+        name: user_id
+        description: 'The ID of the user.'
+        required: true
+        example: 21
+        type: integer
+        enumValues: []
+        custom: []
+    cleanUrlParameters:
+      user_id: 21
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PATCH
+    uri: 'api/users/{user}/changePassword'
+    metadata:
+      groupName: Race
+      groupDescription: 'Operations related to races.'
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      user:
+        name: user
+        description: 'The user.'
+        required: true
+        example: 21
+        type: integer
+        enumValues: []
+        custom: []
+    cleanUrlParameters:
+      user: 21
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      current_password:
+        name: current_password
+        description: ''
+        required: true
+        example: corrupti
+        type: string
+        enumValues: []
+        custom: []
+      new_password:
+        name: new_password
+        description: 'Must be at least 6 characters.'
+        required: true
+        example: yrcrghxkzkmjnfqmjoirsoywwmurwkgpnwpzxkdofhvanoihzeeqliuoaoqygfgmd
+        type: string
+        enumValues: []
+        custom: []
+    cleanBodyParameters:
+      current_password: corrupti
+      new_password: yrcrghxkzkmjnfqmjoirsoywwmurwkgpnwpzxkdofhvanoihzeeqliuoaoqygfgmd
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/register
+    metadata:
+      groupName: Race
+      groupDescription: 'Operations related to races.'
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: wbskbgzttitlrmgnjp
+        type: string
+        enumValues: []
+        custom: []
+      email:
+        name: email
+        description: 'Must be a valid email address. Must not be greater than 255 characters.'
+        required: true
+        example: spinka.lisa@example.org
+        type: string
+        enumValues: []
+        custom: []
+      password:
+        name: password
+        description: 'Must be at least 6 characters.'
+        required: true
+        example: '+7XOh9xK&'
+        type: string
+        enumValues: []
+        custom: []
+    cleanBodyParameters:
+      name: wbskbgzttitlrmgnjp
+      email: spinka.lisa@example.org
+      password: '+7XOh9xK&'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

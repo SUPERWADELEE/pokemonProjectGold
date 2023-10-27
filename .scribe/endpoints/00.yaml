@@ -26,7 +26,7 @@ endpoints:
         name: first_name
         description: 'The first name of the user.'
         required: true
-        example: sed
+        example: accusamus
         type: string
         enumValues: []
         custom: []
@@ -34,7 +34,7 @@ endpoints:
         name: last_name
         description: 'The last name of the user.'
         required: true
-        example: possimus
+        example: et
         type: string
         enumValues: []
         custom: []
@@ -42,14 +42,14 @@ endpoints:
         name: email
         description: 'The email address of the user.'
         required: true
-        example: jeffery.graham@example.org
+        example: rsipes@example.org
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      first_name: sed
-      last_name: possimus
-      email: jeffery.graham@example.org
+      first_name: accusamus
+      last_name: et
+      email: rsipes@example.org
     fileParameters: []
     responses:
       -
@@ -92,7 +92,7 @@ endpoints:
         name: name
         description: 'Must not be greater than 15 characters.'
         required: true
-        example: xfky
+        example: pnixyprlmhateb
         type: string
         enumValues: []
         custom: []
@@ -100,7 +100,7 @@ endpoints:
         name: race_id
         description: ''
         required: true
-        example: 4
+        example: 2
         type: integer
         enumValues: []
         custom: []
@@ -108,7 +108,7 @@ endpoints:
         name: ability_id
         description: ''
         required: true
-        example: 8
+        example: 19
         type: integer
         enumValues: []
         custom: []
@@ -116,7 +116,7 @@ endpoints:
         name: nature_id
         description: ''
         required: true
-        example: 18
+        example: 15
         type: integer
         enumValues: []
         custom: []
@@ -124,7 +124,7 @@ endpoints:
         name: level
         description: 'Must be at least 1. Must not be greater than 100.'
         required: true
-        example: 6
+        example: 23
         type: integer
         enumValues: []
         custom: []
@@ -133,18 +133,18 @@ endpoints:
         description: ''
         required: false
         example:
-          - 1
+          - 8
         type: 'integer[]'
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: xfky
-      race_id: 4
-      ability_id: 8
-      nature_id: 18
-      level: 6
+      name: pnixyprlmhateb
+      race_id: 2
+      ability_id: 19
+      nature_id: 15
+      level: 23
       skills:
-        - 1
+        - 8
     fileParameters: []
     responses: []
     responseFields: []
@@ -174,12 +174,12 @@ endpoints:
         name: id
         description: 'The ID of the pokemon.'
         required: true
-        example: 1
+        example: 15
         type: integer
         enumValues: []
         custom: []
     cleanUrlParameters:
-      id: 1
+      id: 15
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -223,12 +223,12 @@ endpoints:
         name: id
         description: 'The ID of the pokemon.'
         required: true
-        example: 1
+        example: 15
         type: integer
         enumValues: []
         custom: []
     cleanUrlParameters:
-      id: 1
+      id: 15
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -315,12 +315,12 @@ endpoints:
         name: id
         description: 'The ID of the pokemon.'
         required: true
-        example: 1
+        example: 15
         type: integer
         enumValues: []
         custom: []
     cleanUrlParameters:
-      id: 1
+      id: 15
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -354,12 +354,12 @@ endpoints:
         name: pokemon_id
         description: 'The ID of the pokemon.'
         required: true
-        example: 1
+        example: 15
         type: integer
         enumValues: []
         custom: []
     cleanUrlParameters:
-      pokemon_id: 1
+      pokemon_id: 15
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

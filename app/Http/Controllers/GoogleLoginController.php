@@ -9,8 +9,15 @@ use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
+/**
+ * @group GoogleLogin
+ * Operations related to googleLogin.
+ */
+
 class GoogleLoginController extends Controller
 {
+
+  
     public function redirectToProvider()
 {
     return Socialite::driver('google')->redirect();

@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
+/**
+ * @group Payment
+ * Operations related to payments.
+ */
 class PaymentController extends Controller
 {
     public function checkout(Request $request)

@@ -8,6 +8,10 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 
+/**
+ * @group Order
+ * Operations related to orders.
+ */
 class OrderController extends Controller
 {
     public function store(OrderRequst $request){

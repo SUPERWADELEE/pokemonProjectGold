@@ -12,6 +12,11 @@ use App\Services\NewebpayMpgResponse;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
+/**
+ * @group PaymentResponse
+ * Operations related to payments.
+ */
+
 class PaymentsResponseController extends Controller
 {
     public function notifyResponse(Request $request)

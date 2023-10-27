@@ -5,12 +5,12 @@
             "key": "baseUrl",
             "type": "string",
             "name": "string",
-            "value": "http:\/\/localhost"
+            "value": "https:\/\/wade.monster.com"
         }
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "7d1187d6-df56-40ab-b60d-33609ff2be65",
+        "_postman_id": "fb34d9bb-9586-46dc-8462-b45c8e5e4f16",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -89,7 +89,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"uilnzsj\"}"
+                            "raw": "{\"name\":\"aqp\"}"
                         },
                         "description": "",
                         "auth": {
@@ -128,7 +128,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"lbwirrguzmwnscftwys\"}"
+                            "raw": "{\"name\":\"xuxppzexexqvorhd\"}"
                         },
                         "description": "",
                         "auth": {
@@ -140,63 +140,19 @@
             ]
         },
         {
-            "name": "Endpoints",
-            "description": "",
+            "name": "Auth",
+            "description": "Operations related to auths.",
             "item": [
                 {
-                    "name": "PATCH api\/users\/{user_id}\/status",
+                    "name": "POST api\/Auth\/login",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/users\/:user_id\/status",
+                            "path": "api\/Auth\/login",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/users\/:user_id\/status",
-                            "variable": [
-                                {
-                                    "id": "user_id",
-                                    "key": "user_id",
-                                    "value": "3",
-                                    "description": "The ID of the user."
-                                }
-                            ]
+                            "raw": "{{baseUrl}}\/api\/Auth\/login"
                         },
-                        "method": "PATCH",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": []
-                },
-                {
-                    "name": "PATCH api\/users\/{user}\/changePassword",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/users\/:user\/changePassword",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/users\/:user\/changePassword",
-                            "variable": [
-                                {
-                                    "id": "user",
-                                    "key": "user",
-                                    "value": "3",
-                                    "description": "The user."
-                                }
-                            ]
-                        },
-                        "method": "PATCH",
+                        "method": "POST",
                         "header": [
                             {
                                 "key": "Content-Type",
@@ -209,7 +165,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"current_password\":\"minima\",\"new_password\":\"gazpekdmbbrlmxnfbmqynmjdrmgrxyliqpknuupehgxlyj\"}"
+                            "raw": "{\"email\":\"antwon45@example.com\",\"password\":\"gB\\\/a=.):!\"}"
                         },
                         "description": "",
                         "auth": {
@@ -247,13 +203,201 @@
                     "response": []
                 },
                 {
-                    "name": "POST api\/register",
+                    "name": "GET api\/email\/verify\/{id}\/{hash}",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/register",
+                            "path": "api\/email\/verify\/:id\/:hash",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/register"
+                            "raw": "{{baseUrl}}\/api\/email\/verify\/:id\/:hash",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "non",
+                                    "description": "The ID of the verify."
+                                },
+                                {
+                                    "id": "hash",
+                                    "key": "hash",
+                                    "value": "quibusdam",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "59"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 404,
+                            "body": "{\"error\":\"Resource not found\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/checkVerificationStatus\/{email}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/checkVerificationStatus\/:email",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/checkVerificationStatus\/:email",
+                            "variable": [
+                                {
+                                    "id": "email",
+                                    "key": "email",
+                                    "value": "cprice%40example.net",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "58"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 404,
+                            "body": "{\"error\":\"User not found\"}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "CartItem",
+            "description": "Operations related to cartItems.",
+            "item": [
+                {
+                    "name": "GET api\/cart_items",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/cart_items",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/cart_items"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/cart_items",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/cart_items",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/cart_items"
                         },
                         "method": "POST",
                         "header": [
@@ -268,7 +412,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"jjtfihjxabfvgvqwqtogsbvc\",\"email\":\"uking@example.com\",\"password\":\"Qu[a.;AQ1\"}"
+                            "raw": "{\"race_id\":13}"
                         },
                         "description": "",
                         "auth": {
@@ -278,15 +422,15 @@
                     "response": []
                 },
                 {
-                    "name": "POST api\/Auth\/login",
+                    "name": "GET api\/cart_items\/total_price",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/Auth\/login",
+                            "path": "api\/cart_items\/total_price",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/Auth\/login"
+                            "raw": "{{baseUrl}}\/api\/cart_items\/total_price"
                         },
-                        "method": "POST",
+                        "method": "GET",
                         "header": [
                             {
                                 "key": "Content-Type",
@@ -299,7 +443,66 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"iquigley@example.com\",\"password\":\"uVKTbJ7\\\"*d-9)${U\"}"
+                            "raw": "{\"cart_item_ids\":[]}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "PUT api\/cart_items\/{cart_item_id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/cart_items\/:cart_item_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/cart_items\/:cart_item_id",
+                            "variable": [
+                                {
+                                    "id": "cart_item_id",
+                                    "key": "cart_item_id",
+                                    "value": "5",
+                                    "description": "The ID of the cart item."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
                         },
                         "description": "",
                         "auth": {
@@ -309,15 +512,23 @@
                     "response": []
                 },
                 {
-                    "name": "POST api\/payResult",
+                    "name": "DELETE api\/cart_items\/{cart_item_id}",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/payResult",
+                            "path": "api\/cart_items\/:cart_item_id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/payResult"
+                            "raw": "{{baseUrl}}\/api\/cart_items\/:cart_item_id",
+                            "variable": [
+                                {
+                                    "id": "cart_item_id",
+                                    "key": "cart_item_id",
+                                    "value": "5",
+                                    "description": "The ID of the cart item."
+                                }
+                            ]
                         },
-                        "method": "POST",
+                        "method": "DELETE",
                         "header": [
                             {
                                 "key": "Content-Type",
@@ -412,7 +623,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"fwkblrybazjxvnyepmiokr\"}"
+                            "raw": "{\"name\":\"gccdpsbfjamlk\"}"
                         },
                         "description": "",
                         "auth": {
@@ -451,8 +662,310 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"bolyjhjgbxycfusorw\"}"
+                            "raw": "{\"name\":\"vsryebleriyfewts\"}"
                         },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Order",
+            "description": "Operations related to orders.",
+            "item": [
+                {
+                    "name": "POST api\/orders",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/orders",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/orders"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"total_price\":18,\"payment_method\":\"credit_card\",\"payment_status\":\"canceled\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET api\/orders",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/orders",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/orders"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "OrderDetail",
+            "description": "Operations related to orderDetais.",
+            "item": [
+                {
+                    "name": "GET api\/order_details\/{order_detail_id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/order_details\/:order_detail_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/order_details\/:order_detail_id",
+                            "variable": [
+                                {
+                                    "id": "order_detail_id",
+                                    "key": "order_detail_id",
+                                    "value": "1",
+                                    "description": "The ID of the order detail."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/orders\/{order_id}\/order_details",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/orders\/:order_id\/order_details",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/orders\/:order_id\/order_details",
+                            "variable": [
+                                {
+                                    "id": "order_id",
+                                    "key": "order_id",
+                                    "value": "16",
+                                    "description": "The ID of the order."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/orders_details",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/orders_details",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/orders_details"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"order_id\":9,\"race_id\":10}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Payment",
+            "description": "Operations related to payments.",
+            "item": [
+                {
+                    "name": "POST api\/payments",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/payments",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/payments"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "PaymentResponse",
+            "description": "Operations related to payments.",
+            "item": [
+                {
+                    "name": "POST api\/payResult",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/payResult",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/payResult"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
                         "description": "",
                         "auth": {
                             "type": "noauth"
@@ -488,7 +1001,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"first_name\":\"sed\",\"last_name\":\"possimus\",\"email\":\"jeffery.graham@example.org\"}"
+                            "raw": "{\"first_name\":\"accusamus\",\"last_name\":\"et\",\"email\":\"rsipes@example.org\"}"
                         },
                         "description": "This endpoint allows you to show all pokemons."
                     },
@@ -536,7 +1049,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"xfky\",\"race_id\":4,\"ability_id\":8,\"nature_id\":18,\"level\":6,\"skills\":[1]}"
+                            "raw": "{\"name\":\"pnixyprlmhateb\",\"race_id\":2,\"ability_id\":19,\"nature_id\":15,\"level\":23,\"skills\":[8]}"
                         },
                         "description": "",
                         "auth": {
@@ -557,7 +1070,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "1",
+                                    "value": "15",
                                     "description": "The ID of the pokemon."
                                 }
                             ]
@@ -613,7 +1126,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "1",
+                                    "value": "15",
                                     "description": "The ID of the pokemon."
                                 }
                             ]
@@ -652,7 +1165,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "1",
+                                    "value": "15",
                                     "description": "The ID of the pokemon."
                                 }
                             ]
@@ -688,7 +1201,7 @@
                                 {
                                     "id": "pokemon_id",
                                     "key": "pokemon_id",
-                                    "value": "1",
+                                    "value": "15",
                                     "description": "The ID of the pokemon."
                                 }
                             ]
@@ -877,6 +1390,160 @@
                             "name": ""
                         }
                     ]
+                },
+                {
+                    "name": "GET api\/user",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/user",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/user"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "PATCH api\/users\/{user_id}\/status",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/users\/:user_id\/status",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/users\/:user_id\/status",
+                            "variable": [
+                                {
+                                    "id": "user_id",
+                                    "key": "user_id",
+                                    "value": "21",
+                                    "description": "The ID of the user."
+                                }
+                            ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "PATCH api\/users\/{user}\/changePassword",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/users\/:user\/changePassword",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/users\/:user\/changePassword",
+                            "variable": [
+                                {
+                                    "id": "user",
+                                    "key": "user",
+                                    "value": "21",
+                                    "description": "The user."
+                                }
+                            ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"current_password\":\"corrupti\",\"new_password\":\"yrcrghxkzkmjnfqmjoirsoywwmurwkgpnwpzxkdofhvanoihzeeqliuoaoqygfgmd\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/register",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/register",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/register"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"wbskbgzttitlrmgnjp\",\"email\":\"spinka.lisa@example.org\",\"password\":\"+7XOh9xK&\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
                 }
             ]
         }

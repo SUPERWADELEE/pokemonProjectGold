@@ -67,12 +67,12 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: uilnzsj
+        example: aqp
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: uilnzsj
+      name: aqp
     fileParameters: []
     responses: []
     responseFields: []
@@ -115,12 +115,12 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: lbwirrguzmwnscftwys
+        example: xuxppzexexqvorhd
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: lbwirrguzmwnscftwys
+      name: xuxppzexexqvorhd
     fileParameters: []
     responses: []
     responseFields: []

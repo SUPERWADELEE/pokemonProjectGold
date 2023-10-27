@@ -1,13 +1,13 @@
-name: Ability
-description: 'Operations related to abilities.'
+name: OrderDetail
+description: 'Operations related to orderDetais.'
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/abilities
+    uri: 'api/order_details/{order_detail_id}'
     metadata:
-      groupName: Ability
-      groupDescription: 'Operations related to abilities.'
+      groupName: OrderDetail
+      groupDescription: 'Operations related to orderDetais.'
       subgroup: ''
       subgroupDescription: ''
       title: ''
@@ -17,8 +17,65 @@ endpoints:
     headers:
       Content-Type: application/json
       Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
+    urlParameters:
+      order_detail_id:
+        name: order_detail_id
+        description: 'The ID of the order detail.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        custom: []
+    cleanUrlParameters:
+      order_detail_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/orders/{order_id}/order_details'
+    metadata:
+      groupName: OrderDetail
+      groupDescription: 'Operations related to orderDetais.'
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      order_id:
+        name: order_id
+        description: 'The ID of the order.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        custom: []
+    cleanUrlParameters:
+      order_id: 16
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -43,10 +100,10 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/abilities
+    uri: api/orders_details
     metadata:
-      groupName: Ability
-      groupDescription: 'Operations related to abilities.'
+      groupName: OrderDetail
+      groupDescription: 'Operations related to orderDetais.'
       subgroup: ''
       subgroupDescription: ''
       title: ''
@@ -61,64 +118,25 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      name:
-        name: name
-        description: 'Must not be greater than 255 characters.'
+      order_id:
+        name: order_id
+        description: ''
         required: true
-        example: aqp
-        type: string
-        enumValues: []
-        custom: []
-    cleanBodyParameters:
-      name: aqp
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - PATCH
-    uri: 'api/abilities/{ability_id}'
-    metadata:
-      groupName: Ability
-      groupDescription: 'Operations related to abilities.'
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      ability_id:
-        name: ability_id
-        description: 'The ID of the ability.'
-        required: true
-        example: 1
+        example: 9
         type: integer
         enumValues: []
         custom: []
-    cleanUrlParameters:
-      ability_id: 1
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      name:
-        name: name
-        description: 'Must not be greater than 255 characters.'
+      race_id:
+        name: race_id
+        description: ''
         required: true
-        example: xuxppzexexqvorhd
-        type: string
+        example: 10
+        type: integer
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: xuxppzexexqvorhd
+      order_id: 9
+      race_id: 10
     fileParameters: []
     responses: []
     responseFields: []

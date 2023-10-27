@@ -10,6 +10,10 @@ use App\Models\OrderDetail;
 use App\Models\Race;
 use Illuminate\Http\Request;
 
+/**
+ * @group OrderDetail
+ * Operations related to orderDetais.
+ */
 class OrderDetailController extends Controller
 {
     public function store(OrderDetailRequest $request)
