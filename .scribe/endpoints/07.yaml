@@ -1,24 +1,33 @@
-name: User
-description: 'Operations related to users.'
+name: OrderDetail
+description: 'Operations related to orderDetais.'
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/user
+    uri: 'api/order_details/{order_detail_id}'
     metadata:
-      groupName: User
-      groupDescription: 'Operations related to users.'
+      groupName: OrderDetail
+      groupDescription: 'Operations related to orderDetais.'
       subgroup: ''
       subgroupDescription: ''
-      title: 使用者個人資訊
+      title: ''
       description: ''
       authenticated: false
       custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
+    urlParameters:
+      order_detail_id:
+        name: order_detail_id
+        description: 'The ID of the order detail.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        custom: []
+    cleanUrlParameters:
+      order_detail_id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -42,14 +51,14 @@ endpoints:
     custom: []
   -
     httpMethods:
-      - PATCH
-    uri: 'api/users/{user_id}/status'
+      - GET
+    uri: 'api/orders/{order_id}/order_details'
     metadata:
-      groupName: User
-      groupDescription: 'Operations related to users.'
+      groupName: OrderDetail
+      groupDescription: 'Operations related to orderDetais.'
       subgroup: ''
       subgroupDescription: ''
-      title: ''
+      title: 訂單細節列表
       description: ''
       authenticated: false
       custom: []
@@ -57,22 +66,31 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      user_id:
-        name: user_id
-        description: 'The ID of the user.'
+      order_id:
+        name: order_id
+        description: 'The ID of the order.'
         required: true
-        example: 21
+        example: 16
         type: integer
         enumValues: []
         custom: []
     cleanUrlParameters:
-      user_id: 21
+      order_id: 16
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -81,53 +99,44 @@ endpoints:
     custom: []
   -
     httpMethods:
-      - PATCH
-    uri: 'api/users/{user}/changePassword'
+      - POST
+    uri: api/orders_details
     metadata:
-      groupName: User
-      groupDescription: 'Operations related to users.'
+      groupName: OrderDetail
+      groupDescription: 'Operations related to orderDetais.'
       subgroup: ''
       subgroupDescription: ''
-      title: ''
+      title: 訂單細節新增
       description: ''
       authenticated: false
       custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
-    urlParameters:
-      user:
-        name: user
-        description: 'The user.'
-        required: true
-        example: 21
-        type: integer
-        enumValues: []
-        custom: []
-    cleanUrlParameters:
-      user: 21
+    urlParameters: []
+    cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      current_password:
-        name: current_password
+      order_id:
+        name: order_id
         description: ''
         required: true
-        example: itaque
-        type: string
+        example: 17
+        type: integer
         enumValues: []
         custom: []
-      new_password:
-        name: new_password
-        description: 'Must be at least 6 characters.'
+      race_id:
+        name: race_id
+        description: ''
         required: true
-        example: qjjuszkiuvwshsdlkywphihzxodwofoiinxcosdcqlexxfjcightwpconpcttwshzhtkwjdmgovtiempaxoz
-        type: string
+        example: 8
+        type: integer
         enumValues: []
         custom: []
     cleanBodyParameters:
-      current_password: itaque
-      new_password: qjjuszkiuvwshsdlkywphihzxodwofoiinxcosdcqlexxfjcightwpconpcttwshzhtkwjdmgovtiempaxoz
+      order_id: 17
+      race_id: 8
     fileParameters: []
     responses: []
     responseFields: []

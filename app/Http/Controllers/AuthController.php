@@ -11,8 +11,16 @@ use Illuminate\Support\Facades\Auth;
 
 use Tymon\JWTAuth\Facades\JWTAuth;
 
+
+/**
+ * @group Auth
+ * Operations related to auth.
+ */
 class AuthController extends Controller
 {
+    /**
+     * 登入
+     */
     public function login(Request $request)
     {
         // 先針對輸入的部分做驗表單驗證       
@@ -37,6 +45,9 @@ class AuthController extends Controller
 
 
 
+    /**
+     * 登出
+     */
     public function logout()
     {
         try {
@@ -49,6 +60,9 @@ class AuthController extends Controller
         }
     }
 
+    /**
+     * 註冊email驗證信確認
+     */
     public function verifyEmail(Request $request, $id, $hash)
     {
         $user = User::findOrFail($id);
@@ -68,9 +82,9 @@ class AuthController extends Controller
         return response(['message' => 'Email verified successfully.']);
     }
 
-
-
-
+    /**
+     * 確認user表註冊驗證信狀態
+     */
     public function checkVerificationStatus($email)
     {
         // Find the user by email

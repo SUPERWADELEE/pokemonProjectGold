@@ -8,7 +8,7 @@ function showWaitPage(email) {
     document.getElementById('registerPage').style.display = 'none';
 
 
-    // 定期檢查驗證狀態
+    // 定期檢查驗證狀態 poling
     verificationInterval = setInterval(() => checkVerificationStatus(email), 5000);
 }
 

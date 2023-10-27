@@ -5,12 +5,12 @@ info:
   version: 1.0.0
 servers:
   -
-    url: 'http://localhost'
+    url: 'https://wade.monster.com'
 paths:
   /api/abilities:
     get:
-      summary: ''
-      operationId: getApiAbilities
+      summary: 性格列表
+      operationId: ''
       description: ''
       parameters: []
       responses:
@@ -30,8 +30,8 @@ paths:
         - Ability
       security: []
     post:
-      summary: ''
-      operationId: postApiAbilities
+      summary: 性格新增
+      operationId: ''
       description: ''
       parameters: []
       responses: {  }
@@ -47,14 +47,14 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: uilnzsj
+                  example: ysstvdreay
               required:
                 - name
       security: []
   '/api/abilities/{ability_id}':
     patch:
-      summary: ''
-      operationId: patchApiAbilitiesAbility_id
+      summary: 性格修改
+      operationId: ''
       description: ''
       parameters: []
       responses: {  }
@@ -70,7 +70,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: lbwirrguzmwnscftwys
+                  example: jgjvlkpmqi
               required:
                 - name
       security: []
@@ -83,114 +83,15 @@ paths:
         required: true
         schema:
           type: integer
-  '/api/users/{user_id}/status':
-    patch:
-      summary: ''
-      operationId: patchApiUsersUser_idStatus
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Endpoints
-      security: []
-    parameters:
-      -
-        in: path
-        name: user_id
-        description: 'The ID of the user.'
-        example: 3
-        required: true
-        schema:
-          type: integer
-  '/api/users/{user}/changePassword':
-    patch:
-      summary: ''
-      operationId: patchApiUsersUserChangePassword
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Endpoints
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                current_password:
-                  type: string
-                  description: ''
-                  example: minima
-                new_password:
-                  type: string
-                  description: 'Must be at least 6 characters.'
-                  example: gazpekdmbbrlmxnfbmqynmjdrmgrxyliqpknuupehgxlyj
-              required:
-                - current_password
-                - new_password
-      security: []
-    parameters:
-      -
-        in: path
-        name: user
-        description: 'The user.'
-        example: 3
-        required: true
-        schema:
-          type: integer
-  /api/Auth/logout:
-    post:
-      summary: ''
-      operationId: postApiAuthLogout
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Endpoints
-      security: []
-  /api/register:
-    post:
-      summary: ''
-      operationId: postApiRegister
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Endpoints
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: 'Must not be greater than 255 characters.'
-                  example: jjtfihjxabfvgvqwqtogsbvc
-                email:
-                  type: string
-                  description: 'Must be a valid email address. Must not be greater than 255 characters.'
-                  example: uking@example.com
-                password:
-                  type: string
-                  description: 'Must be at least 6 characters.'
-                  example: 'Qu[a.;AQ1'
-              required:
-                - name
-                - email
-                - password
-      security: []
   /api/Auth/login:
     post:
-      summary: ''
-      operationId: postApiAuthLogin
+      summary: 登入
+      operationId: ''
       description: ''
       parameters: []
       responses: {  }
       tags:
-        - Endpoints
+        - Auth
       requestBody:
         required: true
         content:
@@ -201,29 +102,222 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: iquigley@example.com
+                  example: dovie.langworth@example.net
                 password:
                   type: string
                   description: ''
-                  example: 'uVKTbJ7"*d-9)${U'
+                  example: 'rR_ZO7Q{wM'
               required:
                 - email
                 - password
       security: []
-  /api/payResult:
+  /api/Auth/logout:
     post:
-      summary: ''
-      operationId: postApiPayResult
+      summary: 登出
+      operationId: ''
       description: ''
       parameters: []
       responses: {  }
       tags:
-        - Endpoints
+        - Auth
       security: []
+  '/api/email/verify/{id}/{hash}':
+    get:
+      summary: 註冊email驗證信確認
+      operationId: email
+      description: ''
+      parameters: []
+      responses:
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Resource not found'
+                properties:
+                  error:
+                    type: string
+                    example: 'Resource not found'
+      tags:
+        - Auth
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the verify.'
+        example: ipsa
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: hash
+        description: ''
+        example: cumque
+        required: true
+        schema:
+          type: string
+  '/api/checkVerificationStatus/{email}':
+    get:
+      summary: 確認user表註冊驗證信狀態
+      operationId: user
+      description: ''
+      parameters: []
+      responses:
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'User not found'
+                properties:
+                  error:
+                    type: string
+                    example: 'User not found'
+      tags:
+        - Auth
+      security: []
+    parameters:
+      -
+        in: path
+        name: email
+        description: ''
+        example: carter55@example.com
+        required: true
+        schema:
+          type: string
+  /api/cart_items:
+    get:
+      summary: 顯示購物車商品
+      operationId: ''
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - CartItem
+      security: []
+    post:
+      summary: 加入購物車
+      operationId: ''
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - CartItem
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                quantity:
+                  type: string
+                  description: ''
+                  example: null
+                race_id:
+                  type: integer
+                  description: ''
+                  example: 18
+              required:
+                - race_id
+      security: []
+  /api/cart_items/total_price:
+    get:
+      summary: 購物車總價格計算
+      operationId: ''
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - CartItem
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cart_item_ids:
+                  type: object
+                  description: ''
+                  example: []
+                  properties: {  }
+              required:
+                - cart_item_ids
+      security: []
+  '/api/cart_items/{cart_item_id}':
+    put:
+      summary: 購物車更新
+      operationId: ''
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - CartItem
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                quantity:
+                  type: string
+                  description: ''
+                  example: null
+      security: []
+    delete:
+      summary: 購物車刪除
+      operationId: ''
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - CartItem
+      security: []
+    parameters:
+      -
+        in: path
+        name: cart_item_id
+        description: 'The ID of the cart item.'
+        example: 5
+        required: true
+        schema:
+          type: integer
   /api/natures:
     get:
-      summary: ''
-      operationId: getApiNatures
+      summary: 性格詳情
+      operationId: ''
       description: ''
       parameters: []
       responses:
@@ -243,8 +337,8 @@ paths:
         - Nature
       security: []
     post:
-      summary: ''
-      operationId: postApiNatures
+      summary: 性格新增
+      operationId: ''
       description: ''
       parameters: []
       responses: {  }
@@ -260,14 +354,14 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: fwkblrybazjxvnyepmiokr
+                  example: sjfu
               required:
                 - name
       security: []
   '/api/natures/{nature_id}':
     patch:
-      summary: ''
-      operationId: patchApiNaturesNature_id
+      summary: 性格修改
+      operationId: ''
       description: ''
       parameters: []
       responses: {  }
@@ -283,7 +377,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: bolyjhjgbxycfusorw
+                  example: puiiohgpjinxz
               required:
                 - name
       security: []
@@ -296,6 +390,177 @@ paths:
         required: true
         schema:
           type: integer
+  /api/orders:
+    post:
+      summary: 訂單新增
+      operationId: ''
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                total_price:
+                  type: integer
+                  description: 'Must be at least 1.'
+                  example: 9
+                payment_method:
+                  type: string
+                  description: ''
+                  example: cash_on_delivery
+                  enum:
+                    - credit_card
+                    - cash_on_delivery
+                payment_status:
+                  type: string
+                  description: ''
+                  example: unpaid
+                  enum:
+                    - paid
+                    - unpaid
+                    - canceled
+              required:
+                - total_price
+                - payment_method
+                - payment_status
+      security: []
+    get:
+      summary: 訂單列表
+      operationId: ''
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Order
+      security: []
+  '/api/order_details/{order_detail_id}':
+    get:
+      summary: ''
+      operationId: getApiOrder_detailsOrder_detail_id
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - OrderDetail
+      security: []
+    parameters:
+      -
+        in: path
+        name: order_detail_id
+        description: 'The ID of the order detail.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/orders/{order_id}/order_details':
+    get:
+      summary: 訂單細節列表
+      operationId: ''
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - OrderDetail
+      security: []
+    parameters:
+      -
+        in: path
+        name: order_id
+        description: 'The ID of the order.'
+        example: 16
+        required: true
+        schema:
+          type: integer
+  /api/orders_details:
+    post:
+      summary: 訂單細節新增
+      operationId: ''
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - OrderDetail
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                order_id:
+                  type: integer
+                  description: ''
+                  example: 17
+                race_id:
+                  type: integer
+                  description: ''
+                  example: 8
+              required:
+                - order_id
+                - race_id
+      security: []
+  /api/payments:
+    post:
+      summary: 請求藍星金流結帳頁面
+      operationId: ''
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Payment
+      security: []
+  /api/payResult:
+    post:
+      summary: 藍星金流結帳完後結果返回確認，寄通知信給使用者
+      operationId: ''
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - PaymentResponse
+      security: []
   /api/pokemons:
     get:
       summary: 'Create a new user.'
@@ -327,15 +592,15 @@ paths:
                 first_name:
                   type: string
                   description: 'The first name of the user.'
-                  example: sed
+                  example: dolores
                 last_name:
                   type: string
                   description: 'The last name of the user.'
-                  example: possimus
+                  example: eaque
                 email:
                   type: string
                   description: 'The email address of the user.'
-                  example: jeffery.graham@example.org
+                  example: monserrate89@example.net
               required:
                 - first_name
                 - last_name
@@ -358,28 +623,28 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 15 characters.'
-                  example: xfky
+                  example: u
                 race_id:
                   type: integer
                   description: ''
-                  example: 4
+                  example: 7
                 ability_id:
                   type: integer
                   description: ''
-                  example: 8
+                  example: 18
                 nature_id:
                   type: integer
                   description: ''
-                  example: 18
+                  example: 3
                 level:
                   type: integer
                   description: 'Must be at least 1. Must not be greater than 100.'
-                  example: 6
+                  example: 11
                 skills:
                   type: array
                   description: ''
                   example:
-                    - 1
+                    - 12
                   items:
                     type: integer
               required:
@@ -467,7 +732,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the pokemon.'
-        example: 1
+        example: 15
         required: true
         schema:
           type: integer
@@ -486,14 +751,14 @@ paths:
         in: path
         name: pokemon_id
         description: 'The ID of the pokemon.'
-        example: 1
+        example: 15
         required: true
         schema:
           type: integer
   /api/races:
     get:
-      summary: ''
-      operationId: getApiRaces
+      summary: 種族列表
+      operationId: ''
       description: ''
       parameters: []
       responses:
@@ -514,8 +779,8 @@ paths:
       security: []
   '/api/races/{race_id}/evolutionLevel':
     get:
-      summary: ''
-      operationId: getApiRacesRace_idEvolutionLevel
+      summary: 種族進化等級
+      operationId: ''
       description: ''
       parameters: []
       responses:
@@ -545,8 +810,8 @@ paths:
           type: integer
   '/api/races/{race_id}/skill':
     get:
-      summary: ''
-      operationId: getApiRacesRace_idSkill
+      summary: 種族技能
+      operationId: ''
       description: ''
       parameters: []
       responses:
@@ -574,19 +839,151 @@ paths:
         required: true
         schema:
           type: integer
+  /api/register:
+    post:
+      summary: '註冊,寄註冊信'
+      operationId: ''
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Register
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: bxygokfrhbtjdjfrj
+                email:
+                  type: string
+                  description: 'Must be a valid email address. Must not be greater than 255 characters.'
+                  example: nikolaus.sonya@example.org
+                password:
+                  type: string
+                  description: 'Must be at least 6 characters.'
+                  example: 'X_"6G_e>'
+              required:
+                - name
+                - email
+                - password
+      security: []
+  /api/user:
+    get:
+      summary: 使用者個人資訊
+      operationId: ''
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - User
+      security: []
+  '/api/users/{user_id}/status':
+    patch:
+      summary: ''
+      operationId: patchApiUsersUser_idStatus
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - User
+      security: []
+    parameters:
+      -
+        in: path
+        name: user_id
+        description: 'The ID of the user.'
+        example: 21
+        required: true
+        schema:
+          type: integer
+  '/api/users/{user}/changePassword':
+    patch:
+      summary: ''
+      operationId: patchApiUsersUserChangePassword
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - User
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                current_password:
+                  type: string
+                  description: ''
+                  example: itaque
+                new_password:
+                  type: string
+                  description: 'Must be at least 6 characters.'
+                  example: qjjuszkiuvwshsdlkywphihzxodwofoiinxcosdcqlexxfjcightwpconpcttwshzhtkwjdmgovtiempaxoz
+              required:
+                - current_password
+                - new_password
+      security: []
+    parameters:
+      -
+        in: path
+        name: user
+        description: 'The user.'
+        example: 21
+        required: true
+        schema:
+          type: integer
 tags:
   -
     name: Ability
     description: 'Operations related to abilities.'
   -
-    name: Endpoints
-    description: ''
+    name: Auth
+    description: 'Operations related to auth.'
+  -
+    name: CartItem
+    description: 'Operations related to cartItems.'
   -
     name: Nature
     description: 'Operations related to natures.'
+  -
+    name: Order
+    description: 'Operations related to orders.'
+  -
+    name: OrderDetail
+    description: 'Operations related to orderDetais.'
+  -
+    name: Payment
+    description: 'Operations related to payments.'
+  -
+    name: PaymentResponse
+    description: 'Operations related to payments.'
   -
     name: Pokemons
     description: 'Operations related to pokemons.'
   -
     name: Race
     description: 'Operations related to races.'
+  -
+    name: Register
+    description: 'Operations related to register.'
+  -
+    name: User
+    description: 'Operations related to users.'

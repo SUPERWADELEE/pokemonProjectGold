@@ -1,0 +1,33 @@
+name: PaymentResponse
+description: 'Operations related to payments.'
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: api/payResult
+    metadata:
+      groupName: PaymentResponse
+      groupDescription: 'Operations related to payments.'
+      subgroup: ''
+      subgroupDescription: ''
+      title: 藍星金流結帳完後結果返回確認，寄通知信給使用者
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

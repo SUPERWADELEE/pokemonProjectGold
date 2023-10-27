@@ -1,0 +1,104 @@
+name: Order
+description: 'Operations related to orders.'
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: api/orders
+    metadata:
+      groupName: Order
+      groupDescription: 'Operations related to orders.'
+      subgroup: ''
+      subgroupDescription: ''
+      title: 訂單新增
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      total_price:
+        name: total_price
+        description: 'Must be at least 1.'
+        required: true
+        example: 9
+        type: integer
+        enumValues: []
+        custom: []
+      payment_method:
+        name: payment_method
+        description: ''
+        required: true
+        example: cash_on_delivery
+        type: string
+        enumValues:
+          - credit_card
+          - cash_on_delivery
+        custom: []
+      payment_status:
+        name: payment_status
+        description: ''
+        required: true
+        example: unpaid
+        type: string
+        enumValues:
+          - paid
+          - unpaid
+          - canceled
+        custom: []
+    cleanBodyParameters:
+      total_price: 9
+      payment_method: cash_on_delivery
+      payment_status: unpaid
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/orders
+    metadata:
+      groupName: Order
+      groupDescription: 'Operations related to orders.'
+      subgroup: ''
+      subgroupDescription: ''
+      title: 訂單列表
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

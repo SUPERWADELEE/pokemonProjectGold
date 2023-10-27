@@ -1,0 +1,223 @@
+name: CartItem
+description: 'Operations related to cartItems.'
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/cart_items
+    metadata:
+      groupName: CartItem
+      groupDescription: 'Operations related to cartItems.'
+      subgroup: ''
+      subgroupDescription: ''
+      title: 顯示購物車商品
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/cart_items
+    metadata:
+      groupName: CartItem
+      groupDescription: 'Operations related to cartItems.'
+      subgroup: ''
+      subgroupDescription: ''
+      title: 加入購物車
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      quantity:
+        name: quantity
+        description: ''
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        custom: []
+      race_id:
+        name: race_id
+        description: ''
+        required: true
+        example: 18
+        type: integer
+        enumValues: []
+        custom: []
+    cleanBodyParameters:
+      race_id: 18
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/cart_items/total_price
+    metadata:
+      groupName: CartItem
+      groupDescription: 'Operations related to cartItems.'
+      subgroup: ''
+      subgroupDescription: ''
+      title: 購物車總價格計算
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      cart_item_ids:
+        name: cart_item_ids
+        description: ''
+        required: true
+        example: []
+        type: object
+        enumValues: []
+        custom: []
+    cleanBodyParameters:
+      cart_item_ids: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/cart_items/{cart_item_id}'
+    metadata:
+      groupName: CartItem
+      groupDescription: 'Operations related to cartItems.'
+      subgroup: ''
+      subgroupDescription: ''
+      title: 購物車更新
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      cart_item_id:
+        name: cart_item_id
+        description: 'The ID of the cart item.'
+        required: true
+        example: 5
+        type: integer
+        enumValues: []
+        custom: []
+    cleanUrlParameters:
+      cart_item_id: 5
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      quantity:
+        name: quantity
+        description: ''
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        custom: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/cart_items/{cart_item_id}'
+    metadata:
+      groupName: CartItem
+      groupDescription: 'Operations related to cartItems.'
+      subgroup: ''
+      subgroupDescription: ''
+      title: 購物車刪除
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      cart_item_id:
+        name: cart_item_id
+        description: 'The ID of the cart item.'
+        required: true
+        example: 5
+        type: integer
+        enumValues: []
+        custom: []
+    cleanUrlParameters:
+      cart_item_id: 5
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

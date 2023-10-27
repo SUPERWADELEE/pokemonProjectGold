@@ -10,7 +10,7 @@ endpoints:
       groupDescription: 'Operations related to races.'
       subgroup: ''
       subgroupDescription: ''
-      title: ''
+      title: 種族列表
       description: ''
       authenticated: false
       custom: []
@@ -49,7 +49,7 @@ endpoints:
       groupDescription: 'Operations related to races.'
       subgroup: ''
       subgroupDescription: ''
-      title: ''
+      title: 種族進化等級
       description: ''
       authenticated: false
       custom: []
@@ -97,7 +97,7 @@ endpoints:
       groupDescription: 'Operations related to races.'
       subgroup: ''
       subgroupDescription: ''
-      title: ''
+      title: 種族技能
       description: ''
       authenticated: false
       custom: []

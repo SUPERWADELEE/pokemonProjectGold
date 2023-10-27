@@ -12,7 +12,9 @@ use Illuminate\Http\Request;
 class AbilityController extends Controller
 {
 
-    // 性格詳情
+    /**
+     * 性格列表
+     */
     public function index()
     {
         $allNatures = Ability::select('id', 'name')->get();
@@ -20,7 +22,9 @@ class AbilityController extends Controller
     }
 
 
-    // 性格新增
+    /**
+     * 性格新增
+     */
     public function store(Request $request)
     {
 
@@ -42,7 +46,9 @@ class AbilityController extends Controller
     }
 
 
-    // 性格修改
+    /**
+     * 性格修改
+     */
     public function update(Request $request, Ability $ability)
     {
         $validationData = $request->validate(
