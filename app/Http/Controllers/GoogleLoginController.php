@@ -22,11 +22,28 @@ class GoogleLoginController extends Controller
      * 將使用者導向google第三方服務頁面
      *
      * 
+     * @return \Illuminate\Http\RedirectResponse Google 第三方認證頁面的重定向響應。
      */
     public function redirectToProvider()
     {
         return Socialite::driver('google')->redirect();
     }
+
+
+     /**
+     * 處理從 Google 第三方認證服務頁面返回的回調。
+     *
+     * 
+     * 
+     * @response 200 {
+     *     "message": "Login successful via Google",
+     *     "token": "使用者的 JWT 令牌",
+     *     "user": "使用者的資料"
+     * }
+     * 
+     * @return \Illuminate\Http\Response 用 JSON 格式返回的成功消息、JWT 令牌和使用者資訊。
+     */
+    
 
     public function handleProviderCallback()
     {
@@ -41,7 +58,6 @@ class GoogleLoginController extends Controller
                 // 'avatar' => $socialUser->getAvatar(),
                 // 'google_id' => $socialUser->getId(),
 
-
                 // 你可能需要一個隨機密碼，因為某些驗證方法需要它，即使使用者從未使用它
                 'password' => bcrypt(Str::random(16))
             ]
@@ -51,11 +67,11 @@ class GoogleLoginController extends Controller
         $token = JWTAuth::fromUser($user);
 
         // 返回令牌給前端
-        // return response()->json([
-        //     'message' => 'Login successful via Google',
-        //     'token' => $token,
-        //     'user' => $user
-        // ], 200);
-        return redirect("/?token={$token}");
+        return response()->json([
+            'message' => 'Login successful via Google',
+            'token' => $token,
+            'user' => $user
+        ], 200);
+        // return redirect("/?token={$token}");
     }
 }

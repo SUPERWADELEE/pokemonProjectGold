@@ -124,6 +124,21 @@ class CartItemController extends Controller
 
     /**
      * 購物車更新
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\CartItem $cartItem 購物車的項目
+     * 
+     * @bodyParam quantity int required 更新的商品數量，必須在1到庫存的範圍內。Example: 3
+     * 
+     * @response 200 {
+     *     "total_price": "總金額"
+     * }
+     * 
+     * @response 400 {
+     *     "error": "Validation error message."
+     * }
+     * 
+     * @return \Illuminate\Http\Response 包含購物車的總金額的響應
      */
     public function update(Request $request, CartItem $cartItem)
     {
@@ -151,6 +166,12 @@ class CartItemController extends Controller
 
     /**
      * 購物車刪除
+     * 
+      * @param \App\Models\CartItem $cartItem 購物車的項目
+     * 
+     * @response 204
+     * 
+     * @return \Illuminate\Http\Response 返回無內容的204響應，表示成功刪除
      */
     public function destroy(CartItem $cartItem)
     {
@@ -161,6 +182,22 @@ class CartItemController extends Controller
 
     /**
      * 購物車總價格計算
+     * 
+      * @param \Illuminate\Http\Request $request
+     * 
+     * @bodyParam cart_item_ids array required 需要計算的購物車項目ID的列表。Example: [1, 2, 3]
+     * 
+     * @response 200 {
+     *     "data": {
+     *         "total_price": "計算的總金額"
+     *     }
+     * }
+     * 
+     * @response 403 {
+     *     "error": "Some cart items do not belong to the user or do not exist"
+     * }
+     * 
+     * @return \Illuminate\Http\Response 返回計算的總金額的響應
      */
     public function calculateTotalPrice(Request $request)
     {
