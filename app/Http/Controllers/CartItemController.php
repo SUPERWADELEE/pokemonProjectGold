@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 /**
  * @group CartItem
  * Operations related to cartItems.
+ * 
+ * @authenticated
  */
 
 class CartItemController extends Controller

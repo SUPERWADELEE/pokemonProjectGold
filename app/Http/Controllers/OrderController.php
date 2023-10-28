@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 /**
  * @group Order
  * Operations related to orders.
+ * 
+ * @authenticated
  */
 class OrderController extends Controller
 {

@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "5765dfcd-9e24-4871-8fa6-8de81dbb9d41",
+        "_postman_id": "a4eed152-62f8-44fb-831e-39effb282b65",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -40,10 +40,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
@@ -89,12 +86,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"ysstvdreay\"}"
+                            "raw": "{\"name\":\"znuzvugb\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -128,12 +122,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"jgjvlkpmqi\"}"
+                            "raw": "{\"name\":\"krvtiq\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 }
@@ -165,7 +156,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"dovie.langworth@example.net\",\"password\":\"rR_ZO7Q{wM\"}"
+                            "raw": "{\"email\":\"lucile59@example.net\",\"password\":\"A\\\/xeh.*.477FH\"}"
                         },
                         "description": "",
                         "auth": {
@@ -214,13 +205,13 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "ipsa",
+                                    "value": "numquam",
                                     "description": "The ID of the verify."
                                 },
                                 {
                                     "id": "hash",
                                     "key": "hash",
-                                    "value": "cumque",
+                                    "value": "illum",
                                     "description": ""
                                 }
                             ]
@@ -284,7 +275,7 @@
                                 {
                                     "id": "email",
                                     "key": "email",
-                                    "value": "carter55%40example.com",
+                                    "value": "pollich.onie%40example.com",
                                     "description": ""
                                 }
                             ]
@@ -363,10 +354,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
@@ -412,12 +400,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"race_id\":18}"
+                            "raw": "{\"race_id\":19}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -445,10 +430,7 @@
                             "mode": "raw",
                             "raw": "{\"cart_item_ids\":[]}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
@@ -504,10 +486,7 @@
                             "mode": "raw",
                             "raw": "[]"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -540,10 +519,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 }
@@ -574,10 +550,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
@@ -623,12 +596,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"sjfu\"}"
+                            "raw": "{\"name\":\"wivvbm\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -662,12 +632,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"puiiohgpjinxz\"}"
+                            "raw": "{\"name\":\"wghrqbnmztihlgvtlsmabc\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 }
@@ -699,12 +666,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"total_price\":9,\"payment_method\":\"cash_on_delivery\",\"payment_status\":\"unpaid\"}"
+                            "raw": "{\"total_price\":54,\"payment_method\":\"credit_card\",\"payment_status\":\"unpaid\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -729,10 +693,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
@@ -763,62 +724,6 @@
             "description": "Operations related to orderDetais.",
             "item": [
                 {
-                    "name": "GET api\/order_details\/{order_detail_id}",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/order_details\/:order_detail_id",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/order_details\/:order_detail_id",
-                            "variable": [
-                                {
-                                    "id": "order_detail_id",
-                                    "key": "order_detail_id",
-                                    "value": "1",
-                                    "description": "The ID of the order detail."
-                                }
-                            ]
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": [
-                        {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
                     "name": "\u8a02\u55ae\u7d30\u7bc0\u5217\u8868",
                     "request": {
                         "url": {
@@ -847,10 +752,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
@@ -896,12 +798,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"order_id\":17,\"race_id\":8}"
+                            "raw": "{\"order_id\":12,\"race_id\":1}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 }
@@ -932,10 +831,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 }
@@ -943,7 +839,7 @@
         },
         {
             "name": "PaymentResponse",
-            "description": "Operations related to payments.",
+            "description": "\n\u6b64\u70ba\u85cd\u661f\u91d1\u6d41\u5728\u7d50\u5e33\u5b8c\u4e4b\u5f8c\u6703\u901a\u77e5\u5f8c\u53f0\u7684\uff0c\u63a5\u6536\u7d50\u679c\u7528\u7684API",
             "item": [
                 {
                     "name": "\u85cd\u661f\u91d1\u6d41\u7d50\u5e33\u5b8c\u5f8c\u7d50\u679c\u8fd4\u56de\u78ba\u8a8d\uff0c\u5bc4\u901a\u77e5\u4fe1\u7d66\u4f7f\u7528\u8005",
@@ -966,10 +862,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 }
@@ -980,7 +873,7 @@
             "description": "Operations related to pokemons.",
             "item": [
                 {
-                    "name": "Create a new user.",
+                    "name": "\u4f7f\u7528\u8005\u5bf6\u53ef\u5922\u7684\u5217\u8868",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -999,11 +892,8 @@
                                 "value": "application\/json"
                             }
                         ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"first_name\":\"dolores\",\"last_name\":\"eaque\",\"email\":\"monserrate89@example.net\"}"
-                        },
-                        "description": "This endpoint allows you to show all pokemons."
+                        "body": null,
+                        "description": ""
                     },
                     "response": [
                         {
@@ -1028,7 +918,7 @@
                     ]
                 },
                 {
-                    "name": "POST api\/pokemons",
+                    "name": "\u4f7f\u7528\u8005\u5bf6\u53ef\u5922\u7684\u65b0\u589e",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -1049,17 +939,14 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"u\",\"race_id\":7,\"ability_id\":18,\"nature_id\":3,\"level\":11,\"skills\":[12]}"
+                            "raw": "{\"name\":\"Pikachu\",\"race_id\":1,\"ability_id\":1,\"nature_id\":1,\"level\":1,\"skills\":[11]}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
                 {
-                    "name": "GET api\/pokemons\/{id}",
+                    "name": "\u4f7f\u7528\u8005\u5bf6\u53ef\u5922\u7684\u8a73\u60c5",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -1087,10 +974,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
@@ -1115,7 +999,7 @@
                     ]
                 },
                 {
-                    "name": "PUT api\/pokemons\/{id}",
+                    "name": "\u4f7f\u7528\u8005\u5bf6\u53ef\u5922\u7684\u4fee\u6539",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -1146,15 +1030,12 @@
                             "mode": "raw",
                             "raw": "{\"name\":\"Pikachu\",\"race_id\":1,\"ability_id\":1,\"nature_id\":1,\"level\":1}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
                 {
-                    "name": "DELETE api\/pokemons\/{id}",
+                    "name": "\u4f7f\u7528\u8005\u5bf6\u53ef\u5922\u7684\u522a\u9664",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -1182,15 +1063,12 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
                 {
-                    "name": "PUT api\/pokemons\/{pokemon_id}\/evolution",
+                    "name": "\u4f7f\u7528\u8005\u5bf6\u53ef\u5922\u7684\u9032\u5316\u5224\u65b7",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -1218,10 +1096,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 }
@@ -1229,7 +1104,7 @@
         },
         {
             "name": "Race",
-            "description": "Operations related to races.",
+            "description": "Operations related to races.\n\u9019\u88e1\u7684\u7a2e\u65cf\u5c31\u662f\u5bf6\u53ef\u5922\u7684\u610f\u601d",
             "item": [
                 {
                     "name": "\u7a2e\u65cf\u5217\u8868",
@@ -1252,10 +1127,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
@@ -1280,7 +1152,7 @@
                     ]
                 },
                 {
-                    "name": "\u7a2e\u65cf\u9032\u5316\u7b49\u7d1a",
+                    "name": "\u53d6\u5f97\u7a2e\u65cf\u9032\u5316\u7b49\u7d1a",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -1308,10 +1180,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
@@ -1336,7 +1205,7 @@
                     ]
                 },
                 {
-                    "name": "\u7a2e\u65cf\u6280\u80fd",
+                    "name": "\u53d6\u5f97\u7a2e\u65cf\u80fd\u5920\u5b78\u7684\u6280\u80fd",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -1364,10 +1233,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
@@ -1419,7 +1285,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"bxygokfrhbtjdjfrj\",\"email\":\"nikolaus.sonya@example.org\",\"password\":\"X_\\\"6G_e>\"}"
+                            "raw": "{\"name\":\"hdaqoyfxdrbsojacchd\",\"email\":\"caleb.bernhard@example.net\",\"password\":\"3[Eju4\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1455,91 +1321,37 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n \"name\": \"John Doe\",\n \"photo\": \"https:\/\/example.com\/photo.jpg\",\n \"email\": \"johndoe@example.com\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\n \"error\": \"User not found\"\n}",
                             "name": ""
                         }
                     ]
                 },
                 {
-                    "name": "PATCH api\/users\/{user_id}\/status",
+                    "name": "\u66f4\u65b0\u4f7f\u7528\u8005\u8cc7\u8a0a",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/users\/:user_id\/status",
+                            "path": "api\/user",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/users\/:user_id\/status",
-                            "variable": [
-                                {
-                                    "id": "user_id",
-                                    "key": "user_id",
-                                    "value": "21",
-                                    "description": "The ID of the user."
-                                }
-                            ]
+                            "raw": "{{baseUrl}}\/api\/user"
                         },
-                        "method": "PATCH",
+                        "method": "POST",
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": []
-                },
-                {
-                    "name": "PATCH api\/users\/{user}\/changePassword",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/users\/:user\/changePassword",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/users\/:user\/changePassword",
-                            "variable": [
-                                {
-                                    "id": "user",
-                                    "key": "user",
-                                    "value": "21",
-                                    "description": "The user."
-                                }
-                            ]
-                        },
-                        "method": "PATCH",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "multipart\/form-data"
                             },
                             {
                                 "key": "Accept",
@@ -1547,13 +1359,22 @@
                             }
                         ],
                         "body": {
-                            "mode": "raw",
-                            "raw": "{\"current_password\":\"itaque\",\"new_password\":\"qjjuszkiuvwshsdlkywphihzxodwofoiinxcosdcqlexxfjcightwpconpcttwshzhtkwjdmgovtiempaxoz\"}"
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "name",
+                                    "value": "wfgwbfmtyp",
+                                    "type": "text",
+                                    "description": "Must not be greater than 255 characters."
+                                },
+                                {
+                                    "key": "userPhoto",
+                                    "src": [],
+                                    "type": "file"
+                                }
+                            ]
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "\u4e3b\u8981\u9084\u6703\u7522\u751f\u4e00\u500bpresigned URL\u4f86\u8b93\u4f7f\u7528\u8005\u700f\u89bd\u5668\u53bb\u4e0a\u50b3\u5716\u7247"
                     },
                     "response": []
                 }

@@ -8,12 +8,23 @@ use Illuminate\Http\Request;
 /**
  * @group Ability
  * Operations related to abilities.
+ * 
+ * @authenticated
  */
 class AbilityController extends Controller
 {
 
     /**
      * 性格列表
+     * 
+    * @response {
+     *  "name": "John Doe",
+     *  "photo": "https://example.com/photo.jpg",
+     *  "email": "johndoe@example.com"
+     * }
+     * 
+     * 
+     * 
      */
     public function index()
     {

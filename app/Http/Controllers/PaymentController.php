@@ -12,6 +12,8 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 /**
  * @group Payment
  * Operations related to payments.
+ * 
+ * @authenticated
  */
 class PaymentController extends Controller
 {

@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 /**
  * @group OrderDetail
  * Operations related to orderDetais.
+ * 
+ * @authenticated
  */
 class OrderDetailController extends Controller
 {

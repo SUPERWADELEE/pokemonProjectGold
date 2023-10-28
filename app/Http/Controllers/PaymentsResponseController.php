@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\Mail;
 
 /**
  * @group PaymentResponse
- * Operations related to payments.
+ * 
+ * 此為藍星金流在結帳完之後會通知後台的，接收結果用的API
+ *
+ * 
+ * @authenticated
  */
 
 class PaymentsResponseController extends Controller

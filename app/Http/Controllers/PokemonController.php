@@ -24,6 +24,8 @@ use Illuminate\Support\Facades\Log;
 /**
  * @group Pokemons
  * Operations related to pokemons.
+ * 
+ * @authenticated
  */
 
 use Illuminate\Support\Facades\Auth;
@@ -47,6 +49,10 @@ class PokemonController extends Controller
      */
 
 
+
+     /**
+     * 使用者寶可夢的列表
+     */
     public function index()
     {
         // 透過JWT取得當前登入的用戶
@@ -57,6 +63,9 @@ class PokemonController extends Controller
     }
 
 
+    /**
+     * 使用者寶可夢的新增
+     */
     // 寶可夢新增
     public function store(StorePokemonRequest $request)
     {
@@ -68,10 +77,9 @@ class PokemonController extends Controller
 
     }
 
-
-
-
-
+    /**
+     * 使用者寶可夢的修改
+     */
     // 寶可夢資料修改
     public function update(UpdatePokemonRequest $request, Pokemon $pokemon)
     {
@@ -82,6 +90,9 @@ class PokemonController extends Controller
         return PokemonResource::make($pokemon);
     }
 
+    /**
+     * 使用者寶可夢的詳情
+     */
     public function show(Pokemon $pokemon)
     {
         $this->authorize('show', $pokemon);
@@ -89,7 +100,9 @@ class PokemonController extends Controller
         return PokemonResource::make($pokemon);
     }
 
-
+    /**
+     * 使用者寶可夢的刪除
+     */
     public function destroy(Pokemon $pokemon)
     {
         $this->authorize('delete', $pokemon);
@@ -103,6 +116,9 @@ class PokemonController extends Controller
 
 
     // TODO寶可夢進化等級可以用一個evolution_id 儲存
+    /**
+     * 使用者寶可夢的進化判斷
+     */
     public function evolution(Pokemon $pokemon)
     {
         $this->authorize('evolution', $pokemon);

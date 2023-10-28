@@ -14,7 +14,7 @@ endpoints:
       subgroupDescription: ''
       title: 請求藍星金流結帳頁面
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json

@@ -28,7 +28,6 @@ paths:
                     example: Unauthenticated.
       tags:
         - Ability
-      security: []
     post:
       summary: 性格新增
       operationId: ''
@@ -47,10 +46,9 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: ysstvdreay
+                  example: znuzvugb
               required:
                 - name
-      security: []
   '/api/abilities/{ability_id}':
     patch:
       summary: 性格修改
@@ -70,10 +68,9 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: jgjvlkpmqi
+                  example: krvtiq
               required:
                 - name
-      security: []
     parameters:
       -
         in: path
@@ -102,11 +99,11 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: dovie.langworth@example.net
+                  example: lucile59@example.net
                 password:
                   type: string
                   description: ''
-                  example: 'rR_ZO7Q{wM'
+                  example: 'A/xeh.*.477FH'
               required:
                 - email
                 - password
@@ -148,7 +145,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the verify.'
-        example: ipsa
+        example: numquam
         required: true
         schema:
           type: string
@@ -156,7 +153,7 @@ paths:
         in: path
         name: hash
         description: ''
-        example: cumque
+        example: illum
         required: true
         schema:
           type: string
@@ -187,7 +184,7 @@ paths:
         in: path
         name: email
         description: ''
-        example: carter55@example.com
+        example: pollich.onie@example.com
         required: true
         schema:
           type: string
@@ -212,7 +209,6 @@ paths:
                     example: Unauthenticated.
       tags:
         - CartItem
-      security: []
     post:
       summary: 加入購物車
       operationId: ''
@@ -235,10 +231,9 @@ paths:
                 race_id:
                   type: integer
                   description: ''
-                  example: 18
+                  example: 19
               required:
                 - race_id
-      security: []
   /api/cart_items/total_price:
     get:
       summary: 購物車總價格計算
@@ -274,7 +269,6 @@ paths:
                   properties: {  }
               required:
                 - cart_item_ids
-      security: []
   '/api/cart_items/{cart_item_id}':
     put:
       summary: 購物車更新
@@ -295,7 +289,6 @@ paths:
                   type: string
                   description: ''
                   example: null
-      security: []
     delete:
       summary: 購物車刪除
       operationId: ''
@@ -304,7 +297,6 @@ paths:
       responses: {  }
       tags:
         - CartItem
-      security: []
     parameters:
       -
         in: path
@@ -335,7 +327,6 @@ paths:
                     example: Unauthenticated.
       tags:
         - Nature
-      security: []
     post:
       summary: 性格新增
       operationId: ''
@@ -354,10 +345,9 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: sjfu
+                  example: wivvbm
               required:
                 - name
-      security: []
   '/api/natures/{nature_id}':
     patch:
       summary: 性格修改
@@ -377,10 +367,9 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: puiiohgpjinxz
+                  example: wghrqbnmztihlgvtlsmabc
               required:
                 - name
-      security: []
     parameters:
       -
         in: path
@@ -409,11 +398,11 @@ paths:
                 total_price:
                   type: integer
                   description: 'Must be at least 1.'
-                  example: 9
+                  example: 54
                 payment_method:
                   type: string
                   description: ''
-                  example: cash_on_delivery
+                  example: credit_card
                   enum:
                     - credit_card
                     - cash_on_delivery
@@ -429,7 +418,6 @@ paths:
                 - total_price
                 - payment_method
                 - payment_status
-      security: []
     get:
       summary: 訂單列表
       operationId: ''
@@ -450,38 +438,6 @@ paths:
                     example: Unauthenticated.
       tags:
         - Order
-      security: []
-  '/api/order_details/{order_detail_id}':
-    get:
-      summary: ''
-      operationId: getApiOrder_detailsOrder_detail_id
-      description: ''
-      parameters: []
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: Unauthenticated.
-                properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
-      tags:
-        - OrderDetail
-      security: []
-    parameters:
-      -
-        in: path
-        name: order_detail_id
-        description: 'The ID of the order detail.'
-        example: 1
-        required: true
-        schema:
-          type: integer
   '/api/orders/{order_id}/order_details':
     get:
       summary: 訂單細節列表
@@ -503,7 +459,6 @@ paths:
                     example: Unauthenticated.
       tags:
         - OrderDetail
-      security: []
     parameters:
       -
         in: path
@@ -532,15 +487,14 @@ paths:
                 order_id:
                   type: integer
                   description: ''
-                  example: 17
+                  example: 12
                 race_id:
                   type: integer
                   description: ''
-                  example: 8
+                  example: 1
               required:
                 - order_id
                 - race_id
-      security: []
   /api/payments:
     post:
       summary: 請求藍星金流結帳頁面
@@ -550,7 +504,6 @@ paths:
       responses: {  }
       tags:
         - Payment
-      security: []
   /api/payResult:
     post:
       summary: 藍星金流結帳完後結果返回確認，寄通知信給使用者
@@ -560,12 +513,11 @@ paths:
       responses: {  }
       tags:
         - PaymentResponse
-      security: []
   /api/pokemons:
     get:
-      summary: 'Create a new user.'
-      operationId: createANewUser
-      description: 'This endpoint allows you to show all pokemons.'
+      summary: 使用者寶可夢的列表
+      operationId: ''
+      description: ''
       parameters: []
       responses:
         401:
@@ -582,32 +534,9 @@ paths:
                     example: Unauthenticated.
       tags:
         - Pokemons
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                first_name:
-                  type: string
-                  description: 'The first name of the user.'
-                  example: dolores
-                last_name:
-                  type: string
-                  description: 'The last name of the user.'
-                  example: eaque
-                email:
-                  type: string
-                  description: 'The email address of the user.'
-                  example: monserrate89@example.net
-              required:
-                - first_name
-                - last_name
-                - email
     post:
-      summary: ''
-      operationId: postApiPokemons
+      summary: 使用者寶可夢的新增
+      operationId: ''
       description: ''
       parameters: []
       responses: {  }
@@ -622,29 +551,29 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'Must not be greater than 15 characters.'
-                  example: u
+                  description: 'The name of the pokemon. Must not be greater than 15 characters.'
+                  example: Pikachu
                 race_id:
                   type: integer
-                  description: ''
-                  example: 7
+                  description: 'The ID of the race for the pokemon.'
+                  example: 1
                 ability_id:
                   type: integer
-                  description: ''
-                  example: 18
+                  description: 'The ID of the ability for the pokemon.'
+                  example: 1
                 nature_id:
                   type: integer
-                  description: ''
-                  example: 3
+                  description: 'The ID of the nature for the pokemon.'
+                  example: 1
                 level:
                   type: integer
-                  description: 'Must be at least 1. Must not be greater than 100.'
-                  example: 11
+                  description: 'The level for the pokemon. Must be at least 1. Must not be greater than 100.'
+                  example: 1
                 skills:
                   type: array
                   description: ''
                   example:
-                    - 12
+                    - 11
                   items:
                     type: integer
               required:
@@ -653,11 +582,10 @@ paths:
                 - ability_id
                 - nature_id
                 - level
-      security: []
   '/api/pokemons/{id}':
     get:
-      summary: ''
-      operationId: getApiPokemonsId
+      summary: 使用者寶可夢的詳情
+      operationId: ''
       description: ''
       parameters: []
       responses:
@@ -675,10 +603,9 @@ paths:
                     example: Unauthenticated.
       tags:
         - Pokemons
-      security: []
     put:
-      summary: ''
-      operationId: putApiPokemonsId
+      summary: 使用者寶可夢的修改
+      operationId: ''
       description: ''
       parameters: []
       responses: {  }
@@ -717,16 +644,14 @@ paths:
                   example: null
                   items:
                     type: string
-      security: []
     delete:
-      summary: ''
-      operationId: deleteApiPokemonsId
+      summary: 使用者寶可夢的刪除
+      operationId: ''
       description: ''
       parameters: []
       responses: {  }
       tags:
         - Pokemons
-      security: []
     parameters:
       -
         in: path
@@ -738,14 +663,13 @@ paths:
           type: integer
   '/api/pokemons/{pokemon_id}/evolution':
     put:
-      summary: ''
-      operationId: putApiPokemonsPokemon_idEvolution
+      summary: 使用者寶可夢的進化判斷
+      operationId: ''
       description: ''
       parameters: []
       responses: {  }
       tags:
         - Pokemons
-      security: []
     parameters:
       -
         in: path
@@ -776,10 +700,9 @@ paths:
                     example: Unauthenticated.
       tags:
         - Race
-      security: []
   '/api/races/{race_id}/evolutionLevel':
     get:
-      summary: 種族進化等級
+      summary: 取得種族進化等級
       operationId: ''
       description: ''
       parameters: []
@@ -798,7 +721,6 @@ paths:
                     example: Unauthenticated.
       tags:
         - Race
-      security: []
     parameters:
       -
         in: path
@@ -810,7 +732,7 @@ paths:
           type: integer
   '/api/races/{race_id}/skill':
     get:
-      summary: 種族技能
+      summary: 取得種族能夠學的技能
       operationId: ''
       description: ''
       parameters: []
@@ -829,7 +751,6 @@ paths:
                     example: Unauthenticated.
       tags:
         - Race
-      security: []
     parameters:
       -
         in: path
@@ -858,15 +779,15 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: bxygokfrhbtjdjfrj
+                  example: hdaqoyfxdrbsojacchd
                 email:
                   type: string
                   description: 'Must be a valid email address. Must not be greater than 255 characters.'
-                  example: nikolaus.sonya@example.org
+                  example: caleb.bernhard@example.net
                 password:
                   type: string
                   description: 'Must be at least 6 characters.'
-                  example: 'X_"6G_e>'
+                  example: '3[Eju4'
               required:
                 - name
                 - email
@@ -879,45 +800,44 @@ paths:
       description: ''
       parameters: []
       responses:
-        401:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  name: 'John Doe'
+                  photo: 'https://example.com/photo.jpg'
+                  email: johndoe@example.com
                 properties:
-                  message:
+                  name:
                     type: string
-                    example: Unauthenticated.
+                    example: 'John Doe'
+                  photo:
+                    type: string
+                    example: 'https://example.com/photo.jpg'
+                  email:
+                    type: string
+                    example: johndoe@example.com
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'User not found'
+                properties:
+                  error:
+                    type: string
+                    example: 'User not found'
       tags:
         - User
-      security: []
-  '/api/users/{user_id}/status':
-    patch:
-      summary: ''
-      operationId: patchApiUsersUser_idStatus
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - User
-      security: []
-    parameters:
-      -
-        in: path
-        name: user_id
-        description: 'The ID of the user.'
-        example: 21
-        required: true
-        schema:
-          type: integer
-  '/api/users/{user}/changePassword':
-    patch:
-      summary: ''
-      operationId: patchApiUsersUserChangePassword
-      description: ''
+    post:
+      summary: 更新使用者資訊
+      operationId: ''
+      description: '主要還會產生一個presigned URL來讓使用者瀏覽器去上傳圖片'
       parameters: []
       responses: {  }
       tags:
@@ -925,31 +845,20 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:
+          multipart/form-data:
             schema:
               type: object
               properties:
-                current_password:
+                userPhoto:
                   type: string
-                  description: ''
-                  example: itaque
-                new_password:
+                  format: binary
+                  description: 'Must be an image. Must not be greater than 2048 kilobytes.'
+                name:
                   type: string
-                  description: 'Must be at least 6 characters.'
-                  example: qjjuszkiuvwshsdlkywphihzxodwofoiinxcosdcqlexxfjcightwpconpcttwshzhtkwjdmgovtiempaxoz
+                  description: 'Must not be greater than 255 characters.'
+                  example: wfgwbfmtyp
               required:
-                - current_password
-                - new_password
-      security: []
-    parameters:
-      -
-        in: path
-        name: user
-        description: 'The user.'
-        example: 21
-        required: true
-        schema:
-          type: integer
+                - name
 tags:
   -
     name: Ability
@@ -974,13 +883,13 @@ tags:
     description: 'Operations related to payments.'
   -
     name: PaymentResponse
-    description: 'Operations related to payments.'
+    description: "\n此為藍星金流在結帳完之後會通知後台的，接收結果用的API"
   -
     name: Pokemons
     description: 'Operations related to pokemons.'
   -
     name: Race
-    description: 'Operations related to races.'
+    description: "Operations related to races.\n這裡的種族就是寶可夢的意思"
   -
     name: Register
     description: 'Operations related to register.'

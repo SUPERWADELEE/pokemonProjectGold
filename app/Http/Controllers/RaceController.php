@@ -11,6 +11,10 @@ use Illuminate\Http\Request;
 /**
  * @group Race
  * Operations related to races.
+ * 這裡的種族就是寶可夢的意思
+ * 
+ * 
+ * @authenticated
  */
 class RaceController extends Controller
 {
@@ -26,7 +30,7 @@ class RaceController extends Controller
     }
 
     /**
-     * 種族進化等級
+     * 取得種族進化等級
      */
     public function evolutionLevel(Race $race)
     {
@@ -36,7 +40,7 @@ class RaceController extends Controller
     }
 
     /**
-     * 種族技能
+     * 取得種族能夠學的技能
      */
     public function skills(Race $race)
     {

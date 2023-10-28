@@ -28,7 +28,7 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: dovie.langworth@example.net
+        example: lucile59@example.net
         type: string
         enumValues: []
         custom: []
@@ -36,13 +36,13 @@ endpoints:
         name: password
         description: ''
         required: true
-        example: 'rR_ZO7Q{wM'
+        example: 'A/xeh.*.477FH'
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      email: dovie.langworth@example.net
-      password: 'rR_ZO7Q{wM'
+      email: lucile59@example.net
+      password: 'A/xeh.*.477FH'
     fileParameters: []
     responses: []
     responseFields: []
@@ -102,7 +102,7 @@ endpoints:
         name: id
         description: 'The ID of the verify.'
         required: true
-        example: ipsa
+        example: numquam
         type: string
         enumValues: []
         custom: []
@@ -110,13 +110,13 @@ endpoints:
         name: hash
         description: ''
         required: true
-        example: cumque
+        example: illum
         type: string
         enumValues: []
         custom: []
     cleanUrlParameters:
-      id: ipsa
-      hash: cumque
+      id: numquam
+      hash: illum
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -161,12 +161,12 @@ endpoints:
         name: email
         description: ''
         required: true
-        example: carter55@example.com
+        example: pollich.onie@example.com
         type: string
         enumValues: []
         custom: []
     cleanUrlParameters:
-      email: carter55@example.com
+      email: pollich.onie@example.com
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

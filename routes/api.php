@@ -84,8 +84,10 @@ Route::middleware('auth:api', 'checkStatus', 'throttle:100000,1')->group(functio
     // 使用者細節
     Route::get('user', [UserController::class, 'show']);
     Route::post('user', [UserController::class, 'update']);
-    Route::patch('users/{user}/status', [UserController::class, 'changeUserStatus']);
-    Route::patch('users/{user}/changePassword', [UserController::class, 'changePassword']);
+    
+    
+    // Route::patch('users/{user}/status', [UserController::class, 'changeUserStatus']);
+    // Route::patch('users/{user}/changePassword', [UserController::class, 'changePassword']);
 
 
     // 購物車詳情
@@ -101,7 +103,7 @@ Route::middleware('auth:api', 'checkStatus', 'throttle:100000,1')->group(functio
     Route::get('orders', [OrderController::class, 'index']);
 
     // 訂單詳情
-    Route::get('order_details/{order_detail}', [OrderDetailController::class, 'show']);
+    // Route::get('order_details/{order_detail}', [OrderDetailController::class, 'show']);
     Route::get('orders/{order}/order_details', [OrderDetailController::class, 'index']);
     Route::post('orders_details', [OrderDetailController::class, 'store']);
 

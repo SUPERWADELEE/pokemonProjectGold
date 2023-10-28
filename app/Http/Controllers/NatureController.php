@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 /**
  * @group Nature
  * Operations related to natures.
+ * 
+ * @authenticated
  */
 class NatureController extends Controller
 {

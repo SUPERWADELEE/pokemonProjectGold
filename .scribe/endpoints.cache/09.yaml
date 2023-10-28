@@ -28,7 +28,7 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: bxygokfrhbtjdjfrj
+        example: hdaqoyfxdrbsojacchd
         type: string
         enumValues: []
         custom: []
@@ -36,7 +36,7 @@ endpoints:
         name: email
         description: 'Must be a valid email address. Must not be greater than 255 characters.'
         required: true
-        example: nikolaus.sonya@example.org
+        example: caleb.bernhard@example.net
         type: string
         enumValues: []
         custom: []
@@ -44,14 +44,14 @@ endpoints:
         name: password
         description: 'Must be at least 6 characters.'
         required: true
-        example: 'X_"6G_e>'
+        example: '3[Eju4'
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: bxygokfrhbtjdjfrj
-      email: nikolaus.sonya@example.org
-      password: 'X_"6G_e>'
+      name: hdaqoyfxdrbsojacchd
+      email: caleb.bernhard@example.net
+      password: '3[Eju4'
     fileParameters: []
     responses: []
     responseFields: []

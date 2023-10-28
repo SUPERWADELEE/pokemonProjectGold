@@ -12,7 +12,7 @@ endpoints:
       subgroupDescription: ''
       title: 顯示購物車商品
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -51,7 +51,7 @@ endpoints:
       subgroupDescription: ''
       title: 加入購物車
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -73,12 +73,12 @@ endpoints:
         name: race_id
         description: ''
         required: true
-        example: 18
+        example: 19
         type: integer
         enumValues: []
         custom: []
     cleanBodyParameters:
-      race_id: 18
+      race_id: 19
     fileParameters: []
     responses: []
     responseFields: []
@@ -98,7 +98,7 @@ endpoints:
       subgroupDescription: ''
       title: 購物車總價格計算
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -146,7 +146,7 @@ endpoints:
       subgroupDescription: ''
       title: 購物車更新
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -193,7 +193,7 @@ endpoints:
       subgroupDescription: ''
       title: 購物車刪除
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json

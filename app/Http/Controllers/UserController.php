@@ -16,12 +16,23 @@ use Aws\S3\S3Client;
 /**
  * @group User
  * Operations related to users.
+ * 
+ * @authenticated
  */
 class UserController extends Controller
 {
 
     /**
      * 使用者個人資訊
+     * @response {
+     *  "name": "John Doe",
+     *  "photo": "https://example.com/photo.jpg",
+     *  "email": "johndoe@example.com"
+     * }
+     * 
+     * @response 404 {
+     *  "error": "User not found"
+     * }
      */
     public function show()
     {
@@ -37,14 +48,20 @@ class UserController extends Controller
         return response()->json($userData);
     }
 
-    /**
-     * 更新使用者個人資訊並上傳圖片
-     */
 
+    /**
+     * 更新使用者資訊
+     * 
+     * 
+     * 主要還會產生一個presigned URL來讓使用者瀏覽器去上傳圖片
+     */
     public function update(UserRequest $request)
     {
-
+        // dd('fuck');
         $user = JWTAuth::parseToken()->authenticate();
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
         $validatedData = $request->validated();
 
 
@@ -113,6 +130,9 @@ class UserController extends Controller
         $requestObj = $s3Client->createPresignedRequest($cmd, '+10 minutes');
         return (string) $requestObj->getUri();
     }
+
+
+
 
     // 超級使用者更改權限功能
     public function changeUserStatus(User $user)
