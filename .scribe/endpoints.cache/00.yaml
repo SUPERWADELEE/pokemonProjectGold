@@ -51,8 +51,10 @@ endpoints:
       groupDescription: 'Operations related to pokemons.'
       subgroup: ''
       subgroupDescription: ''
-      title: 使用者寶可夢的新增
-      description: ''
+      title: 新增一個屬於該使用者的寶可夢。
+      description: |-
+        此方法將驗證請求數據，並在成功驗證後，
+        為當前經過身份驗證的用戶新增一隻寶可夢。
       authenticated: true
       custom: []
     headers:
@@ -65,61 +67,69 @@ endpoints:
     bodyParameters:
       name:
         name: name
-        description: 'The name of the pokemon. Must not be greater than 15 characters.'
+        description: 寶可夢的名稱，必填，最大15字符長，且必須在系統中是唯一的。：皮卡丘
         required: true
-        example: Pikachu
+        example: similique
         type: string
         enumValues: []
         custom: []
       race_id:
         name: race_id
-        description: 'The ID of the race for the pokemon.'
+        description: "寶可夢的種族ID，必填，該ID必須存在於系統的'races'表中。：1"
         required: true
-        example: 1
+        example: 16
         type: integer
         enumValues: []
         custom: []
       ability_id:
         name: ability_id
-        description: 'The ID of the ability for the pokemon.'
+        description: "寶可夢的能力ID，必填，該ID必須存在於系統的'abilities'表中。：2"
         required: true
-        example: 1
+        example: 4
         type: integer
         enumValues: []
         custom: []
       nature_id:
         name: nature_id
-        description: 'The ID of the nature for the pokemon.'
+        description: "寶可夢的性格ID，必填，該ID必須存在於系統的'natures'表中。：3"
         required: true
-        example: 1
+        example: 11
         type: integer
         enumValues: []
         custom: []
       level:
         name: level
-        description: 'The level for the pokemon. Must be at least 1. Must not be greater than 100.'
+        description: 寶可夢的等級，必填，其值必須是1到100之間的整數。：10
         required: true
-        example: 1
+        example: 2
         type: integer
         enumValues: []
         custom: []
       skills:
         name: skills
-        description: ''
-        required: false
+        description: '寶可夢的技能列表，必填，至少包含1項，最多4項技能。：[1, 2, 3]'
+        required: true
         example:
-          - 18
-        type: 'integer[]'
+          - quasi
+        type: 'string[]'
+        enumValues: []
+        custom: []
+      'skills.*':
+        name: 'skills.*'
+        description: "其中的每一個技能ID都必須是有效的且存在於'skills'表中。：1"
+        required: true
+        example: 7
+        type: integer
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: Pikachu
-      race_id: 1
-      ability_id: 1
-      nature_id: 1
-      level: 1
+      name: similique
+      race_id: 16
+      ability_id: 4
+      nature_id: 11
+      level: 2
       skills:
-        - 18
+        - quasi
     fileParameters: []
     responses: []
     responseFields: []
@@ -137,8 +147,8 @@ endpoints:
       groupDescription: 'Operations related to pokemons.'
       subgroup: ''
       subgroupDescription: ''
-      title: 使用者寶可夢的詳情
-      description: ''
+      title: 顯示指定寶可夢的詳細資訊。
+      description: 此方法獲取指定寶可夢的詳細資訊，包括其種族、能力、性格和技能。
       authenticated: true
       custom: []
     headers:
@@ -153,8 +163,17 @@ endpoints:
         type: integer
         enumValues: []
         custom: []
+      pokemon:
+        name: pokemon
+        description: 寶可夢的ID。示例：1
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        custom: []
     cleanUrlParameters:
       id: 15
+      pokemon: 16
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -162,13 +181,21 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
+        status: 200
+        content: |-
+          {
+            "id": 1,
+            "name": "皮卡丘",
+            "level": 10,
+            "race_id": 1,
+            "race": "電鼠",
+            "ability": "靜電",
+            "nature": "認真",
+            "skills": ["電擊", "鐵尾"],
+            "host": "Ash"
+          }
+        headers: []
+        description: ''
         custom: []
     responseFields: []
     auth: []
@@ -186,8 +213,10 @@ endpoints:
       groupDescription: 'Operations related to pokemons.'
       subgroup: ''
       subgroupDescription: ''
-      title: 使用者寶可夢的修改
-      description: ''
+      title: 修改指定的寶可夢。
+      description: |-
+        此方法允許使用者修改他們的寶可夢的資訊。
+        使用者只能修改他們自己的寶可夢，不能修改其他人的寶可夢。
       authenticated: true
       custom: []
     headers:
@@ -202,65 +231,85 @@ endpoints:
         type: integer
         enumValues: []
         custom: []
+      pokemon:
+        name: pokemon
+        description: 寶可夢的ID。範例：1
+        required: true
+        example: 4
+        type: integer
+        enumValues: []
+        custom: []
     cleanUrlParameters:
       id: 15
+      pokemon: 4
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
       name:
         name: name
-        description: 'The name of the pokemon. Must not be greater than 15 characters.'
+        description: 'optional 寶可夢的名字。最大長度為15個字符。範例：皮卡丘'
         required: false
-        example: Pikachu
+        example: earum
         type: string
         enumValues: []
         custom: []
       race_id:
         name: race_id
-        description: 'The ID of the race for the pokemon.'
+        description: "optional 寶可夢的種族ID。該ID必須存在於系統的'races'表中。範例：1"
         required: false
-        example: 1
+        example: 7
         type: integer
         enumValues: []
         custom: []
       ability_id:
         name: ability_id
-        description: 'The ID of the ability for the pokemon.'
+        description: "optional 寶可夢的能力ID。該ID必須存在於系統的'abilities'表中。範例：2"
         required: false
-        example: 1
+        example: 17
         type: integer
         enumValues: []
         custom: []
       nature_id:
         name: nature_id
-        description: 'The ID of the nature for the pokemon.'
+        description: "optional 寶可夢的性格ID。該ID必須存在於系統的'natures'表中。範例：3"
         required: false
-        example: 1
+        example: 5
         type: integer
         enumValues: []
         custom: []
       level:
         name: level
-        description: 'The level for the pokemon. Must be at least 1. Must not be greater than 100.'
+        description: 'optional 寶可夢的等級。其值必須是1到100之間的整數。範例：10'
         required: false
-        example: 1
+        example: 12
         type: integer
         enumValues: []
         custom: []
       skills:
         name: skills
-        description: ''
+        description: 'optional 寶可夢的技能列表。至少包含1項，最多4項技能。範例：[1, 2, 3]'
         required: false
-        example: null
+        example:
+          - quia
         type: 'string[]'
         enumValues: []
         custom: []
+      'skills.*':
+        name: 'skills.*'
+        description: "optional 其中的每一個技能ID都必須是有效的且存在於'skills'表中。範例：1"
+        required: false
+        example: 5
+        type: integer
+        enumValues: []
+        custom: []
     cleanBodyParameters:
-      name: Pikachu
-      race_id: 1
-      ability_id: 1
-      nature_id: 1
-      level: 1
+      name: earum
+      race_id: 7
+      ability_id: 17
+      nature_id: 5
+      level: 12
+      skills:
+        - quia
     fileParameters: []
     responses: []
     responseFields: []
@@ -278,8 +327,10 @@ endpoints:
       groupDescription: 'Operations related to pokemons.'
       subgroup: ''
       subgroupDescription: ''
-      title: 使用者寶可夢的刪除
-      description: ''
+      title: 刪除指定的寶可夢。
+      description: |-
+        此方法允許授權的使用者刪除他們的寶可夢。
+        成功刪除寶可夢後，將返回成功響應。
       authenticated: true
       custom: []
     headers:
@@ -294,14 +345,41 @@ endpoints:
         type: integer
         enumValues: []
         custom: []
+      pokemon:
+        name: pokemon
+        description: 寶可夢的ID。示例：1
+        required: true
+        example: 18
+        type: integer
+        enumValues: []
+        custom: []
     cleanUrlParameters:
       id: 15
+      pokemon: 18
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "message": "pokemon deleted successfully"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 204
+        content: |-
+          {
+            描述：無內容響應，表示成功刪除了寶可夢。
+          }
+        headers: []
+        description: ''
+        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -317,8 +395,11 @@ endpoints:
       groupDescription: 'Operations related to pokemons.'
       subgroup: ''
       subgroupDescription: ''
-      title: 使用者寶可夢的進化判斷
-      description: ''
+      title: 判斷指定的寶可夢是否可以進化。
+      description: |-
+        此方法首先檢查當前用戶是否有權進行進化操作，
+        然後檢查寶可夢是否達到其種族所需的進化等級。
+        如果寶可夢已達到進化等級，則更新其種族ID以反映其新的進化形態。
       authenticated: true
       custom: []
     headers:
@@ -333,14 +414,50 @@ endpoints:
         type: integer
         enumValues: []
         custom: []
+      pokemon:
+        name: pokemon
+        description: 寶可夢的ID。範例：1
+        required: true
+        example: 10
+        type: integer
+        enumValues: []
+        custom: []
     cleanUrlParameters:
       pokemon_id: 15
+      pokemon: 10
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "message": "寶可夢已成功進化"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 200
+        content: |-
+          {
+            "message": "寶可夢未達進化條件"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 200
+        content: |-
+          {
+            "message": "寶可夢已是最終形態"
+          }
+        headers: []
+        description: ''
+        custom: []
     responseFields: []
     auth: []
     controller: null

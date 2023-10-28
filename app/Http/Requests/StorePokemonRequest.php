@@ -20,53 +20,54 @@ class StorePokemonRequest extends FormRequest
     }
 
 
-    public function bodyParameters()
-    {
-        return [
-            'name' => [
-                'description' => 'The name of the pokemon.',
-                'example' => 'Pikachu',
-                'required' => true,  // 因為在rules中是可選的
-                'type' => 'string'
-            ],
-            'race_id' => [
-                'description' => 'The ID of the race for the pokemon.',
-                'example' => 1,
-                'required' => true,
-                'type' => 'integer'
-            ],
-            'ability_id' => [
-                'description' => 'The ID of the ability for the pokemon.',
-                'example' => 1,
-                'required' => true,
-                'type' => 'integer'
-            ],
-            'nature_id' => [
-                'description' => 'The ID of the nature for the pokemon.',
-                'example' => 1,
-                'required' => true,
-                'type' => 'integer'
-            ],
-            'level' => [
-                'description' => 'The level for the pokemon.',
-                'example' => 1,
-                'required' => true,
-                'type' => 'integer'
-            ],
-            'skills' => [
-                'description' => 'The ID of the skills for the pokemon.',
-                'example' => 1,
-                'required' => true,
-                'type' => 'integer'
-            ],
-            // ... 其他參數 ...
-        ];
-    }
+    // public function bodyParameters()
+    // {
+    //     return [
+    //         'name' => [
+    //             'description' => 'The name of the pokemon.',
+    //             'example' => 'Pikachu',
+    //             'required' => true,  // 因為在rules中是可選的
+    //             'type' => 'string'
+    //         ],
+    //         'race_id' => [
+    //             'description' => 'The ID of the race for the pokemon.',
+    //             'example' => 1,
+    //             'required' => true,
+    //             'type' => 'integer'
+    //         ],
+    //         'ability_id' => [
+    //             'description' => 'The ID of the ability for the pokemon.',
+    //             'example' => 1,
+    //             'required' => true,
+    //             'type' => 'integer'
+    //         ],
+    //         'nature_id' => [
+    //             'description' => 'The ID of the nature for the pokemon.',
+    //             'example' => 1,
+    //             'required' => true,
+    //             'type' => 'integer'
+    //         ],
+    //         'level' => [
+    //             'description' => 'The level for the pokemon.',
+    //             'example' => 1,
+    //             'required' => true,
+    //             'type' => 'integer'
+    //         ],
+    //         'skills' => [
+    //             'description' => 'The ID of the skills for the pokemon.',
+    //             'example' => 1,
+    //             'required' => true,
+    //             'type' => 'integer'
+    //         ],
+    //         // ... 其他參數 ...
+    //     ];
+    // }
 
+    
     /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
+     * 定義請求驗證規則。
+     * 
+     * @return array 驗證規則的集合。
      */
     public function rules(): array
     {
@@ -93,15 +94,28 @@ class StorePokemonRequest extends FormRequest
         ];
     }
 
+    /**
+     * 定義驗證錯誤訊息。
+     * 
+     * @return array 驗證錯誤訊息的集合。
+     */
     public function messages()
     {
-        // dd('fuck');
+    
         return [
             'name.alpha_unicode' => '名稱只能包含中文和英文字符。',
-            // ... 其他自訂的錯誤訊息 ...
         ];
     }
 
+    /**
+     * 自定義驗證邏輯。
+     *
+     * 此方法將在基礎驗證之後執行，用於檢查特定的驗證條件。
+     * 如：檢查提供的技能是否為該種族允許的技能。
+     *
+     * @param \Illuminate\Validation\Validator $validator 驗證器的實例。
+     * @return void
+     */
     // TODO validator rule
     // 或是去race取資料這個動作, 如果裡面也要做一次的話要用注入的
     public function withValidator($validator)

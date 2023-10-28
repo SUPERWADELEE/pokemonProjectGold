@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "3c5b5350-142b-466b-ada2-2da4503463d6",
+        "_postman_id": "0082e1eb-44a8-45f6-b5ac-8d894482df84",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -73,7 +73,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"et\"}"
+                            "raw": "{\"name\":\"debitis\"}"
                         },
                         "description": ""
                     },
@@ -122,7 +122,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"tempora\"}"
+                            "raw": "{\"name\":\"ut\"}"
                         },
                         "description": "\u6b64\u7aef\u9ede\u5141\u8a31\u60a8\u66f4\u65b0\u73fe\u6709\u7684\u7279\u6027\u3002"
                     },
@@ -169,7 +169,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"precious10@example.org\",\"password\":\"mm*NwK~!v;\\\/CY3\"}"
+                            "raw": "{\"email\":\"selmer19@example.net\",\"password\":\"__+69_kbZ#g\"}"
                         },
                         "description": "\u6b64\u7aef\u9ede\u5141\u8a31\u7528\u6236\u4f7f\u7528\u4ed6\u5011\u7684\u96fb\u5b50\u90f5\u4ef6\u548c\u5bc6\u78bc\u4f86\u767b\u5165\u7cfb\u7d71\uff0c\u4e26\u8fd4\u56de\u4e00\u500bJWT\u4ee4\u724c\u3002",
                         "auth": {
@@ -244,13 +244,13 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "rerum",
+                                    "value": "ducimus",
                                     "description": "The ID of the verify."
                                 },
                                 {
                                     "id": "hash",
                                     "key": "hash",
-                                    "value": "adipisci",
+                                    "value": "architecto",
                                     "description": ""
                                 }
                             ]
@@ -299,7 +299,7 @@
                                 {
                                     "id": "email",
                                     "key": "email",
-                                    "value": "lstark%40example.org",
+                                    "value": "verda53%40example.org",
                                     "description": ""
                                 }
                             ]
@@ -617,7 +617,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"doloremque\"}"
+                            "raw": "{\"name\":\"doloribus\"}"
                         },
                         "description": ""
                     },
@@ -666,7 +666,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"laudantium\"}"
+                            "raw": "{\"name\":\"cum\"}"
                         },
                         "description": ""
                     },
@@ -719,11 +719,18 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"total_price\":31,\"payment_method\":\"cash_on_delivery\",\"payment_status\":\"unpaid\"}"
+                            "raw": "{\"total_price\":0.69784,\"payment_method\":\"incidunt\",\"payment_status\":\"eos\"}"
                         },
                         "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"id\": \"\u65b0\u5275\u5efa\u7684\u8a02\u55ae\u7684ID\"\n}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
                     "name": "\u8a02\u55ae\u5217\u8868",
@@ -750,22 +757,9 @@
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": [\n        {\n            ...\u5404\u500b\u8a02\u55ae\u7684\u8cc7\u6599\n        }\n    ]\n}",
                             "name": ""
                         }
                     ]
@@ -790,6 +784,12 @@
                                     "key": "order_id",
                                     "value": "16",
                                     "description": "The ID of the order."
+                                },
+                                {
+                                    "id": "order",
+                                    "key": "order",
+                                    "value": "laborum",
+                                    "description": "\u8a02\u55ae\u7684ID\u3002"
                                 }
                             ]
                         },
@@ -851,7 +851,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"order_id\":7,\"race_id\":13}"
+                            "raw": "{\"order_id\":16,\"race_id\":16}"
                         },
                         "description": ""
                     },
@@ -883,8 +883,11 @@
                                 "value": "application\/json"
                             }
                         ],
-                        "body": null,
-                        "description": ""
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"totalPrice\":756.2065}"
+                        },
+                        "description": "\u6b64\u65b9\u6cd5\u4e3b\u8981\u529f\u80fd\u5982\u4e0b\uff1a\n1. \u9a8c\u8bc1\u5f53\u524d\u7528\u6237\u3002\n2. \u66f4\u65b0\u4e0e\u5f53\u524d\u7528\u6237\u5173\u8054\u7684\u8d2d\u7269\u8f66\u9879\u76ee\u7684\u7ed3\u8d26\u72b6\u6001\u3002\n3. \u751f\u6210\u4e0e\u85cd\u661f\u91d1\u6d41\u76f8\u5173\u7684\u652f\u4ed8\u53c2\u6570\uff08\u5305\u62ec\u52a0\u5bc6\u548c\u54c8\u5e0c\uff09\u3002\n4. \u8fd4\u56de\u652f\u4ed8\u53c2\u6570\uff0c\u4ee5\u4fbf\u524d\u7aef\u5c06\u7528\u6237\u91cd\u5b9a\u5411\u5230\u85cd\u661f\u91d1\u6d41\u7684\u652f\u4ed8\u9875\u9762\u3002"
                     },
                     "response": []
                 }
@@ -914,8 +917,11 @@
                                 "value": "application\/json"
                             }
                         ],
-                        "body": null,
-                        "description": ""
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"TradeInfo\":\"officia\",\"TradeSha\":\"qui\"}"
+                        },
+                        "description": "\u6b64\u65b9\u6cd5\u4e3b\u8981\u529f\u80fd\u5982\u4e0b\uff1a\n1. \u5f9e\u8bf7\u6c42\u4e2d\u63d0\u53d6\u652f\u4ed8\u76f8\u5173\u7684\u4fe1\u606f\u3002\n2. \u9a8c\u8bc1\u652f\u4ed8\u56de\u8c03\u7684\u6570\u5b57\u7b7e\u540d\u4ee5\u786e\u4fdd\u6570\u636e\u7684\u5b8c\u6574\u6027\u3002\n3. \u6839\u636e\u652f\u4ed8\u7ed3\u679c\u8bb0\u5f55\u76f8\u5173\u7684\u65e5\u5fd7\u4fe1\u606f\u3002\n4. \u5728\u652f\u4ed8\u6210\u529f\u540e\u5411\u7528\u6237\u53d1\u9001\u901a\u77e5\u90ae\u4ef6\u3002"
                     },
                     "response": []
                 }
@@ -971,7 +977,7 @@
                     ]
                 },
                 {
-                    "name": "\u4f7f\u7528\u8005\u5bf6\u53ef\u5922\u7684\u65b0\u589e",
+                    "name": "\u65b0\u589e\u4e00\u500b\u5c6c\u65bc\u8a72\u4f7f\u7528\u8005\u7684\u5bf6\u53ef\u5922\u3002",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -992,14 +998,14 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"Pikachu\",\"race_id\":1,\"ability_id\":1,\"nature_id\":1,\"level\":1,\"skills\":[18]}"
+                            "raw": "{\"name\":\"similique\",\"race_id\":16,\"ability_id\":4,\"nature_id\":11,\"level\":2,\"skills\":[\"quasi\"]}"
                         },
-                        "description": ""
+                        "description": "\u6b64\u65b9\u6cd5\u5c07\u9a57\u8b49\u8acb\u6c42\u6578\u64da\uff0c\u4e26\u5728\u6210\u529f\u9a57\u8b49\u5f8c\uff0c\n\u70ba\u7576\u524d\u7d93\u904e\u8eab\u4efd\u9a57\u8b49\u7684\u7528\u6236\u65b0\u589e\u4e00\u96bb\u5bf6\u53ef\u5922\u3002"
                     },
                     "response": []
                 },
                 {
-                    "name": "\u4f7f\u7528\u8005\u5bf6\u53ef\u5922\u7684\u8a73\u60c5",
+                    "name": "\u986f\u793a\u6307\u5b9a\u5bf6\u53ef\u5922\u7684\u8a73\u7d30\u8cc7\u8a0a\u3002",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -1012,6 +1018,12 @@
                                     "key": "id",
                                     "value": "15",
                                     "description": "The ID of the pokemon."
+                                },
+                                {
+                                    "id": "pokemon",
+                                    "key": "pokemon",
+                                    "value": "16",
+                                    "description": "\u5bf6\u53ef\u5922\u7684ID\u3002\u793a\u4f8b\uff1a1"
                                 }
                             ]
                         },
@@ -1027,32 +1039,19 @@
                             }
                         ],
                         "body": null,
-                        "description": ""
+                        "description": "\u6b64\u65b9\u6cd5\u7372\u53d6\u6307\u5b9a\u5bf6\u53ef\u5922\u7684\u8a73\u7d30\u8cc7\u8a0a\uff0c\u5305\u62ec\u5176\u7a2e\u65cf\u3001\u80fd\u529b\u3001\u6027\u683c\u548c\u6280\u80fd\u3002"
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"id\": 1,\n  \"name\": \"\u76ae\u5361\u4e18\",\n  \"level\": 10,\n  \"race_id\": 1,\n  \"race\": \"\u96fb\u9f20\",\n  \"ability\": \"\u975c\u96fb\",\n  \"nature\": \"\u8a8d\u771f\",\n  \"skills\": [\"\u96fb\u64ca\", \"\u9435\u5c3e\"],\n  \"host\": \"Ash\"\n}",
                             "name": ""
                         }
                     ]
                 },
                 {
-                    "name": "\u4f7f\u7528\u8005\u5bf6\u53ef\u5922\u7684\u4fee\u6539",
+                    "name": "\u4fee\u6539\u6307\u5b9a\u7684\u5bf6\u53ef\u5922\u3002",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -1065,6 +1064,12 @@
                                     "key": "id",
                                     "value": "15",
                                     "description": "The ID of the pokemon."
+                                },
+                                {
+                                    "id": "pokemon",
+                                    "key": "pokemon",
+                                    "value": "4",
+                                    "description": "\u5bf6\u53ef\u5922\u7684ID\u3002\u7bc4\u4f8b\uff1a1"
                                 }
                             ]
                         },
@@ -1081,14 +1086,14 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"Pikachu\",\"race_id\":1,\"ability_id\":1,\"nature_id\":1,\"level\":1}"
+                            "raw": "{\"name\":\"earum\",\"race_id\":7,\"ability_id\":17,\"nature_id\":5,\"level\":12,\"skills\":[\"quia\"]}"
                         },
-                        "description": ""
+                        "description": "\u6b64\u65b9\u6cd5\u5141\u8a31\u4f7f\u7528\u8005\u4fee\u6539\u4ed6\u5011\u7684\u5bf6\u53ef\u5922\u7684\u8cc7\u8a0a\u3002\n\u4f7f\u7528\u8005\u53ea\u80fd\u4fee\u6539\u4ed6\u5011\u81ea\u5df1\u7684\u5bf6\u53ef\u5922\uff0c\u4e0d\u80fd\u4fee\u6539\u5176\u4ed6\u4eba\u7684\u5bf6\u53ef\u5922\u3002"
                     },
                     "response": []
                 },
                 {
-                    "name": "\u4f7f\u7528\u8005\u5bf6\u53ef\u5922\u7684\u522a\u9664",
+                    "name": "\u522a\u9664\u6307\u5b9a\u7684\u5bf6\u53ef\u5922\u3002",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -1101,6 +1106,12 @@
                                     "key": "id",
                                     "value": "15",
                                     "description": "The ID of the pokemon."
+                                },
+                                {
+                                    "id": "pokemon",
+                                    "key": "pokemon",
+                                    "value": "18",
+                                    "description": "\u5bf6\u53ef\u5922\u7684ID\u3002\u793a\u4f8b\uff1a1"
                                 }
                             ]
                         },
@@ -1116,12 +1127,25 @@
                             }
                         ],
                         "body": null,
-                        "description": ""
+                        "description": "\u6b64\u65b9\u6cd5\u5141\u8a31\u6388\u6b0a\u7684\u4f7f\u7528\u8005\u522a\u9664\u4ed6\u5011\u7684\u5bf6\u53ef\u5922\u3002\n\u6210\u529f\u522a\u9664\u5bf6\u53ef\u5922\u5f8c\uff0c\u5c07\u8fd4\u56de\u6210\u529f\u97ff\u61c9\u3002"
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"message\": \"pokemon deleted successfully\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 204,
+                            "body": "{\n  \u63cf\u8ff0\uff1a\u7121\u5167\u5bb9\u97ff\u61c9\uff0c\u8868\u793a\u6210\u529f\u522a\u9664\u4e86\u5bf6\u53ef\u5922\u3002\n}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
-                    "name": "\u4f7f\u7528\u8005\u5bf6\u53ef\u5922\u7684\u9032\u5316\u5224\u65b7",
+                    "name": "\u5224\u65b7\u6307\u5b9a\u7684\u5bf6\u53ef\u5922\u662f\u5426\u53ef\u4ee5\u9032\u5316\u3002",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -1134,6 +1158,12 @@
                                     "key": "pokemon_id",
                                     "value": "15",
                                     "description": "The ID of the pokemon."
+                                },
+                                {
+                                    "id": "pokemon",
+                                    "key": "pokemon",
+                                    "value": "10",
+                                    "description": "\u5bf6\u53ef\u5922\u7684ID\u3002\u7bc4\u4f8b\uff1a1"
                                 }
                             ]
                         },
@@ -1149,9 +1179,28 @@
                             }
                         ],
                         "body": null,
-                        "description": ""
+                        "description": "\u6b64\u65b9\u6cd5\u9996\u5148\u6aa2\u67e5\u7576\u524d\u7528\u6236\u662f\u5426\u6709\u6b0a\u9032\u884c\u9032\u5316\u64cd\u4f5c\uff0c\n\u7136\u5f8c\u6aa2\u67e5\u5bf6\u53ef\u5922\u662f\u5426\u9054\u5230\u5176\u7a2e\u65cf\u6240\u9700\u7684\u9032\u5316\u7b49\u7d1a\u3002\n\u5982\u679c\u5bf6\u53ef\u5922\u5df2\u9054\u5230\u9032\u5316\u7b49\u7d1a\uff0c\u5247\u66f4\u65b0\u5176\u7a2e\u65cfID\u4ee5\u53cd\u6620\u5176\u65b0\u7684\u9032\u5316\u5f62\u614b\u3002"
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"message\": \"\u5bf6\u53ef\u5922\u5df2\u6210\u529f\u9032\u5316\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"message\": \"\u5bf6\u53ef\u5922\u672a\u9054\u9032\u5316\u689d\u4ef6\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"message\": \"\u5bf6\u53ef\u5922\u5df2\u662f\u6700\u7d42\u5f62\u614b\"\n}",
+                            "name": ""
+                        }
+                    ]
                 }
             ]
         },
@@ -1338,7 +1387,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"ix\",\"email\":\"ella.gleason@example.org\",\"password\":\"+X[.zXX+$7hX2\"}"
+                            "raw": "{\"name\":\"jyzroxijgavrgbxsfoc\",\"email\":\"prohaska.aiden@example.net\",\"password\":\"pqt?=)P>H28Mi%oWpP\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1416,7 +1465,7 @@
                             "formdata": [
                                 {
                                     "key": "name",
-                                    "value": "weafckaebchzzrwx",
+                                    "value": "zjfubdyrap",
                                     "type": "text",
                                     "description": "Must not be greater than 255 characters."
                                 },

@@ -77,7 +77,7 @@ paths:
                 name:
                   type: string
                   description: '能力的名稱. 必須是唯一的，只能包含中文和英文字，且最大長度為255個字符.'
-                  example: et
+                  example: debitis
               required:
                 - name
   '/api/abilities/{ability_id}':
@@ -135,7 +135,7 @@ paths:
                 name:
                   type: string
                   description: '需要更新的特性名稱. 必須是唯一的，只能包含中文和英文字符，且最大長度為255個字符.'
-                  example: tempora
+                  example: ut
               required:
                 - name
     parameters:
@@ -198,11 +198,11 @@ paths:
                 email:
                   type: string
                   description: 用戶的電子郵件地址。例子：user@example.com
-                  example: precious10@example.org
+                  example: selmer19@example.net
                 password:
                   type: string
                   description: 用戶的密碼。
-                  example: 'mm*NwK~!v;/CY3'
+                  example: '__+69_kbZ#g'
               required:
                 - email
                 - password
@@ -268,7 +268,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the verify.'
-        example: rerum
+        example: ducimus
         required: true
         schema:
           type: string
@@ -276,7 +276,7 @@ paths:
         in: path
         name: hash
         description: ''
-        example: adipisci
+        example: architecto
         required: true
         schema:
           type: string
@@ -314,7 +314,7 @@ paths:
         in: path
         name: email
         description: ''
-        example: lstark@example.org
+        example: verda53@example.org
         required: true
         schema:
           type: string
@@ -591,7 +591,7 @@ paths:
                 name:
                   type: string
                   description: 性格的名稱。要求是唯一的且最多包含255個字符。
-                  example: doloremque
+                  example: doloribus
               required:
                 - name
   '/api/natures/{nature_id}':
@@ -649,7 +649,7 @@ paths:
                 name:
                   type: string
                   description: 性格的新名稱。要求是唯一的且最多包含255個字符。
-                  example: laudantium
+                  example: cum
               required:
                 - name
     parameters:
@@ -667,7 +667,19 @@ paths:
       operationId: ''
       description: ''
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 新創建的訂單的ID
+                properties:
+                  id:
+                    type: string
+                    example: 新創建的訂單的ID
       tags:
         - Order
       requestBody:
@@ -678,24 +690,17 @@ paths:
               type: object
               properties:
                 total_price:
-                  type: integer
-                  description: 'Must be at least 1.'
-                  example: 31
+                  type: number
+                  description: 訂單的總價格。
+                  example: 0.69784
                 payment_method:
                   type: string
-                  description: ''
-                  example: cash_on_delivery
-                  enum:
-                    - credit_card
-                    - cash_on_delivery
+                  description: 訂單的付款方式。
+                  example: incidunt
                 payment_status:
                   type: string
-                  description: ''
-                  example: unpaid
-                  enum:
-                    - paid
-                    - unpaid
-                    - canceled
+                  description: 訂單的付款狀態。
+                  example: eos
               required:
                 - total_price
                 - payment_method
@@ -706,18 +711,13 @@ paths:
       description: ''
       parameters: []
       responses:
-        401:
+        200:
           description: ''
           content:
-            application/json:
+            text/plain:
               schema:
-                type: object
-                example:
-                  message: Unauthenticated.
-                properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
+                type: string
+                example: "{\n    \"data\": [\n        {\n            ...各個訂單的資料\n        }\n    ]\n}"
       tags:
         - Order
   '/api/orders/{order_id}/order_details':
@@ -750,6 +750,14 @@ paths:
         required: true
         schema:
           type: integer
+      -
+        in: path
+        name: order
+        description: 訂單的ID。
+        example: laborum
+        required: true
+        schema:
+          type: string
   /api/orders_details:
     post:
       summary: 訂單細節新增
@@ -768,12 +776,12 @@ paths:
               properties:
                 order_id:
                   type: integer
-                  description: ''
-                  example: 7
+                  description: 訂單的ID。
+                  example: 16
                 race_id:
                   type: integer
-                  description: ''
-                  example: 13
+                  description: "產品(Race)的ID。\n\n根据指定的race_id从用户的购物车中提取数量，并根据race的价格计算出单价和总价。\n创建订单详情后，减少相应的库存，并清除用户购物车中的该race项。"
+                  example: 16
               required:
                 - order_id
                 - race_id
@@ -781,20 +789,51 @@ paths:
     post:
       summary: 請求藍星金流結帳頁面
       operationId: ''
-      description: ''
+      description: "此方法主要功能如下：\n1. 验证当前用户。\n2. 更新与当前用户关联的购物车项目的结账状态。\n3. 生成与藍星金流相关的支付参数（包括加密和哈希）。\n4. 返回支付参数，以便前端将用户重定向到藍星金流的支付页面。"
       parameters: []
       responses: {  }
       tags:
         - Payment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                totalPrice:
+                  type: number
+                  description: 购物车中所有商品的总价格。
+                  example: 756.2065
+              required:
+                - totalPrice
   /api/payResult:
     post:
       summary: 藍星金流結帳完後結果返回確認，寄通知信給使用者
       operationId: ''
-      description: ''
+      description: "此方法主要功能如下：\n1. 從请求中提取支付相关的信息。\n2. 验证支付回调的数字签名以确保数据的完整性。\n3. 根据支付结果记录相关的日志信息。\n4. 在支付成功后向用户发送通知邮件。"
       parameters: []
       responses: {  }
       tags:
         - PaymentResponse
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                TradeInfo:
+                  type: string
+                  description: 支付相关的加密数据。
+                  example: officia
+                TradeSha:
+                  type: string
+                  description: 支付回调的数字签名。
+                  example: qui
+              required:
+                - TradeInfo
+                - TradeSha
   /api/pokemons:
     get:
       summary: 使用者寶可夢的列表
@@ -817,9 +856,9 @@ paths:
       tags:
         - Pokemons
     post:
-      summary: 使用者寶可夢的新增
+      summary: 新增一個屬於該使用者的寶可夢。
       operationId: ''
-      description: ''
+      description: "此方法將驗證請求數據，並在成功驗證後，\n為當前經過身份驗證的用戶新增一隻寶可夢。"
       parameters: []
       responses: {  }
       tags:
@@ -833,62 +872,101 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'The name of the pokemon. Must not be greater than 15 characters.'
-                  example: Pikachu
+                  description: 寶可夢的名稱，必填，最大15字符長，且必須在系統中是唯一的。：皮卡丘
+                  example: similique
                 race_id:
                   type: integer
-                  description: 'The ID of the race for the pokemon.'
-                  example: 1
+                  description: "寶可夢的種族ID，必填，該ID必須存在於系統的'races'表中。：1"
+                  example: 16
                 ability_id:
                   type: integer
-                  description: 'The ID of the ability for the pokemon.'
-                  example: 1
+                  description: "寶可夢的能力ID，必填，該ID必須存在於系統的'abilities'表中。：2"
+                  example: 4
                 nature_id:
                   type: integer
-                  description: 'The ID of the nature for the pokemon.'
-                  example: 1
+                  description: "寶可夢的性格ID，必填，該ID必須存在於系統的'natures'表中。：3"
+                  example: 11
                 level:
                   type: integer
-                  description: 'The level for the pokemon. Must be at least 1. Must not be greater than 100.'
-                  example: 1
+                  description: 寶可夢的等級，必填，其值必須是1到100之間的整數。：10
+                  example: 2
                 skills:
                   type: array
-                  description: ''
+                  description: '寶可夢的技能列表，必填，至少包含1項，最多4項技能。：[1, 2, 3]'
                   example:
-                    - 18
+                    - quasi
                   items:
-                    type: integer
+                    type: string
               required:
                 - name
                 - race_id
                 - ability_id
                 - nature_id
                 - level
+                - skills
   '/api/pokemons/{id}':
     get:
-      summary: 使用者寶可夢的詳情
+      summary: 顯示指定寶可夢的詳細資訊。
       operationId: ''
-      description: ''
+      description: 此方法獲取指定寶可夢的詳細資訊，包括其種族、能力、性格和技能。
       parameters: []
       responses:
-        401:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  id: 1
+                  name: 皮卡丘
+                  level: 10
+                  race_id: 1
+                  race: 電鼠
+                  ability: 靜電
+                  nature: 認真
+                  skills:
+                    - 電擊
+                    - 鐵尾
+                  host: Ash
                 properties:
-                  message:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
                     type: string
-                    example: Unauthenticated.
+                    example: 皮卡丘
+                  level:
+                    type: integer
+                    example: 10
+                  race_id:
+                    type: integer
+                    example: 1
+                  race:
+                    type: string
+                    example: 電鼠
+                  ability:
+                    type: string
+                    example: 靜電
+                  nature:
+                    type: string
+                    example: 認真
+                  skills:
+                    type: array
+                    example:
+                      - 電擊
+                      - 鐵尾
+                    items:
+                      type: string
+                  host:
+                    type: string
+                    example: Ash
       tags:
         - Pokemons
     put:
-      summary: 使用者寶可夢的修改
+      summary: 修改指定的寶可夢。
       operationId: ''
-      description: ''
+      description: "此方法允許使用者修改他們的寶可夢的資訊。\n使用者只能修改他們自己的寶可夢，不能修改其他人的寶可夢。"
       parameters: []
       responses: {  }
       tags:
@@ -902,36 +980,51 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'The name of the pokemon. Must not be greater than 15 characters.'
-                  example: Pikachu
+                  description: 'optional 寶可夢的名字。最大長度為15個字符。範例：皮卡丘'
+                  example: earum
                 race_id:
                   type: integer
-                  description: 'The ID of the race for the pokemon.'
-                  example: 1
+                  description: "optional 寶可夢的種族ID。該ID必須存在於系統的'races'表中。範例：1"
+                  example: 7
                 ability_id:
                   type: integer
-                  description: 'The ID of the ability for the pokemon.'
-                  example: 1
+                  description: "optional 寶可夢的能力ID。該ID必須存在於系統的'abilities'表中。範例：2"
+                  example: 17
                 nature_id:
                   type: integer
-                  description: 'The ID of the nature for the pokemon.'
-                  example: 1
+                  description: "optional 寶可夢的性格ID。該ID必須存在於系統的'natures'表中。範例：3"
+                  example: 5
                 level:
                   type: integer
-                  description: 'The level for the pokemon. Must be at least 1. Must not be greater than 100.'
-                  example: 1
+                  description: 'optional 寶可夢的等級。其值必須是1到100之間的整數。範例：10'
+                  example: 12
                 skills:
                   type: array
-                  description: ''
-                  example: null
+                  description: 'optional 寶可夢的技能列表。至少包含1項，最多4項技能。範例：[1, 2, 3]'
+                  example:
+                    - quia
                   items:
                     type: string
     delete:
-      summary: 使用者寶可夢的刪除
+      summary: 刪除指定的寶可夢。
       operationId: ''
-      description: ''
+      description: "此方法允許授權的使用者刪除他們的寶可夢。\n成功刪除寶可夢後，將返回成功響應。"
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'pokemon deleted successfully'
+                properties:
+                  message:
+                    type: string
+                    example: 'pokemon deleted successfully'
+        204:
+          description: ''
       tags:
         - Pokemons
     parameters:
@@ -943,13 +1036,33 @@ paths:
         required: true
         schema:
           type: integer
+      -
+        in: path
+        name: pokemon
+        description: 寶可夢的ID。示例：1
+        example: 16
+        required: true
+        schema:
+          type: integer
   '/api/pokemons/{pokemon_id}/evolution':
     put:
-      summary: 使用者寶可夢的進化判斷
+      summary: 判斷指定的寶可夢是否可以進化。
       operationId: ''
-      description: ''
+      description: "此方法首先檢查當前用戶是否有權進行進化操作，\n然後檢查寶可夢是否達到其種族所需的進化等級。\n如果寶可夢已達到進化等級，則更新其種族ID以反映其新的進化形態。"
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 寶可夢已是最終形態
+                properties:
+                  message:
+                    type: string
+                    example: 寶可夢已是最終形態
       tags:
         - Pokemons
     parameters:
@@ -958,6 +1071,14 @@ paths:
         name: pokemon_id
         description: 'The ID of the pokemon.'
         example: 15
+        required: true
+        schema:
+          type: integer
+      -
+        in: path
+        name: pokemon
+        description: 寶可夢的ID。範例：1
+        example: 10
         required: true
         schema:
           type: integer
@@ -1061,15 +1182,15 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: ix
+                  example: jyzroxijgavrgbxsfoc
                 email:
                   type: string
                   description: 'Must be a valid email address. Must not be greater than 255 characters.'
-                  example: ella.gleason@example.org
+                  example: prohaska.aiden@example.net
                 password:
                   type: string
                   description: 'Must be at least 6 characters.'
-                  example: '+X[.zXX+$7hX2'
+                  example: 'pqt?=)P>H28Mi%oWpP'
               required:
                 - name
                 - email
@@ -1138,7 +1259,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: weafckaebchzzrwx
+                  example: zjfubdyrap
               required:
                 - name
 tags:

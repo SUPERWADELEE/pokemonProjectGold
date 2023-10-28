@@ -13,7 +13,12 @@ endpoints:
       subgroup: ''
       subgroupDescription: ''
       title: 請求藍星金流結帳頁面
-      description: ''
+      description: |-
+        此方法主要功能如下：
+        1. 验证当前用户。
+        2. 更新与当前用户关联的购物车项目的结账状态。
+        3. 生成与藍星金流相关的支付参数（包括加密和哈希）。
+        4. 返回支付参数，以便前端将用户重定向到藍星金流的支付页面。
       authenticated: true
       custom: []
     headers:
@@ -23,8 +28,17 @@ endpoints:
     cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
+    bodyParameters:
+      totalPrice:
+        name: totalPrice
+        description: 购物车中所有商品的总价格。
+        required: true
+        example: 756.2065
+        type: number
+        enumValues: []
+        custom: []
+    cleanBodyParameters:
+      totalPrice: 756.2065
     fileParameters: []
     responses: []
     responseFields: []

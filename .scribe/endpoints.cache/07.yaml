@@ -28,8 +28,17 @@ endpoints:
         type: integer
         enumValues: []
         custom: []
+      order:
+        name: order
+        description: 訂單的ID。
+        required: true
+        example: laborum
+        type: string
+        enumValues: []
+        custom: []
     cleanUrlParameters:
       order_id: 16
+      order: laborum
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -74,23 +83,27 @@ endpoints:
     bodyParameters:
       order_id:
         name: order_id
-        description: ''
+        description: 訂單的ID。
         required: true
-        example: 7
+        example: 16
         type: integer
         enumValues: []
         custom: []
       race_id:
         name: race_id
-        description: ''
+        description: |-
+          產品(Race)的ID。
+
+          根据指定的race_id从用户的购物车中提取数量，并根据race的价格计算出单价和总价。
+          创建订单详情后，减少相应的库存，并清除用户购物车中的该race项。
         required: true
-        example: 13
+        example: 16
         type: integer
         enumValues: []
         custom: []
     cleanBodyParameters:
-      order_id: 7
-      race_id: 13
+      order_id: 16
+      race_id: 16
     fileParameters: []
     responses: []
     responseFields: []
