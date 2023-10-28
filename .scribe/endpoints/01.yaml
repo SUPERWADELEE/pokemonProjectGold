@@ -26,13 +26,14 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
+        status: 200
+        content: |-
+          [{
+              "id": "性格的 ID",
+              "name": "性格的名稱"
+          }]
+        headers: []
+        description: ''
         custom: []
     responseFields: []
     auth: []
@@ -63,16 +64,34 @@ endpoints:
     bodyParameters:
       name:
         name: name
-        description: 'Must not be greater than 255 characters.'
+        description: 性格的名稱。要求是唯一的且最多包含255個字符。
         required: true
-        example: pwdidhsy
+        example: doloremque
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: pwdidhsy
+      name: doloremque
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 201
+        content: |-
+          {
+              "message": "Nature saved successfully"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 400
+        content: |-
+          {
+              "error": "Validation error messages if any"
+          }
+        headers: []
+        description: ''
+        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -111,16 +130,43 @@ endpoints:
     bodyParameters:
       name:
         name: name
-        description: 'Must not be greater than 255 characters.'
+        description: 性格的新名稱。要求是唯一的且最多包含255個字符。
         required: true
-        example: fgoombzypkgpemtywgotavck
+        example: laudantium
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: fgoombzypkgpemtywgotavck
+      name: laudantium
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "message": "Nature updated successfully"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 400
+        content: |-
+          {
+              "error": "Validation error messages if any"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: |-
+          {
+              "message": "Nature not found"
+          }
+        headers: []
+        description: ''
+        custom: []
     responseFields: []
     auth: []
     controller: null

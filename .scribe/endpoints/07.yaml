@@ -74,7 +74,7 @@ endpoints:
         name: order_id
         description: ''
         required: true
-        example: 3
+        example: 7
         type: integer
         enumValues: []
         custom: []
@@ -82,13 +82,13 @@ endpoints:
         name: race_id
         description: ''
         required: true
-        example: 4
+        example: 13
         type: integer
         enumValues: []
         custom: []
     cleanBodyParameters:
-      order_id: 3
-      race_id: 4
+      order_id: 7
+      race_id: 13
     fileParameters: []
     responses: []
     responseFields: []

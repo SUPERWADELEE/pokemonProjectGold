@@ -20,6 +20,16 @@ class OrderDetailController extends Controller
 {
     /**
      * 訂單細節新增
+     * 
+     * @bodyParam order_id int required 訂單的ID。
+     * @bodyParam race_id int required 產品(Race)的ID。
+     * 
+     * 根据指定的race_id从用户的购物车中提取数量，并根据race的价格计算出单价和总价。
+     * 创建订单详情后，减少相应的库存，并清除用户购物车中的该race项。
+     * 
+     * @param \App\Http\Requests\OrderDetailRequest $request 使用者輸入的請求數據。
+     * 
+     * @return void
      */
     public function store(OrderDetailRequest $request)
     {
@@ -54,6 +64,12 @@ class OrderDetailController extends Controller
 
     /**
      * 訂單細節列表
+     * 
+      * @urlParam order required 訂單的ID。
+     * 
+     * @param \App\Models\Order $order 指定的訂單。
+     * 
+     * @return \Illuminate\Http\Resources\Json\ResourceCollection 返回指定訂單的所有訂單詳情的集合。
      */
     public function index(Order $order)
     {
@@ -63,6 +79,20 @@ class OrderDetailController extends Controller
         return OrderDetailResource::collection($orderDetails);
     }
 
+
+    /**
+     * 顯示指定的訂單詳情。
+     *
+     * @apiGroup 訂單詳情
+     * 
+     * @urlParam orderDetail required 訂單詳情的ID。
+     * 
+     * 此方法还验证指定的订单详情是否属于当前登录的用户。
+     * 
+     * @param \App\Models\OrderDetail $orderDetail 指定的訂單詳情。
+     * 
+     * @return \App\Http\Resources\OrderDetailResource|Illuminate\Http\Response 返回指定的訂單詳情或403錯誤。
+     */
     
     public function show(OrderDetail $orderDetail)
     {

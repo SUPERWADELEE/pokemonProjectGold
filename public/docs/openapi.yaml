@@ -77,7 +77,7 @@ paths:
                 name:
                   type: string
                   description: '能力的名稱. 必須是唯一的，只能包含中文和英文字，且最大長度為255個字符.'
-                  example: a
+                  example: et
               required:
                 - name
   '/api/abilities/{ability_id}':
@@ -135,7 +135,7 @@ paths:
                 name:
                   type: string
                   description: '需要更新的特性名稱. 必須是唯一的，只能包含中文和英文字符，且最大長度為255個字符.'
-                  example: modi
+                  example: tempora
               required:
                 - name
     parameters:
@@ -198,11 +198,11 @@ paths:
                 email:
                   type: string
                   description: 用戶的電子郵件地址。例子：user@example.com
-                  example: nathanael.romaguera@example.net
+                  example: precious10@example.org
                 password:
                   type: string
                   description: 用戶的密碼。
-                  example: "hMSX'6X#wv?'wF5"
+                  example: 'mm*NwK~!v;/CY3'
               required:
                 - email
                 - password
@@ -268,7 +268,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the verify.'
-        example: rem
+        example: rerum
         required: true
         schema:
           type: string
@@ -276,7 +276,7 @@ paths:
         in: path
         name: hash
         description: ''
-        example: aut
+        example: adipisci
         required: true
         schema:
           type: string
@@ -314,7 +314,7 @@ paths:
         in: path
         name: email
         description: ''
-        example: dustin.oreilly@example.net
+        example: lstark@example.org
         required: true
         schema:
           type: string
@@ -331,7 +331,7 @@ paths:
             text/plain:
               schema:
                 type: string
-                example: "{\n    \"data\": [\n        {\n            \"id\": \"項目ID\",\n            \"amount\": \"購物車中的商品數量\",\n            \"current_price\": \"當前種族價格（如果種族已加載）\",\n            \"race_name\": \"種族名稱（如果種族已加載）\",\n            \"race_photo\": \"種族圖片URL（如果種族已加載）\",\n            \"race_id\": \"種族ID（如果種族已加載）\"\n        },\n        ... 更多項目\n    ]\n}"
+                example: "{\n    \"data\": [\n        {\n            \"id\": \"項目ID\",\n            \"amount\": \"購物車中的商品數量\",\n            \"current_price\": \"當前種族價格（如果種族已加載）\",\n            \"race_name\": \"種族名稱（如果種族已加載）\",\n            \"race_photo\": \"種族圖片URL（如果種族已加載）\",\n            \"race_id\": \"種族ID（如果種族已加載）\"\n        },\n\n    ]\n}"
         401:
           description: ''
           content:
@@ -403,7 +403,7 @@ paths:
                   example: 2
                 race_id:
                   type: integer
-                  description: 賽事的ID，必須存在於賽事表中。
+                  description: 種族的ID，必須存在於種族表中。
                   example: 5
               required:
                 - quantity
@@ -415,18 +415,34 @@ paths:
       description: ''
       parameters: []
       responses:
-        401:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  data:
+                    total_price: 計算的總金額
                 properties:
-                  message:
+                  data:
+                    type: object
+                    properties:
+                      total_price:
+                        type: string
+                        example: 計算的總金額
+        403:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Some cart items do not belong to the user or do not exist'
+                properties:
+                  error:
                     type: string
-                    example: Unauthenticated.
+                    example: 'Some cart items do not belong to the user or do not exist'
       tags:
         - CartItem
       requestBody:
@@ -437,10 +453,14 @@ paths:
               type: object
               properties:
                 cart_item_ids:
-                  type: object
-                  description: ''
-                  example: []
-                  properties: {  }
+                  type: array
+                  description: 需要計算的購物車項目ID的列表。
+                  example:
+                    - 1
+                    - 2
+                    - 3
+                  items:
+                    type: string
               required:
                 - cart_item_ids
   '/api/cart_items/{cart_item_id}':
@@ -449,26 +469,54 @@ paths:
       operationId: ''
       description: ''
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  total_price: 總金額
+                properties:
+                  total_price:
+                    type: string
+                    example: 總金額
+        400:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Validation error message.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Validation error message.'
       tags:
         - CartItem
       requestBody:
-        required: false
+        required: true
         content:
           application/json:
             schema:
               type: object
               properties:
                 quantity:
-                  type: string
-                  description: ''
-                  example: null
+                  type: integer
+                  description: 更新的商品數量，必須在1到庫存的範圍內。
+                  example: 3
+              required:
+                - quantity
     delete:
       summary: 購物車刪除
       operationId: ''
       description: ''
       parameters: []
-      responses: {  }
+      responses:
+        204:
+          description: ''
       tags:
         - CartItem
     parameters:
@@ -487,18 +535,18 @@ paths:
       description: ''
       parameters: []
       responses:
-        401:
+        200:
           description: ''
           content:
             application/json:
               schema:
-                type: object
+                type: array
+                items:
+                  type: object
                 example:
-                  message: Unauthenticated.
-                properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
+                  -
+                    id: '性格的 ID'
+                    name: 性格的名稱
       tags:
         - Nature
     post:
@@ -506,7 +554,31 @@ paths:
       operationId: ''
       description: ''
       parameters: []
-      responses: {  }
+      responses:
+        201:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Nature saved successfully'
+                properties:
+                  message:
+                    type: string
+                    example: 'Nature saved successfully'
+        400:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Validation error messages if any'
+                properties:
+                  error:
+                    type: string
+                    example: 'Validation error messages if any'
       tags:
         - Nature
       requestBody:
@@ -518,8 +590,8 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'Must not be greater than 255 characters.'
-                  example: pwdidhsy
+                  description: 性格的名稱。要求是唯一的且最多包含255個字符。
+                  example: doloremque
               required:
                 - name
   '/api/natures/{nature_id}':
@@ -528,7 +600,43 @@ paths:
       operationId: ''
       description: ''
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Nature updated successfully'
+                properties:
+                  message:
+                    type: string
+                    example: 'Nature updated successfully'
+        400:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Validation error messages if any'
+                properties:
+                  error:
+                    type: string
+                    example: 'Validation error messages if any'
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Nature not found'
+                properties:
+                  message:
+                    type: string
+                    example: 'Nature not found'
       tags:
         - Nature
       requestBody:
@@ -540,8 +648,8 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'Must not be greater than 255 characters.'
-                  example: fgoombzypkgpemtywgotavck
+                  description: 性格的新名稱。要求是唯一的且最多包含255個字符。
+                  example: laudantium
               required:
                 - name
     parameters:
@@ -572,7 +680,7 @@ paths:
                 total_price:
                   type: integer
                   description: 'Must be at least 1.'
-                  example: 75
+                  example: 31
                 payment_method:
                   type: string
                   description: ''
@@ -583,7 +691,7 @@ paths:
                 payment_status:
                   type: string
                   description: ''
-                  example: paid
+                  example: unpaid
                   enum:
                     - paid
                     - unpaid
@@ -661,11 +769,11 @@ paths:
                 order_id:
                   type: integer
                   description: ''
-                  example: 3
+                  example: 7
                 race_id:
                   type: integer
                   description: ''
-                  example: 4
+                  example: 13
               required:
                 - order_id
                 - race_id
@@ -747,7 +855,7 @@ paths:
                   type: array
                   description: ''
                   example:
-                    - 11
+                    - 18
                   items:
                     type: integer
               required:
@@ -953,15 +1061,15 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: isydbrsovllnr
+                  example: ix
                 email:
                   type: string
                   description: 'Must be a valid email address. Must not be greater than 255 characters.'
-                  example: lsporer@example.org
+                  example: ella.gleason@example.org
                 password:
                   type: string
                   description: 'Must be at least 6 characters.'
-                  example: ':CS@g!|n7lDl4s['
+                  example: '+X[.zXX+$7hX2'
               required:
                 - name
                 - email
@@ -1030,7 +1138,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: cessvtrkcltqkzgznipekjht
+                  example: weafckaebchzzrwx
               required:
                 - name
 tags:

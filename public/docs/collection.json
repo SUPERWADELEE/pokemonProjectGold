@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "4802250c-d807-495d-90e4-0d8fb2948d07",
+        "_postman_id": "3c5b5350-142b-466b-ada2-2da4503463d6",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -73,7 +73,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"a\"}"
+                            "raw": "{\"name\":\"et\"}"
                         },
                         "description": ""
                     },
@@ -122,7 +122,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"modi\"}"
+                            "raw": "{\"name\":\"tempora\"}"
                         },
                         "description": "\u6b64\u7aef\u9ede\u5141\u8a31\u60a8\u66f4\u65b0\u73fe\u6709\u7684\u7279\u6027\u3002"
                     },
@@ -169,7 +169,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"nathanael.romaguera@example.net\",\"password\":\"hMSX'6X#wv?'wF5\"}"
+                            "raw": "{\"email\":\"precious10@example.org\",\"password\":\"mm*NwK~!v;\\\/CY3\"}"
                         },
                         "description": "\u6b64\u7aef\u9ede\u5141\u8a31\u7528\u6236\u4f7f\u7528\u4ed6\u5011\u7684\u96fb\u5b50\u90f5\u4ef6\u548c\u5bc6\u78bc\u4f86\u767b\u5165\u7cfb\u7d71\uff0c\u4e26\u8fd4\u56de\u4e00\u500bJWT\u4ee4\u724c\u3002",
                         "auth": {
@@ -244,13 +244,13 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "rem",
+                                    "value": "rerum",
                                     "description": "The ID of the verify."
                                 },
                                 {
                                     "id": "hash",
                                     "key": "hash",
-                                    "value": "aut",
+                                    "value": "adipisci",
                                     "description": ""
                                 }
                             ]
@@ -299,7 +299,7 @@
                                 {
                                     "id": "email",
                                     "key": "email",
-                                    "value": "dustin.oreilly%40example.net",
+                                    "value": "lstark%40example.org",
                                     "description": ""
                                 }
                             ]
@@ -369,7 +369,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n    \"data\": [\n        {\n            \"id\": \"\u9805\u76eeID\",\n            \"amount\": \"\u8cfc\u7269\u8eca\u4e2d\u7684\u5546\u54c1\u6578\u91cf\",\n            \"current_price\": \"\u7576\u524d\u7a2e\u65cf\u50f9\u683c\uff08\u5982\u679c\u7a2e\u65cf\u5df2\u52a0\u8f09\uff09\",\n            \"race_name\": \"\u7a2e\u65cf\u540d\u7a31\uff08\u5982\u679c\u7a2e\u65cf\u5df2\u52a0\u8f09\uff09\",\n            \"race_photo\": \"\u7a2e\u65cf\u5716\u7247URL\uff08\u5982\u679c\u7a2e\u65cf\u5df2\u52a0\u8f09\uff09\",\n            \"race_id\": \"\u7a2e\u65cfID\uff08\u5982\u679c\u7a2e\u65cf\u5df2\u52a0\u8f09\uff09\"\n        },\n        ... \u66f4\u591a\u9805\u76ee\n    ]\n}",
+                            "body": "{\n    \"data\": [\n        {\n            \"id\": \"\u9805\u76eeID\",\n            \"amount\": \"\u8cfc\u7269\u8eca\u4e2d\u7684\u5546\u54c1\u6578\u91cf\",\n            \"current_price\": \"\u7576\u524d\u7a2e\u65cf\u50f9\u683c\uff08\u5982\u679c\u7a2e\u65cf\u5df2\u52a0\u8f09\uff09\",\n            \"race_name\": \"\u7a2e\u65cf\u540d\u7a31\uff08\u5982\u679c\u7a2e\u65cf\u5df2\u52a0\u8f09\uff09\",\n            \"race_photo\": \"\u7a2e\u65cf\u5716\u7247URL\uff08\u5982\u679c\u7a2e\u65cf\u5df2\u52a0\u8f09\uff09\",\n            \"race_id\": \"\u7a2e\u65cfID\uff08\u5982\u679c\u7a2e\u65cf\u5df2\u52a0\u8f09\uff09\"\n        },\n\n    ]\n}",
                             "name": ""
                         },
                         {
@@ -449,28 +449,21 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"cart_item_ids\":[]}"
+                            "raw": "{\"cart_item_ids\":[1,2,3]}"
                         },
                         "description": ""
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"total_price\": \"\u8a08\u7b97\u7684\u7e3d\u91d1\u984d\"\n    }\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\n    \"error\": \"Some cart items do not belong to the user or do not exist\"\n}",
                             "name": ""
                         }
                     ]
@@ -505,11 +498,24 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "[]"
+                            "raw": "{\"quantity\":3}"
                         },
                         "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"total_price\": \"\u7e3d\u91d1\u984d\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 400,
+                            "body": "{\n    \"error\": \"Validation error message.\"\n}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
                     "name": "\u8cfc\u7269\u8eca\u522a\u9664",
@@ -542,7 +548,14 @@
                         "body": null,
                         "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 204,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
                 }
             ]
         },
@@ -575,22 +588,9 @@
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "header": [],
+                            "code": 200,
+                            "body": "[{\n    \"id\": \"\u6027\u683c\u7684 ID\",\n    \"name\": \"\u6027\u683c\u7684\u540d\u7a31\"\n}]",
                             "name": ""
                         }
                     ]
@@ -617,11 +617,24 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"pwdidhsy\"}"
+                            "raw": "{\"name\":\"doloremque\"}"
                         },
                         "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n    \"message\": \"Nature saved successfully\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 400,
+                            "body": "{\n    \"error\": \"Validation error messages if any\"\n}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
                     "name": "\u6027\u683c\u4fee\u6539",
@@ -653,11 +666,30 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"fgoombzypkgpemtywgotavck\"}"
+                            "raw": "{\"name\":\"laudantium\"}"
                         },
                         "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"message\": \"Nature updated successfully\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 400,
+                            "body": "{\n    \"error\": \"Validation error messages if any\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\n    \"message\": \"Nature not found\"\n}",
+                            "name": ""
+                        }
+                    ]
                 }
             ]
         },
@@ -687,7 +719,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"total_price\":75,\"payment_method\":\"cash_on_delivery\",\"payment_status\":\"paid\"}"
+                            "raw": "{\"total_price\":31,\"payment_method\":\"cash_on_delivery\",\"payment_status\":\"unpaid\"}"
                         },
                         "description": ""
                     },
@@ -819,7 +851,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"order_id\":3,\"race_id\":4}"
+                            "raw": "{\"order_id\":7,\"race_id\":13}"
                         },
                         "description": ""
                     },
@@ -960,7 +992,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"Pikachu\",\"race_id\":1,\"ability_id\":1,\"nature_id\":1,\"level\":1,\"skills\":[11]}"
+                            "raw": "{\"name\":\"Pikachu\",\"race_id\":1,\"ability_id\":1,\"nature_id\":1,\"level\":1,\"skills\":[18]}"
                         },
                         "description": ""
                     },
@@ -1306,7 +1338,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"isydbrsovllnr\",\"email\":\"lsporer@example.org\",\"password\":\":CS@g!|n7lDl4s[\"}"
+                            "raw": "{\"name\":\"ix\",\"email\":\"ella.gleason@example.org\",\"password\":\"+X[.zXX+$7hX2\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1384,7 +1416,7 @@
                             "formdata": [
                                 {
                                     "key": "name",
-                                    "value": "cessvtrkcltqkzgznipekjht",
+                                    "value": "weafckaebchzzrwx",
                                     "type": "text",
                                     "description": "Must not be greater than 255 characters."
                                 },

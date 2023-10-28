@@ -19,6 +19,20 @@ class PaymentController extends Controller
 {
     /**
      * 請求藍星金流結帳頁面
+     * 
+     * 此方法主要功能如下：
+     * 1. 验证当前用户。
+     * 2. 更新与当前用户关联的购物车项目的结账状态。
+     * 3. 生成与藍星金流相关的支付参数（包括加密和哈希）。
+     * 4. 返回支付参数，以便前端将用户重定向到藍星金流的支付页面。
+     * 
+     * @apiGroup 支付
+     * 
+     * @bodyParam totalPrice float required 购物车中所有商品的总价格。
+     * 
+     * @param \Illuminate\Http\Request $request 用戶的HTTP請求。
+     * 
+     * @return \Illuminate\Http\JsonResponse 返回包含支付参数的JSON响应。
      */
     public function checkout(Request $request)
     {
@@ -51,7 +65,7 @@ class PaymentController extends Controller
             'NotifyURL' => $notifyURL,
             'ReturnURL' => $returnURL,
         ));
-       
+
         $encodedData = bin2hex(openssl_encrypt(
             $tradeInfo,
             "AES-256-CBC",
@@ -60,7 +74,7 @@ class PaymentController extends Controller
             $iv
         ));
 
-        
+
         $hashs = "HashKey=" . $key . "&" . $encodedData . "&HashIV=" . $iv;
         $hash = strtoupper(hash("sha256", $hashs));
 

@@ -15,6 +15,12 @@ class NatureController extends Controller
 {
     /**
      * 性格詳情
+     * @response 200 [{
+     *     "id": "性格的 ID",
+     *     "name": "性格的名稱"
+     * }]
+     * 
+     * @return \Illuminate\Http\Response 所有性格的列表，每個性格包括其ID和名稱。
      */
     public function index()
     {
@@ -25,6 +31,20 @@ class NatureController extends Controller
 
     /**
      * 性格新增
+     * 
+     * @bodyParam name string required 性格的名稱。要求是唯一的且最多包含255個字符。
+     * 
+     * @response 201 {
+     *     "message": "Nature saved successfully"
+     * }
+     * 
+     * @response 400 {
+     *     "error": "Validation error messages if any"
+     * }
+     * 
+     * @param \Illuminate\Http\Request $request 使用者輸入的請求數據。
+     * 
+     * @return \Illuminate\Http\Response 用 JSON 格式返回的成功消息或驗證錯誤。
      */
 
     public function store(Request $request)
@@ -47,6 +67,25 @@ class NatureController extends Controller
 
     /**
      * 性格修改
+     * 
+      * @bodyParam name string required 性格的新名稱。要求是唯一的且最多包含255個字符。
+     * 
+     * @response 200 {
+     *     "message": "Nature updated successfully"
+     * }
+     * 
+     * @response 400 {
+     *     "error": "Validation error messages if any"
+     * }
+     * 
+     * @response 404 {
+     *     "message": "Nature not found"
+     * }
+     * 
+     * @param \Illuminate\Http\Request $request 使用者輸入的請求數據。
+     * @param \App\Nature $nature 從資料庫取得的指定性格模型實例。
+     * 
+     * @return \Illuminate\Http\Response 用 JSON 格式返回的成功消息或錯誤消息。
      */
     public function update(Request $request, Nature $nature)
     {

@@ -86,12 +86,12 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: cessvtrkcltqkzgznipekjht
+        example: weafckaebchzzrwx
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: cessvtrkcltqkzgznipekjht
+      name: weafckaebchzzrwx
     fileParameters:
       userPhoto: null
     responses: []

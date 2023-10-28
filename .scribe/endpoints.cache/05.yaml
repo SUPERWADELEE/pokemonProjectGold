@@ -40,7 +40,7 @@ endpoints:
                       "race_photo": "種族圖片URL（如果種族已加載）",
                       "race_id": "種族ID（如果種族已加載）"
                   },
-                  ... 更多項目
+
               ]
           }
         headers: []
@@ -92,7 +92,7 @@ endpoints:
         custom: []
       race_id:
         name: race_id
-        description: 賽事的ID，必須存在於賽事表中。
+        description: 種族的ID，必須存在於種族表中。
         required: true
         example: 5
         type: integer
@@ -159,24 +159,41 @@ endpoints:
     bodyParameters:
       cart_item_ids:
         name: cart_item_ids
-        description: ''
+        description: 需要計算的購物車項目ID的列表。
         required: true
-        example: []
-        type: object
+        example:
+          - 1
+          - 2
+          - 3
+        type: 'string[]'
         enumValues: []
         custom: []
     cleanBodyParameters:
-      cart_item_ids: []
+      cart_item_ids:
+        - 1
+        - 2
+        - 3
     fileParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
+        status: 200
+        content: |-
+          {
+              "data": {
+                  "total_price": "計算的總金額"
+              }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 403
+        content: |-
+          {
+              "error": "Some cart items do not belong to the user or do not exist"
+          }
+        headers: []
+        description: ''
         custom: []
     responseFields: []
     auth: []
@@ -216,15 +233,34 @@ endpoints:
     bodyParameters:
       quantity:
         name: quantity
-        description: ''
-        required: false
-        example: null
-        type: string
+        description: 更新的商品數量，必須在1到庫存的範圍內。
+        required: true
+        example: 3
+        type: integer
         enumValues: []
         custom: []
-    cleanBodyParameters: []
+    cleanBodyParameters:
+      quantity: 3
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "total_price": "總金額"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 400
+        content: |-
+          {
+              "error": "Validation error message."
+          }
+        headers: []
+        description: ''
+        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -263,7 +299,13 @@ endpoints:
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 204
+        content: '{}'
+        headers: []
+        description: ''
+        custom: []
     responseFields: []
     auth: []
     controller: null
