@@ -12,24 +12,69 @@ use Illuminate\Http\Request;
 /**
  * @group CartItem
  * Operations related to cartItems.
+ * 
+ * @authenticated
  */
 
 class CartItemController extends Controller
 {
     /**
      * 顯示購物車商品
+     * 
+     * 這部分主要是用來顯示購物車頁面的商品資訊
+     * 
+     * @response 200 {
+     *     "data": [
+     *         {
+     *             "id": "項目ID",
+     *             "amount": "購物車中的商品數量",
+     *             "current_price": "當前種族價格（如果種族已加載）",
+     *             "race_name": "種族名稱（如果種族已加載）",
+     *             "race_photo": "種族圖片URL（如果種族已加載）",
+     *             "race_id": "種族ID（如果種族已加載）"
+     *         },
+     *       
+     *     ]
+     * }
+     * 
+     * @response 401 {
+     *     "message": "Unauthenticated."
+     * }
+     * 
+     * @return \Illuminate\Http\Response
+     * 
      */
 
     public function index()
     {
         $user = auth()->user();
-        // dd($user);
+
         $carts = $user->cartItems()->with(['race'])->get();
         return CartItemResource::collection($carts);
     }
 
     /**
      * 加入購物車
+     * 
+       * @param \Illuminate\Http\Request $request
+     * 
+     * @bodyParam quantity int required 購買的數量，必須在1到庫存的範圍內。Example: 2
+     * @bodyParam race_id int required 種族的ID，必須存在於種族表中。Example: 5
+     * 
+     * @response 200 {
+     *     "message": "Item added to cart successfully."
+     * }
+     * 
+     * @response 400 {
+     *     "error": "Requested quantity exceeds available stock."
+     * }
+     * 
+     * @response 404 {
+     *     "error": "Race not found."
+     * }
+     * 
+     * @return \Illuminate\Http\Response
+     * 
      */
 
     public function store(Request $request)
@@ -79,6 +124,21 @@ class CartItemController extends Controller
 
     /**
      * 購物車更新
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\CartItem $cartItem 購物車的項目
+     * 
+     * @bodyParam quantity int required 更新的商品數量，必須在1到庫存的範圍內。Example: 3
+     * 
+     * @response 200 {
+     *     "total_price": "總金額"
+     * }
+     * 
+     * @response 400 {
+     *     "error": "Validation error message."
+     * }
+     * 
+     * @return \Illuminate\Http\Response 包含購物車的總金額的響應
      */
     public function update(Request $request, CartItem $cartItem)
     {
@@ -106,6 +166,12 @@ class CartItemController extends Controller
 
     /**
      * 購物車刪除
+     * 
+      * @param \App\Models\CartItem $cartItem 購物車的項目
+     * 
+     * @response 204
+     * 
+     * @return \Illuminate\Http\Response 返回無內容的204響應，表示成功刪除
      */
     public function destroy(CartItem $cartItem)
     {
@@ -116,6 +182,22 @@ class CartItemController extends Controller
 
     /**
      * 購物車總價格計算
+     * 
+      * @param \Illuminate\Http\Request $request
+     * 
+     * @bodyParam cart_item_ids array required 需要計算的購物車項目ID的列表。Example: [1, 2, 3]
+     * 
+     * @response 200 {
+     *     "data": {
+     *         "total_price": "計算的總金額"
+     *     }
+     * }
+     * 
+     * @response 403 {
+     *     "error": "Some cart items do not belong to the user or do not exist"
+     * }
+     * 
+     * @return \Illuminate\Http\Response 返回計算的總金額的響應
      */
     public function calculateTotalPrice(Request $request)
     {

@@ -63,16 +63,14 @@ class StorePokemonRequest extends FormRequest
     //     ];
     // }
 
+    
     /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
+     * 定義請求驗證規則。
+     * 
+     * @return array 驗證規則的集合。
      */
     public function rules(): array
     {
-        // dd('fuck');
-
-        // dd('fuck');
         // $race_id = $this->input('race_id');
         // $race = Race::find($race_id);
         // // $miniEvolutionLevel = optional($race)->evolution_level ?? 100;  // 使用 optional 函數
@@ -83,9 +81,6 @@ class StorePokemonRequest extends FormRequest
         // if (!$miniEvolutionLevel){
         //     $miniEvolutionLevel = 100;
         // }
-
-
-        // dd($this->input('ability_id'));
 
         return [
             'name' => 'required|string|max:15|unique:pokemons,name',
@@ -99,33 +94,28 @@ class StorePokemonRequest extends FormRequest
         ];
     }
 
+    /**
+     * 定義驗證錯誤訊息。
+     * 
+     * @return array 驗證錯誤訊息的集合。
+     */
     public function messages()
     {
-        // dd('fuck');
+    
         return [
             'name.alpha_unicode' => '名稱只能包含中文和英文字符。',
-            // ... 其他自訂的錯誤訊息 ...
         ];
     }
 
-
-    // TODO validator rule
-    // 或是去race取資料這個動作, 如果裡面也要做一次的話要用注入的
-    // public function withValidator($validator)
-    // {
-    //     $validator->after(function ($validator) {
-    //         // 在這裡做了一個skills的額外驗證,確認輸入的skill是否是該種族可以學的
-    //         if (!validSkillsForRace($this->skills)) {
-                
-    //             $validator->errors()->add('skills', 'The skill is not allowed for this race.');
-    //         }
-
-            
-    //     });
-    // }
-
-
-
+    /**
+     * 自定義驗證邏輯。
+     *
+     * 此方法將在基礎驗證之後執行，用於檢查特定的驗證條件。
+     * 如：檢查提供的技能是否為該種族允許的技能。
+     *
+     * @param \Illuminate\Validation\Validator $validator 驗證器的實例。
+     * @return void
+     */
     // TODO validator rule
     // 或是去race取資料這個動作, 如果裡面也要做一次的話要用注入的
     public function withValidator($validator)

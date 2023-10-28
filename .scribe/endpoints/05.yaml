@@ -11,8 +11,8 @@ endpoints:
       subgroup: ''
       subgroupDescription: ''
       title: 顯示購物車商品
-      description: ''
-      authenticated: false
+      description: 這部分主要是用來顯示購物車頁面的商品資訊
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -26,13 +26,32 @@ endpoints:
     fileParameters: []
     responses:
       -
+        status: 200
+        content: |-
+          {
+              "data": [
+                  {
+                      "id": "項目ID",
+                      "amount": "購物車中的商品數量",
+                      "current_price": "當前種族價格（如果種族已加載）",
+                      "race_name": "種族名稱（如果種族已加載）",
+                      "race_photo": "種族圖片URL（如果種族已加載）",
+                      "race_id": "種族ID（如果種族已加載）"
+                  },
+
+              ]
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
         status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
+        content: |-
+          {
+              "message": "Unauthenticated."
+          }
+        headers: []
+        description: ''
         custom: []
     responseFields: []
     auth: []
@@ -51,7 +70,7 @@ endpoints:
       subgroupDescription: ''
       title: 加入購物車
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -63,24 +82,52 @@ endpoints:
     bodyParameters:
       quantity:
         name: quantity
-        description: ''
-        required: false
-        example: null
-        type: string
+        description: 購買的數量，必須在1到庫存的範圍內。
+        required: true
+        example: 2
+        type: integer
         enumValues: []
         custom: []
       race_id:
         name: race_id
-        description: ''
+        description: 種族的ID，必須存在於種族表中。
         required: true
-        example: 18
+        example: 5
         type: integer
         enumValues: []
         custom: []
     cleanBodyParameters:
-      race_id: 18
+      quantity: 2
+      race_id: 5
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "message": "Item added to cart successfully."
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 400
+        content: |-
+          {
+              "error": "Requested quantity exceeds available stock."
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: |-
+          {
+              "error": "Race not found."
+          }
+        headers: []
+        description: ''
+        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -98,7 +145,7 @@ endpoints:
       subgroupDescription: ''
       title: 購物車總價格計算
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -110,24 +157,41 @@ endpoints:
     bodyParameters:
       cart_item_ids:
         name: cart_item_ids
-        description: ''
+        description: 需要計算的購物車項目ID的列表。
         required: true
-        example: []
-        type: object
+        example:
+          - 1
+          - 2
+          - 3
+        type: 'string[]'
         enumValues: []
         custom: []
     cleanBodyParameters:
-      cart_item_ids: []
+      cart_item_ids:
+        - 1
+        - 2
+        - 3
     fileParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
+        status: 200
+        content: |-
+          {
+              "data": {
+                  "total_price": "計算的總金額"
+              }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 403
+        content: |-
+          {
+              "error": "Some cart items do not belong to the user or do not exist"
+          }
+        headers: []
+        description: ''
         custom: []
     responseFields: []
     auth: []
@@ -146,7 +210,7 @@ endpoints:
       subgroupDescription: ''
       title: 購物車更新
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -167,15 +231,34 @@ endpoints:
     bodyParameters:
       quantity:
         name: quantity
-        description: ''
-        required: false
-        example: null
-        type: string
+        description: 更新的商品數量，必須在1到庫存的範圍內。
+        required: true
+        example: 3
+        type: integer
         enumValues: []
         custom: []
-    cleanBodyParameters: []
+    cleanBodyParameters:
+      quantity: 3
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "total_price": "總金額"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 400
+        content: |-
+          {
+              "error": "Validation error message."
+          }
+        headers: []
+        description: ''
+        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -193,7 +276,7 @@ endpoints:
       subgroupDescription: ''
       title: 購物車刪除
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -214,7 +297,13 @@ endpoints:
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 204
+        content: '{}'
+        headers: []
+        description: ''
+        custom: []
     responseFields: []
     auth: []
     controller: null

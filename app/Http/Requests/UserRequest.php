@@ -22,13 +22,13 @@ class UserRequest extends FormRequest
      */
     public function rules(): array
     {
-        $user = JWTAuth::parseToken()->authenticate();
+        // $user = JWTAuth::parseToken()->authenticate();
         return [
             
                 'userPhoto' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // "sometimes" 代表此欄位為可選
                 'name' => 'sometimes|required|max:255', // "sometimes" 代表此欄位為可選
-                'email' => 'sometimes|required|email|unique:users,email,' . $user->id // "sometimes" 代表此欄位為可選
-            
+                // 'email' => 'sometimes|required|email|unique:users,email,' . $user->id // "sometimes" 代表此欄位為可選
+            // TODO 記得把代碼用回來
         ];
     }
 }

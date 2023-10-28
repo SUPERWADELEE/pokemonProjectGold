@@ -6,54 +6,6 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/order_details/{order_detail_id}'
-    metadata:
-      groupName: OrderDetail
-      groupDescription: 'Operations related to orderDetais.'
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      order_detail_id:
-        name: order_detail_id
-        description: 'The ID of the order detail.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        custom: []
-    cleanUrlParameters:
-      order_detail_id: 1
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
     uri: 'api/orders/{order_id}/order_details'
     metadata:
       groupName: OrderDetail
@@ -62,7 +14,7 @@ endpoints:
       subgroupDescription: ''
       title: 訂單細節列表
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -76,8 +28,17 @@ endpoints:
         type: integer
         enumValues: []
         custom: []
+      order:
+        name: order
+        description: 訂單的ID。
+        required: true
+        example: unde
+        type: string
+        enumValues: []
+        custom: []
     cleanUrlParameters:
       order_id: 16
+      order: unde
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -110,7 +71,7 @@ endpoints:
       subgroupDescription: ''
       title: 訂單細節新增
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -122,23 +83,27 @@ endpoints:
     bodyParameters:
       order_id:
         name: order_id
-        description: ''
+        description: 訂單的ID。
         required: true
-        example: 17
+        example: 3
         type: integer
         enumValues: []
         custom: []
       race_id:
         name: race_id
-        description: ''
+        description: |-
+          產品(Race)的ID。
+
+          根據指定的race_id從使用者的購物車中提取數量，並根據race的價格計算出單價和總價。
+          建立訂單細節後，減少相應的庫存，並清除使用者購物車中的該race項。
         required: true
-        example: 8
+        example: 3
         type: integer
         enumValues: []
         custom: []
     cleanBodyParameters:
-      order_id: 17
-      race_id: 8
+      order_id: 3
+      race_id: 3
     fileParameters: []
     responses: []
     responseFields: []

@@ -14,7 +14,7 @@ endpoints:
       subgroupDescription: ''
       title: 訂單新增
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -26,39 +26,43 @@ endpoints:
     bodyParameters:
       total_price:
         name: total_price
-        description: 'Must be at least 1.'
+        description: 訂單的總價格。
         required: true
-        example: 9
-        type: integer
+        example: 24981323.096008
+        type: number
         enumValues: []
         custom: []
       payment_method:
         name: payment_method
-        description: ''
+        description: 訂單的付款方式。
         required: true
-        example: cash_on_delivery
+        example: dignissimos
         type: string
-        enumValues:
-          - credit_card
-          - cash_on_delivery
+        enumValues: []
         custom: []
       payment_status:
         name: payment_status
-        description: ''
+        description: 訂單的付款狀態。
         required: true
-        example: unpaid
+        example: officia
         type: string
-        enumValues:
-          - paid
-          - unpaid
-          - canceled
+        enumValues: []
         custom: []
     cleanBodyParameters:
-      total_price: 9
-      payment_method: cash_on_delivery
-      payment_status: unpaid
+      total_price: 24981323.096008
+      payment_method: dignissimos
+      payment_status: officia
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "id": "新創建的訂單的ID"
+          }
+        headers: []
+        description: ''
+        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -76,7 +80,7 @@ endpoints:
       subgroupDescription: ''
       title: 訂單列表
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -90,13 +94,17 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
+        status: 200
+        content: |-
+          {
+              "data": [
+                  {
+                      ...各個訂單的資料
+                  }
+              ]
+          }
+        headers: []
+        description: ''
         custom: []
     responseFields: []
     auth: []

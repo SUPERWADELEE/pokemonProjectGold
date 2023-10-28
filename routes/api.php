@@ -9,6 +9,7 @@ use App\Http\Controllers\NatureController;
 use App\Http\Controllers\AbilityController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartItemController;
+use App\Http\Controllers\GoogleLoginController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderDetailController;
@@ -84,8 +85,10 @@ Route::middleware('auth:api', 'checkStatus', 'throttle:100000,1')->group(functio
     // 使用者細節
     Route::get('user', [UserController::class, 'show']);
     Route::post('user', [UserController::class, 'update']);
-    Route::patch('users/{user}/status', [UserController::class, 'changeUserStatus']);
-    Route::patch('users/{user}/changePassword', [UserController::class, 'changePassword']);
+    
+    
+    // Route::patch('users/{user}/status', [UserController::class, 'changeUserStatus']);
+    // Route::patch('users/{user}/changePassword', [UserController::class, 'changePassword']);
 
 
     // 購物車詳情
@@ -101,7 +104,7 @@ Route::middleware('auth:api', 'checkStatus', 'throttle:100000,1')->group(functio
     Route::get('orders', [OrderController::class, 'index']);
 
     // 訂單詳情
-    Route::get('order_details/{order_detail}', [OrderDetailController::class, 'show']);
+    // Route::get('order_details/{order_detail}', [OrderDetailController::class, 'show']);
     Route::get('orders/{order}/order_details', [OrderDetailController::class, 'index']);
     Route::post('orders_details', [OrderDetailController::class, 'store']);
 
@@ -129,3 +132,7 @@ Route::get('email/verify/{id}/{hash}', [AuthController::class, 'verifyEmail'])->
 
 
 Route::get('/checkVerificationStatus/{email}', [AuthController::class, 'checkVerificationStatus']);
+
+// 第三方登入
+Route::get('login/google', [GoogleLoginController::class, 'redirectToProvider']);
+Route::get('login/google/callback', [GoogleLoginController::class,'handleProviderCallback']);

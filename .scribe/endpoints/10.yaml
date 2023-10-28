@@ -11,7 +11,7 @@ endpoints:
       subgroup: ''
       subgroupDescription: ''
       title: 登入
-      description: ''
+      description: 此端點允許用戶使用他們的電子郵件和密碼來登入系統，並返回一個JWT令牌。
       authenticated: false
       custom: []
     headers:
@@ -24,25 +24,45 @@ endpoints:
     bodyParameters:
       email:
         name: email
-        description: 'Must be a valid email address.'
+        description: 用戶的電子郵件地址。例子：user@example.com
         required: true
-        example: dovie.langworth@example.net
+        example: anastacio42@example.com
         type: string
         enumValues: []
         custom: []
       password:
         name: password
-        description: ''
+        description: 用戶的密碼。
         required: true
-        example: 'rR_ZO7Q{wM'
+        example: 'gMd:=q2(|p'
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      email: dovie.langworth@example.net
-      password: 'rR_ZO7Q{wM'
+      email: anastacio42@example.com
+      password: 'gMd:=q2(|p'
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "message": "Login successful",
+            "token": "Generated JWT token",
+            "user": "Authenticated user object"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+            "error": "Invalid credentials"
+          }
+        headers: []
+        description: ''
+        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -59,7 +79,7 @@ endpoints:
       subgroup: ''
       subgroupDescription: ''
       title: 登出
-      description: ''
+      description: 此端點允許已經登入的用戶登出，它會使當前的JWT令牌失效。
       authenticated: false
       custom: []
     headers:
@@ -72,7 +92,25 @@ endpoints:
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "message": "Successfully logged out"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 500
+        content: |-
+          {
+            "message": "Failed to logout"
+          }
+        headers: []
+        description: ''
+        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -89,7 +127,11 @@ endpoints:
       subgroup: ''
       subgroupDescription: ''
       title: 註冊email驗證信確認
-      description: ''
+      description: |-
+        電子郵件驗證確認
+
+        此端點用於確認用戶的電子郵件驗證。它會比對提供的hash值和用戶的電子郵件生成的hash值。
+        如果驗證成功，該用戶的電子郵件將被標記為已驗證，並且將觸發一個已驗證的事件。
       authenticated: false
       custom: []
     headers:
@@ -100,7 +142,7 @@ endpoints:
         name: id
         description: 'The ID of the verify.'
         required: true
-        example: ipsa
+        example: necessitatibus
         type: string
         enumValues: []
         custom: []
@@ -108,13 +150,13 @@ endpoints:
         name: hash
         description: ''
         required: true
-        example: cumque
+        example: libero
         type: string
         enumValues: []
         custom: []
     cleanUrlParameters:
-      id: ipsa
-      hash: cumque
+      id: necessitatibus
+      hash: libero
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -122,15 +164,22 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 404
-        content: '{"error":"Resource not found"}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          x-ratelimit-limit: '60'
-          x-ratelimit-remaining: '59'
-          access-control-allow-origin: '*'
-        description: null
+        status: 200
+        content: |-
+          {
+            "message": "Email verified successfully."
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 200
+        content: |-
+          {
+            "message": "Email already verified."
+          }
+        headers: []
+        description: ''
         custom: []
     responseFields: []
     auth: []
@@ -148,7 +197,9 @@ endpoints:
       subgroup: ''
       subgroupDescription: ''
       title: 確認user表註冊驗證信狀態
-      description: ''
+      description: |-
+        此端點用於檢查指定電子郵件的用戶是否已完成電子郵件驗證。
+        它將返回用戶的電子郵件驗證狀態，無論是已驗證還是未驗證。
       authenticated: false
       custom: []
     headers:
@@ -159,12 +210,12 @@ endpoints:
         name: email
         description: ''
         required: true
-        example: carter55@example.com
+        example: kuhic.ellsworth@example.com
         type: string
         enumValues: []
         custom: []
     cleanUrlParameters:
-      email: carter55@example.com
+      email: kuhic.ellsworth@example.com
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -172,15 +223,22 @@ endpoints:
     fileParameters: []
     responses:
       -
+        status: 200
+        content: |-
+          {
+            "isVerified": true/false
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
         status: 404
-        content: '{"error":"User not found"}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          x-ratelimit-limit: '60'
-          x-ratelimit-remaining: '58'
-          access-control-allow-origin: '*'
-        description: null
+        content: |-
+          {
+            "error": "User not found"
+          }
+        headers: []
+        description: ''
         custom: []
     responseFields: []
     auth: []

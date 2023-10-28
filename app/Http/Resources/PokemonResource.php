@@ -13,9 +13,13 @@ use Illuminate\Support\Facades\Cache;
 class PokemonResource extends JsonResource
 {
     /**
-     * Transform the resource into an array.
+     * 將寶可夢資源轉換為数组。
      *
-     * @return array<string, mixed>
+     * 此方法將寶可夢資源轉換為一个数组，以便以JSON格式回應。
+     * 它包括寶可夢的ID、名稱、等級、種族、能力、性格、技能和主人的名字。
+     *
+     * @param Request $request
+     * @return array
      */
     public function toArray(Request $request): array
     {
@@ -43,7 +47,7 @@ class PokemonResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'level' => $this->level,
-            'race_id'=> $this->race_id,
+            'race_id' => $this->race_id,
             // 'race' => $this->whenLoaded('race', $this->race),
             // 'race' => $this->whenLoaded('race', $this->race->name),
             'race' => $this->whenLoaded('race', function () {
@@ -66,7 +70,7 @@ class PokemonResource extends JsonResource
             'host' => $this->whenLoaded('user', function () {
                 return $this->user->name;
             }),
-            
+
 
         ];
 
@@ -86,4 +90,3 @@ class PokemonResource extends JsonResource
     // }
 
 }
-

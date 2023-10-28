@@ -21,58 +21,53 @@ class UpdatePokemonRequest extends FormRequest
 
 
 
+
+    // public function bodyParameters()
+    // {
+    //     return [
+    //         'name' => [
+    //             'description' => 'The name of the pokemon.',
+    //             'example' => 'Pikachu',
+    //             'required' => false,  // 因為在rules中是可選的
+    //             'type' => 'string'
+    //         ],
+    //         'race_id' => [
+    //             'description' => 'The ID of the race for the pokemon.',
+    //             'example' => 1,
+    //             'required' => false,
+    //             'type' => 'integer'
+    //         ],
+    //         'ability_id' => [
+    //             'description' => 'The ID of the ability for the pokemon.',
+    //             'example' => 1,
+    //             'required' => false,
+    //             'type' => 'integer'
+    //         ],
+    //         'nature_id' => [
+    //             'description' => 'The ID of the nature for the pokemon.',
+    //             'example' => 1,
+    //             'required' => false,
+    //             'type' => 'integer'
+    //         ],
+    //         'level' => [
+    //             'description' => 'The level for the pokemon.',
+    //             'example' => 1,
+    //             'required' => false,
+    //             'type' => 'integer'
+    //         ],
+    //         'skills' => [
+    //             'description' => 'The ID of the skills for the pokemon.',
+    //             'example' => 1,
+    //             'required' => false,
+    //             'type' => 'integer'
+    //         ],
+    //         // ... 其他參數 ...
+    //     ];
+    // }
     /**
-     * Get custom attributes for body parameters.
+     * 獲取適用於請求的驗證規則。
      *
      * @return array
-     */
-    public function bodyParameters()
-    {
-        return [
-            'name' => [
-                'description' => 'The name of the pokemon.',
-                'example' => 'Pikachu',
-                'required' => false,  // 因為在rules中是可選的
-                'type' => 'string'
-            ],
-            'race_id' => [
-                'description' => 'The ID of the race for the pokemon.',
-                'example' => 1,
-                'required' => false,
-                'type' => 'integer'
-            ],
-            'ability_id' => [
-                'description' => 'The ID of the ability for the pokemon.',
-                'example' => 1,
-                'required' => false,
-                'type' => 'integer'
-            ],
-            'nature_id' => [
-                'description' => 'The ID of the nature for the pokemon.',
-                'example' => 1,
-                'required' => false,
-                'type' => 'integer'
-            ],
-            'level' => [
-                'description' => 'The level for the pokemon.',
-                'example' => 1,
-                'required' => false,
-                'type' => 'integer'
-            ],
-            'skills' => [
-                'description' => 'The ID of the skills for the pokemon.',
-                'example' => 1,
-                'required' => false,
-                'type' => 'integer'
-            ],
-            // ... 其他參數 ...
-        ];
-    }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
     public function rules(): array
     {
@@ -89,6 +84,15 @@ class UpdatePokemonRequest extends FormRequest
         ];
     }
 
+    /**
+     * 配置驗證器實例。
+     *
+     * 此方法用於添加額外的驗證邏輯，以確保至少提供了一個參數，
+     * 並驗證提供的技能是否適用於指定的種族。
+     *
+     * @param  \Illuminate\Contracts\Validation\Validator  $validator
+     * @return void
+     */
     public function withValidator($validator)
     {
         $validator->after(function ($validator) {
@@ -104,7 +108,7 @@ class UpdatePokemonRequest extends FormRequest
             $raceId = $this->input('race_id'); // 假设 race_id 是在请求中的一个字段
             $race = Race::find($raceId);
             // 在這裡做了一個skills的額外驗證,確認輸入的skill是否是該種族可以學的
-            if (!validSkillsForRace($this->skills, $race )) {
+            if (!validSkillsForRace($this->skills, $race)) {
 
                 $validator->errors()->add('skills', 'The skill is not allowed for this race.');
             }

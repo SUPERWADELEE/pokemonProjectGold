@@ -16,12 +16,23 @@ use Aws\S3\S3Client;
 /**
  * @group User
  * Operations related to users.
+ * 
+ * @authenticated
  */
 class UserController extends Controller
 {
 
     /**
      * 使用者個人資訊
+     * @response {
+     *  "name": "John Doe",
+     *  "photo": "https://example.com/photo.jpg",
+     *  "email": "johndoe@example.com"
+     * }
+     * 
+     * @response 404 {
+     *  "error": "User not found"
+     * }
      */
     public function show()
     {
@@ -37,14 +48,28 @@ class UserController extends Controller
         return response()->json($userData);
     }
 
-    /**
-     * 更新使用者個人資訊並上傳圖片
-     */
 
+     /**
+     * 更新使用者資訊。
+     *
+     * 此方法允許更新使用者的基本資訊。如果請求中包含用戶照片，它將生成一個預簽名的URL，
+     * 以便用戶的瀏覽器可以直接上傳圖片到S3。
+     *
+     * @bodyParam name string optional 新的用戶名稱。示例：John Doe
+     * @bodyParam email string optional 新的電子郵件地址。示例：john.doe@example.com
+     * @bodyParam userPhoto file optional 用戶的新照片。應該是一個圖像文件。
+     *
+     * @response {
+     *   "presignedUrl": "https://example.com/presigned-url",
+     *   "fileDestination": "userPhotos/1234567890.jpg"
+     * }
+     */
     public function update(UserRequest $request)
     {
-
         $user = JWTAuth::parseToken()->authenticate();
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
         $validatedData = $request->validated();
 
 
@@ -89,7 +114,13 @@ class UserController extends Controller
         }
     }
 
-
+    /**
+     * 創建一個S3客戶端物件。
+     *
+     * 此方法返回一個新的S3客戶端物件，該物件用於與Amazon S3服務交互。
+     *
+     * @return S3Client 返回一個新的S3客戶端物件。
+     */
     public function createS3Client()
     {
         return new S3Client([
@@ -102,6 +133,17 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * 生成一個預簽名的URL，以便上傳文件到S3。
+     *
+     * 此方法返回一個預簽名的URL，該URL允許客戶端直接將文件上傳到S3，而無需通過服務器。
+     *
+     * @param S3Client $s3Client 一個S3客戶端物件。
+     * @param string $filePath S3中的文件路徑。示例：userPhotos/1234567890.jpg
+     * @param string $filetype 文件的MIME類型。示例：image/jpeg
+     *
+     * @return string 返回一個預簽名的URL。
+     */
     public function generatePresignedUrl(S3Client $s3Client, $filePath, $filetype)
     {
         $cmd = $s3Client->getCommand('PutObject', [

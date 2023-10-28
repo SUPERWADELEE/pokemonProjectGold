@@ -15,7 +15,33 @@ use Illuminate\Support\Facades\Hash;
 class RegisterController extends Controller
 {
     /**
-     * 註冊,寄註冊信
+     * 處理新使用者的註冊並寄送註冊信。
+     *
+     * 此方法會驗證輸入的資料，並在成功驗證後在`users`表中創建一個新的使用者紀錄。
+     * 之後，它會觸發一個`Registered`事件，並返回一個成功的響應，包括新創建的使用者的資料。
+     *
+     * @bodyParam name string required 使用者的名字。示例：John Doe
+     * @bodyParam email string required 使用者的電子郵件地址。必須是唯一的並且符合電子郵件格式。示例：john.doe@example.com
+     * @bodyParam password string required 使用者的密碼。必須至少有6個字符長並且與`password_confirmation`參數匹配。示例：password123
+     * @bodyParam password_confirmation string required 密碼確認。必須與`password`參數匹配。示例：password123
+     *
+     * @response 201 {
+     *   "message": "User registered successfully!",
+     *   "user": {
+     *     "name": "John Doe",
+     *     "email": "john.doe@example.com",
+     *     // other user fields...
+     *   }
+     * }
+     * @response 422 {
+     *   "message": "The given data was invalid.",
+     *   "errors": {
+     *     "email": [
+     *       "The email has already been taken."
+     *     ],
+     *     // other validation errors...
+     *   }
+     * }
      */
     public function register(Request $request)
     {

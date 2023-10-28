@@ -14,7 +14,7 @@ endpoints:
       subgroupDescription: ''
       title: 性格詳情
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -28,13 +28,14 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
+        status: 200
+        content: |-
+          [{
+              "id": "性格的 ID",
+              "name": "性格的名稱"
+          }]
+        headers: []
+        description: ''
         custom: []
     responseFields: []
     auth: []
@@ -53,7 +54,7 @@ endpoints:
       subgroupDescription: ''
       title: 性格新增
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -65,16 +66,34 @@ endpoints:
     bodyParameters:
       name:
         name: name
-        description: 'Must not be greater than 255 characters.'
+        description: 性格的名稱。要求是唯一的且最多包含255個字符。
         required: true
-        example: sjfu
+        example: quisquam
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: sjfu
+      name: quisquam
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 201
+        content: |-
+          {
+              "message": "Nature saved successfully"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 400
+        content: |-
+          {
+              "error": "Validation error messages if any"
+          }
+        headers: []
+        description: ''
+        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -92,7 +111,7 @@ endpoints:
       subgroupDescription: ''
       title: 性格修改
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -113,16 +132,43 @@ endpoints:
     bodyParameters:
       name:
         name: name
-        description: 'Must not be greater than 255 characters.'
+        description: 性格的新名稱。要求是唯一的且最多包含255個字符。
         required: true
-        example: puiiohgpjinxz
+        example: ullam
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: puiiohgpjinxz
+      name: ullam
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "message": "Nature updated successfully"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 400
+        content: |-
+          {
+              "error": "Validation error messages if any"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: |-
+          {
+              "message": "Nature not found"
+          }
+        headers: []
+        description: ''
+        custom: []
     responseFields: []
     auth: []
     controller: null
