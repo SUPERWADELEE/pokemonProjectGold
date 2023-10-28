@@ -24,8 +24,8 @@ class OrderDetailController extends Controller
      * @bodyParam order_id int required 訂單的ID。
      * @bodyParam race_id int required 產品(Race)的ID。
      * 
-     * 根据指定的race_id从用户的购物车中提取数量，并根据race的价格计算出单价和总价。
-     * 创建订单详情后，减少相应的库存，并清除用户购物车中的该race项。
+     * 根據指定的race_id從使用者的購物車中提取數量，並根據race的價格計算出單價和總價。
+     * 建立訂單細節後，減少相應的庫存，並清除使用者購物車中的該race項。
      * 
      * @param \App\Http\Requests\OrderDetailRequest $request 使用者輸入的請求數據。
      * 

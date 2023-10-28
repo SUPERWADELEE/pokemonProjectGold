@@ -35,7 +35,7 @@ endpoints:
         name: TradeInfo
         description: 支付相关的加密数据。
         required: true
-        example: officia
+        example: sed
         type: string
         enumValues: []
         custom: []
@@ -43,13 +43,13 @@ endpoints:
         name: TradeSha
         description: 支付回调的数字签名。
         required: true
-        example: qui
+        example: magnam
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      TradeInfo: officia
-      TradeSha: qui
+      TradeInfo: sed
+      TradeSha: magnam
     fileParameters: []
     responses: []
     responseFields: []

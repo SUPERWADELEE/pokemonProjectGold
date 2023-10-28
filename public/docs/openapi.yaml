@@ -77,7 +77,7 @@ paths:
                 name:
                   type: string
                   description: '能力的名稱. 必須是唯一的，只能包含中文和英文字，且最大長度為255個字符.'
-                  example: debitis
+                  example: et
               required:
                 - name
   '/api/abilities/{ability_id}':
@@ -135,7 +135,7 @@ paths:
                 name:
                   type: string
                   description: '需要更新的特性名稱. 必須是唯一的，只能包含中文和英文字符，且最大長度為255個字符.'
-                  example: ut
+                  example: illum
               required:
                 - name
     parameters:
@@ -198,11 +198,11 @@ paths:
                 email:
                   type: string
                   description: 用戶的電子郵件地址。例子：user@example.com
-                  example: selmer19@example.net
+                  example: terry.franecki@example.com
                 password:
                   type: string
                   description: 用戶的密碼。
-                  example: '__+69_kbZ#g'
+                  example: G=GkZM
               required:
                 - email
                 - password
@@ -268,7 +268,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the verify.'
-        example: ducimus
+        example: ut
         required: true
         schema:
           type: string
@@ -276,7 +276,7 @@ paths:
         in: path
         name: hash
         description: ''
-        example: architecto
+        example: consequatur
         required: true
         schema:
           type: string
@@ -314,7 +314,7 @@ paths:
         in: path
         name: email
         description: ''
-        example: verda53@example.org
+        example: amiya.rempel@example.com
         required: true
         schema:
           type: string
@@ -591,7 +591,7 @@ paths:
                 name:
                   type: string
                   description: 性格的名稱。要求是唯一的且最多包含255個字符。
-                  example: doloribus
+                  example: rerum
               required:
                 - name
   '/api/natures/{nature_id}':
@@ -649,7 +649,7 @@ paths:
                 name:
                   type: string
                   description: 性格的新名稱。要求是唯一的且最多包含255個字符。
-                  example: cum
+                  example: quia
               required:
                 - name
     parameters:
@@ -692,15 +692,15 @@ paths:
                 total_price:
                   type: number
                   description: 訂單的總價格。
-                  example: 0.69784
+                  example: 166.11
                 payment_method:
                   type: string
                   description: 訂單的付款方式。
-                  example: incidunt
+                  example: ut
                 payment_status:
                   type: string
                   description: 訂單的付款狀態。
-                  example: eos
+                  example: aut
               required:
                 - total_price
                 - payment_method
@@ -754,7 +754,7 @@ paths:
         in: path
         name: order
         description: 訂單的ID。
-        example: laborum
+        example: libero
         required: true
         schema:
           type: string
@@ -777,11 +777,11 @@ paths:
                 order_id:
                   type: integer
                   description: 訂單的ID。
-                  example: 16
+                  example: 3
                 race_id:
                   type: integer
                   description: "產品(Race)的ID。\n\n根据指定的race_id从用户的购物车中提取数量，并根据race的价格计算出单价和总价。\n创建订单详情后，减少相应的库存，并清除用户购物车中的该race项。"
-                  example: 16
+                  example: 11
               required:
                 - order_id
                 - race_id
@@ -804,7 +804,7 @@ paths:
                 totalPrice:
                   type: number
                   description: 购物车中所有商品的总价格。
-                  example: 756.2065
+                  example: 0.40652
               required:
                 - totalPrice
   /api/payResult:
@@ -826,11 +826,11 @@ paths:
                 TradeInfo:
                   type: string
                   description: 支付相关的加密数据。
-                  example: officia
+                  example: sed
                 TradeSha:
                   type: string
                   description: 支付回调的数字签名。
-                  example: qui
+                  example: magnam
               required:
                 - TradeInfo
                 - TradeSha
@@ -873,28 +873,28 @@ paths:
                 name:
                   type: string
                   description: 寶可夢的名稱，必填，最大15字符長，且必須在系統中是唯一的。：皮卡丘
-                  example: similique
+                  example: consectetur
                 race_id:
                   type: integer
                   description: "寶可夢的種族ID，必填，該ID必須存在於系統的'races'表中。：1"
-                  example: 16
+                  example: 20
                 ability_id:
                   type: integer
                   description: "寶可夢的能力ID，必填，該ID必須存在於系統的'abilities'表中。：2"
-                  example: 4
+                  example: 19
                 nature_id:
                   type: integer
                   description: "寶可夢的性格ID，必填，該ID必須存在於系統的'natures'表中。：3"
-                  example: 11
+                  example: 14
                 level:
                   type: integer
                   description: 寶可夢的等級，必填，其值必須是1到100之間的整數。：10
-                  example: 2
+                  example: 15
                 skills:
                   type: array
                   description: '寶可夢的技能列表，必填，至少包含1項，最多4項技能。：[1, 2, 3]'
                   example:
-                    - quasi
+                    - iusto
                   items:
                     type: string
               required:
@@ -981,28 +981,28 @@ paths:
                 name:
                   type: string
                   description: 'optional 寶可夢的名字。最大長度為15個字符。範例：皮卡丘'
-                  example: earum
+                  example: eveniet
                 race_id:
                   type: integer
                   description: "optional 寶可夢的種族ID。該ID必須存在於系統的'races'表中。範例：1"
-                  example: 7
+                  example: 17
                 ability_id:
                   type: integer
                   description: "optional 寶可夢的能力ID。該ID必須存在於系統的'abilities'表中。範例：2"
-                  example: 17
+                  example: 12
                 nature_id:
                   type: integer
                   description: "optional 寶可夢的性格ID。該ID必須存在於系統的'natures'表中。範例：3"
-                  example: 5
+                  example: 18
                 level:
                   type: integer
                   description: 'optional 寶可夢的等級。其值必須是1到100之間的整數。範例：10'
-                  example: 12
+                  example: 4
                 skills:
                   type: array
                   description: 'optional 寶可夢的技能列表。至少包含1項，最多4項技能。範例：[1, 2, 3]'
                   example:
-                    - quia
+                    - cupiditate
                   items:
                     type: string
     delete:
@@ -1040,7 +1040,7 @@ paths:
         in: path
         name: pokemon
         description: 寶可夢的ID。示例：1
-        example: 16
+        example: 5
         required: true
         schema:
           type: integer
@@ -1078,50 +1078,49 @@ paths:
         in: path
         name: pokemon
         description: 寶可夢的ID。範例：1
-        example: 10
+        example: 19
         required: true
         schema:
           type: integer
   /api/races:
     get:
-      summary: 種族列表
+      summary: 取得寶可夢種族的列表。
       operationId: ''
-      description: ''
+      description: "此方法返回一個包含所有寶可夢種族的列表，\n每個種族包括其ID、名稱和照片。列表會分頁，每頁包含10個項目。"
       parameters: []
       responses:
-        401:
+        200:
           description: ''
           content:
-            application/json:
+            text/plain:
               schema:
-                type: object
-                example:
-                  message: Unauthenticated.
-                properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
+                type: string
+                example: "{\n  \"data\": [\n    {\n      \"id\": 1,\n      \"name\": \"皮卡丘\",\n      \"photo\": \"url_to_photo\"\n    },\n    // 其他種族...\n  ]\n}"
       tags:
         - Race
   '/api/races/{race_id}/evolutionLevel':
     get:
-      summary: 取得種族進化等級
+      summary: 取得指定種族的進化等級。
       operationId: ''
-      description: ''
+      description: 此方法返回指定種族的進化等級。進化等級是一個整數值，表示寶可夢在達到這個等級時可以進化。
       parameters: []
       responses:
-        401:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  id: 1
+                  evolution_level: 20
                 properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
+                  id:
+                    type: integer
+                    example: 1
+                  evolution_level:
+                    type: integer
+                    example: 20
       tags:
         - Race
     parameters:
@@ -1130,28 +1129,31 @@ paths:
         name: race_id
         description: 'The ID of the race.'
         example: 1
+        required: true
+        schema:
+          type: integer
+      -
+        in: path
+        name: race
+        description: 寶可夢種族的ID。示例：1
+        example: 16
         required: true
         schema:
           type: integer
   '/api/races/{race_id}/skill':
     get:
-      summary: 取得種族能夠學的技能
+      summary: 取得指定種族能夠學的技能。
       operationId: ''
-      description: ''
+      description: 此方法返回指定種族能夠學習的所有技能。技能按照它們的ID排序。
       parameters: []
       responses:
-        401:
+        200:
           description: ''
           content:
-            application/json:
+            text/plain:
               schema:
-                type: object
-                example:
-                  message: Unauthenticated.
-                properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
+                type: string
+                example: "[\n  {\n    \"id\": 1,\n    \"name\": \"電擊\"\n  },\n  // 其他技能...\n]"
       tags:
         - Race
     parameters:
@@ -1163,13 +1165,35 @@ paths:
         required: true
         schema:
           type: integer
+      -
+        in: path
+        name: race
+        description: 寶可夢種族的ID。示例：1
+        example: 2
+        required: true
+        schema:
+          type: integer
   /api/register:
     post:
-      summary: '註冊,寄註冊信'
+      summary: 處理新使用者的註冊並寄送註冊信。
       operationId: ''
-      description: ''
+      description: "此方法會驗證輸入的資料，並在成功驗證後在`users`表中創建一個新的使用者紀錄。\n之後，它會觸發一個`Registered`事件，並返回一個成功的響應，包括新創建的使用者的資料。"
       parameters: []
-      responses: {  }
+      responses:
+        201:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n  \"message\": \"User registered successfully!\",\n  \"user\": {\n    \"name\": \"John Doe\",\n    \"email\": \"john.doe@example.com\",\n    // other user fields...\n  }\n}"
+        422:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n  \"message\": \"The given data was invalid.\",\n  \"errors\": {\n    \"email\": [\n      \"The email has already been taken.\"\n    ],\n    // other validation errors...\n  }\n}"
       tags:
         - Register
       requestBody:
@@ -1181,20 +1205,25 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'Must not be greater than 255 characters.'
-                  example: jyzroxijgavrgbxsfoc
+                  description: '使用者的名字。示例：John Doe'
+                  example: cumque
                 email:
                   type: string
-                  description: 'Must be a valid email address. Must not be greater than 255 characters.'
-                  example: prohaska.aiden@example.net
+                  description: 使用者的電子郵件地址。必須是唯一的並且符合電子郵件格式。示例：john.doe@example.com
+                  example: howe.margarita@example.net
                 password:
                   type: string
-                  description: 'Must be at least 6 characters.'
-                  example: 'pqt?=)P>H28Mi%oWpP'
+                  description: 使用者的密碼。必須至少有6個字符長並且與`password_confirmation`參數匹配。示例：password123
+                  example: 'ZU.,Y}"XV$o}7u'
+                password_confirmation:
+                  type: string
+                  description: 密碼確認。必須與`password`參數匹配。示例：password123
+                  example: qui
               required:
                 - name
                 - email
                 - password
+                - password_confirmation
       security: []
   /api/user:
     get:
@@ -1238,15 +1267,31 @@ paths:
       tags:
         - User
     post:
-      summary: 更新使用者資訊
+      summary: 更新使用者資訊。
       operationId: ''
-      description: '主要還會產生一個presigned URL來讓使用者瀏覽器去上傳圖片'
+      description: "此方法允許更新使用者的基本資訊。如果請求中包含用戶照片，它將生成一個預簽名的URL，\n以便用戶的瀏覽器可以直接上傳圖片到S3。"
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  presignedUrl: 'https://example.com/presigned-url'
+                  fileDestination: userPhotos/1234567890.jpg
+                properties:
+                  presignedUrl:
+                    type: string
+                    example: 'https://example.com/presigned-url'
+                  fileDestination:
+                    type: string
+                    example: userPhotos/1234567890.jpg
       tags:
         - User
       requestBody:
-        required: true
+        required: false
         content:
           multipart/form-data:
             schema:
@@ -1255,13 +1300,15 @@ paths:
                 userPhoto:
                   type: string
                   format: binary
-                  description: 'Must be an image. Must not be greater than 2048 kilobytes.'
+                  description: 'optional 用戶的新照片。應該是一個圖像文件。'
                 name:
                   type: string
-                  description: 'Must not be greater than 255 characters.'
-                  example: zjfubdyrap
-              required:
-                - name
+                  description: 'optional 新的用戶名稱。示例：John Doe'
+                  example: quis
+                email:
+                  type: string
+                  description: 'optional 新的電子郵件地址。示例：john.doe@example.com'
+                  example: giovani.williamson@example.org
 tags:
   -
     name: Ability

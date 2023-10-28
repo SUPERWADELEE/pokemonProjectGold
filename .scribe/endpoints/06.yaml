@@ -26,7 +26,7 @@ endpoints:
         name: total_price
         description: 訂單的總價格。
         required: true
-        example: 0.69784
+        example: 166.11
         type: number
         enumValues: []
         custom: []
@@ -34,7 +34,7 @@ endpoints:
         name: payment_method
         description: 訂單的付款方式。
         required: true
-        example: incidunt
+        example: ut
         type: string
         enumValues: []
         custom: []
@@ -42,14 +42,14 @@ endpoints:
         name: payment_status
         description: 訂單的付款狀態。
         required: true
-        example: eos
+        example: aut
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      total_price: 0.69784
-      payment_method: incidunt
-      payment_status: eos
+      total_price: 166.11
+      payment_method: ut
+      payment_status: aut
     fileParameters: []
     responses:
       -

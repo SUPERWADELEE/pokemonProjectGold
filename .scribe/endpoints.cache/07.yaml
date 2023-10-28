@@ -32,13 +32,13 @@ endpoints:
         name: order
         description: 訂單的ID。
         required: true
-        example: laborum
+        example: libero
         type: string
         enumValues: []
         custom: []
     cleanUrlParameters:
       order_id: 16
-      order: laborum
+      order: libero
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -85,7 +85,7 @@ endpoints:
         name: order_id
         description: 訂單的ID。
         required: true
-        example: 16
+        example: 3
         type: integer
         enumValues: []
         custom: []
@@ -97,13 +97,13 @@ endpoints:
           根据指定的race_id从用户的购物车中提取数量，并根据race的价格计算出单价和总价。
           创建订单详情后，减少相应的库存，并清除用户购物车中的该race项。
         required: true
-        example: 16
+        example: 11
         type: integer
         enumValues: []
         custom: []
     cleanBodyParameters:
-      order_id: 16
-      race_id: 16
+      order_id: 3
+      race_id: 11
     fileParameters: []
     responses: []
     responseFields: []

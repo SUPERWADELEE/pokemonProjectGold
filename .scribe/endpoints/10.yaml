@@ -26,7 +26,7 @@ endpoints:
         name: email
         description: 用戶的電子郵件地址。例子：user@example.com
         required: true
-        example: selmer19@example.net
+        example: terry.franecki@example.com
         type: string
         enumValues: []
         custom: []
@@ -34,13 +34,13 @@ endpoints:
         name: password
         description: 用戶的密碼。
         required: true
-        example: '__+69_kbZ#g'
+        example: G=GkZM
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      email: selmer19@example.net
-      password: '__+69_kbZ#g'
+      email: terry.franecki@example.com
+      password: G=GkZM
     fileParameters: []
     responses:
       -
@@ -142,7 +142,7 @@ endpoints:
         name: id
         description: 'The ID of the verify.'
         required: true
-        example: ducimus
+        example: ut
         type: string
         enumValues: []
         custom: []
@@ -150,13 +150,13 @@ endpoints:
         name: hash
         description: ''
         required: true
-        example: architecto
+        example: consequatur
         type: string
         enumValues: []
         custom: []
     cleanUrlParameters:
-      id: ducimus
-      hash: architecto
+      id: ut
+      hash: consequatur
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -210,12 +210,12 @@ endpoints:
         name: email
         description: ''
         required: true
-        example: verda53@example.org
+        example: amiya.rempel@example.com
         type: string
         enumValues: []
         custom: []
     cleanUrlParameters:
-      email: verda53@example.org
+      email: amiya.rempel@example.com
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

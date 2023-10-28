@@ -23,21 +23,21 @@ use Illuminate\Support\Facades\Mail;
 
 class PaymentsResponseController extends Controller
 {
-    /**
+   /**
      * 藍星金流結帳完後結果返回確認，寄通知信給使用者
      * 
      * 此方法主要功能如下：
-     * 1. 從请求中提取支付相关的信息。
-     * 2. 验证支付回调的数字签名以确保数据的完整性。
-     * 3. 根据支付结果记录相关的日志信息。
-     * 4. 在支付成功后向用户发送通知邮件。
+     * 1. 從請求中提取支付相關的資訊。
+     * 2. 驗證支付回調的數字簽名以確保資料的完整性。
+     * 3. 根據支付結果記錄相關的日誌資訊。
+     * 4. 在支付成功後向使用者發送通知郵件。
      * 
      * @apiGroup 支付
      * 
-     * @bodyParam TradeInfo string required 支付相关的加密数据。
-     * @bodyParam TradeSha string required 支付回调的数字签名。
+     * @bodyParam TradeInfo string required 支付相關的加密資料。
+     * @bodyParam TradeSha string required 支付回調的數字簽名。
      * 
-     * @param \Illuminate\Http\Request $request 用户的HTTP请求，包含支付相关的信息。
+     * @param \Illuminate\Http\Request $request 使用者的HTTP請求，包含支付相關的資訊。
      * 
      * @return void
      */

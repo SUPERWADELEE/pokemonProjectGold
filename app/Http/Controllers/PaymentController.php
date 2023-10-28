@@ -21,19 +21,20 @@ class PaymentController extends Controller
      * 請求藍星金流結帳頁面
      * 
      * 此方法主要功能如下：
-     * 1. 验证当前用户。
-     * 2. 更新与当前用户关联的购物车项目的结账状态。
-     * 3. 生成与藍星金流相关的支付参数（包括加密和哈希）。
-     * 4. 返回支付参数，以便前端将用户重定向到藍星金流的支付页面。
+     * 1. 驗證當前使用者。
+     * 2. 更新與當前使用者關聯的購物車項目的結帳狀態。
+     * 3. 生成與藍星金流相關的支付參數（包括加密和哈希）。
+     * 4. 返回支付參數，以便前端將使用者重定向到藍星金流的支付頁面。
      * 
      * @apiGroup 支付
      * 
-     * @bodyParam totalPrice float required 购物车中所有商品的总价格。
+     * @bodyParam totalPrice float required 購物車中所有商品的總價格。
      * 
      * @param \Illuminate\Http\Request $request 用戶的HTTP請求。
      * 
-     * @return \Illuminate\Http\JsonResponse 返回包含支付参数的JSON响应。
+     * @return \Illuminate\Http\JsonResponse 返回包含支付參數的JSON響應。
      */
+
     public function checkout(Request $request)
     {
         // 获取当前经过身份验证的用户

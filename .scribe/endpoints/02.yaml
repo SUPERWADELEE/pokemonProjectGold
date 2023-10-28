@@ -66,12 +66,12 @@ endpoints:
         name: name
         description: '能力的名稱. 必須是唯一的，只能包含中文和英文字，且最大長度為255個字符.'
         required: true
-        example: debitis
+        example: et
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: debitis
+      name: et
     fileParameters: []
     responses:
       -
@@ -135,12 +135,12 @@ endpoints:
         name: name
         description: '需要更新的特性名稱. 必須是唯一的，只能包含中文和英文字符，且最大長度為255個字符.'
         required: true
-        example: ut
+        example: illum
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: ut
+      name: illum
     fileParameters: []
     responses:
       -

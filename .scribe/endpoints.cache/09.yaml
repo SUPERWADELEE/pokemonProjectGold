@@ -12,8 +12,10 @@ endpoints:
       groupDescription: 'Operations related to register.'
       subgroup: ''
       subgroupDescription: ''
-      title: '註冊,寄註冊信'
-      description: ''
+      title: 處理新使用者的註冊並寄送註冊信。
+      description: |-
+        此方法會驗證輸入的資料，並在成功驗證後在`users`表中創建一個新的使用者紀錄。
+        之後，它會觸發一個`Registered`事件，並返回一個成功的響應，包括新創建的使用者的資料。
       authenticated: false
       custom: []
     headers:
@@ -26,34 +28,72 @@ endpoints:
     bodyParameters:
       name:
         name: name
-        description: 'Must not be greater than 255 characters.'
+        description: '使用者的名字。示例：John Doe'
         required: true
-        example: jyzroxijgavrgbxsfoc
+        example: cumque
         type: string
         enumValues: []
         custom: []
       email:
         name: email
-        description: 'Must be a valid email address. Must not be greater than 255 characters.'
+        description: 使用者的電子郵件地址。必須是唯一的並且符合電子郵件格式。示例：john.doe@example.com
         required: true
-        example: prohaska.aiden@example.net
+        example: howe.margarita@example.net
         type: string
         enumValues: []
         custom: []
       password:
         name: password
-        description: 'Must be at least 6 characters.'
+        description: 使用者的密碼。必須至少有6個字符長並且與`password_confirmation`參數匹配。示例：password123
         required: true
-        example: 'pqt?=)P>H28Mi%oWpP'
+        example: 'ZU.,Y}"XV$o}7u'
+        type: string
+        enumValues: []
+        custom: []
+      password_confirmation:
+        name: password_confirmation
+        description: 密碼確認。必須與`password`參數匹配。示例：password123
+        required: true
+        example: qui
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: jyzroxijgavrgbxsfoc
-      email: prohaska.aiden@example.net
-      password: 'pqt?=)P>H28Mi%oWpP'
+      name: cumque
+      email: howe.margarita@example.net
+      password: 'ZU.,Y}"XV$o}7u'
+      password_confirmation: qui
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 201
+        content: |-
+          {
+            "message": "User registered successfully!",
+            "user": {
+              "name": "John Doe",
+              "email": "john.doe@example.com",
+              // other user fields...
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 422
+        content: |-
+          {
+            "message": "The given data was invalid.",
+            "errors": {
+              "email": [
+                "The email has already been taken."
+              ],
+              // other validation errors...
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
     responseFields: []
     auth: []
     controller: null

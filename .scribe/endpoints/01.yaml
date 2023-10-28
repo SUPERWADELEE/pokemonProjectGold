@@ -66,12 +66,12 @@ endpoints:
         name: name
         description: 性格的名稱。要求是唯一的且最多包含255個字符。
         required: true
-        example: doloribus
+        example: rerum
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: doloribus
+      name: rerum
     fileParameters: []
     responses:
       -
@@ -132,12 +132,12 @@ endpoints:
         name: name
         description: 性格的新名稱。要求是唯一的且最多包含255個字符。
         required: true
-        example: cum
+        example: quia
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: cum
+      name: quia
     fileParameters: []
     responses:
       -

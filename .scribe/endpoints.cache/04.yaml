@@ -62,8 +62,10 @@ endpoints:
       groupDescription: 'Operations related to users.'
       subgroup: ''
       subgroupDescription: ''
-      title: 更新使用者資訊
-      description: '主要還會產生一個presigned URL來讓使用者瀏覽器去上傳圖片'
+      title: 更新使用者資訊。
+      description: |-
+        此方法允許更新使用者的基本資訊。如果請求中包含用戶照片，它將生成一個預簽名的URL，
+        以便用戶的瀏覽器可以直接上傳圖片到S3。
       authenticated: true
       custom: []
     headers:
@@ -76,7 +78,7 @@ endpoints:
     bodyParameters:
       userPhoto:
         name: userPhoto
-        description: 'Must be an image. Must not be greater than 2048 kilobytes.'
+        description: 'optional 用戶的新照片。應該是一個圖像文件。'
         required: false
         example: null
         type: file
@@ -84,17 +86,36 @@ endpoints:
         custom: []
       name:
         name: name
-        description: 'Must not be greater than 255 characters.'
-        required: true
-        example: zjfubdyrap
+        description: 'optional 新的用戶名稱。示例：John Doe'
+        required: false
+        example: quis
+        type: string
+        enumValues: []
+        custom: []
+      email:
+        name: email
+        description: 'optional 新的電子郵件地址。示例：john.doe@example.com'
+        required: false
+        example: giovani.williamson@example.org
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: zjfubdyrap
+      name: quis
+      email: giovani.williamson@example.org
     fileParameters:
       userPhoto: null
-    responses: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "presignedUrl": "https://example.com/presigned-url",
+            "fileDestination": "userPhotos/1234567890.jpg"
+          }
+        headers: []
+        description: ''
+        custom: []
     responseFields: []
     auth: []
     controller: null
