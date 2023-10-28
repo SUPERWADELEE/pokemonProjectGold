@@ -28,7 +28,7 @@ endpoints:
         name: total_price
         description: 訂單的總價格。
         required: true
-        example: 166.11
+        example: 24981323.096008
         type: number
         enumValues: []
         custom: []
@@ -36,7 +36,7 @@ endpoints:
         name: payment_method
         description: 訂單的付款方式。
         required: true
-        example: ut
+        example: dignissimos
         type: string
         enumValues: []
         custom: []
@@ -44,14 +44,14 @@ endpoints:
         name: payment_status
         description: 訂單的付款狀態。
         required: true
-        example: aut
+        example: officia
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      total_price: 166.11
-      payment_method: ut
-      payment_status: aut
+      total_price: 24981323.096008
+      payment_method: dignissimos
+      payment_status: officia
     fileParameters: []
     responses:
       -

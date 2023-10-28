@@ -77,7 +77,7 @@ paths:
                 name:
                   type: string
                   description: '能力的名稱. 必須是唯一的，只能包含中文和英文字，且最大長度為255個字符.'
-                  example: et
+                  example: eum
               required:
                 - name
   '/api/abilities/{ability_id}':
@@ -135,7 +135,7 @@ paths:
                 name:
                   type: string
                   description: '需要更新的特性名稱. 必須是唯一的，只能包含中文和英文字符，且最大長度為255個字符.'
-                  example: illum
+                  example: at
               required:
                 - name
     parameters:
@@ -198,11 +198,11 @@ paths:
                 email:
                   type: string
                   description: 用戶的電子郵件地址。例子：user@example.com
-                  example: terry.franecki@example.com
+                  example: anastacio42@example.com
                 password:
                   type: string
                   description: 用戶的密碼。
-                  example: G=GkZM
+                  example: 'gMd:=q2(|p'
               required:
                 - email
                 - password
@@ -268,7 +268,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the verify.'
-        example: ut
+        example: necessitatibus
         required: true
         schema:
           type: string
@@ -276,7 +276,7 @@ paths:
         in: path
         name: hash
         description: ''
-        example: consequatur
+        example: libero
         required: true
         schema:
           type: string
@@ -314,7 +314,7 @@ paths:
         in: path
         name: email
         description: ''
-        example: amiya.rempel@example.com
+        example: kuhic.ellsworth@example.com
         required: true
         schema:
           type: string
@@ -528,6 +528,58 @@ paths:
         required: true
         schema:
           type: integer
+  /api/login/google:
+    get:
+      summary: 將用戶重定向到Google的OAuth認證頁面。
+      operationId: GoogleOAuth
+      description: "此方法嘗試將用戶重定向到Google的OAuth服務。\n如果在重定向過程中出現錯誤，它會捕獲異常\n並回應一個JSON錯誤訊息。"
+      parameters: []
+      responses:
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 無法重定向到Google。請稍後再試。
+                properties:
+                  error:
+                    type: string
+                    example: 無法重定向到Google。請稍後再試。
+      tags:
+        - GoogleLogin
+      security: []
+  /api/login/google/callback:
+    get:
+      summary: '處理從 Google 第三方認證服務頁面返回的回調。'
+      operationId: Google
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Login successful via Google'
+                  token: '使用者的 JWT 令牌'
+                  user: 使用者的資料
+                properties:
+                  message:
+                    type: string
+                    example: 'Login successful via Google'
+                  token:
+                    type: string
+                    example: '使用者的 JWT 令牌'
+                  user:
+                    type: string
+                    example: 使用者的資料
+      tags:
+        - GoogleLogin
+      security: []
   /api/natures:
     get:
       summary: 性格詳情
@@ -591,7 +643,7 @@ paths:
                 name:
                   type: string
                   description: 性格的名稱。要求是唯一的且最多包含255個字符。
-                  example: rerum
+                  example: quisquam
               required:
                 - name
   '/api/natures/{nature_id}':
@@ -649,7 +701,7 @@ paths:
                 name:
                   type: string
                   description: 性格的新名稱。要求是唯一的且最多包含255個字符。
-                  example: quia
+                  example: ullam
               required:
                 - name
     parameters:
@@ -692,15 +744,15 @@ paths:
                 total_price:
                   type: number
                   description: 訂單的總價格。
-                  example: 166.11
+                  example: 24981323.096008
                 payment_method:
                   type: string
                   description: 訂單的付款方式。
-                  example: ut
+                  example: dignissimos
                 payment_status:
                   type: string
                   description: 訂單的付款狀態。
-                  example: aut
+                  example: officia
               required:
                 - total_price
                 - payment_method
@@ -754,7 +806,7 @@ paths:
         in: path
         name: order
         description: 訂單的ID。
-        example: libero
+        example: unde
         required: true
         schema:
           type: string
@@ -780,8 +832,8 @@ paths:
                   example: 3
                 race_id:
                   type: integer
-                  description: "產品(Race)的ID。\n\n根据指定的race_id从用户的购物车中提取数量，并根据race的价格计算出单价和总价。\n创建订单详情后，减少相应的库存，并清除用户购物车中的该race项。"
-                  example: 11
+                  description: "產品(Race)的ID。\n\n根據指定的race_id從使用者的購物車中提取數量，並根據race的價格計算出單價和總價。\n建立訂單細節後，減少相應的庫存，並清除使用者購物車中的該race項。"
+                  example: 3
               required:
                 - order_id
                 - race_id
@@ -789,7 +841,7 @@ paths:
     post:
       summary: 請求藍星金流結帳頁面
       operationId: ''
-      description: "此方法主要功能如下：\n1. 验证当前用户。\n2. 更新与当前用户关联的购物车项目的结账状态。\n3. 生成与藍星金流相关的支付参数（包括加密和哈希）。\n4. 返回支付参数，以便前端将用户重定向到藍星金流的支付页面。"
+      description: "此方法主要功能如下：\n1. 驗證當前使用者。\n2. 更新與當前使用者關聯的購物車項目的結帳狀態。\n3. 生成與藍星金流相關的支付參數（包括加密和哈希）。\n4. 返回支付參數，以便前端將使用者重定向到藍星金流的支付頁面。"
       parameters: []
       responses: {  }
       tags:
@@ -803,15 +855,15 @@ paths:
               properties:
                 totalPrice:
                   type: number
-                  description: 购物车中所有商品的总价格。
-                  example: 0.40652
+                  description: 購物車中所有商品的總價格。
+                  example: 69855.655
               required:
                 - totalPrice
   /api/payResult:
     post:
       summary: 藍星金流結帳完後結果返回確認，寄通知信給使用者
       operationId: ''
-      description: "此方法主要功能如下：\n1. 從请求中提取支付相关的信息。\n2. 验证支付回调的数字签名以确保数据的完整性。\n3. 根据支付结果记录相关的日志信息。\n4. 在支付成功后向用户发送通知邮件。"
+      description: "此方法主要功能如下：\n1. 從請求中提取支付相關的資訊。\n2. 驗證支付回調的數字簽名以確保資料的完整性。\n3. 根據支付結果記錄相關的日誌資訊。\n4. 在支付成功後向使用者發送通知郵件。"
       parameters: []
       responses: {  }
       tags:
@@ -825,12 +877,12 @@ paths:
               properties:
                 TradeInfo:
                   type: string
-                  description: 支付相关的加密数据。
-                  example: sed
+                  description: 支付相關的加密資料。
+                  example: asperiores
                 TradeSha:
                   type: string
-                  description: 支付回调的数字签名。
-                  example: magnam
+                  description: 支付回調的數字簽名。
+                  example: ea
               required:
                 - TradeInfo
                 - TradeSha
@@ -873,19 +925,19 @@ paths:
                 name:
                   type: string
                   description: 寶可夢的名稱，必填，最大15字符長，且必須在系統中是唯一的。：皮卡丘
-                  example: consectetur
+                  example: amet
                 race_id:
                   type: integer
                   description: "寶可夢的種族ID，必填，該ID必須存在於系統的'races'表中。：1"
-                  example: 20
+                  example: 16
                 ability_id:
                   type: integer
                   description: "寶可夢的能力ID，必填，該ID必須存在於系統的'abilities'表中。：2"
-                  example: 19
+                  example: 4
                 nature_id:
                   type: integer
                   description: "寶可夢的性格ID，必填，該ID必須存在於系統的'natures'表中。：3"
-                  example: 14
+                  example: 12
                 level:
                   type: integer
                   description: 寶可夢的等級，必填，其值必須是1到100之間的整數。：10
@@ -894,7 +946,7 @@ paths:
                   type: array
                   description: '寶可夢的技能列表，必填，至少包含1項，最多4項技能。：[1, 2, 3]'
                   example:
-                    - iusto
+                    - aut
                   items:
                     type: string
               required:
@@ -981,28 +1033,28 @@ paths:
                 name:
                   type: string
                   description: 'optional 寶可夢的名字。最大長度為15個字符。範例：皮卡丘'
-                  example: eveniet
+                  example: laudantium
                 race_id:
                   type: integer
                   description: "optional 寶可夢的種族ID。該ID必須存在於系統的'races'表中。範例：1"
-                  example: 17
+                  example: 7
                 ability_id:
                   type: integer
                   description: "optional 寶可夢的能力ID。該ID必須存在於系統的'abilities'表中。範例：2"
-                  example: 12
+                  example: 9
                 nature_id:
                   type: integer
                   description: "optional 寶可夢的性格ID。該ID必須存在於系統的'natures'表中。範例：3"
-                  example: 18
+                  example: 1
                 level:
                   type: integer
                   description: 'optional 寶可夢的等級。其值必須是1到100之間的整數。範例：10'
-                  example: 4
+                  example: 11
                 skills:
                   type: array
                   description: 'optional 寶可夢的技能列表。至少包含1項，最多4項技能。範例：[1, 2, 3]'
                   example:
-                    - cupiditate
+                    - veritatis
                   items:
                     type: string
     delete:
@@ -1040,7 +1092,7 @@ paths:
         in: path
         name: pokemon
         description: 寶可夢的ID。示例：1
-        example: 5
+        example: 9
         required: true
         schema:
           type: integer
@@ -1078,7 +1130,7 @@ paths:
         in: path
         name: pokemon
         description: 寶可夢的ID。範例：1
-        example: 19
+        example: 11
         required: true
         schema:
           type: integer
@@ -1136,7 +1188,7 @@ paths:
         in: path
         name: race
         description: 寶可夢種族的ID。示例：1
-        example: 16
+        example: 2
         required: true
         schema:
           type: integer
@@ -1169,7 +1221,7 @@ paths:
         in: path
         name: race
         description: 寶可夢種族的ID。示例：1
-        example: 2
+        example: 16
         required: true
         schema:
           type: integer
@@ -1206,19 +1258,19 @@ paths:
                 name:
                   type: string
                   description: '使用者的名字。示例：John Doe'
-                  example: cumque
+                  example: corporis
                 email:
                   type: string
                   description: 使用者的電子郵件地址。必須是唯一的並且符合電子郵件格式。示例：john.doe@example.com
-                  example: howe.margarita@example.net
+                  example: abartoletti@example.org
                 password:
                   type: string
                   description: 使用者的密碼。必須至少有6個字符長並且與`password_confirmation`參數匹配。示例：password123
-                  example: 'ZU.,Y}"XV$o}7u'
+                  example: '\Kzs"*~1:3V2C?<KRl'
                 password_confirmation:
                   type: string
                   description: 密碼確認。必須與`password`參數匹配。示例：password123
-                  example: qui
+                  example: sed
               required:
                 - name
                 - email
@@ -1304,11 +1356,11 @@ paths:
                 name:
                   type: string
                   description: 'optional 新的用戶名稱。示例：John Doe'
-                  example: quis
+                  example: dolorem
                 email:
                   type: string
                   description: 'optional 新的電子郵件地址。示例：john.doe@example.com'
-                  example: giovani.williamson@example.org
+                  example: lreinger@example.net
 tags:
   -
     name: Ability
@@ -1319,6 +1371,9 @@ tags:
   -
     name: CartItem
     description: 'Operations related to cartItems.'
+  -
+    name: GoogleLogin
+    description: 'Operations related to googleLogin.'
   -
     name: Nature
     description: 'Operations related to natures.'

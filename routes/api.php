@@ -9,6 +9,7 @@ use App\Http\Controllers\NatureController;
 use App\Http\Controllers\AbilityController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartItemController;
+use App\Http\Controllers\GoogleLoginController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderDetailController;
@@ -131,3 +132,7 @@ Route::get('email/verify/{id}/{hash}', [AuthController::class, 'verifyEmail'])->
 
 
 Route::get('/checkVerificationStatus/{email}', [AuthController::class, 'checkVerificationStatus']);
+
+// 第三方登入
+Route::get('login/google', [GoogleLoginController::class, 'redirectToProvider']);
+Route::get('login/google/callback', [GoogleLoginController::class,'handleProviderCallback']);

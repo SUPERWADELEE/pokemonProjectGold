@@ -68,12 +68,12 @@ endpoints:
         name: name
         description: '能力的名稱. 必須是唯一的，只能包含中文和英文字，且最大長度為255個字符.'
         required: true
-        example: et
+        example: eum
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: et
+      name: eum
     fileParameters: []
     responses:
       -
@@ -137,12 +137,12 @@ endpoints:
         name: name
         description: '需要更新的特性名稱. 必須是唯一的，只能包含中文和英文字符，且最大長度為255個字符.'
         required: true
-        example: illum
+        example: at
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: illum
+      name: at
     fileParameters: []
     responses:
       -
