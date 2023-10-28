@@ -5,12 +5,12 @@
             "key": "baseUrl",
             "type": "string",
             "name": "string",
-            "value": "https:\/\/wade.monster.com"
+            "value": "https:\/\/wade.monster"
         }
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "7078bd66-f303-4c57-961f-b6f330dd4e3b",
+        "_postman_id": "24c203fc-3dc0-44b5-b068-bccbd0905c7a",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -73,7 +73,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"eum\"}"
+                            "raw": "{\"name\":\"superHard\"}"
                         },
                         "description": ""
                     },
@@ -122,7 +122,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"at\"}"
+                            "raw": "{\"name\":\"superSoft\"}"
                         },
                         "description": "\u6b64\u7aef\u9ede\u5141\u8a31\u60a8\u66f4\u65b0\u73fe\u6709\u7684\u7279\u6027\u3002"
                     },
@@ -169,7 +169,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"anastacio42@example.com\",\"password\":\"gMd:=q2(|p\"}"
+                            "raw": "{\"email\":\"apadberg@example.org\",\"password\":\"e123456\"}"
                         },
                         "description": "\u6b64\u7aef\u9ede\u5141\u8a31\u7528\u6236\u4f7f\u7528\u4ed6\u5011\u7684\u96fb\u5b50\u90f5\u4ef6\u548c\u5bc6\u78bc\u4f86\u767b\u5165\u7cfb\u7d71\uff0c\u4e26\u8fd4\u56de\u4e00\u500bJWT\u4ee4\u724c\u3002",
                         "auth": {
@@ -244,13 +244,13 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "necessitatibus",
+                                    "value": "ipsam",
                                     "description": "The ID of the verify."
                                 },
                                 {
                                     "id": "hash",
                                     "key": "hash",
-                                    "value": "libero",
+                                    "value": "animi",
                                     "description": ""
                                 }
                             ]
@@ -299,7 +299,7 @@
                                 {
                                     "id": "email",
                                     "key": "email",
-                                    "value": "kuhic.ellsworth%40example.com",
+                                    "value": "muller.kian%40example.org",
                                     "description": ""
                                 }
                             ]
@@ -714,7 +714,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"quisquam\"}"
+                            "raw": "{\"name\":\"eaque\"}"
                         },
                         "description": ""
                     },
@@ -763,7 +763,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"ullam\"}"
+                            "raw": "{\"name\":\"laudantium\"}"
                         },
                         "description": ""
                     },
@@ -816,7 +816,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"total_price\":24981323.096008,\"payment_method\":\"dignissimos\",\"payment_status\":\"officia\"}"
+                            "raw": "{\"total_price\":1.45245695,\"payment_method\":\"et\",\"payment_status\":\"ad\"}"
                         },
                         "description": ""
                     },
@@ -885,7 +885,7 @@
                                 {
                                     "id": "order",
                                     "key": "order",
-                                    "value": "unde",
+                                    "value": "et",
                                     "description": "\u8a02\u55ae\u7684ID\u3002"
                                 }
                             ]
@@ -948,7 +948,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"order_id\":3,\"race_id\":3}"
+                            "raw": "{\"order_id\":6,\"race_id\":5}"
                         },
                         "description": ""
                     },
@@ -982,7 +982,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"totalPrice\":69855.655}"
+                            "raw": "{\"totalPrice\":1806995}"
                         },
                         "description": "\u6b64\u65b9\u6cd5\u4e3b\u8981\u529f\u80fd\u5982\u4e0b\uff1a\n1. \u9a57\u8b49\u7576\u524d\u4f7f\u7528\u8005\u3002\n2. \u66f4\u65b0\u8207\u7576\u524d\u4f7f\u7528\u8005\u95dc\u806f\u7684\u8cfc\u7269\u8eca\u9805\u76ee\u7684\u7d50\u5e33\u72c0\u614b\u3002\n3. \u751f\u6210\u8207\u85cd\u661f\u91d1\u6d41\u76f8\u95dc\u7684\u652f\u4ed8\u53c3\u6578\uff08\u5305\u62ec\u52a0\u5bc6\u548c\u54c8\u5e0c\uff09\u3002\n4. \u8fd4\u56de\u652f\u4ed8\u53c3\u6578\uff0c\u4ee5\u4fbf\u524d\u7aef\u5c07\u4f7f\u7528\u8005\u91cd\u5b9a\u5411\u5230\u85cd\u661f\u91d1\u6d41\u7684\u652f\u4ed8\u9801\u9762\u3002"
                     },
@@ -1016,7 +1016,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"TradeInfo\":\"asperiores\",\"TradeSha\":\"ea\"}"
+                            "raw": "{\"TradeInfo\":\"nihil\",\"TradeSha\":\"pariatur\"}"
                         },
                         "description": "\u6b64\u65b9\u6cd5\u4e3b\u8981\u529f\u80fd\u5982\u4e0b\uff1a\n1. \u5f9e\u8acb\u6c42\u4e2d\u63d0\u53d6\u652f\u4ed8\u76f8\u95dc\u7684\u8cc7\u8a0a\u3002\n2. \u9a57\u8b49\u652f\u4ed8\u56de\u8abf\u7684\u6578\u5b57\u7c3d\u540d\u4ee5\u78ba\u4fdd\u8cc7\u6599\u7684\u5b8c\u6574\u6027\u3002\n3. \u6839\u64da\u652f\u4ed8\u7d50\u679c\u8a18\u9304\u76f8\u95dc\u7684\u65e5\u8a8c\u8cc7\u8a0a\u3002\n4. \u5728\u652f\u4ed8\u6210\u529f\u5f8c\u5411\u4f7f\u7528\u8005\u767c\u9001\u901a\u77e5\u90f5\u4ef6\u3002"
                     },
@@ -1095,7 +1095,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"amet\",\"race_id\":16,\"ability_id\":4,\"nature_id\":12,\"level\":15,\"skills\":[\"aut\"]}"
+                            "raw": "{\"name\":\"ea\",\"race_id\":8,\"ability_id\":16,\"nature_id\":8,\"level\":20,\"skills\":[\"quibusdam\"]}"
                         },
                         "description": "\u6b64\u65b9\u6cd5\u5c07\u9a57\u8b49\u8acb\u6c42\u6578\u64da\uff0c\u4e26\u5728\u6210\u529f\u9a57\u8b49\u5f8c\uff0c\n\u70ba\u7576\u524d\u7d93\u904e\u8eab\u4efd\u9a57\u8b49\u7684\u7528\u6236\u65b0\u589e\u4e00\u96bb\u5bf6\u53ef\u5922\u3002"
                     },
@@ -1119,7 +1119,7 @@
                                 {
                                     "id": "pokemon",
                                     "key": "pokemon",
-                                    "value": "9",
+                                    "value": "16",
                                     "description": "\u5bf6\u53ef\u5922\u7684ID\u3002\u793a\u4f8b\uff1a1"
                                 }
                             ]
@@ -1165,7 +1165,7 @@
                                 {
                                     "id": "pokemon",
                                     "key": "pokemon",
-                                    "value": "1",
+                                    "value": "20",
                                     "description": "\u5bf6\u53ef\u5922\u7684ID\u3002\u7bc4\u4f8b\uff1a1"
                                 }
                             ]
@@ -1183,7 +1183,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"laudantium\",\"race_id\":7,\"ability_id\":9,\"nature_id\":1,\"level\":11,\"skills\":[\"veritatis\"]}"
+                            "raw": "{\"name\":\"odit\",\"race_id\":18,\"ability_id\":4,\"nature_id\":10,\"level\":10,\"skills\":[\"quasi\"]}"
                         },
                         "description": "\u6b64\u65b9\u6cd5\u5141\u8a31\u4f7f\u7528\u8005\u4fee\u6539\u4ed6\u5011\u7684\u5bf6\u53ef\u5922\u7684\u8cc7\u8a0a\u3002\n\u4f7f\u7528\u8005\u53ea\u80fd\u4fee\u6539\u4ed6\u5011\u81ea\u5df1\u7684\u5bf6\u53ef\u5922\uff0c\u4e0d\u80fd\u4fee\u6539\u5176\u4ed6\u4eba\u7684\u5bf6\u53ef\u5922\u3002"
                     },
@@ -1207,7 +1207,7 @@
                                 {
                                     "id": "pokemon",
                                     "key": "pokemon",
-                                    "value": "6",
+                                    "value": "7",
                                     "description": "\u5bf6\u53ef\u5922\u7684ID\u3002\u793a\u4f8b\uff1a1"
                                 }
                             ]
@@ -1259,7 +1259,7 @@
                                 {
                                     "id": "pokemon",
                                     "key": "pokemon",
-                                    "value": "11",
+                                    "value": "10",
                                     "description": "\u5bf6\u53ef\u5922\u7684ID\u3002\u7bc4\u4f8b\uff1a1"
                                 }
                             ]
@@ -1355,7 +1355,7 @@
                                 {
                                     "id": "race",
                                     "key": "race",
-                                    "value": "2",
+                                    "value": "16",
                                     "description": "\u5bf6\u53ef\u5922\u7a2e\u65cf\u7684ID\u3002\u793a\u4f8b\uff1a1"
                                 }
                             ]
@@ -1401,7 +1401,7 @@
                                 {
                                     "id": "race",
                                     "key": "race",
-                                    "value": "16",
+                                    "value": "4",
                                     "description": "\u5bf6\u53ef\u5922\u7a2e\u65cf\u7684ID\u3002\u793a\u4f8b\uff1a1"
                                 }
                             ]
@@ -1457,7 +1457,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"corporis\",\"email\":\"abartoletti@example.org\",\"password\":\"\\\\Kzs\\\"*~1:3V2C?<KRl\",\"password_confirmation\":\"sed\"}"
+                            "raw": "{\"name\":\"exercitationem\",\"email\":\"terrence57@example.org\",\"password\":\"(O!XDBzq:yv*g{YEP\",\"password_confirmation\":\"et\"}"
                         },
                         "description": "\u6b64\u65b9\u6cd5\u6703\u9a57\u8b49\u8f38\u5165\u7684\u8cc7\u6599\uff0c\u4e26\u5728\u6210\u529f\u9a57\u8b49\u5f8c\u5728`users`\u8868\u4e2d\u5275\u5efa\u4e00\u500b\u65b0\u7684\u4f7f\u7528\u8005\u7d00\u9304\u3002\n\u4e4b\u5f8c\uff0c\u5b83\u6703\u89f8\u767c\u4e00\u500b`Registered`\u4e8b\u4ef6\uff0c\u4e26\u8fd4\u56de\u4e00\u500b\u6210\u529f\u7684\u97ff\u61c9\uff0c\u5305\u62ec\u65b0\u5275\u5efa\u7684\u4f7f\u7528\u8005\u7684\u8cc7\u6599\u3002",
                         "auth": {
@@ -1548,13 +1548,13 @@
                             "formdata": [
                                 {
                                     "key": "name",
-                                    "value": "dolorem",
+                                    "value": "aut",
                                     "type": "text",
                                     "description": "optional \u65b0\u7684\u7528\u6236\u540d\u7a31\u3002\u793a\u4f8b\uff1aJohn Doe"
                                 },
                                 {
                                     "key": "email",
-                                    "value": "lreinger@example.net",
+                                    "value": "leuschke.rosamond@example.org",
                                     "type": "text",
                                     "description": "optional \u65b0\u7684\u96fb\u5b50\u90f5\u4ef6\u5730\u5740\u3002\u793a\u4f8b\uff1ajohn.doe@example.com"
                                 },

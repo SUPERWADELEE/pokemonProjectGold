@@ -34,8 +34,8 @@ class AbilityController extends Controller
     /**
      * 特性新增
      * 
-     * @bodyParam name string required 能力的名稱. 必須是唯一的，只能包含中文和英文字，且最大長度為255個字符.
-     *
+     *@bodyParam name string required 能力的名稱. 必須是唯一的，只能包含中文和英文字，且最大長度為255個字符. Example: superHard
+
      * @response 201 {
      *   "message": "Ability saved successfully"
      * }
@@ -75,7 +75,7 @@ class AbilityController extends Controller
      *
      * @param Ability $ability 特性的模型實例
      * 
-     * @bodyParam name string required 需要更新的特性名稱. 必須是唯一的，只能包含中文和英文字符，且最大長度為255個字符.
+     * @bodyParam name string required 需要更新的特性名稱. 必須是唯一的，只能包含中文和英文字符，且最大長度為255個字符.Example: superSoft
      *
      * @response 200 {
      *   "message": "Ability updated successfully"

@@ -28,10 +28,10 @@ class CartItemController extends Controller
      *         {
      *             "id": "項目ID",
      *             "amount": "購物車中的商品數量",
-     *             "current_price": "當前種族價格（如果種族已加載）",
-     *             "race_name": "種族名稱（如果種族已加載）",
-     *             "race_photo": "種族圖片URL（如果種族已加載）",
-     *             "race_id": "種族ID（如果種族已加載）"
+     *             "current_price": "當前種族價格",
+     *             "race_name": "種族名稱",
+     *             "race_photo": "種族圖片URL",
+     *             "race_id": "種族ID"
      *         },
      *       
      *     ]
@@ -182,6 +182,9 @@ class CartItemController extends Controller
 
     /**
      * 購物車總價格計算
+     * 
+     * 
+     * 這裡會需要前端將使用者已勾選的所有商品的id組成陣列，傳到後端，後端在返回該金額
      * 
       * @param \Illuminate\Http\Request $request
      * 

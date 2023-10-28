@@ -32,13 +32,13 @@ endpoints:
         name: order
         description: 訂單的ID。
         required: true
-        example: unde
+        example: et
         type: string
         enumValues: []
         custom: []
     cleanUrlParameters:
       order_id: 16
-      order: unde
+      order: et
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -85,7 +85,7 @@ endpoints:
         name: order_id
         description: 訂單的ID。
         required: true
-        example: 3
+        example: 6
         type: integer
         enumValues: []
         custom: []
@@ -97,13 +97,13 @@ endpoints:
           根據指定的race_id從使用者的購物車中提取數量，並根據race的價格計算出單價和總價。
           建立訂單細節後，減少相應的庫存，並清除使用者購物車中的該race項。
         required: true
-        example: 3
+        example: 5
         type: integer
         enumValues: []
         custom: []
     cleanBodyParameters:
-      order_id: 3
-      race_id: 3
+      order_id: 6
+      race_id: 5
     fileParameters: []
     responses: []
     responseFields: []

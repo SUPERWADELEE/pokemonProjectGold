@@ -67,7 +67,7 @@ endpoints:
         name: name
         description: 寶可夢的名稱，必填，最大15字符長，且必須在系統中是唯一的。：皮卡丘
         required: true
-        example: amet
+        example: ea
         type: string
         enumValues: []
         custom: []
@@ -75,7 +75,7 @@ endpoints:
         name: race_id
         description: "寶可夢的種族ID，必填，該ID必須存在於系統的'races'表中。：1"
         required: true
-        example: 16
+        example: 8
         type: integer
         enumValues: []
         custom: []
@@ -83,7 +83,7 @@ endpoints:
         name: ability_id
         description: "寶可夢的能力ID，必填，該ID必須存在於系統的'abilities'表中。：2"
         required: true
-        example: 4
+        example: 16
         type: integer
         enumValues: []
         custom: []
@@ -91,7 +91,7 @@ endpoints:
         name: nature_id
         description: "寶可夢的性格ID，必填，該ID必須存在於系統的'natures'表中。：3"
         required: true
-        example: 12
+        example: 8
         type: integer
         enumValues: []
         custom: []
@@ -99,7 +99,7 @@ endpoints:
         name: level
         description: 寶可夢的等級，必填，其值必須是1到100之間的整數。：10
         required: true
-        example: 15
+        example: 20
         type: integer
         enumValues: []
         custom: []
@@ -108,7 +108,7 @@ endpoints:
         description: '寶可夢的技能列表，必填，至少包含1項，最多4項技能。：[1, 2, 3]'
         required: true
         example:
-          - aut
+          - quibusdam
         type: 'string[]'
         enumValues: []
         custom: []
@@ -116,18 +116,18 @@ endpoints:
         name: 'skills.*'
         description: "其中的每一個技能ID都必須是有效的且存在於'skills'表中。：1"
         required: true
-        example: 9
+        example: 19
         type: integer
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: amet
-      race_id: 16
-      ability_id: 4
-      nature_id: 12
-      level: 15
+      name: ea
+      race_id: 8
+      ability_id: 16
+      nature_id: 8
+      level: 20
       skills:
-        - aut
+        - quibusdam
     fileParameters: []
     responses: []
     responseFields: []
@@ -165,13 +165,13 @@ endpoints:
         name: pokemon
         description: 寶可夢的ID。示例：1
         required: true
-        example: 9
+        example: 16
         type: integer
         enumValues: []
         custom: []
     cleanUrlParameters:
       id: 15
-      pokemon: 9
+      pokemon: 16
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -233,13 +233,13 @@ endpoints:
         name: pokemon
         description: 寶可夢的ID。範例：1
         required: true
-        example: 1
+        example: 20
         type: integer
         enumValues: []
         custom: []
     cleanUrlParameters:
       id: 15
-      pokemon: 1
+      pokemon: 20
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -247,7 +247,7 @@ endpoints:
         name: name
         description: 'optional 寶可夢的名字。最大長度為15個字符。範例：皮卡丘'
         required: false
-        example: laudantium
+        example: odit
         type: string
         enumValues: []
         custom: []
@@ -255,7 +255,7 @@ endpoints:
         name: race_id
         description: "optional 寶可夢的種族ID。該ID必須存在於系統的'races'表中。範例：1"
         required: false
-        example: 7
+        example: 18
         type: integer
         enumValues: []
         custom: []
@@ -263,7 +263,7 @@ endpoints:
         name: ability_id
         description: "optional 寶可夢的能力ID。該ID必須存在於系統的'abilities'表中。範例：2"
         required: false
-        example: 9
+        example: 4
         type: integer
         enumValues: []
         custom: []
@@ -271,7 +271,7 @@ endpoints:
         name: nature_id
         description: "optional 寶可夢的性格ID。該ID必須存在於系統的'natures'表中。範例：3"
         required: false
-        example: 1
+        example: 10
         type: integer
         enumValues: []
         custom: []
@@ -279,7 +279,7 @@ endpoints:
         name: level
         description: 'optional 寶可夢的等級。其值必須是1到100之間的整數。範例：10'
         required: false
-        example: 11
+        example: 10
         type: integer
         enumValues: []
         custom: []
@@ -288,7 +288,7 @@ endpoints:
         description: 'optional 寶可夢的技能列表。至少包含1項，最多4項技能。範例：[1, 2, 3]'
         required: false
         example:
-          - veritatis
+          - quasi
         type: 'string[]'
         enumValues: []
         custom: []
@@ -296,18 +296,18 @@ endpoints:
         name: 'skills.*'
         description: "optional 其中的每一個技能ID都必須是有效的且存在於'skills'表中。範例：1"
         required: false
-        example: 12
+        example: 11
         type: integer
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: laudantium
-      race_id: 7
-      ability_id: 9
-      nature_id: 1
-      level: 11
+      name: odit
+      race_id: 18
+      ability_id: 4
+      nature_id: 10
+      level: 10
       skills:
-        - veritatis
+        - quasi
     fileParameters: []
     responses: []
     responseFields: []
@@ -347,13 +347,13 @@ endpoints:
         name: pokemon
         description: 寶可夢的ID。示例：1
         required: true
-        example: 6
+        example: 7
         type: integer
         enumValues: []
         custom: []
     cleanUrlParameters:
       id: 15
-      pokemon: 6
+      pokemon: 7
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -416,13 +416,13 @@ endpoints:
         name: pokemon
         description: 寶可夢的ID。範例：1
         required: true
-        example: 11
+        example: 10
         type: integer
         enumValues: []
         custom: []
     cleanUrlParameters:
       pokemon_id: 15
-      pokemon: 11
+      pokemon: 10
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

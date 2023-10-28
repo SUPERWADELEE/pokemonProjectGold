@@ -15,11 +15,18 @@ class NatureController extends Controller
 {
     /**
      * 性格詳情
+     * 
+     * 主要在於可以讓使用更新寶可夢的時候，在性格部分有選項可以讓使用者選擇
      * @response 200 [{
      *     "id": "性格的 ID",
      *     "name": "性格的名稱"
      * }]
-     * 
+     * @response 422 {
+     *   "message": "The given data was invalid.",
+     *   "errors": {
+     *     "name": ["名稱只能包含中文和英文字。"]
+     *   }
+     * }
      * @return \Illuminate\Http\Response 所有性格的列表，每個性格包括其ID和名稱。
      */
     public function index()
@@ -32,7 +39,8 @@ class NatureController extends Controller
     /**
      * 性格新增
      * 
-     * @bodyParam name string required 性格的名稱。要求是唯一的且最多包含255個字符。
+     * 
+     * @bodyParam name string required 性格的名稱。要求是唯一的且最多包含255個字符且只能輸入英文或中文字。Example:好害羞
      * 
      * @response 201 {
      *     "message": "Nature saved successfully"
@@ -68,7 +76,7 @@ class NatureController extends Controller
     /**
      * 性格修改
      * 
-      * @bodyParam name string required 性格的新名稱。要求是唯一的且最多包含255個字符。
+      * @bodyParam name string required 性格的新名稱。要求是唯一的且最多包含255個字符。Example:易怒
      * 
      * @response 200 {
      *     "message": "Nature updated successfully"
