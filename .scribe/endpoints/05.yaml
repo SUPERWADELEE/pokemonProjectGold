@@ -11,7 +11,7 @@ endpoints:
       subgroup: ''
       subgroupDescription: ''
       title: 顯示購物車商品
-      description: ''
+      description: 這部分主要是用來顯示購物車頁面的商品資訊
       authenticated: true
       custom: []
     headers:
@@ -26,13 +26,32 @@ endpoints:
     fileParameters: []
     responses:
       -
+        status: 200
+        content: |-
+          {
+              "data": [
+                  {
+                      "id": "項目ID",
+                      "amount": "購物車中的商品數量",
+                      "current_price": "當前種族價格（如果種族已加載）",
+                      "race_name": "種族名稱（如果種族已加載）",
+                      "race_photo": "種族圖片URL（如果種族已加載）",
+                      "race_id": "種族ID（如果種族已加載）"
+                  },
+                  ... 更多項目
+              ]
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
         status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
+        content: |-
+          {
+              "message": "Unauthenticated."
+          }
+        headers: []
+        description: ''
         custom: []
     responseFields: []
     auth: []
@@ -63,24 +82,52 @@ endpoints:
     bodyParameters:
       quantity:
         name: quantity
-        description: ''
-        required: false
-        example: null
-        type: string
+        description: 購買的數量，必須在1到庫存的範圍內。
+        required: true
+        example: 2
+        type: integer
         enumValues: []
         custom: []
       race_id:
         name: race_id
-        description: ''
+        description: 賽事的ID，必須存在於賽事表中。
         required: true
-        example: 19
+        example: 5
         type: integer
         enumValues: []
         custom: []
     cleanBodyParameters:
-      race_id: 19
+      quantity: 2
+      race_id: 5
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "message": "Item added to cart successfully."
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 400
+        content: |-
+          {
+              "error": "Requested quantity exceeds available stock."
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: |-
+          {
+              "error": "Race not found."
+          }
+        headers: []
+        description: ''
+        custom: []
     responseFields: []
     auth: []
     controller: null

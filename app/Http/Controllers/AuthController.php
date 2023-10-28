@@ -20,6 +20,23 @@ class AuthController extends Controller
 {
     /**
      * 登入
+     * 
+     * 此端點允許用戶使用他們的電子郵件和密碼來登入系統，並返回一個JWT令牌。
+     *
+     * @param Request $request 請求物件，包含電子郵件和密碼
+     * 
+     * @bodyParam email string required 用戶的電子郵件地址。例子：user@example.com
+     * @bodyParam password string required 用戶的密碼。
+     *
+     * @response 200 {
+     *   "message": "Login successful",
+     *   "token": "Generated JWT token",
+     *   "user": "Authenticated user object"
+     * }
+     * 
+     * @response 401 {
+     *   "error": "Invalid credentials"
+     * }
      */
     public function login(Request $request)
     {
@@ -47,6 +64,16 @@ class AuthController extends Controller
 
     /**
      * 登出
+     * 
+     * 此端點允許已經登入的用戶登出，它會使當前的JWT令牌失效。
+     *
+     * @response 200 {
+     *   "message": "Successfully logged out"
+     * }
+     * 
+     * @response 500 {
+     *   "message": "Failed to logout"
+     * }
      */
     public function logout()
     {
@@ -62,7 +89,28 @@ class AuthController extends Controller
 
     /**
      * 註冊email驗證信確認
+     * 
+    
+     * 電子郵件驗證確認
+     *
+     * 此端點用於確認用戶的電子郵件驗證。它會比對提供的hash值和用戶的電子郵件生成的hash值。
+     * 如果驗證成功，該用戶的電子郵件將被標記為已驗證，並且將觸發一個已驗證的事件。
+     *
+     * @param Request $request HTTP請求
+     * @param int $id 用戶ID
+     * @param string $hash 從驗證郵件中提供的hash值
+     * 
+     * @throws AuthorizationException 當提供的hash值不匹配時
+     * 
+     * @response 200 {
+     *   "message": "Email verified successfully."
+     * }
+     * 
+     * @response 200 {
+     *   "message": "Email already verified."
+     * }
      */
+
     public function verifyEmail(Request $request, $id, $hash)
     {
         $user = User::findOrFail($id);
@@ -84,6 +132,19 @@ class AuthController extends Controller
 
     /**
      * 確認user表註冊驗證信狀態
+     * 
+     * 此端點用於檢查指定電子郵件的用戶是否已完成電子郵件驗證。
+     * 它將返回用戶的電子郵件驗證狀態，無論是已驗證還是未驗證。
+     *
+     * @param string $email 需要檢查的用戶電子郵件地址
+     * 
+     * @response 200 {
+     *   "isVerified": true/false
+     * }
+     * 
+     * @response 404 {
+     *   "error": "User not found"
+     * }
      */
     public function checkVerificationStatus($email)
     {

@@ -20,18 +20,61 @@ class CartItemController extends Controller
 {
     /**
      * 顯示購物車商品
+     * 
+     * 這部分主要是用來顯示購物車頁面的商品資訊
+     * 
+     * @response 200 {
+     *     "data": [
+     *         {
+     *             "id": "項目ID",
+     *             "amount": "購物車中的商品數量",
+     *             "current_price": "當前種族價格（如果種族已加載）",
+     *             "race_name": "種族名稱（如果種族已加載）",
+     *             "race_photo": "種族圖片URL（如果種族已加載）",
+     *             "race_id": "種族ID（如果種族已加載）"
+     *         },
+     *       
+     *     ]
+     * }
+     * 
+     * @response 401 {
+     *     "message": "Unauthenticated."
+     * }
+     * 
+     * @return \Illuminate\Http\Response
+     * 
      */
 
     public function index()
     {
         $user = auth()->user();
-        // dd($user);
+
         $carts = $user->cartItems()->with(['race'])->get();
         return CartItemResource::collection($carts);
     }
 
     /**
      * 加入購物車
+     * 
+       * @param \Illuminate\Http\Request $request
+     * 
+     * @bodyParam quantity int required 購買的數量，必須在1到庫存的範圍內。Example: 2
+     * @bodyParam race_id int required 種族的ID，必須存在於種族表中。Example: 5
+     * 
+     * @response 200 {
+     *     "message": "Item added to cart successfully."
+     * }
+     * 
+     * @response 400 {
+     *     "error": "Requested quantity exceeds available stock."
+     * }
+     * 
+     * @response 404 {
+     *     "error": "Race not found."
+     * }
+     * 
+     * @return \Illuminate\Http\Response
+     * 
      */
 
     public function store(Request $request)

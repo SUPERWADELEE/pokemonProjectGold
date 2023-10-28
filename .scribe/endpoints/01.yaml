@@ -65,12 +65,12 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: wivvbm
+        example: pwdidhsy
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: wivvbm
+      name: pwdidhsy
     fileParameters: []
     responses: []
     responseFields: []
@@ -113,12 +113,12 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: wghrqbnmztihlgvtlsmabc
+        example: fgoombzypkgpemtywgotavck
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: wghrqbnmztihlgvtlsmabc
+      name: fgoombzypkgpemtywgotavck
     fileParameters: []
     responses: []
     responseFields: []

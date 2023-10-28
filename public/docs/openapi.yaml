@@ -9,31 +9,62 @@ servers:
 paths:
   /api/abilities:
     get:
-      summary: 性格列表
+      summary: 特性列表
+      operationId: ''
+      description: 主要在於可以讓使用更新寶可夢的時候，在特性部分有選項可以讓使用者選擇
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n \"id\": \"3\",\n \"name\": \"strong\",\n}"
+      tags:
+        - Ability
+    post:
+      summary: 特性新增
       operationId: ''
       description: ''
       parameters: []
       responses:
-        401:
+        201:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  message: 'Ability saved successfully'
                 properties:
                   message:
                     type: string
-                    example: Unauthenticated.
-      tags:
-        - Ability
-    post:
-      summary: 性格新增
-      operationId: ''
-      description: ''
-      parameters: []
-      responses: {  }
+                    example: 'Ability saved successfully'
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'The given data was invalid.'
+                  errors:
+                    name:
+                      - 名稱只能包含中文和英文字。
+                properties:
+                  message:
+                    type: string
+                    example: 'The given data was invalid.'
+                  errors:
+                    type: object
+                    properties:
+                      name:
+                        type: array
+                        example:
+                          - 名稱只能包含中文和英文字。
+                        items:
+                          type: string
       tags:
         - Ability
       requestBody:
@@ -45,17 +76,53 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'Must not be greater than 255 characters.'
-                  example: znuzvugb
+                  description: '能力的名稱. 必須是唯一的，只能包含中文和英文字，且最大長度為255個字符.'
+                  example: a
               required:
                 - name
   '/api/abilities/{ability_id}':
     patch:
-      summary: 性格修改
+      summary: 特性修改
       operationId: ''
-      description: ''
+      description: 此端點允許您更新現有的特性。
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Ability updated successfully'
+                properties:
+                  message:
+                    type: string
+                    example: 'Ability updated successfully'
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'The given data was invalid.'
+                  errors:
+                    name:
+                      - 名稱只能包含中文和英文字符。
+                properties:
+                  message:
+                    type: string
+                    example: 'The given data was invalid.'
+                  errors:
+                    type: object
+                    properties:
+                      name:
+                        type: array
+                        example:
+                          - 名稱只能包含中文和英文字符。
+                        items:
+                          type: string
       tags:
         - Ability
       requestBody:
@@ -67,8 +134,8 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'Must not be greater than 255 characters.'
-                  example: krvtiq
+                  description: '需要更新的特性名稱. 必須是唯一的，只能包含中文和英文字符，且最大長度為255個字符.'
+                  example: modi
               required:
                 - name
     parameters:
@@ -84,9 +151,41 @@ paths:
     post:
       summary: 登入
       operationId: ''
-      description: ''
+      description: 此端點允許用戶使用他們的電子郵件和密碼來登入系統，並返回一個JWT令牌。
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Login successful'
+                  token: 'Generated JWT token'
+                  user: 'Authenticated user object'
+                properties:
+                  message:
+                    type: string
+                    example: 'Login successful'
+                  token:
+                    type: string
+                    example: 'Generated JWT token'
+                  user:
+                    type: string
+                    example: 'Authenticated user object'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Invalid credentials'
+                properties:
+                  error:
+                    type: string
+                    example: 'Invalid credentials'
       tags:
         - Auth
       requestBody:
@@ -98,12 +197,12 @@ paths:
               properties:
                 email:
                   type: string
-                  description: 'Must be a valid email address.'
-                  example: lucile59@example.net
+                  description: 用戶的電子郵件地址。例子：user@example.com
+                  example: nathanael.romaguera@example.net
                 password:
                   type: string
-                  description: ''
-                  example: 'A/xeh.*.477FH'
+                  description: 用戶的密碼。
+                  example: "hMSX'6X#wv?'wF5"
               required:
                 - email
                 - password
@@ -112,9 +211,33 @@ paths:
     post:
       summary: 登出
       operationId: ''
-      description: ''
+      description: 此端點允許已經登入的用戶登出，它會使當前的JWT令牌失效。
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Successfully logged out'
+                properties:
+                  message:
+                    type: string
+                    example: 'Successfully logged out'
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Failed to logout'
+                properties:
+                  message:
+                    type: string
+                    example: 'Failed to logout'
       tags:
         - Auth
       security: []
@@ -122,21 +245,21 @@ paths:
     get:
       summary: 註冊email驗證信確認
       operationId: email
-      description: ''
+      description: "電子郵件驗證確認\n\n此端點用於確認用戶的電子郵件驗證。它會比對提供的hash值和用戶的電子郵件生成的hash值。\n如果驗證成功，該用戶的電子郵件將被標記為已驗證，並且將觸發一個已驗證的事件。"
       parameters: []
       responses:
-        404:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  error: 'Resource not found'
+                  message: 'Email already verified.'
                 properties:
-                  error:
+                  message:
                     type: string
-                    example: 'Resource not found'
+                    example: 'Email already verified.'
       tags:
         - Auth
       security: []
@@ -145,7 +268,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the verify.'
-        example: numquam
+        example: rem
         required: true
         schema:
           type: string
@@ -153,7 +276,7 @@ paths:
         in: path
         name: hash
         description: ''
-        example: illum
+        example: aut
         required: true
         schema:
           type: string
@@ -161,9 +284,16 @@ paths:
     get:
       summary: 確認user表註冊驗證信狀態
       operationId: user
-      description: ''
+      description: "此端點用於檢查指定電子郵件的用戶是否已完成電子郵件驗證。\n它將返回用戶的電子郵件驗證狀態，無論是已驗證還是未驗證。"
       parameters: []
       responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n  \"isVerified\": true/false\n}"
         404:
           description: ''
           content:
@@ -184,7 +314,7 @@ paths:
         in: path
         name: email
         description: ''
-        example: pollich.onie@example.com
+        example: dustin.oreilly@example.net
         required: true
         schema:
           type: string
@@ -192,9 +322,16 @@ paths:
     get:
       summary: 顯示購物車商品
       operationId: ''
-      description: ''
+      description: 這部分主要是用來顯示購物車頁面的商品資訊
       parameters: []
       responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n    \"data\": [\n        {\n            \"id\": \"項目ID\",\n            \"amount\": \"購物車中的商品數量\",\n            \"current_price\": \"當前種族價格（如果種族已加載）\",\n            \"race_name\": \"種族名稱（如果種族已加載）\",\n            \"race_photo\": \"種族圖片URL（如果種族已加載）\",\n            \"race_id\": \"種族ID（如果種族已加載）\"\n        },\n        ... 更多項目\n    ]\n}"
         401:
           description: ''
           content:
@@ -214,7 +351,43 @@ paths:
       operationId: ''
       description: ''
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Item added to cart successfully.'
+                properties:
+                  message:
+                    type: string
+                    example: 'Item added to cart successfully.'
+        400:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Requested quantity exceeds available stock.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Requested quantity exceeds available stock.'
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Race not found.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Race not found.'
       tags:
         - CartItem
       requestBody:
@@ -225,14 +398,15 @@ paths:
               type: object
               properties:
                 quantity:
-                  type: string
-                  description: ''
-                  example: null
+                  type: integer
+                  description: 購買的數量，必須在1到庫存的範圍內。
+                  example: 2
                 race_id:
                   type: integer
-                  description: ''
-                  example: 19
+                  description: 賽事的ID，必須存在於賽事表中。
+                  example: 5
               required:
+                - quantity
                 - race_id
   /api/cart_items/total_price:
     get:
@@ -345,7 +519,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: wivvbm
+                  example: pwdidhsy
               required:
                 - name
   '/api/natures/{nature_id}':
@@ -367,7 +541,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: wghrqbnmztihlgvtlsmabc
+                  example: fgoombzypkgpemtywgotavck
               required:
                 - name
     parameters:
@@ -398,18 +572,18 @@ paths:
                 total_price:
                   type: integer
                   description: 'Must be at least 1.'
-                  example: 54
+                  example: 75
                 payment_method:
                   type: string
                   description: ''
-                  example: credit_card
+                  example: cash_on_delivery
                   enum:
                     - credit_card
                     - cash_on_delivery
                 payment_status:
                   type: string
                   description: ''
-                  example: unpaid
+                  example: paid
                   enum:
                     - paid
                     - unpaid
@@ -487,11 +661,11 @@ paths:
                 order_id:
                   type: integer
                   description: ''
-                  example: 12
+                  example: 3
                 race_id:
                   type: integer
                   description: ''
-                  example: 1
+                  example: 4
               required:
                 - order_id
                 - race_id
@@ -779,15 +953,15 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: hdaqoyfxdrbsojacchd
+                  example: isydbrsovllnr
                 email:
                   type: string
                   description: 'Must be a valid email address. Must not be greater than 255 characters.'
-                  example: caleb.bernhard@example.net
+                  example: lsporer@example.org
                 password:
                   type: string
                   description: 'Must be at least 6 characters.'
-                  example: '3[Eju4'
+                  example: ':CS@g!|n7lDl4s['
               required:
                 - name
                 - email
@@ -856,7 +1030,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: wfgwbfmtyp
+                  example: cessvtrkcltqkzgznipekjht
               required:
                 - name
 tags:
