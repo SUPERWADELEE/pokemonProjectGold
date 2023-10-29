@@ -12,6 +12,7 @@ endpoints:
       subgroupDescription: ''
       title: 請求藍星金流結帳頁面
       description: |-
+        主要使用者點選結帳後可以請求這個API，然後藍星金流會發結帳頁面給使用者，
         此方法主要功能如下：
         1. 驗證當前使用者。
         2. 更新與當前使用者關聯的購物車項目的結帳狀態。
@@ -31,12 +32,12 @@ endpoints:
         name: totalPrice
         description: 購物車中所有商品的總價格。
         required: true
-        example: 69855.655
+        example: 119177.36
         type: number
         enumValues: []
         custom: []
     cleanBodyParameters:
-      totalPrice: 69855.655
+      totalPrice: 119177.36
     fileParameters: []
     responses: []
     responseFields: []

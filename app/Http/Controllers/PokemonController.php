@@ -36,9 +36,8 @@ class PokemonController extends Controller
 {
 
     /**
-     * Create a new user.
-     *
-     * This endpoint allows you to show all pokemons.
+     
+     * 寶可夢列表
      *
      * @group Pokemons
      * @authenticated
@@ -46,13 +45,22 @@ class PokemonController extends Controller
      * @bodyParam first_name string required The first name of the user.
      * @bodyParam last_name string required The last name of the user.
      * @bodyParam email string required The email address of the user.
+     * 
+    * @response {
+     *     "id": 123,
+     *     "name": "myBaby",
+     *     "level": 50,
+     *     "race_id": 25,
+     *     "race": "Pikachu",
+     *     "photo": "http://example.com/pikachu.jpg",
+     *     "ability": "Static",
+     *     "nature": "Jolly",
+     *     "skills": ["Thunderbolt", "Quick Attack"],
+     *     "host": "Ash Ketchum"
+     * }
+ 
      */
 
-
-
-    /**
-     * 使用者寶可夢的列表
-     */
     public function index()
     {
         // 透過JWT取得當前登入的用戶
@@ -63,13 +71,7 @@ class PokemonController extends Controller
     }
 
 
-    /**
-     * @group 寶可夢管理
-     *
-     * 用於管理使用者的寶可夢的API
-     */
-
-    /**
+   /**
      * 新增一個屬於該使用者的寶可夢。
      *
      * 此方法將驗證請求數據，並在成功驗證後，
@@ -77,13 +79,29 @@ class PokemonController extends Controller
      *
      * @authenticated
      *
-     * @bodyParam name string required 寶可夢的名稱，必填，最大15字符長，且必須在系統中是唯一的。：皮卡丘
-     * @bodyParam race_id integer required 寶可夢的種族ID，必填，該ID必須存在於系統的'races'表中。：1
-     * @bodyParam ability_id integer required 寶可夢的能力ID，必填，該ID必須存在於系統的'abilities'表中。：2
-     * @bodyParam nature_id integer required 寶可夢的性格ID，必填，該ID必須存在於系統的'natures'表中。：3
-     * @bodyParam level integer required 寶可夢的等級，必填，其值必須是1到100之間的整數。：10
-     * @bodyParam skills array required 寶可夢的技能列表，必填，至少包含1項，最多4項技能。：[1, 2, 3]
-     * @bodyParam skills.* integer required 其中的每一個技能ID都必須是有效的且存在於'skills'表中。：1
+     * // ... your existing params documentation ...
+     *
+     * @response 201 {
+     *   "message": "Pokemon created successfully."
+     * }
+     * 
+     * @response 400 {
+     *   "message": "Validation error.",
+     *   "errors": {
+     *     "name": [
+     *       "The name field is required."
+     *     ],
+     *     // ... other validation errors ...
+     *   }
+     * }
+     * 
+     * @response 404 {
+     *   "message": "Race not found."
+     * }
+     * 
+     * @response 500 {
+     *   "message": "Server error."
+     * }
      *
      */
     // 寶可夢新增
@@ -100,17 +118,16 @@ class PokemonController extends Controller
      * 修改指定的寶可夢。
      *
      * 此方法允許使用者修改他們的寶可夢的資訊。
-     * 使用者只能修改他們自己的寶可夢，不能修改其他人的寶可夢。
      *
-     * @bodyParam name string optional 寶可夢的名字。最大長度為15個字符。範例：皮卡丘
-     * @bodyParam race_id integer optional 寶可夢的種族ID。該ID必須存在於系統的'races'表中。範例：1
-     * @bodyParam ability_id integer optional 寶可夢的能力ID。該ID必須存在於系統的'abilities'表中。範例：2
-     * @bodyParam nature_id integer optional 寶可夢的性格ID。該ID必須存在於系統的'natures'表中。範例：3
-     * @bodyParam level integer optional 寶可夢的等級。其值必須是1到100之間的整數。範例：10
-     * @bodyParam skills array optional 寶可夢的技能列表。至少包含1項，最多4項技能。範例：[1, 2, 3]
-     * @bodyParam skills.* integer optional 其中的每一個技能ID都必須是有效的且存在於'skills'表中。範例：1
+     * @bodyParam name string optional 寶可夢的名字。最大長度為15個字符。Example:mommy
+     * @bodyParam race_id integer optional 寶可夢的種族ID。該ID必須存在於系統的'races'表中。
+     * @bodyParam ability_id integer optional 寶可夢的能力ID。該ID必須存在於系統的'abilities'表中。
+     * @bodyParam nature_id integer optional 寶可夢的性格ID。該ID必須存在於系統的'natures'表中。
+     * @bodyParam level integer optional 寶可夢的等級。其值必須是1到100之間的整數。
+     * @bodyParam skills array optional 寶可夢的技能列表。至少包含1項，最多4項技能。Example：[1, 2, 3]
+     * @bodyParam skills.* integer optional 其中的每一個技能ID都必須是有效的且存在於'skills'表中。Example：1
      *
-     * @urlParam pokemon integer required 寶可夢的ID。範例：1
+     * @urlParam pokemon integer required 寶可夢的ID。Example：1
      *
      */
     // 寶可夢資料修改
@@ -132,10 +149,10 @@ class PokemonController extends Controller
      *
      * @response {
      *   "id": 1,
-     *   "name": "皮卡丘",
+     *   "name": "daddy",
      *   "level": 10,
      *   "race_id": 1,
-     *   "race": "電鼠",
+     *   "race": "pikachu",
      *   "ability": "靜電",
      *   "nature": "認真",
      *   "skills": ["電擊", "鐵尾"],

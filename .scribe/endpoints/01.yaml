@@ -11,7 +11,7 @@ endpoints:
       subgroup: ''
       subgroupDescription: ''
       title: 性格詳情
-      description: ''
+      description: 主要在於可以讓使用更新寶可夢的時候，在性格部分有選項可以讓使用者選擇
       authenticated: true
       custom: []
     headers:
@@ -64,14 +64,14 @@ endpoints:
     bodyParameters:
       name:
         name: name
-        description: 性格的名稱。要求是唯一的且最多包含255個字符。
+        description: 性格的名稱。要求是唯一的且最多包含255個字符且只能輸入英文或中文字。
         required: true
-        example: quisquam
+        example: 好害羞
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: quisquam
+      name: 好害羞
     fileParameters: []
     responses:
       -
@@ -88,6 +88,18 @@ endpoints:
         content: |-
           {
               "error": "Validation error messages if any"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 422
+        content: |-
+          {
+            "message": "The given data was invalid.",
+            "errors": {
+              "name": ["名稱只能包含中文和英文字。"]
+            }
           }
         headers: []
         description: ''
@@ -130,14 +142,14 @@ endpoints:
     bodyParameters:
       name:
         name: name
-        description: 性格的新名稱。要求是唯一的且最多包含255個字符。
+        description: 性格的新名稱。要求是唯一的且最多包含255個字符且只能輸入英文或中文字。
         required: true
-        example: ullam
+        example: 易怒
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: ullam
+      name: 易怒
     fileParameters: []
     responses:
       -
@@ -163,6 +175,18 @@ endpoints:
         content: |-
           {
               "message": "Nature not found"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 422
+        content: |-
+          {
+            "message": "The given data was invalid.",
+            "errors": {
+              "name": ["名稱只能包含中文和英文字。"]
+            }
           }
         headers: []
         description: ''

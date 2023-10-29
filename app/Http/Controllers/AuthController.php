@@ -25,8 +25,8 @@ class AuthController extends Controller
      *
      * @param Request $request 請求物件，包含電子郵件和密碼
      * 
-     * @bodyParam email string required 用戶的電子郵件地址。例子：user@example.com
-     * @bodyParam password string required 用戶的密碼。
+     * @bodyParam email string required 用戶的電子郵件地址。example：user@example.com
+     * @bodyParam password string required 用戶的密碼。Example: e123456
      *
      * @response 200 {
      *   "message": "Login successful",
@@ -93,8 +93,10 @@ class AuthController extends Controller
     
      * 電子郵件驗證確認
      *
-     * 此端點用於確認用戶的電子郵件驗證。它會比對提供的hash值和用戶的電子郵件生成的hash值。
+     * 此端點用於確認用戶的電子郵件驗證。
+     * 它會比對提供的hash值和用戶的電子郵件生成的hash值。
      * 如果驗證成功，該用戶的電子郵件將被標記為已驗證，並且將觸發一個已驗證的事件。
+     * 系統會將email驗證的日期存入資料庫
      *
      * @param Request $request HTTP請求
      * @param int $id 用戶ID
@@ -133,7 +135,8 @@ class AuthController extends Controller
     /**
      * 確認user表註冊驗證信狀態
      * 
-     * 此端點用於檢查指定電子郵件的用戶是否已完成電子郵件驗證。
+     * 使用者點擊玩註冊之後，系統會去發一個驗證信，
+     * 然後要將使用者導向此頁面，並告知要去點驗證信
      * 它將返回用戶的電子郵件驗證狀態，無論是已驗證還是未驗證。
      *
      * @param string $email 需要檢查的用戶電子郵件地址
