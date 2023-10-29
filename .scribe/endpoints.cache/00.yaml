@@ -9,10 +9,10 @@ endpoints:
     uri: api/pokemons
     metadata:
       groupName: Pokemons
-      groupDescription: 'Operations related to pokemons.'
+      groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 使用者寶可夢的列表
+      title: 寶可夢列表
       description: ''
       authenticated: true
       custom: []
@@ -23,18 +23,54 @@ endpoints:
     cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
+    bodyParameters:
+      first_name:
+        name: first_name
+        description: 'The first name of the user.'
+        required: true
+        example: quia
+        type: string
+        enumValues: []
+        custom: []
+      last_name:
+        name: last_name
+        description: 'The last name of the user.'
+        required: true
+        example: vero
+        type: string
+        enumValues: []
+        custom: []
+      email:
+        name: email
+        description: 'The email address of the user.'
+        required: true
+        example: lou.collins@example.com
+        type: string
+        enumValues: []
+        custom: []
+    cleanBodyParameters:
+      first_name: quia
+      last_name: vero
+      email: lou.collins@example.com
     fileParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
+        status: 200
+        content: |-
+          {
+              "id": 123,
+              "name": "myBaby",
+              "level": 50,
+              "race_id": 25,
+              "race": "Pikachu",
+              "photo": "http://example.com/pikachu.jpg",
+              "ability": "Static",
+              "nature": "Jolly",
+              "skills": ["Thunderbolt", "Quick Attack"],
+              "host": "Ash Ketchum"
+          }
+        headers: []
+        description: ''
         custom: []
     responseFields: []
     auth: []
@@ -67,71 +103,105 @@ endpoints:
     bodyParameters:
       name:
         name: name
-        description: 寶可夢的名稱，必填，最大15字符長，且必須在系統中是唯一的。：皮卡丘
+        description: 'Must not be greater than 15 characters.'
         required: true
-        example: ea
+        example: zqq
         type: string
         enumValues: []
         custom: []
       race_id:
         name: race_id
-        description: "寶可夢的種族ID，必填，該ID必須存在於系統的'races'表中。：1"
-        required: true
-        example: 8
-        type: integer
-        enumValues: []
-        custom: []
-      ability_id:
-        name: ability_id
-        description: "寶可夢的能力ID，必填，該ID必須存在於系統的'abilities'表中。：2"
-        required: true
-        example: 16
-        type: integer
-        enumValues: []
-        custom: []
-      nature_id:
-        name: nature_id
-        description: "寶可夢的性格ID，必填，該ID必須存在於系統的'natures'表中。：3"
-        required: true
-        example: 8
-        type: integer
-        enumValues: []
-        custom: []
-      level:
-        name: level
-        description: 寶可夢的等級，必填，其值必須是1到100之間的整數。：10
-        required: true
-        example: 20
-        type: integer
-        enumValues: []
-        custom: []
-      skills:
-        name: skills
-        description: '寶可夢的技能列表，必填，至少包含1項，最多4項技能。：[1, 2, 3]'
-        required: true
-        example:
-          - quibusdam
-        type: 'string[]'
-        enumValues: []
-        custom: []
-      'skills.*':
-        name: 'skills.*'
-        description: "其中的每一個技能ID都必須是有效的且存在於'skills'表中。：1"
+        description: ''
         required: true
         example: 19
         type: integer
         enumValues: []
         custom: []
-    cleanBodyParameters:
-      name: ea
-      race_id: 8
-      ability_id: 16
-      nature_id: 8
-      level: 20
+      ability_id:
+        name: ability_id
+        description: ''
+        required: true
+        example: 4
+        type: integer
+        enumValues: []
+        custom: []
+      nature_id:
+        name: nature_id
+        description: ''
+        required: true
+        example: 15
+        type: integer
+        enumValues: []
+        custom: []
+      level:
+        name: level
+        description: 'Must be at least 1. Must not be greater than 100.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        custom: []
       skills:
-        - quibusdam
+        name: skills
+        description: ''
+        required: false
+        example:
+          - 7
+        type: 'integer[]'
+        enumValues: []
+        custom: []
+    cleanBodyParameters:
+      name: zqq
+      race_id: 19
+      ability_id: 4
+      nature_id: 15
+      level: 16
+      skills:
+        - 7
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 201
+        content: |-
+          {
+            "message": "Pokemon created successfully."
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 400
+        content: |-
+          {
+            "message": "Validation error.",
+            "errors": {
+              "name": [
+                "The name field is required."
+              ],
+              // ... other validation errors ...
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: |-
+          {
+            "message": "Race not found."
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 500
+        content: |-
+          {
+            "message": "Server error."
+          }
+        headers: []
+        description: ''
+        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -167,13 +237,13 @@ endpoints:
         name: pokemon
         description: 寶可夢的ID。示例：1
         required: true
-        example: 16
+        example: 6
         type: integer
         enumValues: []
         custom: []
     cleanUrlParameters:
       id: 15
-      pokemon: 16
+      pokemon: 6
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -185,10 +255,10 @@ endpoints:
         content: |-
           {
             "id": 1,
-            "name": "皮卡丘",
+            "name": "daddy",
             "level": 10,
             "race_id": 1,
-            "race": "電鼠",
+            "race": "pikachu",
             "ability": "靜電",
             "nature": "認真",
             "skills": ["電擊", "鐵尾"],
@@ -214,9 +284,7 @@ endpoints:
       subgroup: ''
       subgroupDescription: ''
       title: 修改指定的寶可夢。
-      description: |-
-        此方法允許使用者修改他們的寶可夢的資訊。
-        使用者只能修改他們自己的寶可夢，不能修改其他人的寶可夢。
+      description: 此方法允許使用者修改他們的寶可夢的資訊。
       authenticated: true
       custom: []
     headers:
@@ -233,83 +301,83 @@ endpoints:
         custom: []
       pokemon:
         name: pokemon
-        description: 寶可夢的ID。範例：1
+        description: 寶可夢的ID。Example：1
         required: true
-        example: 20
+        example: 13
         type: integer
         enumValues: []
         custom: []
     cleanUrlParameters:
       id: 15
-      pokemon: 20
+      pokemon: 13
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
       name:
         name: name
-        description: 'optional 寶可夢的名字。最大長度為15個字符。範例：皮卡丘'
+        description: 'optional 寶可夢的名字。最大長度為15個字符。'
         required: false
-        example: odit
+        example: mommy
         type: string
         enumValues: []
         custom: []
       race_id:
         name: race_id
-        description: "optional 寶可夢的種族ID。該ID必須存在於系統的'races'表中。範例：1"
+        description: "optional 寶可夢的種族ID。該ID必須存在於系統的'races'表中。"
         required: false
-        example: 18
+        example: 9
         type: integer
         enumValues: []
         custom: []
       ability_id:
         name: ability_id
-        description: "optional 寶可夢的能力ID。該ID必須存在於系統的'abilities'表中。範例：2"
+        description: "optional 寶可夢的能力ID。該ID必須存在於系統的'abilities'表中。"
         required: false
-        example: 4
+        example: 5
         type: integer
         enumValues: []
         custom: []
       nature_id:
         name: nature_id
-        description: "optional 寶可夢的性格ID。該ID必須存在於系統的'natures'表中。範例：3"
+        description: "optional 寶可夢的性格ID。該ID必須存在於系統的'natures'表中。"
         required: false
-        example: 10
+        example: 4
         type: integer
         enumValues: []
         custom: []
       level:
         name: level
-        description: 'optional 寶可夢的等級。其值必須是1到100之間的整數。範例：10'
+        description: 'optional 寶可夢的等級。其值必須是1到100之間的整數。'
         required: false
-        example: 10
+        example: 12
         type: integer
         enumValues: []
         custom: []
       skills:
         name: skills
-        description: 'optional 寶可夢的技能列表。至少包含1項，最多4項技能。範例：[1, 2, 3]'
+        description: 'optional 寶可夢的技能列表。至少包含1項，最多4項技能。Example：[1, 2, 3]'
         required: false
         example:
-          - quasi
+          - id
         type: 'string[]'
         enumValues: []
         custom: []
       'skills.*':
         name: 'skills.*'
-        description: "optional 其中的每一個技能ID都必須是有效的且存在於'skills'表中。範例：1"
+        description: "optional 其中的每一個技能ID都必須是有效的且存在於'skills'表中。Example：1"
         required: false
-        example: 11
+        example: 17
         type: integer
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: odit
-      race_id: 18
-      ability_id: 4
-      nature_id: 10
-      level: 10
+      name: mommy
+      race_id: 9
+      ability_id: 5
+      nature_id: 4
+      level: 12
       skills:
-        - quasi
+        - id
     fileParameters: []
     responses: []
     responseFields: []
@@ -349,13 +417,13 @@ endpoints:
         name: pokemon
         description: 寶可夢的ID。示例：1
         required: true
-        example: 7
+        example: 19
         type: integer
         enumValues: []
         custom: []
     cleanUrlParameters:
       id: 15
-      pokemon: 7
+      pokemon: 19
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -418,13 +486,13 @@ endpoints:
         name: pokemon
         description: 寶可夢的ID。範例：1
         required: true
-        example: 10
+        example: 7
         type: integer
         enumValues: []
         custom: []
     cleanUrlParameters:
       pokemon_id: 15
-      pokemon: 10
+      pokemon: 7
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

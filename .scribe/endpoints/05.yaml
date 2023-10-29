@@ -33,10 +33,10 @@ endpoints:
                   {
                       "id": "項目ID",
                       "amount": "購物車中的商品數量",
-                      "current_price": "當前種族價格（如果種族已加載）",
-                      "race_name": "種族名稱（如果種族已加載）",
-                      "race_photo": "種族圖片URL（如果種族已加載）",
-                      "race_id": "種族ID（如果種族已加載）"
+                      "current_price": "當前種族價格",
+                      "race_name": "種族名稱",
+                      "race_photo": "種族圖片URL",
+                      "race_id": "種族ID"
                   },
 
               ]
@@ -144,7 +144,7 @@ endpoints:
       subgroup: ''
       subgroupDescription: ''
       title: 購物車總價格計算
-      description: ''
+      description: 這裡會需要前端將使用者已勾選的所有商品的id組成陣列，傳到後端，後端在返回該金額
       authenticated: true
       custom: []
     headers:
@@ -189,72 +189,6 @@ endpoints:
         content: |-
           {
               "error": "Some cart items do not belong to the user or do not exist"
-          }
-        headers: []
-        description: ''
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - PUT
-    uri: 'api/cart_items/{cart_item_id}'
-    metadata:
-      groupName: CartItem
-      groupDescription: 'Operations related to cartItems.'
-      subgroup: ''
-      subgroupDescription: ''
-      title: 購物車更新
-      description: ''
-      authenticated: true
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      cart_item_id:
-        name: cart_item_id
-        description: 'The ID of the cart item.'
-        required: true
-        example: 5
-        type: integer
-        enumValues: []
-        custom: []
-    cleanUrlParameters:
-      cart_item_id: 5
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      quantity:
-        name: quantity
-        description: 更新的商品數量，必須在1到庫存的範圍內。
-        required: true
-        example: 3
-        type: integer
-        enumValues: []
-        custom: []
-    cleanBodyParameters:
-      quantity: 3
-    fileParameters: []
-    responses:
-      -
-        status: 200
-        content: |-
-          {
-              "total_price": "總金額"
-          }
-        headers: []
-        description: ''
-        custom: []
-      -
-        status: 400
-        content: |-
-          {
-              "error": "Validation error message."
           }
         headers: []
         description: ''

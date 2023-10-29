@@ -29,6 +29,34 @@ class OrderDetailController extends Controller
      * 
      * @param \App\Http\Requests\OrderDetailRequest $request 使用者輸入的請求數據。
      * 
+     * @response 201 {
+     *   "success": true,
+     *   "message": "Order detail created successfully."
+     * }
+     * 
+     * @response 400 {
+     *   "success": false,
+     *   "message": "Validation error.",
+     *   "errors": {
+     *     "order_id": [
+     *       "The order id field is required."
+     *     ],
+     *     "race_id": [
+     *       "The race id field is required."
+     *     ]
+     *   }
+     * }
+     * 
+     * @response 404 {
+     *   "success": false,
+     *   "message": "Race not found."
+     * }
+     * 
+     * @response 500 {
+     *   "success": false,
+     *   "message": "Server error."
+     * }
+     * 
      * @return void
      */
     public function store(OrderDetailRequest $request)
@@ -65,9 +93,24 @@ class OrderDetailController extends Controller
     /**
      * 訂單細節列表
      * 
-      * @urlParam order required 訂單的ID。
+     * 用於獲取指定訂單的所有訂單詳情。
      * 
-     * @param \App\Models\Order $order 指定的訂單。
+     * @urlParam order required 訂單的ID。用於指定查詢哪一個訂單的詳情。
+     * 
+     * @response {
+     *     "data": [
+     *         {
+     *             "id": "訂單詳情的唯一ID",
+     *             "race_name": "相應的種族名稱",
+     *             "quantity": "訂購數量",
+     *             "unit_price": "單位價格",
+     *             "subtotal_price": "小計價格"
+     *         },
+     *         ...其他訂單詳情的資料
+     *     ]
+     * }
+     * 
+     * @param \App\Models\Order $order 指定的訂單。自動解析訂單ID並獲取對應的訂單模型實例。
      * 
      * @return \Illuminate\Http\Resources\Json\ResourceCollection 返回指定訂單的所有訂單詳情的集合。
      */
@@ -93,7 +136,7 @@ class OrderDetailController extends Controller
      * 
      * @return \App\Http\Resources\OrderDetailResource|Illuminate\Http\Response 返回指定的訂單詳情或403錯誤。
      */
-    
+
     public function show(OrderDetail $orderDetail)
     {
         $user = auth()->user();

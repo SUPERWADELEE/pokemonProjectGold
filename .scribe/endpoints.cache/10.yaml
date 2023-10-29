@@ -28,7 +28,7 @@ endpoints:
         name: email
         description: 用戶的電子郵件地址。example：user@example.com
         required: true
-        example: apadberg@example.org
+        example: icruickshank@example.net
         type: string
         enumValues: []
         custom: []
@@ -41,7 +41,7 @@ endpoints:
         enumValues: []
         custom: []
     cleanBodyParameters:
-      email: apadberg@example.org
+      email: icruickshank@example.net
       password: e123456
     fileParameters: []
     responses:
@@ -132,8 +132,10 @@ endpoints:
       description: |-
         電子郵件驗證確認
 
-        此端點用於確認用戶的電子郵件驗證。它會比對提供的hash值和用戶的電子郵件生成的hash值。
+        此端點用於確認用戶的電子郵件驗證。
+        它會比對提供的hash值和用戶的電子郵件生成的hash值。
         如果驗證成功，該用戶的電子郵件將被標記為已驗證，並且將觸發一個已驗證的事件。
+        系統會將email驗證的日期存入資料庫
       authenticated: false
       custom: []
     headers:
@@ -144,7 +146,7 @@ endpoints:
         name: id
         description: 'The ID of the verify.'
         required: true
-        example: ipsam
+        example: deleniti
         type: string
         enumValues: []
         custom: []
@@ -152,13 +154,13 @@ endpoints:
         name: hash
         description: ''
         required: true
-        example: animi
+        example: dolore
         type: string
         enumValues: []
         custom: []
     cleanUrlParameters:
-      id: ipsam
-      hash: animi
+      id: deleniti
+      hash: dolore
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -200,7 +202,8 @@ endpoints:
       subgroupDescription: ''
       title: 確認user表註冊驗證信狀態
       description: |-
-        此端點用於檢查指定電子郵件的用戶是否已完成電子郵件驗證。
+        使用者點擊玩註冊之後，系統會去發一個驗證信，
+        然後要將使用者導向此頁面，並告知要去點驗證信
         它將返回用戶的電子郵件驗證狀態，無論是已驗證還是未驗證。
       authenticated: false
       custom: []
@@ -212,12 +215,12 @@ endpoints:
         name: email
         description: ''
         required: true
-        example: muller.kian@example.org
+        example: rbosco@example.net
         type: string
         enumValues: []
         custom: []
     cleanUrlParameters:
-      email: muller.kian@example.org
+      email: rbosco@example.net
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

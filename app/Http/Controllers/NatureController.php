@@ -21,12 +21,7 @@ class NatureController extends Controller
      *     "id": "性格的 ID",
      *     "name": "性格的名稱"
      * }]
-     * @response 422 {
-     *   "message": "The given data was invalid.",
-     *   "errors": {
-     *     "name": ["名稱只能包含中文和英文字。"]
-     *   }
-     * }
+    
      * @return \Illuminate\Http\Response 所有性格的列表，每個性格包括其ID和名稱。
      */
     public function index()
@@ -49,7 +44,12 @@ class NatureController extends Controller
      * @response 400 {
      *     "error": "Validation error messages if any"
      * }
-     * 
+      * @response 422 {
+     *   "message": "The given data was invalid.",
+     *   "errors": {
+     *     "name": ["名稱只能包含中文和英文字。"]
+     *   }
+     * }
      * @param \Illuminate\Http\Request $request 使用者輸入的請求數據。
      * 
      * @return \Illuminate\Http\Response 用 JSON 格式返回的成功消息或驗證錯誤。
@@ -76,7 +76,7 @@ class NatureController extends Controller
     /**
      * 性格修改
      * 
-      * @bodyParam name string required 性格的新名稱。要求是唯一的且最多包含255個字符。Example:易怒
+      * @bodyParam name string required 性格的新名稱。要求是唯一的且最多包含255個字符且只能輸入英文或中文字。Example:易怒
      * 
      * @response 200 {
      *     "message": "Nature updated successfully"
@@ -89,7 +89,12 @@ class NatureController extends Controller
      * @response 404 {
      *     "message": "Nature not found"
      * }
-     * 
+      * @response 422 {
+     *   "message": "The given data was invalid.",
+     *   "errors": {
+     *     "name": ["名稱只能包含中文和英文字。"]
+     *   }
+     * }
      * @param \Illuminate\Http\Request $request 使用者輸入的請求數據。
      * @param \App\Nature $nature 從資料庫取得的指定性格模型實例。
      * 

@@ -37,7 +37,7 @@ endpoints:
         name: TradeInfo
         description: 支付相關的加密資料。
         required: true
-        example: nihil
+        example: mollitia
         type: string
         enumValues: []
         custom: []
@@ -45,13 +45,13 @@ endpoints:
         name: TradeSha
         description: 支付回調的數字簽名。
         required: true
-        example: pariatur
+        example: deleniti
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      TradeInfo: nihil
-      TradeSha: pariatur
+      TradeInfo: mollitia
+      TradeSha: deleniti
     fileParameters: []
     responses: []
     responseFields: []

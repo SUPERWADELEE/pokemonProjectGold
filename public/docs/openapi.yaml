@@ -198,7 +198,7 @@ paths:
                 email:
                   type: string
                   description: 用戶的電子郵件地址。example：user@example.com
-                  example: apadberg@example.org
+                  example: icruickshank@example.net
                 password:
                   type: string
                   description: 用戶的密碼。
@@ -245,7 +245,7 @@ paths:
     get:
       summary: 註冊email驗證信確認
       operationId: email
-      description: "電子郵件驗證確認\n\n此端點用於確認用戶的電子郵件驗證。它會比對提供的hash值和用戶的電子郵件生成的hash值。\n如果驗證成功，該用戶的電子郵件將被標記為已驗證，並且將觸發一個已驗證的事件。"
+      description: "電子郵件驗證確認\n\n此端點用於確認用戶的電子郵件驗證。\n它會比對提供的hash值和用戶的電子郵件生成的hash值。\n如果驗證成功，該用戶的電子郵件將被標記為已驗證，並且將觸發一個已驗證的事件。\n系統會將email驗證的日期存入資料庫"
       parameters: []
       responses:
         200:
@@ -268,7 +268,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the verify.'
-        example: ipsam
+        example: deleniti
         required: true
         schema:
           type: string
@@ -276,7 +276,7 @@ paths:
         in: path
         name: hash
         description: ''
-        example: animi
+        example: dolore
         required: true
         schema:
           type: string
@@ -284,7 +284,7 @@ paths:
     get:
       summary: 確認user表註冊驗證信狀態
       operationId: user
-      description: "此端點用於檢查指定電子郵件的用戶是否已完成電子郵件驗證。\n它將返回用戶的電子郵件驗證狀態，無論是已驗證還是未驗證。"
+      description: "使用者點擊玩註冊之後，系統會去發一個驗證信，\n然後要將使用者導向此頁面，並告知要去點驗證信\n它將返回用戶的電子郵件驗證狀態，無論是已驗證還是未驗證。"
       parameters: []
       responses:
         200:
@@ -314,7 +314,7 @@ paths:
         in: path
         name: email
         description: ''
-        example: muller.kian@example.org
+        example: rbosco@example.net
         required: true
         schema:
           type: string
@@ -331,7 +331,7 @@ paths:
             text/plain:
               schema:
                 type: string
-                example: "{\n    \"data\": [\n        {\n            \"id\": \"項目ID\",\n            \"amount\": \"購物車中的商品數量\",\n            \"current_price\": \"當前種族價格（如果種族已加載）\",\n            \"race_name\": \"種族名稱（如果種族已加載）\",\n            \"race_photo\": \"種族圖片URL（如果種族已加載）\",\n            \"race_id\": \"種族ID（如果種族已加載）\"\n        },\n\n    ]\n}"
+                example: "{\n    \"data\": [\n        {\n            \"id\": \"項目ID\",\n            \"amount\": \"購物車中的商品數量\",\n            \"current_price\": \"當前種族價格\",\n            \"race_name\": \"種族名稱\",\n            \"race_photo\": \"種族圖片URL\",\n            \"race_id\": \"種族ID\"\n        },\n\n    ]\n}"
         401:
           description: ''
           content:
@@ -412,7 +412,7 @@ paths:
     get:
       summary: 購物車總價格計算
       operationId: ''
-      description: ''
+      description: 這裡會需要前端將使用者已勾選的所有商品的id組成陣列，傳到後端，後端在返回該金額
       parameters: []
       responses:
         200:
@@ -464,51 +464,6 @@ paths:
               required:
                 - cart_item_ids
   '/api/cart_items/{cart_item_id}':
-    put:
-      summary: 購物車更新
-      operationId: ''
-      description: ''
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  total_price: 總金額
-                properties:
-                  total_price:
-                    type: string
-                    example: 總金額
-        400:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  error: 'Validation error message.'
-                properties:
-                  error:
-                    type: string
-                    example: 'Validation error message.'
-      tags:
-        - CartItem
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                quantity:
-                  type: integer
-                  description: 更新的商品數量，必須在1到庫存的範圍內。
-                  example: 3
-              required:
-                - quantity
     delete:
       summary: 購物車刪除
       operationId: ''
@@ -532,7 +487,7 @@ paths:
     get:
       summary: 將用戶重定向到Google的OAuth認證頁面。
       operationId: GoogleOAuth
-      description: "此方法嘗試將用戶重定向到Google的OAuth服務。\n如果在重定向過程中出現錯誤，它會捕獲異常\n並回應一個JSON錯誤訊息。"
+      description: "此API就是當前端按下google登入的時候\n將用戶重定向到Google的OAuth服務。\n如果在重定向過程中出現錯誤，它會捕獲異常\n並回應一個JSON錯誤訊息。\n如果成功就是倒倒google頁面"
       parameters: []
       responses:
         500:
@@ -554,7 +509,7 @@ paths:
     get:
       summary: '處理從 Google 第三方認證服務頁面返回的回調。'
       operationId: Google
-      description: ''
+      description: "此處就是可以從google拿到使用者資訊並儲存在資料庫\n然後登入"
       parameters: []
       responses:
         200:
@@ -584,7 +539,7 @@ paths:
     get:
       summary: 性格詳情
       operationId: ''
-      description: ''
+      description: 主要在於可以讓使用更新寶可夢的時候，在性格部分有選項可以讓使用者選擇
       parameters: []
       responses:
         200:
@@ -631,6 +586,30 @@ paths:
                   error:
                     type: string
                     example: 'Validation error messages if any'
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'The given data was invalid.'
+                  errors:
+                    name:
+                      - 名稱只能包含中文和英文字。
+                properties:
+                  message:
+                    type: string
+                    example: 'The given data was invalid.'
+                  errors:
+                    type: object
+                    properties:
+                      name:
+                        type: array
+                        example:
+                          - 名稱只能包含中文和英文字。
+                        items:
+                          type: string
       tags:
         - Nature
       requestBody:
@@ -642,8 +621,8 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 性格的名稱。要求是唯一的且最多包含255個字符。
-                  example: eaque
+                  description: 性格的名稱。要求是唯一的且最多包含255個字符且只能輸入英文或中文字。
+                  example: 好害羞
               required:
                 - name
   '/api/natures/{nature_id}':
@@ -689,6 +668,30 @@ paths:
                   message:
                     type: string
                     example: 'Nature not found'
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'The given data was invalid.'
+                  errors:
+                    name:
+                      - 名稱只能包含中文和英文字。
+                properties:
+                  message:
+                    type: string
+                    example: 'The given data was invalid.'
+                  errors:
+                    type: object
+                    properties:
+                      name:
+                        type: array
+                        example:
+                          - 名稱只能包含中文和英文字。
+                        items:
+                          type: string
       tags:
         - Nature
       requestBody:
@@ -700,8 +703,8 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 性格的新名稱。要求是唯一的且最多包含255個字符。
-                  example: laudantium
+                  description: 性格的新名稱。要求是唯一的且最多包含255個字符且只能輸入英文或中文字。
+                  example: 易怒
               required:
                 - name
     parameters:
@@ -720,65 +723,42 @@ paths:
       description: ''
       parameters: []
       responses:
-        200:
+        201:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  id: 新創建的訂單的ID
+                  id: 'Newly created order ID'
                 properties:
                   id:
                     type: string
-                    example: 新創建的訂單的ID
-      tags:
-        - Order
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                total_price:
-                  type: number
-                  description: 訂單的總價格。
-                  example: 1.45245695
-                payment_method:
-                  type: string
-                  description: 訂單的付款方式。
-                  example: et
-                payment_status:
-                  type: string
-                  description: 訂單的付款狀態。
-                  example: ad
-              required:
-                - total_price
-                - payment_method
-                - payment_status
-    get:
-      summary: 訂單列表
-      operationId: ''
-      description: ''
-      parameters: []
-      responses:
-        200:
+                    example: 'Newly created order ID'
+        400:
           description: ''
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-                example: "{\n    \"data\": [\n        {\n            ...各個訂單的資料\n        }\n    ]\n}"
-      tags:
-        - Order
-  '/api/orders/{order_id}/order_details':
-    get:
-      summary: 訂單細節列表
-      operationId: ''
-      description: ''
-      parameters: []
-      responses:
+                type: object
+                example:
+                  message: 'The given data was invalid.'
+                  errors:
+                    field_name:
+                      - 'The field_name is required.'
+                properties:
+                  message:
+                    type: string
+                    example: 'The given data was invalid.'
+                  errors:
+                    type: object
+                    properties:
+                      field_name:
+                        type: array
+                        example:
+                          - 'The field_name is required.'
+                        items:
+                          type: string
         401:
           description: ''
           content:
@@ -791,6 +771,72 @@ paths:
                   message:
                     type: string
                     example: Unauthenticated.
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Server Error'
+                properties:
+                  message:
+                    type: string
+                    example: 'Server Error'
+      tags:
+        - Order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                total_price:
+                  type: number
+                  description: 訂單的總價格。
+                  example: 29.48176726
+                payment_method:
+                  type: string
+                  description: "訂單的付款方式，只能是 'credit_card' 或 'cash_on_delivery'。"
+                  example: incidunt
+                payment_status:
+                  type: string
+                  description: "訂單的付款狀態，只能是 'paid', 'unpaid', 或 'canceled'。"
+                  example: modi
+              required:
+                - total_price
+                - payment_method
+                - payment_status
+    get:
+      summary: "訂單列表\n獲取當前登錄用戶的所有訂單列表。"
+      operationId: ''
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n    \"data\": [\n        {\n            \"id\": \"訂單的唯一ID\",\n            \"user_name\": \"下訂單的用戶名稱\",\n            \"total_price\": \"訂單的總價格\",\n            \"payment_method\": \"訂單的付款方式 (例如: credit_card, cash_on_delivery)\",\n            \"payment_status\": \"訂單的付款狀態 (例如: paid, unpaid, canceled)\"\n        },\n        ...其他訂單的資料\n    ]\n}"
+      tags:
+        - Order
+  '/api/orders/{order_id}/order_details':
+    get:
+      summary: 訂單細節列表
+      operationId: ''
+      description: 用於獲取指定訂單的所有訂單詳情。
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n    \"data\": [\n        {\n            \"id\": \"訂單詳情的唯一ID\",\n            \"race_name\": \"相應的種族名稱\",\n            \"quantity\": \"訂購數量\",\n            \"unit_price\": \"單位價格\",\n            \"subtotal_price\": \"小計價格\"\n        },\n        ...其他訂單詳情的資料\n    ]\n}"
       tags:
         - OrderDetail
     parameters:
@@ -805,8 +851,8 @@ paths:
       -
         in: path
         name: order
-        description: 訂單的ID。
-        example: et
+        description: 訂單的ID。用於指定查詢哪一個訂單的詳情。
+        example: officia
         required: true
         schema:
           type: string
@@ -816,7 +862,91 @@ paths:
       operationId: ''
       description: ''
       parameters: []
-      responses: {  }
+      responses:
+        201:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  message: 'Order detail created successfully.'
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Order detail created successfully.'
+        400:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: 'Validation error.'
+                  errors:
+                    order_id:
+                      - 'The order id field is required.'
+                    race_id:
+                      - 'The race id field is required.'
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Validation error.'
+                  errors:
+                    type: object
+                    properties:
+                      order_id:
+                        type: array
+                        example:
+                          - 'The order id field is required.'
+                        items:
+                          type: string
+                      race_id:
+                        type: array
+                        example:
+                          - 'The race id field is required.'
+                        items:
+                          type: string
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: 'Race not found.'
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Race not found.'
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: 'Server error.'
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Server error.'
       tags:
         - OrderDetail
       requestBody:
@@ -829,11 +959,11 @@ paths:
                 order_id:
                   type: integer
                   description: 訂單的ID。
-                  example: 6
+                  example: 15
                 race_id:
                   type: integer
                   description: "產品(Race)的ID。\n\n根據指定的race_id從使用者的購物車中提取數量，並根據race的價格計算出單價和總價。\n建立訂單細節後，減少相應的庫存，並清除使用者購物車中的該race項。"
-                  example: 5
+                  example: 18
               required:
                 - order_id
                 - race_id
@@ -841,7 +971,7 @@ paths:
     post:
       summary: 請求藍星金流結帳頁面
       operationId: ''
-      description: "此方法主要功能如下：\n1. 驗證當前使用者。\n2. 更新與當前使用者關聯的購物車項目的結帳狀態。\n3. 生成與藍星金流相關的支付參數（包括加密和哈希）。\n4. 返回支付參數，以便前端將使用者重定向到藍星金流的支付頁面。"
+      description: "主要使用者點選結帳後可以請求這個API，然後藍星金流會發結帳頁面給使用者，\n此方法主要功能如下：\n1. 驗證當前使用者。\n2. 更新與當前使用者關聯的購物車項目的結帳狀態。\n3. 生成與藍星金流相關的支付參數（包括加密和哈希）。\n4. 返回支付參數，以便前端將使用者重定向到藍星金流的支付頁面。"
       parameters: []
       responses: {  }
       tags:
@@ -856,7 +986,7 @@ paths:
                 totalPrice:
                   type: number
                   description: 購物車中所有商品的總價格。
-                  example: 1806995.0
+                  example: 119177.36
               required:
                 - totalPrice
   /api/payResult:
@@ -878,41 +1008,149 @@ paths:
                 TradeInfo:
                   type: string
                   description: 支付相關的加密資料。
-                  example: nihil
+                  example: mollitia
                 TradeSha:
                   type: string
                   description: 支付回調的數字簽名。
-                  example: pariatur
+                  example: deleniti
               required:
                 - TradeInfo
                 - TradeSha
   /api/pokemons:
     get:
-      summary: 使用者寶可夢的列表
+      summary: 寶可夢列表
       operationId: ''
       description: ''
       parameters: []
       responses:
-        401:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  id: 123
+                  name: myBaby
+                  level: 50
+                  race_id: 25
+                  race: Pikachu
+                  photo: 'http://example.com/pikachu.jpg'
+                  ability: Static
+                  nature: Jolly
+                  skills:
+                    - Thunderbolt
+                    - 'Quick Attack'
+                  host: 'Ash Ketchum'
                 properties:
-                  message:
+                  id:
+                    type: integer
+                    example: 123
+                  name:
                     type: string
-                    example: Unauthenticated.
+                    example: myBaby
+                  level:
+                    type: integer
+                    example: 50
+                  race_id:
+                    type: integer
+                    example: 25
+                  race:
+                    type: string
+                    example: Pikachu
+                  photo:
+                    type: string
+                    example: 'http://example.com/pikachu.jpg'
+                  ability:
+                    type: string
+                    example: Static
+                  nature:
+                    type: string
+                    example: Jolly
+                  skills:
+                    type: array
+                    example:
+                      - Thunderbolt
+                      - 'Quick Attack'
+                    items:
+                      type: string
+                  host:
+                    type: string
+                    example: 'Ash Ketchum'
       tags:
         - Pokemons
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  description: 'The first name of the user.'
+                  example: quia
+                last_name:
+                  type: string
+                  description: 'The last name of the user.'
+                  example: vero
+                email:
+                  type: string
+                  description: 'The email address of the user.'
+                  example: lou.collins@example.com
+              required:
+                - first_name
+                - last_name
+                - email
     post:
       summary: 新增一個屬於該使用者的寶可夢。
       operationId: ''
       description: "此方法將驗證請求數據，並在成功驗證後，\n為當前經過身份驗證的用戶新增一隻寶可夢。"
       parameters: []
-      responses: {  }
+      responses:
+        201:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Pokemon created successfully.'
+                properties:
+                  message:
+                    type: string
+                    example: 'Pokemon created successfully.'
+        400:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n  \"message\": \"Validation error.\",\n  \"errors\": {\n    \"name\": [\n      \"The name field is required.\"\n    ],\n    // ... other validation errors ...\n  }\n}"
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Race not found.'
+                properties:
+                  message:
+                    type: string
+                    example: 'Race not found.'
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Server error.'
+                properties:
+                  message:
+                    type: string
+                    example: 'Server error.'
       tags:
         - Pokemons
       requestBody:
@@ -924,38 +1162,37 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 寶可夢的名稱，必填，最大15字符長，且必須在系統中是唯一的。：皮卡丘
-                  example: ea
+                  description: 'Must not be greater than 15 characters.'
+                  example: zqq
                 race_id:
                   type: integer
-                  description: "寶可夢的種族ID，必填，該ID必須存在於系統的'races'表中。：1"
-                  example: 8
+                  description: ''
+                  example: 19
                 ability_id:
                   type: integer
-                  description: "寶可夢的能力ID，必填，該ID必須存在於系統的'abilities'表中。：2"
-                  example: 16
+                  description: ''
+                  example: 4
                 nature_id:
                   type: integer
-                  description: "寶可夢的性格ID，必填，該ID必須存在於系統的'natures'表中。：3"
-                  example: 8
+                  description: ''
+                  example: 15
                 level:
                   type: integer
-                  description: 寶可夢的等級，必填，其值必須是1到100之間的整數。：10
-                  example: 20
+                  description: 'Must be at least 1. Must not be greater than 100.'
+                  example: 16
                 skills:
                   type: array
-                  description: '寶可夢的技能列表，必填，至少包含1項，最多4項技能。：[1, 2, 3]'
+                  description: ''
                   example:
-                    - quibusdam
+                    - 7
                   items:
-                    type: string
+                    type: integer
               required:
                 - name
                 - race_id
                 - ability_id
                 - nature_id
                 - level
-                - skills
   '/api/pokemons/{id}':
     get:
       summary: 顯示指定寶可夢的詳細資訊。
@@ -971,10 +1208,10 @@ paths:
                 type: object
                 example:
                   id: 1
-                  name: 皮卡丘
+                  name: daddy
                   level: 10
                   race_id: 1
-                  race: 電鼠
+                  race: pikachu
                   ability: 靜電
                   nature: 認真
                   skills:
@@ -987,7 +1224,7 @@ paths:
                     example: 1
                   name:
                     type: string
-                    example: 皮卡丘
+                    example: daddy
                   level:
                     type: integer
                     example: 10
@@ -996,7 +1233,7 @@ paths:
                     example: 1
                   race:
                     type: string
-                    example: 電鼠
+                    example: pikachu
                   ability:
                     type: string
                     example: 靜電
@@ -1018,7 +1255,7 @@ paths:
     put:
       summary: 修改指定的寶可夢。
       operationId: ''
-      description: "此方法允許使用者修改他們的寶可夢的資訊。\n使用者只能修改他們自己的寶可夢，不能修改其他人的寶可夢。"
+      description: 此方法允許使用者修改他們的寶可夢的資訊。
       parameters: []
       responses: {  }
       tags:
@@ -1032,29 +1269,29 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'optional 寶可夢的名字。最大長度為15個字符。範例：皮卡丘'
-                  example: odit
+                  description: 'optional 寶可夢的名字。最大長度為15個字符。'
+                  example: mommy
                 race_id:
                   type: integer
-                  description: "optional 寶可夢的種族ID。該ID必須存在於系統的'races'表中。範例：1"
-                  example: 18
+                  description: "optional 寶可夢的種族ID。該ID必須存在於系統的'races'表中。"
+                  example: 9
                 ability_id:
                   type: integer
-                  description: "optional 寶可夢的能力ID。該ID必須存在於系統的'abilities'表中。範例：2"
-                  example: 4
+                  description: "optional 寶可夢的能力ID。該ID必須存在於系統的'abilities'表中。"
+                  example: 5
                 nature_id:
                   type: integer
-                  description: "optional 寶可夢的性格ID。該ID必須存在於系統的'natures'表中。範例：3"
-                  example: 10
+                  description: "optional 寶可夢的性格ID。該ID必須存在於系統的'natures'表中。"
+                  example: 4
                 level:
                   type: integer
-                  description: 'optional 寶可夢的等級。其值必須是1到100之間的整數。範例：10'
-                  example: 10
+                  description: 'optional 寶可夢的等級。其值必須是1到100之間的整數。'
+                  example: 12
                 skills:
                   type: array
-                  description: 'optional 寶可夢的技能列表。至少包含1項，最多4項技能。範例：[1, 2, 3]'
+                  description: 'optional 寶可夢的技能列表。至少包含1項，最多4項技能。Example：[1, 2, 3]'
                   example:
-                    - quasi
+                    - id
                   items:
                     type: string
     delete:
@@ -1092,7 +1329,7 @@ paths:
         in: path
         name: pokemon
         description: 寶可夢的ID。示例：1
-        example: 16
+        example: 6
         required: true
         schema:
           type: integer
@@ -1130,7 +1367,7 @@ paths:
         in: path
         name: pokemon
         description: 寶可夢的ID。範例：1
-        example: 10
+        example: 7
         required: true
         schema:
           type: integer
@@ -1188,7 +1425,7 @@ paths:
         in: path
         name: race
         description: 寶可夢種族的ID。示例：1
-        example: 16
+        example: 4
         required: true
         schema:
           type: integer
@@ -1221,7 +1458,7 @@ paths:
         in: path
         name: race
         description: 寶可夢種族的ID。示例：1
-        example: 4
+        example: 17
         required: true
         schema:
           type: integer
@@ -1258,19 +1495,19 @@ paths:
                 name:
                   type: string
                   description: '使用者的名字。示例：John Doe'
-                  example: exercitationem
+                  example: sunt
                 email:
                   type: string
                   description: 使用者的電子郵件地址。必須是唯一的並且符合電子郵件格式。示例：john.doe@example.com
-                  example: terrence57@example.org
+                  example: xschinner@example.net
                 password:
                   type: string
                   description: 使用者的密碼。必須至少有6個字符長並且與`password_confirmation`參數匹配。示例：password123
-                  example: '(O!XDBzq:yv*g{YEP'
+                  example: '7ZMS}>mZzdcm])rbo'
                 password_confirmation:
                   type: string
                   description: 密碼確認。必須與`password`參數匹配。示例：password123
-                  example: et
+                  example: sunt
               required:
                 - name
                 - email
@@ -1356,11 +1593,11 @@ paths:
                 name:
                   type: string
                   description: 'optional 新的用戶名稱。示例：John Doe'
-                  example: aut
+                  example: voluptatem
                 email:
                   type: string
                   description: 'optional 新的電子郵件地址。示例：john.doe@example.com'
-                  example: leuschke.rosamond@example.org
+                  example: jmohr@example.com
 tags:
   -
     name: Ability

@@ -11,7 +11,7 @@ endpoints:
       subgroup: ''
       subgroupDescription: ''
       title: 訂單細節列表
-      description: ''
+      description: 用於獲取指定訂單的所有訂單詳情。
       authenticated: true
       custom: []
     headers:
@@ -28,15 +28,15 @@ endpoints:
         custom: []
       order:
         name: order
-        description: 訂單的ID。
+        description: 訂單的ID。用於指定查詢哪一個訂單的詳情。
         required: true
-        example: et
+        example: officia
         type: string
         enumValues: []
         custom: []
     cleanUrlParameters:
       order_id: 16
-      order: et
+      order: officia
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -44,13 +44,22 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
+        status: 200
+        content: |-
+          {
+              "data": [
+                  {
+                      "id": "訂單詳情的唯一ID",
+                      "race_name": "相應的種族名稱",
+                      "quantity": "訂購數量",
+                      "unit_price": "單位價格",
+                      "subtotal_price": "小計價格"
+                  },
+                  ...其他訂單詳情的資料
+              ]
+          }
+        headers: []
+        description: ''
         custom: []
     responseFields: []
     auth: []
@@ -83,7 +92,7 @@ endpoints:
         name: order_id
         description: 訂單的ID。
         required: true
-        example: 6
+        example: 15
         type: integer
         enumValues: []
         custom: []
@@ -95,15 +104,63 @@ endpoints:
           根據指定的race_id從使用者的購物車中提取數量，並根據race的價格計算出單價和總價。
           建立訂單細節後，減少相應的庫存，並清除使用者購物車中的該race項。
         required: true
-        example: 5
+        example: 18
         type: integer
         enumValues: []
         custom: []
     cleanBodyParameters:
-      order_id: 6
-      race_id: 5
+      order_id: 15
+      race_id: 18
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 201
+        content: |-
+          {
+            "success": true,
+            "message": "Order detail created successfully."
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 400
+        content: |-
+          {
+            "success": false,
+            "message": "Validation error.",
+            "errors": {
+              "order_id": [
+                "The order id field is required."
+              ],
+              "race_id": [
+                "The race id field is required."
+              ]
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: |-
+          {
+            "success": false,
+            "message": "Race not found."
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 500
+        content: |-
+          {
+            "success": false,
+            "message": "Server error."
+          }
+        headers: []
+        description: ''
+        custom: []
     responseFields: []
     auth: []
     controller: null

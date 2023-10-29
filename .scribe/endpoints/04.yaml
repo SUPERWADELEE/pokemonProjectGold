@@ -86,7 +86,7 @@ endpoints:
         name: name
         description: 'optional 新的用戶名稱。示例：John Doe'
         required: false
-        example: aut
+        example: voluptatem
         type: string
         enumValues: []
         custom: []
@@ -94,13 +94,13 @@ endpoints:
         name: email
         description: 'optional 新的電子郵件地址。示例：john.doe@example.com'
         required: false
-        example: leuschke.rosamond@example.org
+        example: jmohr@example.com
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: aut
-      email: leuschke.rosamond@example.org
+      name: voluptatem
+      email: jmohr@example.com
     fileParameters:
       userPhoto: null
     responses:
