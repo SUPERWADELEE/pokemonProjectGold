@@ -7,38 +7,38 @@
  
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <script type="module" src="https://wade.monster/js/fetchUserAvatar.js"></script>
+  <script type="module" src="http://localhost:8000/js/fetchUserAvatar.js"></script>
 
-  <script type="module" src="https://wade.monster/js/config.js"></script>
-  <script type="module" src="https://wade.monster/js/login.js"></script>
-  <script type="module" src="https://wade.monster/js/logout.js"></script>
-  <script type="module" src="https://wade.monster/js/register.js"></script>
-  <script  src="https://wade.monster/js/showPage.js"></script>
-  <script type="module" src="https://wade.monster/js/pokemonsIndex.js"></script>
-  <script type="module" src="https://wade.monster/js/racesIndex.js"></script>
-  <script type="module" src="https://wade.monster/js/ordersIndex.js"></script>
-  <script type="module" src="https://wade.monster/js/shoppingCart.js"></script>
-  <script  defer type="module" src="https://wade.monster/js/showPurchasedPokemon.js"></script>
-  <script type="module" src="https://wade.monster/js/returnIndex.js"></script>
-  <script type="module" src="https://wade.monster/js/userProfile.js"></script>
-  <script type="module" src="https://wade.monster/js/updatePokemonDetail.js"></script>
-  <script  type="module" src="https://wade.monster/js/showPurchasedPokemon.js"></script>
-  <script  src="https://wade.monster/js/togglePagination.js"></script>
+  <script type="module" src="http://localhost:8000/js/config.js"></script>
+  <script type="module" src="http://localhost:8000/js/login.js"></script>
+  <script type="module" src="http://localhost:8000/js/logout.js"></script>
+  <script type="module" src="http://localhost:8000/js/register.js"></script>
+  <script  src="http://localhost:8000/js/showPage.js"></script>
+  <script type="module" src="http://localhost:8000/js/pokemonsIndex.js"></script>
+  <script type="module" src="http://localhost:8000/js/racesIndex.js"></script>
+  <script type="module" src="http://localhost:8000/js/ordersIndex.js"></script>
+  <script type="module" src="http://localhost:8000/js/shoppingCart.js"></script>
+  <script  defer type="module" src="http://localhost:8000/js/showPurchasedPokemon.js"></script>
+  <script type="module" src="http://localhost:8000/js/returnIndex.js"></script>
+  <script type="module" src="http://localhost:8000/js/userProfile.js"></script>
+  <script type="module" src="http://localhost:8000/js/updatePokemonDetail.js"></script>
+  <script  type="module" src="http://localhost:8000/js/showPurchasedPokemon.js"></script>
+  <script  src="http://localhost:8000/js/togglePagination.js"></script>
 
   
 
 
-  <script type="module" src="https://wade.monster/js/populateEvolutionDropdown.js"></script>
-  <script type="module" src="https://wade.monster/js/checkout.js"></script>
-  <script type="module" src="https://wade.monster/js/createOrder.js"></script>
-  <script type="module" src="https://wade.monster/js/createPokemons.js"></script>
-  <script type="module" src="https://wade.monster/js/fetchAndPopulateDropdown.js"></script>
+  <script type="module" src="http://localhost:8000/js/populateEvolutionDropdown.js"></script>
+  <script type="module" src="http://localhost:8000/js/checkout.js"></script>
+  <script type="module" src="http://localhost:8000/js/createOrder.js"></script>
+  <script type="module" src="http://localhost:8000/js/createPokemons.js"></script>
+  <script type="module" src="http://localhost:8000/js/fetchAndPopulateDropdown.js"></script>
  
 
-  <script type="module" src="https://wade.monster/js/fetchAndPopulateDropdownSkills.js"></script>
-  <script type="module" src="https://wade.monster/js/waitEmailVerification.js"></script>
+  <script type="module" src="http://localhost:8000/js/fetchAndPopulateDropdownSkills.js"></script>
+  <script type="module" src="http://localhost:8000/js/waitEmailVerification.js"></script>
 
-  <!-- <script type="module" src="https://wade.monster/fetchUserAvatar.js"></script> -->
+  <!-- <script type="module" src="http://localhost:8000/fetchUserAvatar.js"></script> -->
 
 
 

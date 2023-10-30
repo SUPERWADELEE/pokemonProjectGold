@@ -26,7 +26,7 @@ endpoints:
         name: total_price
         description: 訂單的總價格。
         required: true
-        example: 29.48176726
+        example: 2621557.6889854
         type: number
         enumValues: []
         custom: []
@@ -34,7 +34,7 @@ endpoints:
         name: payment_method
         description: "訂單的付款方式，只能是 'credit_card' 或 'cash_on_delivery'。"
         required: true
-        example: incidunt
+        example: et
         type: string
         enumValues: []
         custom: []
@@ -42,14 +42,14 @@ endpoints:
         name: payment_status
         description: "訂單的付款狀態，只能是 'paid', 'unpaid', 或 'canceled'。"
         required: true
-        example: modi
+        example: ea
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      total_price: 29.48176726
-      payment_method: incidunt
-      payment_status: modi
+      total_price: 2621557.6889854
+      payment_method: et
+      payment_status: ea
     fileParameters: []
     responses:
       -

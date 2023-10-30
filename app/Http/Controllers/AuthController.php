@@ -93,7 +93,7 @@ class AuthController extends Controller
     
      * 電子郵件驗證確認
      *
-     * 此端點用於確認用戶的電子郵件驗證。
+     * 此端點用於確認用戶的電子郵件驗證(和前端較無關聯）。
      * 它會比對提供的hash值和用戶的電子郵件生成的hash值。
      * 如果驗證成功，該用戶的電子郵件將被標記為已驗證，並且將觸發一個已驗證的事件。
      * 系統會將email驗證的日期存入資料庫
@@ -117,14 +117,17 @@ class AuthController extends Controller
     {
         $user = User::findOrFail($id);
 
+        // 此方法通常用來判斷文件是否被串改
         if (!hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
             throw new AuthorizationException();
         }
 
+        // 判斷這個email是否已經驗證過
         if ($user->hasVerifiedEmail()) {
             return response(['message' => 'Email already verified.']);
         }
 
+        // 到這一步就去將他的email驗證
         if ($user->markEmailAsVerified()) {
             event(new Verified($user));
         }
@@ -135,9 +138,9 @@ class AuthController extends Controller
     /**
      * 確認user表註冊驗證信狀態
      * 
-     * 使用者點擊玩註冊之後，系統會去發一個驗證信，
-     * 然後要將使用者導向此頁面，並告知要去點驗證信
-     * 它將返回用戶的電子郵件驗證狀態，無論是已驗證還是未驗證。
+     * 此API用來讓前端判斷目前的使用者是否為email已驗證狀態
+     * 目前採用longpoling的方式，所以後端這裡會去輪詢資料庫查看狀態。
+     * 如果請求超時會返回false給使用者
      *
      * @param string $email 需要檢查的用戶電子郵件地址
      * 
@@ -149,20 +152,30 @@ class AuthController extends Controller
      *   "error": "User not found"
      * }
      */
+
+    // 此為long poling的一種實現
     public function checkVerificationStatus($email)
     {
-        // Find the user by email
-        $user = User::where('email', $email)->first();
+        $startTime = time();
+        $waitTimeoutInSeconds = 10; // 設置超時時間，例如 20 秒
 
-        // If the user doesn't exist, return an error
-        if (!$user) {
-            return response()->json(['error' => 'User not found'], 404);
+        while (time() - $startTime < $waitTimeoutInSeconds) {
+            $user = User::where('email', $email)->first();
+
+            if (!$user) {
+                return response()->json(['error' => 'User not found'], 404);
+            }
+
+            if (!is_null($user->email_verified_at)) {
+                // 如果使用者的 email 已經驗證，則立即返回
+                return response()->json(['isVerified' => true]);
+            }
+
+            // 等待一段時間再次檢查
+            sleep(2);  // 例如每2秒檢查一次
         }
 
-        // Check if the user's email is verified
-        $isVerified = !is_null($user->email_verified_at);
-
-        // Return the verification status
-        return response()->json(['isVerified' => $isVerified]);
+        // 如果超過了 $waitTimeoutInSeconds 秒還沒有驗證，則返回
+        return response()->json(['isVerified' => false]);
     }
 }

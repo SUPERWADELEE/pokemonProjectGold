@@ -26,7 +26,7 @@
             </style>
 
     <script>
-        var tryItOutBaseUrl = "https://wade.monster";
+        var tryItOutBaseUrl = "http://localhost:8000";
         var useCsrf = Boolean();
         var csrfUrl = "/sanctum/csrf-cookie";
     </script>
@@ -264,7 +264,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: October 29, 2023</li>
+        <li>Last updated: October 30, 2023</li>
     </ul>
 </div>
 
@@ -273,7 +273,7 @@
     <div class="content">
         <h1 id="introduction">Introduction</h1>
 <aside>
-    <strong>Base URL</strong>: <code>https://wade.monster</code>
+    <strong>Base URL</strong>: <code>http://localhost:8000</code>
 </aside>
 <p>This documentation aims to provide all the information you need to work with our API.</p>
 <aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
@@ -300,14 +300,14 @@ This API is not authenticated. -->
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://wade.monster/api/abilities" \
+    --get "http://localhost:8000/api/abilities" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wade.monster/api/abilities"
+    "http://localhost:8000/api/abilities"
 );
 
 const headers = {
@@ -419,7 +419,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://wade.monster/api/abilities" \
+    "http://localhost:8000/api/abilities" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -430,7 +430,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wade.monster/api/abilities"
+    "http://localhost:8000/api/abilities"
 );
 
 const headers = {
@@ -572,7 +572,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "https://wade.monster/api/abilities/1" \
+    "http://localhost:8000/api/abilities/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -583,7 +583,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wade.monster/api/abilities/1"
+    "http://localhost:8000/api/abilities/1"
 );
 
 const headers = {
@@ -740,11 +740,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://wade.monster/api/Auth/login" \
+    "http://localhost:8000/api/Auth/login" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"email\": \"icruickshank@example.net\",
+    \"email\": \"nikita.haley@example.com\",
     \"password\": \"e123456\"
 }"
 </code></pre></div>
@@ -752,7 +752,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wade.monster/api/Auth/login"
+    "http://localhost:8000/api/Auth/login"
 );
 
 const headers = {
@@ -761,7 +761,7 @@ const headers = {
 };
 
 let body = {
-    "email": "icruickshank@example.net",
+    "email": "nikita.haley@example.com",
     "password": "e123456"
 };
 
@@ -871,10 +871,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-Auth-login"
-               value="icruickshank@example.net"
+               value="nikita.haley@example.com"
                data-component="body">
     <br>
-<p>用戶的電子郵件地址。example：user@example.com Example: <code>icruickshank@example.net</code></p>
+<p>用戶的電子郵件地址。example：user@example.com Example: <code>nikita.haley@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -902,14 +902,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://wade.monster/api/Auth/logout" \
+    "http://localhost:8000/api/Auth/logout" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wade.monster/api/Auth/logout"
+    "http://localhost:8000/api/Auth/logout"
 );
 
 const headers = {
@@ -1021,7 +1021,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </p>
 
 <p>電子郵件驗證確認</p>
-<p>此端點用於確認用戶的電子郵件驗證。
+<p>此端點用於確認用戶的電子郵件驗證(和前端較無關聯）。
 它會比對提供的hash值和用戶的電子郵件生成的hash值。
 如果驗證成功，該用戶的電子郵件將被標記為已驗證，並且將觸發一個已驗證的事件。
 系統會將email驗證的日期存入資料庫</p>
@@ -1032,14 +1032,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://wade.monster/api/email/verify/deleniti/dolore" \
+    --get "http://localhost:8000/api/email/verify/possimus/omnis" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wade.monster/api/email/verify/deleniti/dolore"
+    "http://localhost:8000/api/email/verify/possimus/omnis"
 );
 
 const headers = {
@@ -1150,10 +1150,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="GETapi-email-verify--id---hash-"
-               value="deleniti"
+               value="possimus"
                data-component="url">
     <br>
-<p>The ID of the verify. Example: <code>deleniti</code></p>
+<p>The ID of the verify. Example: <code>possimus</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>hash</code></b>&nbsp;&nbsp;
@@ -1161,10 +1161,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="hash"                data-endpoint="GETapi-email-verify--id---hash-"
-               value="dolore"
+               value="omnis"
                data-component="url">
     <br>
-<p>Example: <code>dolore</code></p>
+<p>Example: <code>omnis</code></p>
             </div>
                     </form>
 
@@ -1173,9 +1173,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>
 </p>
 
-<p>使用者點擊玩註冊之後，系統會去發一個驗證信，
-然後要將使用者導向此頁面，並告知要去點驗證信
-它將返回用戶的電子郵件驗證狀態，無論是已驗證還是未驗證。</p>
+<p>此API用來讓前端判斷目前的使用者是否為email已驗證狀態
+目前採用longpoling的方式，所以後端這裡會去輪詢資料庫查看狀態。
+如果請求超時會返回false給使用者</p>
 
 <span id="example-requests-GETapi-checkVerificationStatus--email-">
 <blockquote>Example request:</blockquote>
@@ -1183,14 +1183,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://wade.monster/api/checkVerificationStatus/rbosco@example.net" \
+    --get "http://localhost:8000/api/checkVerificationStatus/qhoeger@example.org" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wade.monster/api/checkVerificationStatus/rbosco@example.net"
+    "http://localhost:8000/api/checkVerificationStatus/qhoeger@example.org"
 );
 
 const headers = {
@@ -1301,10 +1301,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="GETapi-checkVerificationStatus--email-"
-               value="rbosco@example.net"
+               value="qhoeger@example.org"
                data-component="url">
     <br>
-<p>Example: <code>rbosco@example.net</code></p>
+<p>Example: <code>qhoeger@example.org</code></p>
             </div>
                     </form>
 
@@ -1326,14 +1326,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://wade.monster/api/cart_items" \
+    --get "http://localhost:8000/api/cart_items" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wade.monster/api/cart_items"
+    "http://localhost:8000/api/cart_items"
 );
 
 const headers = {
@@ -1463,7 +1463,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://wade.monster/api/cart_items" \
+    "http://localhost:8000/api/cart_items" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -1475,7 +1475,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wade.monster/api/cart_items"
+    "http://localhost:8000/api/cart_items"
 );
 
 const headers = {
@@ -1633,7 +1633,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://wade.monster/api/cart_items/total_price" \
+    --get "http://localhost:8000/api/cart_items/total_price" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -1648,7 +1648,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wade.monster/api/cart_items/total_price"
+    "http://localhost:8000/api/cart_items/total_price"
 );
 
 const headers = {
@@ -1793,14 +1793,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://wade.monster/api/cart_items/5" \
+    "http://localhost:8000/api/cart_items/5" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wade.monster/api/cart_items/5"
+    "http://localhost:8000/api/cart_items/5"
 );
 
 const headers = {
@@ -1927,14 +1927,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://wade.monster/api/login/google" \
+    --get "http://localhost:8000/api/login/google" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wade.monster/api/login/google"
+    "http://localhost:8000/api/login/google"
 );
 
 const headers = {
@@ -2054,14 +2054,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://wade.monster/api/login/google/callback" \
+    --get "http://localhost:8000/api/login/google/callback" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wade.monster/api/login/google/callback"
+    "http://localhost:8000/api/login/google/callback"
 );
 
 const headers = {
@@ -2178,14 +2178,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://wade.monster/api/natures" \
+    --get "http://localhost:8000/api/natures" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wade.monster/api/natures"
+    "http://localhost:8000/api/natures"
 );
 
 const headers = {
@@ -2299,7 +2299,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://wade.monster/api/natures" \
+    "http://localhost:8000/api/natures" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -2310,7 +2310,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wade.monster/api/natures"
+    "http://localhost:8000/api/natures"
 );
 
 const headers = {
@@ -2461,7 +2461,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "https://wade.monster/api/natures/1" \
+    "http://localhost:8000/api/natures/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -2472,7 +2472,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wade.monster/api/natures/1"
+    "http://localhost:8000/api/natures/1"
 );
 
 const headers = {
@@ -2648,20 +2648,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://wade.monster/api/orders" \
+    "http://localhost:8000/api/orders" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"total_price\": 29.48176726,
-    \"payment_method\": \"incidunt\",
-    \"payment_status\": \"modi\"
+    \"total_price\": 2621557.6889854046,
+    \"payment_method\": \"et\",
+    \"payment_status\": \"ea\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wade.monster/api/orders"
+    "http://localhost:8000/api/orders"
 );
 
 const headers = {
@@ -2670,9 +2670,9 @@ const headers = {
 };
 
 let body = {
-    "total_price": 29.48176726,
-    "payment_method": "incidunt",
-    "payment_status": "modi"
+    "total_price": 2621557.6889854046,
+    "payment_method": "et",
+    "payment_status": "ea"
 };
 
 fetch(url, {
@@ -2802,10 +2802,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="total_price"                data-endpoint="POSTapi-orders"
-               value="29.48176726"
+               value="2621557.6889854"
                data-component="body">
     <br>
-<p>訂單的總價格。 Example: <code>29.48176726</code></p>
+<p>訂單的總價格。 Example: <code>2621557.6889854</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>payment_method</code></b>&nbsp;&nbsp;
@@ -2813,10 +2813,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="payment_method"                data-endpoint="POSTapi-orders"
-               value="incidunt"
+               value="et"
                data-component="body">
     <br>
-<p>訂單的付款方式，只能是 'credit_card' 或 'cash_on_delivery'。 Example: <code>incidunt</code></p>
+<p>訂單的付款方式，只能是 'credit_card' 或 'cash_on_delivery'。 Example: <code>et</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>payment_status</code></b>&nbsp;&nbsp;
@@ -2824,10 +2824,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="payment_status"                data-endpoint="POSTapi-orders"
-               value="modi"
+               value="ea"
                data-component="body">
     <br>
-<p>訂單的付款狀態，只能是 'paid', 'unpaid', 或 'canceled'。 Example: <code>modi</code></p>
+<p>訂單的付款狀態，只能是 'paid', 'unpaid', 或 'canceled'。 Example: <code>ea</code></p>
         </div>
         </form>
 
@@ -2846,14 +2846,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://wade.monster/api/orders" \
+    --get "http://localhost:8000/api/orders" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wade.monster/api/orders"
+    "http://localhost:8000/api/orders"
 );
 
 const headers = {
@@ -2977,14 +2977,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://wade.monster/api/orders/16/order_details" \
+    --get "http://localhost:8000/api/orders/16/order_details" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wade.monster/api/orders/16/order_details"
+    "http://localhost:8000/api/orders/16/order_details"
 );
 
 const headers = {
@@ -3106,10 +3106,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="order"                data-endpoint="GETapi-orders--order_id--order_details"
-               value="officia"
+               value="nihil"
                data-component="url">
     <br>
-<p>訂單的ID。用於指定查詢哪一個訂單的詳情。 Example: <code>officia</code></p>
+<p>訂單的ID。用於指定查詢哪一個訂單的詳情。 Example: <code>nihil</code></p>
             </div>
                     </form>
 
@@ -3127,19 +3127,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://wade.monster/api/orders_details" \
+    "http://localhost:8000/api/orders_details" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"order_id\": 15,
-    \"race_id\": 18
+    \"order_id\": 3,
+    \"race_id\": 5
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wade.monster/api/orders_details"
+    "http://localhost:8000/api/orders_details"
 );
 
 const headers = {
@@ -3148,8 +3148,8 @@ const headers = {
 };
 
 let body = {
-    "order_id": 15,
-    "race_id": 18
+    "order_id": 3,
+    "race_id": 5
 };
 
 fetch(url, {
@@ -3286,10 +3286,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="order_id"                data-endpoint="POSTapi-orders_details"
-               value="15"
+               value="3"
                data-component="body">
     <br>
-<p>訂單的ID。 Example: <code>15</code></p>
+<p>訂單的ID。 Example: <code>3</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>race_id</code></b>&nbsp;&nbsp;
@@ -3297,12 +3297,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="race_id"                data-endpoint="POSTapi-orders_details"
-               value="18"
+               value="5"
                data-component="body">
     <br>
 <p>產品(Race)的ID。</p>
 <p>根據指定的race_id從使用者的購物車中提取數量，並根據race的價格計算出單價和總價。
-建立訂單細節後，減少相應的庫存，並清除使用者購物車中的該race項。 Example: <code>18</code></p>
+建立訂單細節後，減少相應的庫存，並清除使用者購物車中的該race項。 Example: <code>5</code></p>
         </div>
         </form>
 
@@ -3331,18 +3331,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://wade.monster/api/payments" \
+    "http://localhost:8000/api/payments" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"totalPrice\": 119177.36
+    \"totalPrice\": 34039.31
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wade.monster/api/payments"
+    "http://localhost:8000/api/payments"
 );
 
 const headers = {
@@ -3351,7 +3351,7 @@ const headers = {
 };
 
 let body = {
-    "totalPrice": 119177.36
+    "totalPrice": 34039.31
 };
 
 fetch(url, {
@@ -3440,10 +3440,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="totalPrice"                data-endpoint="POSTapi-payments"
-               value="119177.36"
+               value="34039.31"
                data-component="body">
     <br>
-<p>購物車中所有商品的總價格。 Example: <code>119177.36</code></p>
+<p>購物車中所有商品的總價格。 Example: <code>34039.31</code></p>
         </div>
         </form>
 
@@ -3471,19 +3471,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://wade.monster/api/payResult" \
+    "http://localhost:8000/api/payResult" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"TradeInfo\": \"mollitia\",
-    \"TradeSha\": \"deleniti\"
+    \"TradeSha\": \"amet\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wade.monster/api/payResult"
+    "http://localhost:8000/api/payResult"
 );
 
 const headers = {
@@ -3493,7 +3493,7 @@ const headers = {
 
 let body = {
     "TradeInfo": "mollitia",
-    "TradeSha": "deleniti"
+    "TradeSha": "amet"
 };
 
 fetch(url, {
@@ -3593,10 +3593,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="TradeSha"                data-endpoint="POSTapi-payResult"
-               value="deleniti"
+               value="amet"
                data-component="body">
     <br>
-<p>支付回調的數字簽名。 Example: <code>deleniti</code></p>
+<p>支付回調的數字簽名。 Example: <code>amet</code></p>
         </div>
         </form>
 
@@ -3618,20 +3618,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://wade.monster/api/pokemons" \
+    --get "http://localhost:8000/api/pokemons" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"first_name\": \"quia\",
-    \"last_name\": \"vero\",
-    \"email\": \"lou.collins@example.com\"
+    \"last_name\": \"consequatur\",
+    \"email\": \"tbotsford@example.org\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wade.monster/api/pokemons"
+    "http://localhost:8000/api/pokemons"
 );
 
 const headers = {
@@ -3641,8 +3641,8 @@ const headers = {
 
 let body = {
     "first_name": "quia",
-    "last_name": "vero",
-    "email": "lou.collins@example.com"
+    "last_name": "consequatur",
+    "email": "tbotsford@example.org"
 };
 
 fetch(url, {
@@ -3763,10 +3763,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="last_name"                data-endpoint="GETapi-pokemons"
-               value="vero"
+               value="consequatur"
                data-component="body">
     <br>
-<p>The last name of the user. Example: <code>vero</code></p>
+<p>The last name of the user. Example: <code>consequatur</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -3774,10 +3774,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="GETapi-pokemons"
-               value="lou.collins@example.com"
+               value="tbotsford@example.org"
                data-component="body">
     <br>
-<p>The email address of the user. Example: <code>lou.collins@example.com</code></p>
+<p>The email address of the user. Example: <code>tbotsford@example.org</code></p>
         </div>
         </form>
 
@@ -3796,17 +3796,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://wade.monster/api/pokemons" \
+    "http://localhost:8000/api/pokemons" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"zqq\",
-    \"race_id\": 19,
+    \"name\": \"zc\",
+    \"race_id\": 16,
     \"ability_id\": 4,
-    \"nature_id\": 15,
-    \"level\": 16,
+    \"nature_id\": 14,
+    \"level\": 12,
     \"skills\": [
-        7
+        9
     ]
 }"
 </code></pre></div>
@@ -3814,7 +3814,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wade.monster/api/pokemons"
+    "http://localhost:8000/api/pokemons"
 );
 
 const headers = {
@@ -3823,13 +3823,13 @@ const headers = {
 };
 
 let body = {
-    "name": "zqq",
-    "race_id": 19,
+    "name": "zc",
+    "race_id": 16,
     "ability_id": 4,
-    "nature_id": 15,
-    "level": 16,
+    "nature_id": 14,
+    "level": 12,
     "skills": [
-        7
+        9
     ]
 };
 
@@ -3961,10 +3961,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-pokemons"
-               value="zqq"
+               value="zc"
                data-component="body">
     <br>
-<p>Must not be greater than 15 characters. Example: <code>zqq</code></p>
+<p>Must not be greater than 15 characters. Example: <code>zc</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>race_id</code></b>&nbsp;&nbsp;
@@ -3972,10 +3972,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="race_id"                data-endpoint="POSTapi-pokemons"
-               value="19"
+               value="16"
                data-component="body">
     <br>
-<p>Example: <code>19</code></p>
+<p>Example: <code>16</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>ability_id</code></b>&nbsp;&nbsp;
@@ -3994,10 +3994,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="nature_id"                data-endpoint="POSTapi-pokemons"
-               value="15"
+               value="14"
                data-component="body">
     <br>
-<p>Example: <code>15</code></p>
+<p>Example: <code>14</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>level</code></b>&nbsp;&nbsp;
@@ -4005,10 +4005,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="level"                data-endpoint="POSTapi-pokemons"
-               value="16"
+               value="12"
                data-component="body">
     <br>
-<p>Must be at least 1. Must not be greater than 100. Example: <code>16</code></p>
+<p>Must be at least 1. Must not be greater than 100. Example: <code>12</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>skills</code></b>&nbsp;&nbsp;
@@ -4039,14 +4039,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://wade.monster/api/pokemons/15" \
+    --get "http://localhost:8000/api/pokemons/15" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wade.monster/api/pokemons/15"
+    "http://localhost:8000/api/pokemons/15"
 );
 
 const headers = {
@@ -4170,10 +4170,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="pokemon"                data-endpoint="GETapi-pokemons--id-"
-               value="6"
+               value="3"
                data-component="url">
     <br>
-<p>寶可夢的ID。示例：1 Example: <code>6</code></p>
+<p>寶可夢的ID。示例：1 Example: <code>3</code></p>
             </div>
                     </form>
 
@@ -4191,17 +4191,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://wade.monster/api/pokemons/15" \
+    "http://localhost:8000/api/pokemons/15" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"name\": \"mommy\",
-    \"race_id\": 9,
-    \"ability_id\": 5,
+    \"race_id\": 18,
+    \"ability_id\": 3,
     \"nature_id\": 4,
-    \"level\": 12,
+    \"level\": 18,
     \"skills\": [
-        \"id\"
+        \"vel\"
     ]
 }"
 </code></pre></div>
@@ -4209,7 +4209,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wade.monster/api/pokemons/15"
+    "http://localhost:8000/api/pokemons/15"
 );
 
 const headers = {
@@ -4219,12 +4219,12 @@ const headers = {
 
 let body = {
     "name": "mommy",
-    "race_id": 9,
-    "ability_id": 5,
+    "race_id": 18,
+    "ability_id": 3,
     "nature_id": 4,
-    "level": 12,
+    "level": 18,
     "skills": [
-        "id"
+        "vel"
     ]
 };
 
@@ -4329,10 +4329,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="pokemon"                data-endpoint="PUTapi-pokemons--id-"
-               value="13"
+               value="16"
                data-component="url">
     <br>
-<p>寶可夢的ID。Example：1 Example: <code>13</code></p>
+<p>寶可夢的ID。Example：1 Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -4352,10 +4352,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="race_id"                data-endpoint="PUTapi-pokemons--id-"
-               value="9"
+               value="18"
                data-component="body">
     <br>
-<p>optional 寶可夢的種族ID。該ID必須存在於系統的'races'表中。 Example: <code>9</code></p>
+<p>optional 寶可夢的種族ID。該ID必須存在於系統的'races'表中。 Example: <code>18</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>ability_id</code></b>&nbsp;&nbsp;
@@ -4363,10 +4363,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="ability_id"                data-endpoint="PUTapi-pokemons--id-"
-               value="5"
+               value="3"
                data-component="body">
     <br>
-<p>optional 寶可夢的能力ID。該ID必須存在於系統的'abilities'表中。 Example: <code>5</code></p>
+<p>optional 寶可夢的能力ID。該ID必須存在於系統的'abilities'表中。 Example: <code>3</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>nature_id</code></b>&nbsp;&nbsp;
@@ -4385,10 +4385,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="level"                data-endpoint="PUTapi-pokemons--id-"
-               value="12"
+               value="18"
                data-component="body">
     <br>
-<p>optional 寶可夢的等級。其值必須是1到100之間的整數。 Example: <code>12</code></p>
+<p>optional 寶可夢的等級。其值必須是1到100之間的整數。 Example: <code>18</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
         <details>
@@ -4405,10 +4405,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="skills.*"                data-endpoint="PUTapi-pokemons--id-"
-               value="17"
+               value="4"
                data-component="body">
     <br>
-<p>optional 其中的每一個技能ID都必須是有效的且存在於'skills'表中。Example：1 Example: <code>17</code></p>
+<p>optional 其中的每一個技能ID都必須是有效的且存在於'skills'表中。Example：1 Example: <code>4</code></p>
                     </div>
                                     </details>
         </div>
@@ -4429,14 +4429,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://wade.monster/api/pokemons/15" \
+    "http://localhost:8000/api/pokemons/15" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wade.monster/api/pokemons/15"
+    "http://localhost:8000/api/pokemons/15"
 );
 
 const headers = {
@@ -4555,10 +4555,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="pokemon"                data-endpoint="DELETEapi-pokemons--id-"
-               value="19"
+               value="5"
                data-component="url">
     <br>
-<p>寶可夢的ID。示例：1 Example: <code>19</code></p>
+<p>寶可夢的ID。示例：1 Example: <code>5</code></p>
             </div>
                     </form>
 
@@ -4578,14 +4578,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://wade.monster/api/pokemons/15/evolution" \
+    "http://localhost:8000/api/pokemons/15/evolution" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wade.monster/api/pokemons/15/evolution"
+    "http://localhost:8000/api/pokemons/15/evolution"
 );
 
 const headers = {
@@ -4716,10 +4716,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="pokemon"                data-endpoint="PUTapi-pokemons--pokemon_id--evolution"
-               value="7"
+               value="3"
                data-component="url">
     <br>
-<p>寶可夢的ID。範例：1 Example: <code>7</code></p>
+<p>寶可夢的ID。範例：1 Example: <code>3</code></p>
             </div>
                     </form>
 
@@ -4743,14 +4743,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://wade.monster/api/races" \
+    --get "http://localhost:8000/api/races" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wade.monster/api/races"
+    "http://localhost:8000/api/races"
 );
 
 const headers = {
@@ -4868,14 +4868,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://wade.monster/api/races/1/evolutionLevel" \
+    --get "http://localhost:8000/api/races/1/evolutionLevel" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wade.monster/api/races/1/evolutionLevel"
+    "http://localhost:8000/api/races/1/evolutionLevel"
 );
 
 const headers = {
@@ -4989,10 +4989,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="race"                data-endpoint="GETapi-races--race_id--evolutionLevel"
-               value="4"
+               value="10"
                data-component="url">
     <br>
-<p>寶可夢種族的ID。示例：1 Example: <code>4</code></p>
+<p>寶可夢種族的ID。示例：1 Example: <code>10</code></p>
             </div>
                     </form>
 
@@ -5010,14 +5010,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://wade.monster/api/races/1/skill" \
+    --get "http://localhost:8000/api/races/1/skill" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wade.monster/api/races/1/skill"
+    "http://localhost:8000/api/races/1/skill"
 );
 
 const headers = {
@@ -5134,10 +5134,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="race"                data-endpoint="GETapi-races--race_id--skill"
-               value="17"
+               value="19"
                data-component="url">
     <br>
-<p>寶可夢種族的ID。示例：1 Example: <code>17</code></p>
+<p>寶可夢種族的ID。示例：1 Example: <code>19</code></p>
             </div>
                     </form>
 
@@ -5159,21 +5159,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://wade.monster/api/register" \
+    "http://localhost:8000/api/register" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"sunt\",
-    \"email\": \"xschinner@example.net\",
-    \"password\": \"7ZMS}&gt;mZzdcm])rbo\",
-    \"password_confirmation\": \"sunt\"
+    \"name\": \"quidem\",
+    \"email\": \"esenger@example.org\",
+    \"password\": \"Ad{{\\/CS+L\",
+    \"password_confirmation\": \"aut\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wade.monster/api/register"
+    "http://localhost:8000/api/register"
 );
 
 const headers = {
@@ -5182,10 +5182,10 @@ const headers = {
 };
 
 let body = {
-    "name": "sunt",
-    "email": "xschinner@example.net",
-    "password": "7ZMS}&gt;mZzdcm])rbo",
-    "password_confirmation": "sunt"
+    "name": "quidem",
+    "email": "esenger@example.org",
+    "password": "Ad{{\/CS+L",
+    "password_confirmation": "aut"
 };
 
 fetch(url, {
@@ -5303,10 +5303,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-register"
-               value="sunt"
+               value="quidem"
                data-component="body">
     <br>
-<p>使用者的名字。示例：John Doe Example: <code>sunt</code></p>
+<p>使用者的名字。示例：John Doe Example: <code>quidem</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -5314,10 +5314,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-register"
-               value="xschinner@example.net"
+               value="esenger@example.org"
                data-component="body">
     <br>
-<p>使用者的電子郵件地址。必須是唯一的並且符合電子郵件格式。示例：john.doe@example.com Example: <code>xschinner@example.net</code></p>
+<p>使用者的電子郵件地址。必須是唯一的並且符合電子郵件格式。示例：john.doe@example.com Example: <code>esenger@example.org</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -5325,10 +5325,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-register"
-               value="7ZMS}>mZzdcm])rbo"
+               value="Ad{{/CS+L"
                data-component="body">
     <br>
-<p>使用者的密碼。必須至少有6個字符長並且與<code>password_confirmation</code>參數匹配。示例：password123 Example: <code>7ZMS}&gt;mZzdcm])rbo</code></p>
+<p>使用者的密碼。必須至少有6個字符長並且與<code>password_confirmation</code>參數匹配。示例：password123 Example: <code>Ad{{/CS+L</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password_confirmation</code></b>&nbsp;&nbsp;
@@ -5336,10 +5336,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password_confirmation"                data-endpoint="POSTapi-register"
-               value="sunt"
+               value="aut"
                data-component="body">
     <br>
-<p>密碼確認。必須與<code>password</code>參數匹配。示例：password123 Example: <code>sunt</code></p>
+<p>密碼確認。必須與<code>password</code>參數匹配。示例：password123 Example: <code>aut</code></p>
         </div>
         </form>
 
@@ -5361,14 +5361,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://wade.monster/api/user" \
+    --get "http://localhost:8000/api/user" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wade.monster/api/user"
+    "http://localhost:8000/api/user"
 );
 
 const headers = {
@@ -5491,17 +5491,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://wade.monster/api/user" \
+    "http://localhost:8000/api/user" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
-    --form "name=voluptatem"\
-    --form "email=jmohr@example.com"\
-    --form "userPhoto=@/private/var/folders/fj/8mc653gd5ms9d4bnjf78tjtm0000gn/T/phpcRZXy1" </code></pre></div>
+    --form "name=pariatur"\
+    --form "email=ankunding.german@example.com"\
+    --form "userPhoto=@/private/var/folders/fj/8mc653gd5ms9d4bnjf78tjtm0000gn/T/phpl2hlTp" </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://wade.monster/api/user"
+    "http://localhost:8000/api/user"
 );
 
 const headers = {
@@ -5510,8 +5510,8 @@ const headers = {
 };
 
 const body = new FormData();
-body.append('name', 'voluptatem');
-body.append('email', 'jmohr@example.com');
+body.append('name', 'pariatur');
+body.append('email', 'ankunding.german@example.com');
 body.append('userPhoto', document.querySelector('input[name="userPhoto"]').files[0]);
 
 fetch(url, {
@@ -5613,7 +5613,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>optional 用戶的新照片。應該是一個圖像文件。 Example: <code>/private/var/folders/fj/8mc653gd5ms9d4bnjf78tjtm0000gn/T/phpcRZXy1</code></p>
+<p>optional 用戶的新照片。應該是一個圖像文件。 Example: <code>/private/var/folders/fj/8mc653gd5ms9d4bnjf78tjtm0000gn/T/phpl2hlTp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
@@ -5621,10 +5621,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-user"
-               value="voluptatem"
+               value="pariatur"
                data-component="body">
     <br>
-<p>optional 新的用戶名稱。示例：John Doe Example: <code>voluptatem</code></p>
+<p>optional 新的用戶名稱。示例：John Doe Example: <code>pariatur</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -5632,10 +5632,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-user"
-               value="jmohr@example.com"
+               value="ankunding.german@example.com"
                data-component="body">
     <br>
-<p>optional 新的電子郵件地址。示例：john.doe@example.com Example: <code>jmohr@example.com</code></p>
+<p>optional 新的電子郵件地址。示例：john.doe@example.com Example: <code>ankunding.german@example.com</code></p>
         </div>
         </form>
 

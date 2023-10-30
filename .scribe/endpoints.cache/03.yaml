@@ -86,13 +86,13 @@ endpoints:
         name: race
         description: 寶可夢種族的ID。示例：1
         required: true
-        example: 4
+        example: 10
         type: integer
         enumValues: []
         custom: []
     cleanUrlParameters:
       race_id: 1
-      race: 4
+      race: 10
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -146,13 +146,13 @@ endpoints:
         name: race
         description: 寶可夢種族的ID。示例：1
         required: true
-        example: 17
+        example: 19
         type: integer
         enumValues: []
         custom: []
     cleanUrlParameters:
       race_id: 1
-      race: 17
+      race: 19
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

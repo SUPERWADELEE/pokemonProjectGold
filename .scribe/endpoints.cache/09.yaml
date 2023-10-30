@@ -30,7 +30,7 @@ endpoints:
         name: name
         description: '使用者的名字。示例：John Doe'
         required: true
-        example: sunt
+        example: quidem
         type: string
         enumValues: []
         custom: []
@@ -38,7 +38,7 @@ endpoints:
         name: email
         description: 使用者的電子郵件地址。必須是唯一的並且符合電子郵件格式。示例：john.doe@example.com
         required: true
-        example: xschinner@example.net
+        example: esenger@example.org
         type: string
         enumValues: []
         custom: []
@@ -46,7 +46,7 @@ endpoints:
         name: password
         description: 使用者的密碼。必須至少有6個字符長並且與`password_confirmation`參數匹配。示例：password123
         required: true
-        example: '7ZMS}>mZzdcm])rbo'
+        example: 'Ad{{/CS+L'
         type: string
         enumValues: []
         custom: []
@@ -54,15 +54,15 @@ endpoints:
         name: password_confirmation
         description: 密碼確認。必須與`password`參數匹配。示例：password123
         required: true
-        example: sunt
+        example: aut
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: sunt
-      email: xschinner@example.net
-      password: '7ZMS}>mZzdcm])rbo'
-      password_confirmation: sunt
+      name: quidem
+      email: esenger@example.org
+      password: 'Ad{{/CS+L'
+      password_confirmation: aut
     fileParameters: []
     responses:
       -
