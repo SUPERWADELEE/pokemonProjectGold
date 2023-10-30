@@ -45,13 +45,13 @@ endpoints:
         name: TradeSha
         description: 支付回調的數字簽名。
         required: true
-        example: deleniti
+        example: amet
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
       TradeInfo: mollitia
-      TradeSha: deleniti
+      TradeSha: amet
     fileParameters: []
     responses: []
     responseFields: []

@@ -66,18 +66,21 @@ class UserController extends Controller
      */
     public function update(UserRequest $request)
     {
+        
         $user = JWTAuth::parseToken()->authenticate();
         if (!$user) {
             return response()->json(['error' => 'User not found'], 404);
         }
         $validatedData = $request->validated();
 
+       
 
         // 更新其他已驗證的請求數據
         $user->update($validatedData);
 
         // 如果上傳了檔案，生成 presigned URL
         if ($request->hasFile('userPhoto')) {
+           
             $file = $request->file('userPhoto');
             $filename = time() . '.' . $file->extension();
             $filetype = $file->getClientMimeType();
@@ -95,9 +98,11 @@ class UserController extends Controller
             // 最終此上傳圖片的ＵＲＬ
             $fullS3Url = $baseS3Url . $filePath;
 
+            // dd($fullS3Url);
             // 產生presignedUrl
             $presignedUrl = $this->generatePresignedUrl($s3Client, $filePath, $filetype);
 
+        
             // 這個URL會給前端拿來當成ＵＲＬ
             $responseData['presignedUrl'] = $presignedUrl;
 
@@ -109,6 +114,7 @@ class UserController extends Controller
             $user->photo = $fullS3Url;
             $user->save();
 
+         
             // 注意：這邊你應該將 $responseData 回傳給前端
             return response()->json($responseData);
         }
@@ -146,6 +152,7 @@ class UserController extends Controller
      */
     public function generatePresignedUrl(S3Client $s3Client, $filePath, $filetype)
     {
+        
         $cmd = $s3Client->getCommand('PutObject', [
             'Bucket' => config('filesystems.disks.s3.bucket'),
             'Key'    => $filePath,

@@ -133,6 +133,3 @@ Route::get('email/verify/{id}/{hash}', [AuthController::class, 'verifyEmail'])->
 
 Route::get('/checkVerificationStatus/{email}', [AuthController::class, 'checkVerificationStatus']);
 
-// 第三方登入
-Route::get('login/google', [GoogleLoginController::class, 'redirectToProvider']);
-Route::get('login/google/callback', [GoogleLoginController::class,'handleProviderCallback']);
