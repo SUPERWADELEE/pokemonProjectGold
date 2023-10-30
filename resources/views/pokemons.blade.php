@@ -105,8 +105,8 @@
   <div id="waitPage" style="display: none;">
     <h2>等待驗證</h2>
     <p>請檢查您的電子郵件以完成驗證。</p>
-    <button onclick="resendVerificationEmail()">重新發送驗證郵件</button>
-    <button onclick="redirectToLoginPage()">返回登錄頁面</button>
+    <!-- <button onclick="resendVerificationEmail()">重新發送驗證郵件</button>
+    <button onclick="redirectToLoginPage()">返回登錄頁面</button> -->
   </div>
 
 
