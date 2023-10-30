@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use Illuminate\Support\Facades\Log;
 
 /**
  * @group GoogleLogin
@@ -32,9 +33,12 @@ class GoogleLoginController extends Controller
      */
     public function redirectToProvider()
     {
+       
         try {
             return Socialite::driver('google')->redirect();
         } catch (\Exception $e) {
+            // Log::error('Error redirecting to Google: ' . $e->getMessage());
+
             return response()->json(['error' => '無法重定向到Google。請稍後再試。'], 500);
         }
     }
@@ -78,11 +82,11 @@ class GoogleLoginController extends Controller
         $token = JWTAuth::fromUser($user);
 
         // 返回令牌給前端
-        return response()->json([
-            'message' => 'Login successful via Google',
-            'token' => $token,
-            'user' => $user
-        ], 200);
-        // return redirect("/?token={$token}");
+        // return response()->json([
+        //     'message' => 'Login successful via Google',
+        //     'token' => $token,
+        //     'user' => $user
+        // ], 200);
+        return redirect("/?token={$token}");
     }
 }

@@ -54,6 +54,8 @@ Route::get('/addProfile', function () {
     return view('addProfile');
 });
 
-
+// 第三方登入
+Route::get('login/google', [GoogleLoginController::class, 'redirectToProvider']);
+Route::get('login/google/callback', [GoogleLoginController::class,'handleProviderCallback']);
 
 
