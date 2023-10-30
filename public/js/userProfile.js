@@ -91,6 +91,7 @@ function userProfile(){
     
         const token = localStorage.getItem('jwtToken');
 
+        console.log(apiURL);
         fetch(apiURL, {
             method: 'POST',  // 或者 'PUT'，取決於你的API
             headers: {
