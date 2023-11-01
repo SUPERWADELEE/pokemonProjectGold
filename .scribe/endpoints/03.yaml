@@ -23,6 +23,7 @@ endpoints:
     headers:
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer '
     urlParameters: []
     cleanUrlParameters: []
     queryParameters: []
@@ -71,6 +72,7 @@ endpoints:
     headers:
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer '
     urlParameters:
       race_id:
         name: race_id
@@ -84,13 +86,13 @@ endpoints:
         name: race
         description: 寶可夢種族的ID。示例：1
         required: true
-        example: 10
+        example: 6
         type: integer
         enumValues: []
         custom: []
     cleanUrlParameters:
       race_id: 1
-      race: 10
+      race: 6
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -131,6 +133,7 @@ endpoints:
     headers:
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer '
     urlParameters:
       race_id:
         name: race_id
@@ -144,13 +147,13 @@ endpoints:
         name: race
         description: 寶可夢種族的ID。示例：1
         required: true
-        example: 19
+        example: 3
         type: integer
         enumValues: []
         custom: []
     cleanUrlParameters:
       race_id: 1
-      race: 19
+      race: 3
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

@@ -25,6 +25,7 @@ endpoints:
     headers:
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer '
     urlParameters: []
     cleanUrlParameters: []
     queryParameters: []
@@ -34,12 +35,12 @@ endpoints:
         name: totalPrice
         description: 購物車中所有商品的總價格。
         required: true
-        example: 34039.31
+        example: 22251.0
         type: number
         enumValues: []
         custom: []
     cleanBodyParameters:
-      totalPrice: 34039.31
+      totalPrice: 22251.0
     fileParameters: []
     responses: []
     responseFields: []

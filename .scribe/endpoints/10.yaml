@@ -17,6 +17,7 @@ endpoints:
     headers:
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer '
     urlParameters: []
     cleanUrlParameters: []
     queryParameters: []
@@ -26,7 +27,7 @@ endpoints:
         name: email
         description: 用戶的電子郵件地址。example：user@example.com
         required: true
-        example: nikita.haley@example.com
+        example: penelope.senger@example.org
         type: string
         enumValues: []
         custom: []
@@ -39,7 +40,7 @@ endpoints:
         enumValues: []
         custom: []
     cleanBodyParameters:
-      email: nikita.haley@example.com
+      email: penelope.senger@example.org
       password: e123456
     fileParameters: []
     responses:
@@ -85,6 +86,7 @@ endpoints:
     headers:
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer '
     urlParameters: []
     cleanUrlParameters: []
     queryParameters: []
@@ -139,12 +141,13 @@ endpoints:
     headers:
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer '
     urlParameters:
       id:
         name: id
         description: 'The ID of the verify.'
         required: true
-        example: possimus
+        example: autem
         type: string
         enumValues: []
         custom: []
@@ -152,13 +155,13 @@ endpoints:
         name: hash
         description: ''
         required: true
-        example: omnis
+        example: voluptatum
         type: string
         enumValues: []
         custom: []
     cleanUrlParameters:
-      id: possimus
-      hash: omnis
+      id: autem
+      hash: voluptatum
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -208,17 +211,18 @@ endpoints:
     headers:
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer '
     urlParameters:
       email:
         name: email
         description: ''
         required: true
-        example: qhoeger@example.org
+        example: bpfannerstill@example.org
         type: string
         enumValues: []
         custom: []
     cleanUrlParameters:
-      email: qhoeger@example.org
+      email: bpfannerstill@example.org
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

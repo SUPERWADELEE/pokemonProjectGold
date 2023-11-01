@@ -19,6 +19,7 @@ endpoints:
     headers:
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer '
     urlParameters: []
     cleanUrlParameters: []
     queryParameters: []
@@ -59,6 +60,7 @@ endpoints:
     headers:
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer '
     urlParameters: []
     cleanUrlParameters: []
     queryParameters: []
@@ -128,6 +130,7 @@ endpoints:
     headers:
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer '
     urlParameters:
       nature_id:
         name: nature_id

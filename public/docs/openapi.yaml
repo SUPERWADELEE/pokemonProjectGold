@@ -198,7 +198,7 @@ paths:
                 email:
                   type: string
                   description: 用戶的電子郵件地址。example：user@example.com
-                  example: nikita.haley@example.com
+                  example: penelope.senger@example.org
                 password:
                   type: string
                   description: 用戶的密碼。
@@ -268,7 +268,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the verify.'
-        example: possimus
+        example: autem
         required: true
         schema:
           type: string
@@ -276,7 +276,7 @@ paths:
         in: path
         name: hash
         description: ''
-        example: omnis
+        example: voluptatum
         required: true
         schema:
           type: string
@@ -314,7 +314,7 @@ paths:
         in: path
         name: email
         description: ''
-        example: qhoeger@example.org
+        example: bpfannerstill@example.org
         required: true
         schema:
           type: string
@@ -483,58 +483,6 @@ paths:
         required: true
         schema:
           type: integer
-  /api/login/google:
-    get:
-      summary: 將用戶重定向到Google的OAuth認證頁面。
-      operationId: GoogleOAuth
-      description: "此API就是當前端按下google登入的時候\n將用戶重定向到Google的OAuth服務。\n如果在重定向過程中出現錯誤，它會捕獲異常\n並回應一個JSON錯誤訊息。\n如果成功就是倒倒google頁面"
-      parameters: []
-      responses:
-        500:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  error: 無法重定向到Google。請稍後再試。
-                properties:
-                  error:
-                    type: string
-                    example: 無法重定向到Google。請稍後再試。
-      tags:
-        - GoogleLogin
-      security: []
-  /api/login/google/callback:
-    get:
-      summary: '處理從 Google 第三方認證服務頁面返回的回調。'
-      operationId: Google
-      description: "此處就是可以從google拿到使用者資訊並儲存在資料庫\n然後登入"
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: 'Login successful via Google'
-                  token: '使用者的 JWT 令牌'
-                  user: 使用者的資料
-                properties:
-                  message:
-                    type: string
-                    example: 'Login successful via Google'
-                  token:
-                    type: string
-                    example: '使用者的 JWT 令牌'
-                  user:
-                    type: string
-                    example: 使用者的資料
-      tags:
-        - GoogleLogin
-      security: []
   /api/natures:
     get:
       summary: 性格詳情
@@ -795,15 +743,15 @@ paths:
                 total_price:
                   type: number
                   description: 訂單的總價格。
-                  example: 2621557.6889854
+                  example: 46.1007
                 payment_method:
                   type: string
                   description: "訂單的付款方式，只能是 'credit_card' 或 'cash_on_delivery'。"
-                  example: et
+                  example: est
                 payment_status:
                   type: string
                   description: "訂單的付款狀態，只能是 'paid', 'unpaid', 或 'canceled'。"
-                  example: ea
+                  example: atque
               required:
                 - total_price
                 - payment_method
@@ -852,7 +800,7 @@ paths:
         in: path
         name: order
         description: 訂單的ID。用於指定查詢哪一個訂單的詳情。
-        example: nihil
+        example: et
         required: true
         schema:
           type: string
@@ -959,11 +907,11 @@ paths:
                 order_id:
                   type: integer
                   description: 訂單的ID。
-                  example: 3
+                  example: 17
                 race_id:
                   type: integer
                   description: "產品(Race)的ID。\n\n根據指定的race_id從使用者的購物車中提取數量，並根據race的價格計算出單價和總價。\n建立訂單細節後，減少相應的庫存，並清除使用者購物車中的該race項。"
-                  example: 5
+                  example: 2
               required:
                 - order_id
                 - race_id
@@ -986,7 +934,7 @@ paths:
                 totalPrice:
                   type: number
                   description: 購物車中所有商品的總價格。
-                  example: 34039.31
+                  example: 22251.0
               required:
                 - totalPrice
   /api/payResult:
@@ -1008,11 +956,11 @@ paths:
                 TradeInfo:
                   type: string
                   description: 支付相關的加密資料。
-                  example: mollitia
+                  example: deserunt
                 TradeSha:
                   type: string
                   description: 支付回調的數字簽名。
-                  example: amet
+                  example: necessitatibus
               required:
                 - TradeInfo
                 - TradeSha
@@ -1089,15 +1037,15 @@ paths:
                 first_name:
                   type: string
                   description: 'The first name of the user.'
-                  example: quia
+                  example: quas
                 last_name:
                   type: string
                   description: 'The last name of the user.'
-                  example: consequatur
+                  example: quisquam
                 email:
                   type: string
                   description: 'The email address of the user.'
-                  example: tbotsford@example.org
+                  example: willms.cesar@example.com
               required:
                 - first_name
                 - last_name
@@ -1163,28 +1111,28 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 15 characters.'
-                  example: zc
+                  example: fsj
                 race_id:
                   type: integer
                   description: ''
-                  example: 16
+                  example: 12
                 ability_id:
                   type: integer
                   description: ''
-                  example: 4
+                  example: 6
                 nature_id:
                   type: integer
                   description: ''
-                  example: 14
+                  example: 19
                 level:
                   type: integer
                   description: 'Must be at least 1. Must not be greater than 100.'
-                  example: 12
+                  example: 18
                 skills:
                   type: array
                   description: ''
                   example:
-                    - 9
+                    - 16
                   items:
                     type: integer
               required:
@@ -1274,24 +1222,24 @@ paths:
                 race_id:
                   type: integer
                   description: "optional 寶可夢的種族ID。該ID必須存在於系統的'races'表中。"
-                  example: 18
+                  example: 9
                 ability_id:
                   type: integer
                   description: "optional 寶可夢的能力ID。該ID必須存在於系統的'abilities'表中。"
-                  example: 3
+                  example: 15
                 nature_id:
                   type: integer
                   description: "optional 寶可夢的性格ID。該ID必須存在於系統的'natures'表中。"
-                  example: 4
+                  example: 1
                 level:
                   type: integer
                   description: 'optional 寶可夢的等級。其值必須是1到100之間的整數。'
-                  example: 18
+                  example: 4
                 skills:
                   type: array
                   description: 'optional 寶可夢的技能列表。至少包含1項，最多4項技能。Example：[1, 2, 3]'
                   example:
-                    - vel
+                    - quia
                   items:
                     type: string
     delete:
@@ -1367,7 +1315,7 @@ paths:
         in: path
         name: pokemon
         description: 寶可夢的ID。範例：1
-        example: 3
+        example: 9
         required: true
         schema:
           type: integer
@@ -1425,7 +1373,7 @@ paths:
         in: path
         name: race
         description: 寶可夢種族的ID。示例：1
-        example: 10
+        example: 6
         required: true
         schema:
           type: integer
@@ -1458,7 +1406,7 @@ paths:
         in: path
         name: race
         description: 寶可夢種族的ID。示例：1
-        example: 19
+        example: 3
         required: true
         schema:
           type: integer
@@ -1495,19 +1443,19 @@ paths:
                 name:
                   type: string
                   description: '使用者的名字。示例：John Doe'
-                  example: quidem
+                  example: repellendus
                 email:
                   type: string
                   description: 使用者的電子郵件地址。必須是唯一的並且符合電子郵件格式。示例：john.doe@example.com
-                  example: esenger@example.org
+                  example: grayce77@example.net
                 password:
                   type: string
                   description: 使用者的密碼。必須至少有6個字符長並且與`password_confirmation`參數匹配。示例：password123
-                  example: 'Ad{{/CS+L'
+                  example: 'P@(G40L<Z\yGOTw&M)'
                 password_confirmation:
                   type: string
                   description: 密碼確認。必須與`password`參數匹配。示例：password123
-                  example: aut
+                  example: nemo
               required:
                 - name
                 - email
@@ -1593,11 +1541,11 @@ paths:
                 name:
                   type: string
                   description: 'optional 新的用戶名稱。示例：John Doe'
-                  example: pariatur
+                  example: ab
                 email:
                   type: string
                   description: 'optional 新的電子郵件地址。示例：john.doe@example.com'
-                  example: ankunding.german@example.com
+                  example: lueilwitz.imogene@example.com
 tags:
   -
     name: Ability
@@ -1608,9 +1556,6 @@ tags:
   -
     name: CartItem
     description: 'Operations related to cartItems.'
-  -
-    name: GoogleLogin
-    description: 'Operations related to googleLogin.'
   -
     name: Nature
     description: 'Operations related to natures.'

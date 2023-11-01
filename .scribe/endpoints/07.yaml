@@ -17,6 +17,7 @@ endpoints:
     headers:
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer '
     urlParameters:
       order_id:
         name: order_id
@@ -30,13 +31,13 @@ endpoints:
         name: order
         description: 訂單的ID。用於指定查詢哪一個訂單的詳情。
         required: true
-        example: nihil
+        example: et
         type: string
         enumValues: []
         custom: []
     cleanUrlParameters:
       order_id: 16
-      order: nihil
+      order: et
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -83,6 +84,7 @@ endpoints:
     headers:
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer '
     urlParameters: []
     cleanUrlParameters: []
     queryParameters: []
@@ -92,7 +94,7 @@ endpoints:
         name: order_id
         description: 訂單的ID。
         required: true
-        example: 3
+        example: 17
         type: integer
         enumValues: []
         custom: []
@@ -104,13 +106,13 @@ endpoints:
           根據指定的race_id從使用者的購物車中提取數量，並根據race的價格計算出單價和總價。
           建立訂單細節後，減少相應的庫存，並清除使用者購物車中的該race項。
         required: true
-        example: 5
+        example: 2
         type: integer
         enumValues: []
         custom: []
     cleanBodyParameters:
-      order_id: 3
-      race_id: 5
+      order_id: 17
+      race_id: 2
     fileParameters: []
     responses:
       -

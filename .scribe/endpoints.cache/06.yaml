@@ -19,6 +19,7 @@ endpoints:
     headers:
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer '
     urlParameters: []
     cleanUrlParameters: []
     queryParameters: []
@@ -28,7 +29,7 @@ endpoints:
         name: total_price
         description: 訂單的總價格。
         required: true
-        example: 2621557.6889854
+        example: 46.1007
         type: number
         enumValues: []
         custom: []
@@ -36,7 +37,7 @@ endpoints:
         name: payment_method
         description: "訂單的付款方式，只能是 'credit_card' 或 'cash_on_delivery'。"
         required: true
-        example: et
+        example: est
         type: string
         enumValues: []
         custom: []
@@ -44,14 +45,14 @@ endpoints:
         name: payment_status
         description: "訂單的付款狀態，只能是 'paid', 'unpaid', 或 'canceled'。"
         required: true
-        example: ea
+        example: atque
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      total_price: 2621557.6889854
-      payment_method: et
-      payment_status: ea
+      total_price: 46.1007
+      payment_method: est
+      payment_status: atque
     fileParameters: []
     responses:
       -
@@ -117,6 +118,7 @@ endpoints:
     headers:
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer '
     urlParameters: []
     cleanUrlParameters: []
     queryParameters: []

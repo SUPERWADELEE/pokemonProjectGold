@@ -19,6 +19,7 @@ endpoints:
     headers:
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer '
     urlParameters: []
     cleanUrlParameters: []
     queryParameters: []
@@ -71,6 +72,7 @@ endpoints:
     headers:
       Content-Type: multipart/form-data
       Accept: application/json
+      Authorization: 'Bearer '
     urlParameters: []
     cleanUrlParameters: []
     queryParameters: []
@@ -88,7 +90,7 @@ endpoints:
         name: name
         description: 'optional 新的用戶名稱。示例：John Doe'
         required: false
-        example: pariatur
+        example: ab
         type: string
         enumValues: []
         custom: []
@@ -96,13 +98,13 @@ endpoints:
         name: email
         description: 'optional 新的電子郵件地址。示例：john.doe@example.com'
         required: false
-        example: ankunding.german@example.com
+        example: lueilwitz.imogene@example.com
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: pariatur
-      email: ankunding.german@example.com
+      name: ab
+      email: lueilwitz.imogene@example.com
     fileParameters:
       userPhoto: null
     responses:
