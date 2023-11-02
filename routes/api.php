@@ -74,7 +74,7 @@ Route::middleware('auth:api', 'checkStatus', 'throttle:100000,1')->group(functio
     /**
      * race管理
      */
-    // natural列表
+    // race列表
     Route::get('races', [RaceController::class, 'index']);
     // Route::get('races/{race}/evolutionLevel', [RaceController::class, 'evolutionLevel']);
     // Route::get('races/{race}/skill', [RaceController::class, 'skills']);
@@ -128,8 +128,8 @@ Route::post('/payResult', [PaymentsResponseController::class, 'notifyResponse'])
 
 // Route::get('/add', [PokemonController::class, 'add']);
 // 驗證信回傳接收
-Route::get('email/verify/{id}/{hash}', [AuthController::class, 'verifyEmail'])->name('verification.verify');
+// Route::get('email/verify/{id}/{hash}', [AuthController::class, 'verifyEmail'])->name('verification.verify');
 
 
-Route::get('/checkVerificationStatus/{email}', [AuthController::class, 'checkVerificationStatus']);
+// Route::get('/checkVerificationStatus/{email}', [AuthController::class, 'checkVerificationStatus']);
 

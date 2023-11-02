@@ -70,7 +70,7 @@ paths:
                 email:
                   type: string
                   description: 用戶的電子郵件地址。example：user@example.com
-                  example: spencer.noemie@example.com
+                  example: haylee.rowe@example.net
                 password:
                   type: string
                   description: 用戶的密碼。
@@ -113,83 +113,6 @@ paths:
       tags:
         - Auth
       security: []
-  '/api/email/verify/{id}/{hash}':
-    get:
-      summary: 註冊email驗證信確認
-      operationId: email
-      description: "電子郵件驗證確認\n\n此端點用於確認用戶的電子郵件驗證(和前端較無關聯）。\n它會比對提供的hash值和用戶的電子郵件生成的hash值。\n如果驗證成功，該用戶的電子郵件將被標記為已驗證，並且將觸發一個已驗證的事件。\n系統會將email驗證的日期存入資料庫"
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: 'Email already verified.'
-                properties:
-                  message:
-                    type: string
-                    example: 'Email already verified.'
-      tags:
-        - Auth
-      security: []
-    parameters:
-      -
-        in: path
-        name: id
-        description: 'The ID of the verify.'
-        example: quis
-        required: true
-        schema:
-          type: string
-      -
-        in: path
-        name: hash
-        description: ''
-        example: qui
-        required: true
-        schema:
-          type: string
-  '/api/checkVerificationStatus/{email}':
-    get:
-      summary: 確認user表註冊驗證信狀態
-      operationId: user
-      description: "此API用來讓前端判斷目前的使用者是否為email已驗證狀態\n目前採用longpoling的方式，所以後端這裡會去輪詢資料庫查看狀態。\n如果請求超時會返回false給使用者"
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: "{\n  \"isVerified\": true/false\n}"
-        404:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  error: 'User not found'
-                properties:
-                  error:
-                    type: string
-                    example: 'User not found'
-      tags:
-        - Auth
-      security: []
-    parameters:
-      -
-        in: path
-        name: email
-        description: ''
-        example: tkoch@example.com
-        required: true
-        schema:
-          type: string
   /api/cart_items:
     get:
       summary: 顯示購物車商品
@@ -434,15 +357,15 @@ paths:
                 total_price:
                   type: number
                   description: 訂單的總價格。
-                  example: 314466513.44
+                  example: 69132201.5
                 payment_method:
                   type: string
                   description: "訂單的付款方式，只能是 'credit_card' 或 'cash_on_delivery'。"
-                  example: velit
+                  example: dolores
                 payment_status:
                   type: string
                   description: "訂單的付款狀態，只能是 'paid', 'unpaid', 或 'canceled'。"
-                  example: qui
+                  example: aut
               required:
                 - total_price
                 - payment_method
@@ -491,7 +414,7 @@ paths:
         in: path
         name: order
         description: 訂單的ID。用於指定查詢哪一個訂單的詳情。
-        example: doloremque
+        example: non
         required: true
         schema:
           type: string
@@ -598,11 +521,11 @@ paths:
                 order_id:
                   type: integer
                   description: 訂單的ID。
-                  example: 18
+                  example: 3
                 race_id:
                   type: integer
                   description: "產品(Race)的ID。\n\n根據指定的race_id從使用者的購物車中提取數量，並根據race的價格計算出單價和總價。\n建立訂單細節後，減少相應的庫存，並清除使用者購物車中的該race項。"
-                  example: 18
+                  example: 12
               required:
                 - order_id
                 - race_id
@@ -625,7 +548,7 @@ paths:
                 totalPrice:
                   type: number
                   description: 購物車中所有商品的總價格。
-                  example: 4.8
+                  example: 21453895.225341
               required:
                 - totalPrice
   /api/payResult:
@@ -647,11 +570,11 @@ paths:
                 TradeInfo:
                   type: string
                   description: 支付相關的加密資料。
-                  example: ducimus
+                  example: cumque
                 TradeSha:
                   type: string
                   description: 支付回調的數字簽名。
-                  example: beatae
+                  example: ipsam
               required:
                 - TradeInfo
                 - TradeSha
@@ -681,15 +604,15 @@ paths:
                 first_name:
                   type: string
                   description: 'The first name of the user.'
-                  example: debitis
+                  example: est
                 last_name:
                   type: string
                   description: 'The last name of the user.'
-                  example: debitis
+                  example: pariatur
                 email:
                   type: string
                   description: 'The email address of the user.'
-                  example: joel99@example.net
+                  example: upton.nakia@example.com
               required:
                 - first_name
                 - last_name
@@ -755,19 +678,19 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 15 characters.'
-                  example: rytb
+                  example: d
                 race_id:
                   type: integer
                   description: ''
-                  example: 4
+                  example: 7
                 ability_id:
                   type: integer
                   description: ''
-                  example: 9
+                  example: 1
                 nature_id:
                   type: integer
                   description: ''
-                  example: 19
+                  example: 11
                 level:
                   type: integer
                   description: 'Must be at least 1. Must not be greater than 100.'
@@ -776,7 +699,7 @@ paths:
                   type: array
                   description: ''
                   example:
-                    - 5
+                    - 19
                   items:
                     type: integer
               required:
@@ -866,24 +789,24 @@ paths:
                 race_id:
                   type: integer
                   description: "optional 寶可夢的種族ID。該ID必須存在於系統的'races'表中。"
-                  example: 10
+                  example: 7
                 ability_id:
                   type: integer
                   description: "optional 寶可夢的能力ID。該ID必須存在於系統的'abilities'表中。"
-                  example: 10
+                  example: 17
                 nature_id:
                   type: integer
                   description: "optional 寶可夢的性格ID。該ID必須存在於系統的'natures'表中。"
-                  example: 1
+                  example: 3
                 level:
                   type: integer
                   description: 'optional 寶可夢的等級。其值必須是1到100之間的整數。'
-                  example: 12
+                  example: 2
                 skills:
                   type: array
                   description: 'optional 寶可夢的技能列表。至少包含1項，最多4項技能。Example：[1, 2, 3]'
                   example:
-                    - cumque
+                    - fugit
                   items:
                     type: string
     delete:
@@ -921,7 +844,7 @@ paths:
         in: path
         name: pokemon
         description: 寶可夢的ID。示例：1
-        example: 16
+        example: 11
         required: true
         schema:
           type: integer
@@ -959,7 +882,7 @@ paths:
         in: path
         name: pokemon
         description: 寶可夢的ID。範例：1
-        example: 15
+        example: 10
         required: true
         schema:
           type: integer
@@ -1013,19 +936,19 @@ paths:
                 name:
                   type: string
                   description: '使用者的名字。示例：John Doe'
-                  example: molestiae
+                  example: commodi
                 email:
                   type: string
                   description: 使用者的電子郵件地址。必須是唯一的並且符合電子郵件格式。示例：john.doe@example.com
-                  example: barrows.luella@example.com
+                  example: kunze.yasmeen@example.net
                 password:
                   type: string
                   description: 使用者的密碼。必須至少有6個字符長並且與`password_confirmation`參數匹配。示例：password123
-                  example: 5JPQ\k
+                  example: '!vS{?bL{q&v^RoHP)t'
                 password_confirmation:
                   type: string
                   description: 密碼確認。必須與`password`參數匹配。示例：password123
-                  example: architecto
+                  example: voluptas
               required:
                 - name
                 - email
@@ -1123,11 +1046,11 @@ paths:
                 name:
                   type: string
                   description: 'optional 新的用戶名稱。示例：John Doe'
-                  example: cum
+                  example: dolores
                 email:
                   type: string
                   description: 'optional 新的電子郵件地址。示例：john.doe@example.com'
-                  example: kuhn.nikolas@example.net
+                  example: nkoss@example.com
 tags:
   -
     name: Auth

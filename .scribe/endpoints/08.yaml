@@ -31,7 +31,7 @@ endpoints:
         name: email
         description: 用戶的電子郵件地址。example：user@example.com
         required: true
-        example: spencer.noemie@example.com
+        example: haylee.rowe@example.net
         type: string
         enumValues: []
         custom: []
@@ -44,7 +44,7 @@ endpoints:
         enumValues: []
         custom: []
     cleanBodyParameters:
-      email: spencer.noemie@example.com
+      email: haylee.rowe@example.net
       password: e123456
     fileParameters: []
     responses:
@@ -125,140 +125,6 @@ endpoints:
         content: |-
           {
             "message": "Failed to logout"
-          }
-        headers: []
-        description: ''
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: 'api/email/verify/{id}/{hash}'
-    metadata:
-      groupName: Auth
-      groupDescription: 'Operations related to auth.'
-      subgroup: ''
-      subgroupDescription: ''
-      title: 註冊email驗證信確認
-      description: |-
-        電子郵件驗證確認
-
-        此端點用於確認用戶的電子郵件驗證(和前端較無關聯）。
-        它會比對提供的hash值和用戶的電子郵件生成的hash值。
-        如果驗證成功，該用戶的電子郵件將被標記為已驗證，並且將觸發一個已驗證的事件。
-        系統會將email驗證的日期存入資料庫
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-      Authorization: 'Bearer '
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the verify.'
-        required: true
-        example: quis
-        type: string
-        enumValues: []
-        custom: []
-      hash:
-        name: hash
-        description: ''
-        required: true
-        example: qui
-        type: string
-        enumValues: []
-        custom: []
-    cleanUrlParameters:
-      id: quis
-      hash: qui
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 200
-        content: |-
-          {
-            "message": "Email verified successfully."
-          }
-        headers: []
-        description: ''
-        custom: []
-      -
-        status: 200
-        content: |-
-          {
-            "message": "Email already verified."
-          }
-        headers: []
-        description: ''
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: 'api/checkVerificationStatus/{email}'
-    metadata:
-      groupName: Auth
-      groupDescription: 'Operations related to auth.'
-      subgroup: ''
-      subgroupDescription: ''
-      title: 確認user表註冊驗證信狀態
-      description: |-
-        此API用來讓前端判斷目前的使用者是否為email已驗證狀態
-        目前採用longpoling的方式，所以後端這裡會去輪詢資料庫查看狀態。
-        如果請求超時會返回false給使用者
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-      Authorization: 'Bearer '
-    urlParameters:
-      email:
-        name: email
-        description: ''
-        required: true
-        example: tkoch@example.com
-        type: string
-        enumValues: []
-        custom: []
-    cleanUrlParameters:
-      email: tkoch@example.com
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 200
-        content: |-
-          {
-            "isVerified": true/false
-          }
-        headers: []
-        description: ''
-        custom: []
-      -
-        status: 404
-        content: |-
-          {
-            "error": "User not found"
           }
         headers: []
         description: ''

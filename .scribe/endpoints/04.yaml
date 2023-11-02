@@ -27,7 +27,7 @@ endpoints:
         name: total_price
         description: 訂單的總價格。
         required: true
-        example: 314466513.44
+        example: 69132201.5
         type: number
         enumValues: []
         custom: []
@@ -35,7 +35,7 @@ endpoints:
         name: payment_method
         description: "訂單的付款方式，只能是 'credit_card' 或 'cash_on_delivery'。"
         required: true
-        example: velit
+        example: dolores
         type: string
         enumValues: []
         custom: []
@@ -43,14 +43,14 @@ endpoints:
         name: payment_status
         description: "訂單的付款狀態，只能是 'paid', 'unpaid', 或 'canceled'。"
         required: true
-        example: qui
+        example: aut
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      total_price: 314466513.44
-      payment_method: velit
-      payment_status: qui
+      total_price: 69132201.5
+      payment_method: dolores
+      payment_status: aut
     fileParameters: []
     responses:
       -
