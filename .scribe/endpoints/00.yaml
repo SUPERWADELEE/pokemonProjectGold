@@ -27,7 +27,7 @@ endpoints:
         name: first_name
         description: 'The first name of the user.'
         required: true
-        example: quas
+        example: debitis
         type: string
         enumValues: []
         custom: []
@@ -35,7 +35,7 @@ endpoints:
         name: last_name
         description: 'The last name of the user.'
         required: true
-        example: quisquam
+        example: debitis
         type: string
         enumValues: []
         custom: []
@@ -43,14 +43,14 @@ endpoints:
         name: email
         description: 'The email address of the user.'
         required: true
-        example: willms.cesar@example.com
+        example: joel99@example.net
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      first_name: quas
-      last_name: quisquam
-      email: willms.cesar@example.com
+      first_name: debitis
+      last_name: debitis
+      email: joel99@example.net
     fileParameters: []
     responses:
       -
@@ -67,6 +67,7 @@ endpoints:
               "nature": "Jolly",
               "skills": ["Thunderbolt", "Quick Attack"],
               "host": "Ash Ketchum"
+              "evolution_level":16
           }
         headers: []
         description: ''
@@ -105,7 +106,7 @@ endpoints:
         name: name
         description: 'Must not be greater than 15 characters.'
         required: true
-        example: fsj
+        example: rytb
         type: string
         enumValues: []
         custom: []
@@ -113,7 +114,7 @@ endpoints:
         name: race_id
         description: ''
         required: true
-        example: 12
+        example: 4
         type: integer
         enumValues: []
         custom: []
@@ -121,7 +122,7 @@ endpoints:
         name: ability_id
         description: ''
         required: true
-        example: 6
+        example: 9
         type: integer
         enumValues: []
         custom: []
@@ -137,7 +138,7 @@ endpoints:
         name: level
         description: 'Must be at least 1. Must not be greater than 100.'
         required: true
-        example: 18
+        example: 3
         type: integer
         enumValues: []
         custom: []
@@ -146,18 +147,18 @@ endpoints:
         description: ''
         required: false
         example:
-          - 16
+          - 5
         type: 'integer[]'
         enumValues: []
         custom: []
     cleanBodyParameters:
-      name: fsj
-      race_id: 12
-      ability_id: 6
+      name: rytb
+      race_id: 4
+      ability_id: 9
       nature_id: 19
-      level: 18
+      level: 3
       skills:
-        - 16
+        - 5
     fileParameters: []
     responses:
       -
@@ -238,13 +239,13 @@ endpoints:
         name: pokemon
         description: 寶可夢的ID。示例：1
         required: true
-        example: 3
+        example: 16
         type: integer
         enumValues: []
         custom: []
     cleanUrlParameters:
       id: 15
-      pokemon: 3
+      pokemon: 16
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -305,13 +306,13 @@ endpoints:
         name: pokemon
         description: 寶可夢的ID。Example：1
         required: true
-        example: 2
+        example: 20
         type: integer
         enumValues: []
         custom: []
     cleanUrlParameters:
       id: 15
-      pokemon: 2
+      pokemon: 20
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -327,7 +328,7 @@ endpoints:
         name: race_id
         description: "optional 寶可夢的種族ID。該ID必須存在於系統的'races'表中。"
         required: false
-        example: 9
+        example: 10
         type: integer
         enumValues: []
         custom: []
@@ -335,7 +336,7 @@ endpoints:
         name: ability_id
         description: "optional 寶可夢的能力ID。該ID必須存在於系統的'abilities'表中。"
         required: false
-        example: 15
+        example: 10
         type: integer
         enumValues: []
         custom: []
@@ -351,7 +352,7 @@ endpoints:
         name: level
         description: 'optional 寶可夢的等級。其值必須是1到100之間的整數。'
         required: false
-        example: 4
+        example: 12
         type: integer
         enumValues: []
         custom: []
@@ -360,7 +361,7 @@ endpoints:
         description: 'optional 寶可夢的技能列表。至少包含1項，最多4項技能。Example：[1, 2, 3]'
         required: false
         example:
-          - quia
+          - cumque
         type: 'string[]'
         enumValues: []
         custom: []
@@ -368,18 +369,18 @@ endpoints:
         name: 'skills.*'
         description: "optional 其中的每一個技能ID都必須是有效的且存在於'skills'表中。Example：1"
         required: false
-        example: 19
+        example: 1
         type: integer
         enumValues: []
         custom: []
     cleanBodyParameters:
       name: mommy
-      race_id: 9
-      ability_id: 15
+      race_id: 10
+      ability_id: 10
       nature_id: 1
-      level: 4
+      level: 12
       skills:
-        - quia
+        - cumque
     fileParameters: []
     responses: []
     responseFields: []
@@ -420,13 +421,13 @@ endpoints:
         name: pokemon
         description: 寶可夢的ID。示例：1
         required: true
-        example: 6
+        example: 2
         type: integer
         enumValues: []
         custom: []
     cleanUrlParameters:
       id: 15
-      pokemon: 6
+      pokemon: 2
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -490,13 +491,13 @@ endpoints:
         name: pokemon
         description: 寶可夢的ID。範例：1
         required: true
-        example: 9
+        example: 15
         type: integer
         enumValues: []
         custom: []
     cleanUrlParameters:
       pokemon_id: 15
-      pokemon: 9
+      pokemon: 15
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

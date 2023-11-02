@@ -57,18 +57,18 @@ Route::middleware('auth:api', 'checkStatus', 'throttle:100000,1')->group(functio
     /**
      * natural管理
      */
-    Route::get('natures', [NatureController::class, 'index']);
-    Route::post('natures', [NatureController::class, 'store']);
-    Route::patch('natures/{nature}', [NatureController::class, 'update']);
+    // Route::get('natures', [NatureController::class, 'index']);
+    // Route::post('natures', [NatureController::class, 'store']);
+    // Route::patch('natures/{nature}', [NatureController::class, 'update']);
 
 
     /**
      * ability管理
      */
     // ability列表
-    Route::get('abilities', [AbilityController::class, 'index']);
-    Route::post('abilities', [AbilityController::class, 'store']);
-    Route::patch('abilities/{ability}', [AbilityController::class, 'update']);
+    // Route::get('abilities', [AbilityController::class, 'index']);
+    // Route::post('abilities', [AbilityController::class, 'store']);
+    // Route::patch('abilities/{ability}', [AbilityController::class, 'update']);
 
 
     /**
@@ -76,8 +76,8 @@ Route::middleware('auth:api', 'checkStatus', 'throttle:100000,1')->group(functio
      */
     // natural列表
     Route::get('races', [RaceController::class, 'index']);
-    Route::get('races/{race}/evolutionLevel', [RaceController::class, 'evolutionLevel']);
-    Route::get('races/{race}/skill', [RaceController::class, 'skills']);
+    // Route::get('races/{race}/evolutionLevel', [RaceController::class, 'evolutionLevel']);
+    // Route::get('races/{race}/skill', [RaceController::class, 'skills']);
 
     /**
      * user管理

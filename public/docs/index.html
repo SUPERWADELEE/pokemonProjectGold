@@ -61,22 +61,6 @@
                     <a href="#introduction">Introduction</a>
                 </li>
                             </ul>
-                    <ul id="tocify-header-ability" class="tocify-header">
-                <li class="tocify-item level-1" data-unique="ability">
-                    <a href="#ability">Ability</a>
-                </li>
-                                    <ul id="tocify-subheader-ability" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="ability-GETapi-abilities">
-                                <a href="#ability-GETapi-abilities">特性列表</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="ability-POSTapi-abilities">
-                                <a href="#ability-POSTapi-abilities">特性新增</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="ability-PATCHapi-abilities--ability_id-">
-                                <a href="#ability-PATCHapi-abilities--ability_id-">特性修改</a>
-                            </li>
-                                                                        </ul>
-                            </ul>
                     <ul id="tocify-header-auth" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="auth">
                     <a href="#auth">Auth</a>
@@ -112,22 +96,6 @@
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="cartitem-DELETEapi-cart_items--cart_item_id-">
                                 <a href="#cartitem-DELETEapi-cart_items--cart_item_id-">購物車刪除</a>
-                            </li>
-                                                                        </ul>
-                            </ul>
-                    <ul id="tocify-header-nature" class="tocify-header">
-                <li class="tocify-item level-1" data-unique="nature">
-                    <a href="#nature">Nature</a>
-                </li>
-                                    <ul id="tocify-subheader-nature" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="nature-GETapi-natures">
-                                <a href="#nature-GETapi-natures">性格詳情</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="nature-POSTapi-natures">
-                                <a href="#nature-POSTapi-natures">性格新增</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="nature-PATCHapi-natures--nature_id-">
-                                <a href="#nature-PATCHapi-natures--nature_id-">性格修改</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -211,12 +179,6 @@
                                                     <li class="tocify-item level-2" data-unique="race-GETapi-races">
                                 <a href="#race-GETapi-races">取得寶可夢種族的列表。</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="race-GETapi-races--race_id--evolutionLevel">
-                                <a href="#race-GETapi-races--race_id--evolutionLevel">取得指定種族的進化等級。</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="race-GETapi-races--race_id--skill">
-                                <a href="#race-GETapi-races--race_id--skill">取得指定種族能夠學的技能。</a>
-                            </li>
                                                                         </ul>
                             </ul>
                     <ul id="tocify-header-register" class="tocify-header">
@@ -251,7 +213,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: October 31, 2023</li>
+        <li>Last updated: November 2, 2023</li>
     </ul>
 </div>
 
@@ -269,487 +231,7 @@ You can switch the language used with the tabs at the top right (or from the nav
         <!-- # Authenticating requests
 This API is not authenticated. -->
 
-        <h1 id="ability">Ability</h1>
-
-    <p>Operations related to abilities.</p>
-
-                                <h2 id="ability-GETapi-abilities">特性列表</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-<p>主要在於可以讓使用更新寶可夢的時候，在特性部分有選項可以讓使用者選擇</p>
-
-<span id="example-requests-GETapi-abilities">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/abilities" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --header "Authorization: Bearer "</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/abilities"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-    "Authorization": "Bearer ",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-abilities">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
- &quot;id&quot;: &quot;3&quot;,
- &quot;name&quot;: &quot;strong&quot;,
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-abilities" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-abilities"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-abilities"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-abilities" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-abilities">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-abilities" data-method="GET"
-      data-path="api/abilities"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-abilities', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-abilities"
-                    onclick="tryItOut('GETapi-abilities');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-abilities"
-                    onclick="cancelTryOut('GETapi-abilities');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-abilities"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/abilities</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-abilities"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-abilities"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="GETapi-abilities"
-               value="Bearer "
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer</code></p>
-            </div>
-                        </form>
-
-                    <h2 id="ability-POSTapi-abilities">特性新增</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-POSTapi-abilities">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/abilities" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --header "Authorization: Bearer " \
-    --data "{
-    \"name\": \"superHard\"
-}"
-</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/abilities"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-    "Authorization": "Bearer ",
-};
-
-let body = {
-    "name": "superHard"
-};
-
-fetch(url, {
-    method: "POST",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-abilities">
-            <blockquote>
-            <p>Example response (201):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Ability saved successfully&quot;
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (422):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;The given data was invalid.&quot;,
-    &quot;errors&quot;: {
-        &quot;name&quot;: [
-            &quot;名稱只能包含中文和英文字。&quot;
-        ]
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-POSTapi-abilities" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-abilities"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-abilities"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-POSTapi-abilities" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-abilities">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-POSTapi-abilities" data-method="POST"
-      data-path="api/abilities"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-abilities', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-abilities"
-                    onclick="tryItOut('POSTapi-abilities');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-abilities"
-                    onclick="cancelTryOut('POSTapi-abilities');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-abilities"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/abilities</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-abilities"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-abilities"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-abilities"
-               value="Bearer "
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer</code></p>
-            </div>
-                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="name"                data-endpoint="POSTapi-abilities"
-               value="superHard"
-               data-component="body">
-    <br>
-<p>能力的名稱. 必須是唯一的，只能包含中文和英文字，且最大長度為255個字符. Example: <code>superHard</code></p>
-        </div>
-        </form>
-
-                    <h2 id="ability-PATCHapi-abilities--ability_id-">特性修改</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-<p>此端點允許您更新現有的特性。</p>
-
-<span id="example-requests-PATCHapi-abilities--ability_id-">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request PATCH \
-    "http://localhost:8000/api/abilities/1" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --header "Authorization: Bearer " \
-    --data "{
-    \"name\": \"superSoft\"
-}"
-</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/abilities/1"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-    "Authorization": "Bearer ",
-};
-
-let body = {
-    "name": "superSoft"
-};
-
-fetch(url, {
-    method: "PATCH",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-PATCHapi-abilities--ability_id-">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Ability updated successfully&quot;
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (422):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;The given data was invalid.&quot;,
-    &quot;errors&quot;: {
-        &quot;name&quot;: [
-            &quot;名稱只能包含中文和英文字符。&quot;
-        ]
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-PATCHapi-abilities--ability_id-" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-PATCHapi-abilities--ability_id-"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-PATCHapi-abilities--ability_id-"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-PATCHapi-abilities--ability_id-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-PATCHapi-abilities--ability_id-">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-PATCHapi-abilities--ability_id-" data-method="PATCH"
-      data-path="api/abilities/{ability_id}"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-abilities--ability_id-', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-PATCHapi-abilities--ability_id-"
-                    onclick="tryItOut('PATCHapi-abilities--ability_id-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-PATCHapi-abilities--ability_id-"
-                    onclick="cancelTryOut('PATCHapi-abilities--ability_id-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-PATCHapi-abilities--ability_id-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-purple">PATCH</small>
-            <b><code>api/abilities/{ability_id}</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="PATCHapi-abilities--ability_id-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="PATCHapi-abilities--ability_id-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="PATCHapi-abilities--ability_id-"
-               value="Bearer "
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>ability_id</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="ability_id"                data-endpoint="PATCHapi-abilities--ability_id-"
-               value="1"
-               data-component="url">
-    <br>
-<p>The ID of the ability. Example: <code>1</code></p>
-            </div>
-                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="name"                data-endpoint="PATCHapi-abilities--ability_id-"
-               value="superSoft"
-               data-component="body">
-    <br>
-<p>需要更新的特性名稱. 必須是唯一的，只能包含中文和英文字符，且最大長度為255個字符. Example: <code>superSoft</code></p>
-        </div>
-        </form>
-
-                <h1 id="auth">Auth</h1>
+        <h1 id="auth">Auth</h1>
 
     <p>Operations related to auth.</p>
 
@@ -759,6 +241,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </p>
 
 <p>此端點允許用戶使用他們的電子郵件和密碼來登入系統，並返回一個JWT令牌。</p>
+<p>會確認信箱是否已驗證，如果尚未驗證返回錯誤
+會設置cookie和http only來傳token</p>
 
 <span id="example-requests-POSTapi-Auth-login">
 <blockquote>Example request:</blockquote>
@@ -771,7 +255,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "Authorization: Bearer " \
     --data "{
-    \"email\": \"penelope.senger@example.org\",
+    \"email\": \"spencer.noemie@example.com\",
     \"password\": \"e123456\"
 }"
 </code></pre></div>
@@ -789,7 +273,7 @@ const headers = {
 };
 
 let body = {
-    "email": "penelope.senger@example.org",
+    "email": "spencer.noemie@example.com",
     "password": "e123456"
 };
 
@@ -820,6 +304,15 @@ fetch(url, {
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: &quot;Invalid credentials&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: &quot;信箱未驗證&quot;
 }</code>
  </pre>
     </span>
@@ -910,10 +403,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-Auth-login"
-               value="penelope.senger@example.org"
+               value="spencer.noemie@example.com"
                data-component="body">
     <br>
-<p>用戶的電子郵件地址。example：user@example.com Example: <code>penelope.senger@example.org</code></p>
+<p>用戶的電子郵件地址。example：user@example.com Example: <code>spencer.noemie@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -934,6 +427,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </p>
 
 <p>此端點允許已經登入的用戶登出，它會使當前的JWT令牌失效。</p>
+<p>成功要把cookie清掉。 200.</p>
 
 <span id="example-requests-POSTapi-Auth-logout">
 <blockquote>Example request:</blockquote>
@@ -1084,7 +578,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/email/verify/autem/voluptatum" \
+    --get "http://localhost:8000/api/email/verify/quis/qui" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer "</code></pre></div>
@@ -1092,7 +586,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/email/verify/autem/voluptatum"
+    "http://localhost:8000/api/email/verify/quis/qui"
 );
 
 const headers = {
@@ -1215,10 +709,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="GETapi-email-verify--id---hash-"
-               value="autem"
+               value="quis"
                data-component="url">
     <br>
-<p>The ID of the verify. Example: <code>autem</code></p>
+<p>The ID of the verify. Example: <code>quis</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>hash</code></b>&nbsp;&nbsp;
@@ -1226,10 +720,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="hash"                data-endpoint="GETapi-email-verify--id---hash-"
-               value="voluptatum"
+               value="qui"
                data-component="url">
     <br>
-<p>Example: <code>voluptatum</code></p>
+<p>Example: <code>qui</code></p>
             </div>
                     </form>
 
@@ -1248,7 +742,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/checkVerificationStatus/bpfannerstill@example.org" \
+    --get "http://localhost:8000/api/checkVerificationStatus/tkoch@example.com" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer "</code></pre></div>
@@ -1256,7 +750,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/checkVerificationStatus/bpfannerstill@example.org"
+    "http://localhost:8000/api/checkVerificationStatus/tkoch@example.com"
 );
 
 const headers = {
@@ -1379,10 +873,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="GETapi-checkVerificationStatus--email-"
-               value="bpfannerstill@example.org"
+               value="tkoch@example.com"
                data-component="url">
     <br>
-<p>Example: <code>bpfannerstill@example.org</code></p>
+<p>Example: <code>tkoch@example.com</code></p>
             </div>
                     </form>
 
@@ -2036,515 +1530,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                <h1 id="nature">Nature</h1>
-
-    <p>Operations related to natures.</p>
-
-                                <h2 id="nature-GETapi-natures">性格詳情</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-<p>主要在於可以讓使用更新寶可夢的時候，在性格部分有選項可以讓使用者選擇</p>
-
-<span id="example-requests-GETapi-natures">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/natures" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --header "Authorization: Bearer "</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/natures"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-    "Authorization": "Bearer ",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-natures">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">[
-    {
-        &quot;id&quot;: &quot;性格的 ID&quot;,
-        &quot;name&quot;: &quot;性格的名稱&quot;
-    }
-]</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-natures" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-natures"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-natures"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-natures" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-natures">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-natures" data-method="GET"
-      data-path="api/natures"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-natures', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-natures"
-                    onclick="tryItOut('GETapi-natures');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-natures"
-                    onclick="cancelTryOut('GETapi-natures');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-natures"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/natures</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-natures"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-natures"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="GETapi-natures"
-               value="Bearer "
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer</code></p>
-            </div>
-                        </form>
-
-                    <h2 id="nature-POSTapi-natures">性格新增</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-POSTapi-natures">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/natures" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --header "Authorization: Bearer " \
-    --data "{
-    \"name\": \"好害羞\"
-}"
-</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/natures"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-    "Authorization": "Bearer ",
-};
-
-let body = {
-    "name": "好害羞"
-};
-
-fetch(url, {
-    method: "POST",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-natures">
-            <blockquote>
-            <p>Example response (201):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Nature saved successfully&quot;
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (400):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: &quot;Validation error messages if any&quot;
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (422):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;The given data was invalid.&quot;,
-    &quot;errors&quot;: {
-        &quot;name&quot;: [
-            &quot;名稱只能包含中文和英文字。&quot;
-        ]
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-POSTapi-natures" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-natures"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-natures"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-POSTapi-natures" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-natures">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-POSTapi-natures" data-method="POST"
-      data-path="api/natures"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-natures', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-natures"
-                    onclick="tryItOut('POSTapi-natures');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-natures"
-                    onclick="cancelTryOut('POSTapi-natures');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-natures"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/natures</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-natures"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-natures"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-natures"
-               value="Bearer "
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer</code></p>
-            </div>
-                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="name"                data-endpoint="POSTapi-natures"
-               value="好害羞"
-               data-component="body">
-    <br>
-<p>性格的名稱。要求是唯一的且最多包含255個字符且只能輸入英文或中文字。 Example: <code>好害羞</code></p>
-        </div>
-        </form>
-
-                    <h2 id="nature-PATCHapi-natures--nature_id-">性格修改</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-PATCHapi-natures--nature_id-">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request PATCH \
-    "http://localhost:8000/api/natures/1" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --header "Authorization: Bearer " \
-    --data "{
-    \"name\": \"易怒\"
-}"
-</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/natures/1"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-    "Authorization": "Bearer ",
-};
-
-let body = {
-    "name": "易怒"
-};
-
-fetch(url, {
-    method: "PATCH",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-PATCHapi-natures--nature_id-">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Nature updated successfully&quot;
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (400):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: &quot;Validation error messages if any&quot;
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Nature not found&quot;
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (422):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;The given data was invalid.&quot;,
-    &quot;errors&quot;: {
-        &quot;name&quot;: [
-            &quot;名稱只能包含中文和英文字。&quot;
-        ]
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-PATCHapi-natures--nature_id-" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-PATCHapi-natures--nature_id-"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-PATCHapi-natures--nature_id-"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-PATCHapi-natures--nature_id-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-PATCHapi-natures--nature_id-">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-PATCHapi-natures--nature_id-" data-method="PATCH"
-      data-path="api/natures/{nature_id}"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-natures--nature_id-', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-PATCHapi-natures--nature_id-"
-                    onclick="tryItOut('PATCHapi-natures--nature_id-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-PATCHapi-natures--nature_id-"
-                    onclick="cancelTryOut('PATCHapi-natures--nature_id-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-PATCHapi-natures--nature_id-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-purple">PATCH</small>
-            <b><code>api/natures/{nature_id}</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="PATCHapi-natures--nature_id-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="PATCHapi-natures--nature_id-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="PATCHapi-natures--nature_id-"
-               value="Bearer "
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>nature_id</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="nature_id"                data-endpoint="PATCHapi-natures--nature_id-"
-               value="1"
-               data-component="url">
-    <br>
-<p>The ID of the nature. Example: <code>1</code></p>
-            </div>
-                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="name"                data-endpoint="PATCHapi-natures--nature_id-"
-               value="易怒"
-               data-component="body">
-    <br>
-<p>性格的新名稱。要求是唯一的且最多包含255個字符且只能輸入英文或中文字。 Example: <code>易怒</code></p>
-        </div>
-        </form>
-
                 <h1 id="order">Order</h1>
 
     <p>Operations related to orders.</p>
@@ -2568,9 +1553,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "Authorization: Bearer " \
     --data "{
-    \"total_price\": 46.1007,
-    \"payment_method\": \"est\",
-    \"payment_status\": \"atque\"
+    \"total_price\": 314466513.44,
+    \"payment_method\": \"velit\",
+    \"payment_status\": \"qui\"
 }"
 </code></pre></div>
 
@@ -2587,9 +1572,9 @@ const headers = {
 };
 
 let body = {
-    "total_price": 46.1007,
-    "payment_method": "est",
-    "payment_status": "atque"
+    "total_price": 314466513.44,
+    "payment_method": "velit",
+    "payment_status": "qui"
 };
 
 fetch(url, {
@@ -2730,10 +1715,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="total_price"                data-endpoint="POSTapi-orders"
-               value="46.1007"
+               value="314466513.44"
                data-component="body">
     <br>
-<p>訂單的總價格。 Example: <code>46.1007</code></p>
+<p>訂單的總價格。 Example: <code>314466513.44</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>payment_method</code></b>&nbsp;&nbsp;
@@ -2741,10 +1726,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="payment_method"                data-endpoint="POSTapi-orders"
-               value="est"
+               value="velit"
                data-component="body">
     <br>
-<p>訂單的付款方式，只能是 'credit_card' 或 'cash_on_delivery'。 Example: <code>est</code></p>
+<p>訂單的付款方式，只能是 'credit_card' 或 'cash_on_delivery'。 Example: <code>velit</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>payment_status</code></b>&nbsp;&nbsp;
@@ -2752,10 +1737,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="payment_status"                data-endpoint="POSTapi-orders"
-               value="atque"
+               value="qui"
                data-component="body">
     <br>
-<p>訂單的付款狀態，只能是 'paid', 'unpaid', 或 'canceled'。 Example: <code>atque</code></p>
+<p>訂單的付款狀態，只能是 'paid', 'unpaid', 或 'canceled'。 Example: <code>qui</code></p>
         </div>
         </form>
 
@@ -3060,10 +2045,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="order"                data-endpoint="GETapi-orders--order_id--order_details"
-               value="et"
+               value="doloremque"
                data-component="url">
     <br>
-<p>訂單的ID。用於指定查詢哪一個訂單的詳情。 Example: <code>et</code></p>
+<p>訂單的ID。用於指定查詢哪一個訂單的詳情。 Example: <code>doloremque</code></p>
             </div>
                     </form>
 
@@ -3086,8 +2071,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "Authorization: Bearer " \
     --data "{
-    \"order_id\": 17,
-    \"race_id\": 2
+    \"order_id\": 18,
+    \"race_id\": 18
 }"
 </code></pre></div>
 
@@ -3104,8 +2089,8 @@ const headers = {
 };
 
 let body = {
-    "order_id": 17,
-    "race_id": 2
+    "order_id": 18,
+    "race_id": 18
 };
 
 fetch(url, {
@@ -3253,10 +2238,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="order_id"                data-endpoint="POSTapi-orders_details"
-               value="17"
+               value="18"
                data-component="body">
     <br>
-<p>訂單的ID。 Example: <code>17</code></p>
+<p>訂單的ID。 Example: <code>18</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>race_id</code></b>&nbsp;&nbsp;
@@ -3264,12 +2249,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="race_id"                data-endpoint="POSTapi-orders_details"
-               value="2"
+               value="18"
                data-component="body">
     <br>
 <p>產品(Race)的ID。</p>
 <p>根據指定的race_id從使用者的購物車中提取數量，並根據race的價格計算出單價和總價。
-建立訂單細節後，減少相應的庫存，並清除使用者購物車中的該race項。 Example: <code>2</code></p>
+建立訂單細節後，減少相應的庫存，並清除使用者購物車中的該race項。 Example: <code>18</code></p>
         </div>
         </form>
 
@@ -3303,7 +2288,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "Authorization: Bearer " \
     --data "{
-    \"totalPrice\": 22251
+    \"totalPrice\": 4.8
 }"
 </code></pre></div>
 
@@ -3320,7 +2305,7 @@ const headers = {
 };
 
 let body = {
-    "totalPrice": 22251
+    "totalPrice": 4.8
 };
 
 fetch(url, {
@@ -3420,10 +2405,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="totalPrice"                data-endpoint="POSTapi-payments"
-               value="22251"
+               value="4.8"
                data-component="body">
     <br>
-<p>購物車中所有商品的總價格。 Example: <code>22251</code></p>
+<p>購物車中所有商品的總價格。 Example: <code>4.8</code></p>
         </div>
         </form>
 
@@ -3456,8 +2441,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "Authorization: Bearer " \
     --data "{
-    \"TradeInfo\": \"deserunt\",
-    \"TradeSha\": \"necessitatibus\"
+    \"TradeInfo\": \"ducimus\",
+    \"TradeSha\": \"beatae\"
 }"
 </code></pre></div>
 
@@ -3474,8 +2459,8 @@ const headers = {
 };
 
 let body = {
-    "TradeInfo": "deserunt",
-    "TradeSha": "necessitatibus"
+    "TradeInfo": "ducimus",
+    "TradeSha": "beatae"
 };
 
 fetch(url, {
@@ -3575,10 +2560,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="TradeInfo"                data-endpoint="POSTapi-payResult"
-               value="deserunt"
+               value="ducimus"
                data-component="body">
     <br>
-<p>支付相關的加密資料。 Example: <code>deserunt</code></p>
+<p>支付相關的加密資料。 Example: <code>ducimus</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>TradeSha</code></b>&nbsp;&nbsp;
@@ -3586,10 +2571,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="TradeSha"                data-endpoint="POSTapi-payResult"
-               value="necessitatibus"
+               value="beatae"
                data-component="body">
     <br>
-<p>支付回調的數字簽名。 Example: <code>necessitatibus</code></p>
+<p>支付回調的數字簽名。 Example: <code>beatae</code></p>
         </div>
         </form>
 
@@ -3616,9 +2601,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "Authorization: Bearer " \
     --data "{
-    \"first_name\": \"quas\",
-    \"last_name\": \"quisquam\",
-    \"email\": \"willms.cesar@example.com\"
+    \"first_name\": \"debitis\",
+    \"last_name\": \"debitis\",
+    \"email\": \"joel99@example.net\"
 }"
 </code></pre></div>
 
@@ -3635,9 +2620,9 @@ const headers = {
 };
 
 let body = {
-    "first_name": "quas",
-    "last_name": "quisquam",
-    "email": "willms.cesar@example.com"
+    "first_name": "debitis",
+    "last_name": "debitis",
+    "email": "joel99@example.net"
 };
 
 fetch(url, {
@@ -3663,11 +2648,9 @@ fetch(url, {
     &quot;photo&quot;: &quot;http://example.com/pikachu.jpg&quot;,
     &quot;ability&quot;: &quot;Static&quot;,
     &quot;nature&quot;: &quot;Jolly&quot;,
-    &quot;skills&quot;: [
-        &quot;Thunderbolt&quot;,
-        &quot;Quick Attack&quot;
-    ],
+    &quot;skills&quot;: [&quot;Thunderbolt&quot;, &quot;Quick Attack&quot;],
     &quot;host&quot;: &quot;Ash Ketchum&quot;
+    &quot;evolution_level&quot;:16
 }</code>
  </pre>
     </span>
@@ -3758,10 +2741,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="first_name"                data-endpoint="GETapi-pokemons"
-               value="quas"
+               value="debitis"
                data-component="body">
     <br>
-<p>The first name of the user. Example: <code>quas</code></p>
+<p>The first name of the user. Example: <code>debitis</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>last_name</code></b>&nbsp;&nbsp;
@@ -3769,10 +2752,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="last_name"                data-endpoint="GETapi-pokemons"
-               value="quisquam"
+               value="debitis"
                data-component="body">
     <br>
-<p>The last name of the user. Example: <code>quisquam</code></p>
+<p>The last name of the user. Example: <code>debitis</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -3780,10 +2763,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="GETapi-pokemons"
-               value="willms.cesar@example.com"
+               value="joel99@example.net"
                data-component="body">
     <br>
-<p>The email address of the user. Example: <code>willms.cesar@example.com</code></p>
+<p>The email address of the user. Example: <code>joel99@example.net</code></p>
         </div>
         </form>
 
@@ -3807,13 +2790,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "Authorization: Bearer " \
     --data "{
-    \"name\": \"fsj\",
-    \"race_id\": 12,
-    \"ability_id\": 6,
+    \"name\": \"rytb\",
+    \"race_id\": 4,
+    \"ability_id\": 9,
     \"nature_id\": 19,
-    \"level\": 18,
+    \"level\": 3,
     \"skills\": [
-        16
+        5
     ]
 }"
 </code></pre></div>
@@ -3831,13 +2814,13 @@ const headers = {
 };
 
 let body = {
-    "name": "fsj",
-    "race_id": 12,
-    "ability_id": 6,
+    "name": "rytb",
+    "race_id": 4,
+    "ability_id": 9,
     "nature_id": 19,
-    "level": 18,
+    "level": 3,
     "skills": [
-        16
+        5
     ]
 };
 
@@ -3980,10 +2963,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-pokemons"
-               value="fsj"
+               value="rytb"
                data-component="body">
     <br>
-<p>Must not be greater than 15 characters. Example: <code>fsj</code></p>
+<p>Must not be greater than 15 characters. Example: <code>rytb</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>race_id</code></b>&nbsp;&nbsp;
@@ -3991,10 +2974,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="race_id"                data-endpoint="POSTapi-pokemons"
-               value="12"
+               value="4"
                data-component="body">
     <br>
-<p>Example: <code>12</code></p>
+<p>Example: <code>4</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>ability_id</code></b>&nbsp;&nbsp;
@@ -4002,10 +2985,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="ability_id"                data-endpoint="POSTapi-pokemons"
-               value="6"
+               value="9"
                data-component="body">
     <br>
-<p>Example: <code>6</code></p>
+<p>Example: <code>9</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>nature_id</code></b>&nbsp;&nbsp;
@@ -4024,10 +3007,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="level"                data-endpoint="POSTapi-pokemons"
-               value="18"
+               value="3"
                data-component="body">
     <br>
-<p>Must be at least 1. Must not be greater than 100. Example: <code>18</code></p>
+<p>Must be at least 1. Must not be greater than 100. Example: <code>3</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>skills</code></b>&nbsp;&nbsp;
@@ -4202,10 +3185,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="pokemon"                data-endpoint="GETapi-pokemons--id-"
-               value="3"
+               value="16"
                data-component="url">
     <br>
-<p>寶可夢的ID。示例：1 Example: <code>3</code></p>
+<p>寶可夢的ID。示例：1 Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -4229,12 +3212,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Authorization: Bearer " \
     --data "{
     \"name\": \"mommy\",
-    \"race_id\": 9,
-    \"ability_id\": 15,
+    \"race_id\": 10,
+    \"ability_id\": 10,
     \"nature_id\": 1,
-    \"level\": 4,
+    \"level\": 12,
     \"skills\": [
-        \"quia\"
+        \"cumque\"
     ]
 }"
 </code></pre></div>
@@ -4253,12 +3236,12 @@ const headers = {
 
 let body = {
     "name": "mommy",
-    "race_id": 9,
-    "ability_id": 15,
+    "race_id": 10,
+    "ability_id": 10,
     "nature_id": 1,
-    "level": 4,
+    "level": 12,
     "skills": [
-        "quia"
+        "cumque"
     ]
 };
 
@@ -4374,10 +3357,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="pokemon"                data-endpoint="PUTapi-pokemons--id-"
-               value="2"
+               value="20"
                data-component="url">
     <br>
-<p>寶可夢的ID。Example：1 Example: <code>2</code></p>
+<p>寶可夢的ID。Example：1 Example: <code>20</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -4397,10 +3380,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="race_id"                data-endpoint="PUTapi-pokemons--id-"
-               value="9"
+               value="10"
                data-component="body">
     <br>
-<p>optional 寶可夢的種族ID。該ID必須存在於系統的'races'表中。 Example: <code>9</code></p>
+<p>optional 寶可夢的種族ID。該ID必須存在於系統的'races'表中。 Example: <code>10</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>ability_id</code></b>&nbsp;&nbsp;
@@ -4408,10 +3391,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="ability_id"                data-endpoint="PUTapi-pokemons--id-"
-               value="15"
+               value="10"
                data-component="body">
     <br>
-<p>optional 寶可夢的能力ID。該ID必須存在於系統的'abilities'表中。 Example: <code>15</code></p>
+<p>optional 寶可夢的能力ID。該ID必須存在於系統的'abilities'表中。 Example: <code>10</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>nature_id</code></b>&nbsp;&nbsp;
@@ -4430,10 +3413,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="level"                data-endpoint="PUTapi-pokemons--id-"
-               value="4"
+               value="12"
                data-component="body">
     <br>
-<p>optional 寶可夢的等級。其值必須是1到100之間的整數。 Example: <code>4</code></p>
+<p>optional 寶可夢的等級。其值必須是1到100之間的整數。 Example: <code>12</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
         <details>
@@ -4450,10 +3433,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="skills.*"                data-endpoint="PUTapi-pokemons--id-"
-               value="19"
+               value="1"
                data-component="body">
     <br>
-<p>optional 其中的每一個技能ID都必須是有效的且存在於'skills'表中。Example：1 Example: <code>19</code></p>
+<p>optional 其中的每一個技能ID都必須是有效的且存在於'skills'表中。Example：1 Example: <code>1</code></p>
                     </div>
                                     </details>
         </div>
@@ -4613,10 +3596,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="pokemon"                data-endpoint="DELETEapi-pokemons--id-"
-               value="6"
+               value="2"
                data-component="url">
     <br>
-<p>寶可夢的ID。示例：1 Example: <code>6</code></p>
+<p>寶可夢的ID。示例：1 Example: <code>2</code></p>
             </div>
                     </form>
 
@@ -4787,10 +3770,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="pokemon"                data-endpoint="PUTapi-pokemons--pokemon_id--evolution"
-               value="9"
+               value="15"
                data-component="url">
     <br>
-<p>寶可夢的ID。範例：1 Example: <code>9</code></p>
+<p>寶可夢的ID。範例：1 Example: <code>15</code></p>
             </div>
                     </form>
 
@@ -4802,11 +3785,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
                                 <h2 id="race-GETapi-races">取得寶可夢種族的列表。</h2>
 
 <p>
-<small class="badge badge-darkred">requires authentication</small>
 </p>
 
-<p>此方法返回一個包含所有寶可夢種族的列表，
-每個種族包括其ID、名稱和照片。列表會分頁，每頁包含10個項目。</p>
+<p>此API不需要驗證。
+此方法返回一個包含所有寶可夢種族的列表，
+每個種族包括其ID、名稱和照片。列表會分頁，每頁包含12個項目。</p>
 
 <span id="example-requests-GETapi-races">
 <blockquote>Example request:</blockquote>
@@ -4845,14 +3828,41 @@ fetch(url, {
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-  &quot;data&quot;: [
-    {
-      &quot;id&quot;: 1,
-      &quot;name&quot;: &quot;皮卡丘&quot;,
-      &quot;photo&quot;: &quot;url_to_photo&quot;
-    },
-    // 其他種族...
-  ]
+&quot;current_page&quot;: 1,
+&quot;data&quot;: [
+{
+&quot;id&quot;: 1,
+&quot;name&quot;: &quot;bulbasaur&quot;,
+&quot;photo&quot;: &quot;https://raw.githubusercontent.com/PokeAPI/*sprites/master/sprites/pokemon/1.png&quot;
+&quot;stock&quot;:334,
+&quot;price&quot;:2344
+},
+{
+&quot;id&quot;: 2,
+&quot;name&quot;: &quot;ivysaur&quot;,
+&quot;photo&quot;: &quot;https://raw.githubusercontent.com/PokeAPI/*sprites/master/sprites/pokemon/2.png&quot;,
+&quot;stock&quot;:334,
+&quot;price&quot;:2344
+},
+{
+&quot;id&quot;: 3,
+&quot;name&quot;: &quot;venusaur&quot;,
+&quot;photo&quot;: &quot;https://raw.githubusercontent.com/PokeAPI/*sprites/master/sprites/pokemon/3.png&quot;,
+&quot;stock&quot;:334,
+&quot;price&quot;:2344
+},...
+
+],
+&quot;first_page_url&quot;: &quot;http://localhost:8000/api/races?page=1&quot;,
+&quot;from&quot;: 1,
+&quot;last_page&quot;: 85,
+&quot;last_page_url&quot;: &quot;http://localhost:8000/api/races?page=85&quot;,
+&quot;next_page_url&quot;: &quot;http://localhost:8000/api/races?page=2&quot;,
+&quot;path&quot;: &quot;http://localhost:8000/api/races&quot;,
+&quot;per_page&quot;: 12,
+&quot;prev_page_url&quot;: null,
+&quot;to&quot;: 12,
+&quot;total&quot;: 1010
 }</code>
  </pre>
     </span>
@@ -4873,7 +3883,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-GETapi-races" data-method="GET"
       data-path="api/races"
-      data-authed="1"
+      data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
@@ -4930,326 +3940,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="GETapi-races"
+                              name="Authorization"                data-endpoint="GETapi-races"
                value="Bearer "
                data-component="header">
     <br>
 <p>Example: <code>Bearer</code></p>
             </div>
                         </form>
-
-                    <h2 id="race-GETapi-races--race_id--evolutionLevel">取得指定種族的進化等級。</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-<p>此方法返回指定種族的進化等級。進化等級是一個整數值，表示寶可夢在達到這個等級時可以進化。</p>
-
-<span id="example-requests-GETapi-races--race_id--evolutionLevel">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/races/1/evolutionLevel" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --header "Authorization: Bearer "</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/races/1/evolutionLevel"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-    "Authorization": "Bearer ",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-races--race_id--evolutionLevel">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;id&quot;: 1,
-    &quot;evolution_level&quot;: 20
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-races--race_id--evolutionLevel" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-races--race_id--evolutionLevel"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-races--race_id--evolutionLevel"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-races--race_id--evolutionLevel" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-races--race_id--evolutionLevel">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-races--race_id--evolutionLevel" data-method="GET"
-      data-path="api/races/{race_id}/evolutionLevel"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-races--race_id--evolutionLevel', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-races--race_id--evolutionLevel"
-                    onclick="tryItOut('GETapi-races--race_id--evolutionLevel');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-races--race_id--evolutionLevel"
-                    onclick="cancelTryOut('GETapi-races--race_id--evolutionLevel');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-races--race_id--evolutionLevel"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/races/{race_id}/evolutionLevel</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-races--race_id--evolutionLevel"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-races--race_id--evolutionLevel"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="GETapi-races--race_id--evolutionLevel"
-               value="Bearer "
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>race_id</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="race_id"                data-endpoint="GETapi-races--race_id--evolutionLevel"
-               value="1"
-               data-component="url">
-    <br>
-<p>The ID of the race. Example: <code>1</code></p>
-            </div>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>race</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="race"                data-endpoint="GETapi-races--race_id--evolutionLevel"
-               value="6"
-               data-component="url">
-    <br>
-<p>寶可夢種族的ID。示例：1 Example: <code>6</code></p>
-            </div>
-                    </form>
-
-                    <h2 id="race-GETapi-races--race_id--skill">取得指定種族能夠學的技能。</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-<p>此方法返回指定種族能夠學習的所有技能。技能按照它們的ID排序。</p>
-
-<span id="example-requests-GETapi-races--race_id--skill">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/races/1/skill" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --header "Authorization: Bearer "</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/races/1/skill"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-    "Authorization": "Bearer ",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-races--race_id--skill">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">[
-  {
-    &quot;id&quot;: 1,
-    &quot;name&quot;: &quot;電擊&quot;
-  },
-  // 其他技能...
-]</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-races--race_id--skill" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-races--race_id--skill"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-races--race_id--skill"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-races--race_id--skill" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-races--race_id--skill">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-races--race_id--skill" data-method="GET"
-      data-path="api/races/{race_id}/skill"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-races--race_id--skill', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-races--race_id--skill"
-                    onclick="tryItOut('GETapi-races--race_id--skill');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-races--race_id--skill"
-                    onclick="cancelTryOut('GETapi-races--race_id--skill');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-races--race_id--skill"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/races/{race_id}/skill</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-races--race_id--skill"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-races--race_id--skill"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="GETapi-races--race_id--skill"
-               value="Bearer "
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>race_id</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="race_id"                data-endpoint="GETapi-races--race_id--skill"
-               value="1"
-               data-component="url">
-    <br>
-<p>The ID of the race. Example: <code>1</code></p>
-            </div>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>race</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="race"                data-endpoint="GETapi-races--race_id--skill"
-               value="3"
-               data-component="url">
-    <br>
-<p>寶可夢種族的ID。示例：1 Example: <code>3</code></p>
-            </div>
-                    </form>
 
                 <h1 id="register">Register</h1>
 
@@ -5274,10 +3971,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "Authorization: Bearer " \
     --data "{
-    \"name\": \"repellendus\",
-    \"email\": \"grayce77@example.net\",
-    \"password\": \"P@(G40L&lt;Z\\\\yGOTw&amp;M)\",
-    \"password_confirmation\": \"nemo\"
+    \"name\": \"molestiae\",
+    \"email\": \"barrows.luella@example.com\",
+    \"password\": \"5JPQ\\\\k\",
+    \"password_confirmation\": \"architecto\"
 }"
 </code></pre></div>
 
@@ -5294,10 +3991,10 @@ const headers = {
 };
 
 let body = {
-    "name": "repellendus",
-    "email": "grayce77@example.net",
-    "password": "P@(G40L&lt;Z\\yGOTw&amp;M)",
-    "password_confirmation": "nemo"
+    "name": "molestiae",
+    "email": "barrows.luella@example.com",
+    "password": "5JPQ\\k",
+    "password_confirmation": "architecto"
 };
 
 fetch(url, {
@@ -5426,10 +4123,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-register"
-               value="repellendus"
+               value="molestiae"
                data-component="body">
     <br>
-<p>使用者的名字。示例：John Doe Example: <code>repellendus</code></p>
+<p>使用者的名字。示例：John Doe Example: <code>molestiae</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -5437,10 +4134,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-register"
-               value="grayce77@example.net"
+               value="barrows.luella@example.com"
                data-component="body">
     <br>
-<p>使用者的電子郵件地址。必須是唯一的並且符合電子郵件格式。示例：john.doe@example.com Example: <code>grayce77@example.net</code></p>
+<p>使用者的電子郵件地址。必須是唯一的並且符合電子郵件格式。示例：john.doe@example.com Example: <code>barrows.luella@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -5448,10 +4145,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-register"
-               value="P@(G40L<Z\yGOTw&M)"
+               value="5JPQ\k"
                data-component="body">
     <br>
-<p>使用者的密碼。必須至少有6個字符長並且與<code>password_confirmation</code>參數匹配。示例：password123 Example: <code>P@(G40L&lt;Z\yGOTw&amp;M)</code></p>
+<p>使用者的密碼。必須至少有6個字符長並且與<code>password_confirmation</code>參數匹配。示例：password123 Example: <code>5JPQ\k</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password_confirmation</code></b>&nbsp;&nbsp;
@@ -5459,10 +4156,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password_confirmation"                data-endpoint="POSTapi-register"
-               value="nemo"
+               value="architecto"
                data-component="body">
     <br>
-<p>密碼確認。必須與<code>password</code>參數匹配。示例：password123 Example: <code>nemo</code></p>
+<p>密碼確認。必須與<code>password</code>參數匹配。示例：password123 Example: <code>architecto</code></p>
         </div>
         </form>
 
@@ -5476,7 +4173,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>同時驗證cookie的token有效性，
+失敗的話要清除token。</p>
 
 <span id="example-requests-GETapi-user">
 <blockquote>Example request:</blockquote>
@@ -5518,6 +4216,15 @@ fetch(url, {
     &quot;name&quot;: &quot;John Doe&quot;,
     &quot;photo&quot;: &quot;https://example.com/photo.jpg&quot;,
     &quot;email&quot;: &quot;johndoe@example.com&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: &quot;驗證失敗&quot;
 }</code>
  </pre>
             <blockquote>
@@ -5631,9 +4338,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer " \
-    --form "name=ab"\
-    --form "email=lueilwitz.imogene@example.com"\
-    --form "userPhoto=@/private/var/folders/fj/8mc653gd5ms9d4bnjf78tjtm0000gn/T/php0CvgF2" </code></pre></div>
+    --form "name=cum"\
+    --form "email=kuhn.nikolas@example.net"\
+    --form "userPhoto=@/private/var/folders/fj/8mc653gd5ms9d4bnjf78tjtm0000gn/T/phpMgK24G" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -5648,8 +4355,8 @@ const headers = {
 };
 
 const body = new FormData();
-body.append('name', 'ab');
-body.append('email', 'lueilwitz.imogene@example.com');
+body.append('name', 'cum');
+body.append('email', 'kuhn.nikolas@example.net');
 body.append('userPhoto', document.querySelector('input[name="userPhoto"]').files[0]);
 
 fetch(url, {
@@ -5762,7 +4469,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>optional 用戶的新照片。應該是一個圖像文件。 Example: <code>/private/var/folders/fj/8mc653gd5ms9d4bnjf78tjtm0000gn/T/php0CvgF2</code></p>
+<p>optional 用戶的新照片。應該是一個圖像文件。 Example: <code>/private/var/folders/fj/8mc653gd5ms9d4bnjf78tjtm0000gn/T/phpMgK24G</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
@@ -5770,10 +4477,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-user"
-               value="ab"
+               value="cum"
                data-component="body">
     <br>
-<p>optional 新的用戶名稱。示例：John Doe Example: <code>ab</code></p>
+<p>optional 新的用戶名稱。示例：John Doe Example: <code>cum</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -5781,10 +4488,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-user"
-               value="lueilwitz.imogene@example.com"
+               value="kuhn.nikolas@example.net"
                data-component="body">
     <br>
-<p>optional 新的電子郵件地址。示例：john.doe@example.com Example: <code>lueilwitz.imogene@example.com</code></p>
+<p>optional 新的電子郵件地址。示例：john.doe@example.com Example: <code>kuhn.nikolas@example.net</code></p>
         </div>
         </form>
 

@@ -7,151 +7,11 @@ servers:
   -
     url: 'http://localhost:8000'
 paths:
-  /api/abilities:
-    get:
-      summary: 特性列表
-      operationId: ''
-      description: 主要在於可以讓使用更新寶可夢的時候，在特性部分有選項可以讓使用者選擇
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: "{\n \"id\": \"3\",\n \"name\": \"strong\",\n}"
-      tags:
-        - Ability
-    post:
-      summary: 特性新增
-      operationId: ''
-      description: ''
-      parameters: []
-      responses:
-        201:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: 'Ability saved successfully'
-                properties:
-                  message:
-                    type: string
-                    example: 'Ability saved successfully'
-        422:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: 'The given data was invalid.'
-                  errors:
-                    name:
-                      - 名稱只能包含中文和英文字。
-                properties:
-                  message:
-                    type: string
-                    example: 'The given data was invalid.'
-                  errors:
-                    type: object
-                    properties:
-                      name:
-                        type: array
-                        example:
-                          - 名稱只能包含中文和英文字。
-                        items:
-                          type: string
-      tags:
-        - Ability
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: '能力的名稱. 必須是唯一的，只能包含中文和英文字，且最大長度為255個字符.'
-                  example: superHard
-              required:
-                - name
-  '/api/abilities/{ability_id}':
-    patch:
-      summary: 特性修改
-      operationId: ''
-      description: 此端點允許您更新現有的特性。
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: 'Ability updated successfully'
-                properties:
-                  message:
-                    type: string
-                    example: 'Ability updated successfully'
-        422:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: 'The given data was invalid.'
-                  errors:
-                    name:
-                      - 名稱只能包含中文和英文字符。
-                properties:
-                  message:
-                    type: string
-                    example: 'The given data was invalid.'
-                  errors:
-                    type: object
-                    properties:
-                      name:
-                        type: array
-                        example:
-                          - 名稱只能包含中文和英文字符。
-                        items:
-                          type: string
-      tags:
-        - Ability
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: '需要更新的特性名稱. 必須是唯一的，只能包含中文和英文字符，且最大長度為255個字符.'
-                  example: superSoft
-              required:
-                - name
-    parameters:
-      -
-        in: path
-        name: ability_id
-        description: 'The ID of the ability.'
-        example: 1
-        required: true
-        schema:
-          type: integer
   /api/Auth/login:
     post:
       summary: 登入
       operationId: ''
-      description: 此端點允許用戶使用他們的電子郵件和密碼來登入系統，並返回一個JWT令牌。
+      description: "此端點允許用戶使用他們的電子郵件和密碼來登入系統，並返回一個JWT令牌。\n\n會確認信箱是否已驗證，如果尚未驗證返回錯誤\n會設置cookie和http only來傳token"
       parameters: []
       responses:
         200:
@@ -186,6 +46,18 @@ paths:
                   error:
                     type: string
                     example: 'Invalid credentials'
+        403:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 信箱未驗證
+                properties:
+                  error:
+                    type: string
+                    example: 信箱未驗證
       tags:
         - Auth
       requestBody:
@@ -198,7 +70,7 @@ paths:
                 email:
                   type: string
                   description: 用戶的電子郵件地址。example：user@example.com
-                  example: penelope.senger@example.org
+                  example: spencer.noemie@example.com
                 password:
                   type: string
                   description: 用戶的密碼。
@@ -211,7 +83,7 @@ paths:
     post:
       summary: 登出
       operationId: ''
-      description: 此端點允許已經登入的用戶登出，它會使當前的JWT令牌失效。
+      description: "此端點允許已經登入的用戶登出，它會使當前的JWT令牌失效。\n\n成功要把cookie清掉。 200."
       parameters: []
       responses:
         200:
@@ -268,7 +140,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the verify.'
-        example: autem
+        example: quis
         required: true
         schema:
           type: string
@@ -276,7 +148,7 @@ paths:
         in: path
         name: hash
         description: ''
-        example: voluptatum
+        example: qui
         required: true
         schema:
           type: string
@@ -314,7 +186,7 @@ paths:
         in: path
         name: email
         description: ''
-        example: bpfannerstill@example.org
+        example: tkoch@example.com
         required: true
         schema:
           type: string
@@ -483,187 +355,6 @@ paths:
         required: true
         schema:
           type: integer
-  /api/natures:
-    get:
-      summary: 性格詳情
-      operationId: ''
-      description: 主要在於可以讓使用更新寶可夢的時候，在性格部分有選項可以讓使用者選擇
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-                example:
-                  -
-                    id: '性格的 ID'
-                    name: 性格的名稱
-      tags:
-        - Nature
-    post:
-      summary: 性格新增
-      operationId: ''
-      description: ''
-      parameters: []
-      responses:
-        201:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: 'Nature saved successfully'
-                properties:
-                  message:
-                    type: string
-                    example: 'Nature saved successfully'
-        400:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  error: 'Validation error messages if any'
-                properties:
-                  error:
-                    type: string
-                    example: 'Validation error messages if any'
-        422:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: 'The given data was invalid.'
-                  errors:
-                    name:
-                      - 名稱只能包含中文和英文字。
-                properties:
-                  message:
-                    type: string
-                    example: 'The given data was invalid.'
-                  errors:
-                    type: object
-                    properties:
-                      name:
-                        type: array
-                        example:
-                          - 名稱只能包含中文和英文字。
-                        items:
-                          type: string
-      tags:
-        - Nature
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: 性格的名稱。要求是唯一的且最多包含255個字符且只能輸入英文或中文字。
-                  example: 好害羞
-              required:
-                - name
-  '/api/natures/{nature_id}':
-    patch:
-      summary: 性格修改
-      operationId: ''
-      description: ''
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: 'Nature updated successfully'
-                properties:
-                  message:
-                    type: string
-                    example: 'Nature updated successfully'
-        400:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  error: 'Validation error messages if any'
-                properties:
-                  error:
-                    type: string
-                    example: 'Validation error messages if any'
-        404:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: 'Nature not found'
-                properties:
-                  message:
-                    type: string
-                    example: 'Nature not found'
-        422:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: 'The given data was invalid.'
-                  errors:
-                    name:
-                      - 名稱只能包含中文和英文字。
-                properties:
-                  message:
-                    type: string
-                    example: 'The given data was invalid.'
-                  errors:
-                    type: object
-                    properties:
-                      name:
-                        type: array
-                        example:
-                          - 名稱只能包含中文和英文字。
-                        items:
-                          type: string
-      tags:
-        - Nature
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: 性格的新名稱。要求是唯一的且最多包含255個字符且只能輸入英文或中文字。
-                  example: 易怒
-              required:
-                - name
-    parameters:
-      -
-        in: path
-        name: nature_id
-        description: 'The ID of the nature.'
-        example: 1
-        required: true
-        schema:
-          type: integer
   /api/orders:
     post:
       summary: 訂單新增
@@ -743,15 +434,15 @@ paths:
                 total_price:
                   type: number
                   description: 訂單的總價格。
-                  example: 46.1007
+                  example: 314466513.44
                 payment_method:
                   type: string
                   description: "訂單的付款方式，只能是 'credit_card' 或 'cash_on_delivery'。"
-                  example: est
+                  example: velit
                 payment_status:
                   type: string
                   description: "訂單的付款狀態，只能是 'paid', 'unpaid', 或 'canceled'。"
-                  example: atque
+                  example: qui
               required:
                 - total_price
                 - payment_method
@@ -800,7 +491,7 @@ paths:
         in: path
         name: order
         description: 訂單的ID。用於指定查詢哪一個訂單的詳情。
-        example: et
+        example: doloremque
         required: true
         schema:
           type: string
@@ -907,11 +598,11 @@ paths:
                 order_id:
                   type: integer
                   description: 訂單的ID。
-                  example: 17
+                  example: 18
                 race_id:
                   type: integer
                   description: "產品(Race)的ID。\n\n根據指定的race_id從使用者的購物車中提取數量，並根據race的價格計算出單價和總價。\n建立訂單細節後，減少相應的庫存，並清除使用者購物車中的該race項。"
-                  example: 2
+                  example: 18
               required:
                 - order_id
                 - race_id
@@ -934,7 +625,7 @@ paths:
                 totalPrice:
                   type: number
                   description: 購物車中所有商品的總價格。
-                  example: 22251.0
+                  example: 4.8
               required:
                 - totalPrice
   /api/payResult:
@@ -956,11 +647,11 @@ paths:
                 TradeInfo:
                   type: string
                   description: 支付相關的加密資料。
-                  example: deserunt
+                  example: ducimus
                 TradeSha:
                   type: string
                   description: 支付回調的數字簽名。
-                  example: necessitatibus
+                  example: beatae
               required:
                 - TradeInfo
                 - TradeSha
@@ -974,57 +665,10 @@ paths:
         200:
           description: ''
           content:
-            application/json:
+            text/plain:
               schema:
-                type: object
-                example:
-                  id: 123
-                  name: myBaby
-                  level: 50
-                  race_id: 25
-                  race: Pikachu
-                  photo: 'http://example.com/pikachu.jpg'
-                  ability: Static
-                  nature: Jolly
-                  skills:
-                    - Thunderbolt
-                    - 'Quick Attack'
-                  host: 'Ash Ketchum'
-                properties:
-                  id:
-                    type: integer
-                    example: 123
-                  name:
-                    type: string
-                    example: myBaby
-                  level:
-                    type: integer
-                    example: 50
-                  race_id:
-                    type: integer
-                    example: 25
-                  race:
-                    type: string
-                    example: Pikachu
-                  photo:
-                    type: string
-                    example: 'http://example.com/pikachu.jpg'
-                  ability:
-                    type: string
-                    example: Static
-                  nature:
-                    type: string
-                    example: Jolly
-                  skills:
-                    type: array
-                    example:
-                      - Thunderbolt
-                      - 'Quick Attack'
-                    items:
-                      type: string
-                  host:
-                    type: string
-                    example: 'Ash Ketchum'
+                type: string
+                example: "{\n    \"id\": 123,\n    \"name\": \"myBaby\",\n    \"level\": 50,\n    \"race_id\": 25,\n    \"race\": \"Pikachu\",\n    \"photo\": \"http://example.com/pikachu.jpg\",\n    \"ability\": \"Static\",\n    \"nature\": \"Jolly\",\n    \"skills\": [\"Thunderbolt\", \"Quick Attack\"],\n    \"host\": \"Ash Ketchum\"\n    \"evolution_level\":16\n}"
       tags:
         - Pokemons
       requestBody:
@@ -1037,15 +681,15 @@ paths:
                 first_name:
                   type: string
                   description: 'The first name of the user.'
-                  example: quas
+                  example: debitis
                 last_name:
                   type: string
                   description: 'The last name of the user.'
-                  example: quisquam
+                  example: debitis
                 email:
                   type: string
                   description: 'The email address of the user.'
-                  example: willms.cesar@example.com
+                  example: joel99@example.net
               required:
                 - first_name
                 - last_name
@@ -1111,15 +755,15 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 15 characters.'
-                  example: fsj
+                  example: rytb
                 race_id:
                   type: integer
                   description: ''
-                  example: 12
+                  example: 4
                 ability_id:
                   type: integer
                   description: ''
-                  example: 6
+                  example: 9
                 nature_id:
                   type: integer
                   description: ''
@@ -1127,12 +771,12 @@ paths:
                 level:
                   type: integer
                   description: 'Must be at least 1. Must not be greater than 100.'
-                  example: 18
+                  example: 3
                 skills:
                   type: array
                   description: ''
                   example:
-                    - 16
+                    - 5
                   items:
                     type: integer
               required:
@@ -1222,11 +866,11 @@ paths:
                 race_id:
                   type: integer
                   description: "optional 寶可夢的種族ID。該ID必須存在於系統的'races'表中。"
-                  example: 9
+                  example: 10
                 ability_id:
                   type: integer
                   description: "optional 寶可夢的能力ID。該ID必須存在於系統的'abilities'表中。"
-                  example: 15
+                  example: 10
                 nature_id:
                   type: integer
                   description: "optional 寶可夢的性格ID。該ID必須存在於系統的'natures'表中。"
@@ -1234,12 +878,12 @@ paths:
                 level:
                   type: integer
                   description: 'optional 寶可夢的等級。其值必須是1到100之間的整數。'
-                  example: 4
+                  example: 12
                 skills:
                   type: array
                   description: 'optional 寶可夢的技能列表。至少包含1項，最多4項技能。Example：[1, 2, 3]'
                   example:
-                    - quia
+                    - cumque
                   items:
                     type: string
     delete:
@@ -1277,7 +921,7 @@ paths:
         in: path
         name: pokemon
         description: 寶可夢的ID。示例：1
-        example: 3
+        example: 16
         required: true
         schema:
           type: integer
@@ -1315,7 +959,7 @@ paths:
         in: path
         name: pokemon
         description: 寶可夢的ID。範例：1
-        example: 9
+        example: 15
         required: true
         schema:
           type: integer
@@ -1323,7 +967,7 @@ paths:
     get:
       summary: 取得寶可夢種族的列表。
       operationId: ''
-      description: "此方法返回一個包含所有寶可夢種族的列表，\n每個種族包括其ID、名稱和照片。列表會分頁，每頁包含10個項目。"
+      description: "此API不需要驗證。\n此方法返回一個包含所有寶可夢種族的列表，\n每個種族包括其ID、名稱和照片。列表會分頁，每頁包含12個項目。"
       parameters: []
       responses:
         200:
@@ -1332,84 +976,10 @@ paths:
             text/plain:
               schema:
                 type: string
-                example: "{\n  \"data\": [\n    {\n      \"id\": 1,\n      \"name\": \"皮卡丘\",\n      \"photo\": \"url_to_photo\"\n    },\n    // 其他種族...\n  ]\n}"
+                example: "{\n\"current_page\": 1,\n\"data\": [\n{\n\"id\": 1,\n\"name\": \"bulbasaur\",\n\"photo\": \"https://raw.githubusercontent.com/PokeAPI/*sprites/master/sprites/pokemon/1.png\"\n\"stock\":334,\n\"price\":2344\n},\n{\n\"id\": 2,\n\"name\": \"ivysaur\",\n\"photo\": \"https://raw.githubusercontent.com/PokeAPI/*sprites/master/sprites/pokemon/2.png\",\n\"stock\":334,\n\"price\":2344\n},\n{\n\"id\": 3,\n\"name\": \"venusaur\",\n\"photo\": \"https://raw.githubusercontent.com/PokeAPI/*sprites/master/sprites/pokemon/3.png\",\n\"stock\":334,\n\"price\":2344\n},...\n\n],\n\"first_page_url\": \"http://localhost:8000/api/races?page=1\",\n\"from\": 1,\n\"last_page\": 85,\n\"last_page_url\": \"http://localhost:8000/api/races?page=85\",\n\"next_page_url\": \"http://localhost:8000/api/races?page=2\",\n\"path\": \"http://localhost:8000/api/races\",\n\"per_page\": 12,\n\"prev_page_url\": null,\n\"to\": 12,\n\"total\": 1010\n}"
       tags:
         - Race
-  '/api/races/{race_id}/evolutionLevel':
-    get:
-      summary: 取得指定種族的進化等級。
-      operationId: ''
-      description: 此方法返回指定種族的進化等級。進化等級是一個整數值，表示寶可夢在達到這個等級時可以進化。
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  id: 1
-                  evolution_level: 20
-                properties:
-                  id:
-                    type: integer
-                    example: 1
-                  evolution_level:
-                    type: integer
-                    example: 20
-      tags:
-        - Race
-    parameters:
-      -
-        in: path
-        name: race_id
-        description: 'The ID of the race.'
-        example: 1
-        required: true
-        schema:
-          type: integer
-      -
-        in: path
-        name: race
-        description: 寶可夢種族的ID。示例：1
-        example: 6
-        required: true
-        schema:
-          type: integer
-  '/api/races/{race_id}/skill':
-    get:
-      summary: 取得指定種族能夠學的技能。
-      operationId: ''
-      description: 此方法返回指定種族能夠學習的所有技能。技能按照它們的ID排序。
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: "[\n  {\n    \"id\": 1,\n    \"name\": \"電擊\"\n  },\n  // 其他技能...\n]"
-      tags:
-        - Race
-    parameters:
-      -
-        in: path
-        name: race_id
-        description: 'The ID of the race.'
-        example: 1
-        required: true
-        schema:
-          type: integer
-      -
-        in: path
-        name: race
-        description: 寶可夢種族的ID。示例：1
-        example: 3
-        required: true
-        schema:
-          type: integer
+      security: []
   /api/register:
     post:
       summary: 處理新使用者的註冊並寄送註冊信。
@@ -1443,19 +1013,19 @@ paths:
                 name:
                   type: string
                   description: '使用者的名字。示例：John Doe'
-                  example: repellendus
+                  example: molestiae
                 email:
                   type: string
                   description: 使用者的電子郵件地址。必須是唯一的並且符合電子郵件格式。示例：john.doe@example.com
-                  example: grayce77@example.net
+                  example: barrows.luella@example.com
                 password:
                   type: string
                   description: 使用者的密碼。必須至少有6個字符長並且與`password_confirmation`參數匹配。示例：password123
-                  example: 'P@(G40L<Z\yGOTw&M)'
+                  example: 5JPQ\k
                 password_confirmation:
                   type: string
                   description: 密碼確認。必須與`password`參數匹配。示例：password123
-                  example: nemo
+                  example: architecto
               required:
                 - name
                 - email
@@ -1466,7 +1036,7 @@ paths:
     get:
       summary: 使用者個人資訊
       operationId: ''
-      description: ''
+      description: "同時驗證cookie的token有效性，\n失敗的話要清除token。"
       parameters: []
       responses:
         200:
@@ -1489,6 +1059,18 @@ paths:
                   email:
                     type: string
                     example: johndoe@example.com
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 驗證失敗
+                properties:
+                  error:
+                    type: string
+                    example: 驗證失敗
         404:
           description: ''
           content:
@@ -1541,24 +1123,18 @@ paths:
                 name:
                   type: string
                   description: 'optional 新的用戶名稱。示例：John Doe'
-                  example: ab
+                  example: cum
                 email:
                   type: string
                   description: 'optional 新的電子郵件地址。示例：john.doe@example.com'
-                  example: lueilwitz.imogene@example.com
+                  example: kuhn.nikolas@example.net
 tags:
-  -
-    name: Ability
-    description: 'Operations related to abilities.'
   -
     name: Auth
     description: 'Operations related to auth.'
   -
     name: CartItem
     description: 'Operations related to cartItems.'
-  -
-    name: Nature
-    description: 'Operations related to natures.'
   -
     name: Order
     description: 'Operations related to orders.'

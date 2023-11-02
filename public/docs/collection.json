@@ -10,151 +10,11 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "51054f91-afbd-4925-aacc-94ee33bcbc29",
+        "_postman_id": "06704429-78bf-4d74-98ec-0a8df9fec077",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
     "item": [
-        {
-            "name": "Ability",
-            "description": "Operations related to abilities.",
-            "item": [
-                {
-                    "name": "\u7279\u6027\u5217\u8868",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/abilities",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/abilities"
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer "
-                            }
-                        ],
-                        "body": null,
-                        "description": "\u4e3b\u8981\u5728\u65bc\u53ef\u4ee5\u8b93\u4f7f\u7528\u66f4\u65b0\u5bf6\u53ef\u5922\u7684\u6642\u5019\uff0c\u5728\u7279\u6027\u90e8\u5206\u6709\u9078\u9805\u53ef\u4ee5\u8b93\u4f7f\u7528\u8005\u9078\u64c7"
-                    },
-                    "response": [
-                        {
-                            "header": [],
-                            "code": 200,
-                            "body": "{\n \"id\": \"3\",\n \"name\": \"strong\",\n}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "\u7279\u6027\u65b0\u589e",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/abilities",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/abilities"
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer "
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"name\":\"superHard\"}"
-                        },
-                        "description": ""
-                    },
-                    "response": [
-                        {
-                            "header": [],
-                            "code": 201,
-                            "body": "{\n  \"message\": \"Ability saved successfully\"\n}",
-                            "name": ""
-                        },
-                        {
-                            "header": [],
-                            "code": 422,
-                            "body": "{\n  \"message\": \"The given data was invalid.\",\n  \"errors\": {\n    \"name\": [\"\u540d\u7a31\u53ea\u80fd\u5305\u542b\u4e2d\u6587\u548c\u82f1\u6587\u5b57\u3002\"]\n  }\n}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "\u7279\u6027\u4fee\u6539",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/abilities\/:ability_id",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/abilities\/:ability_id",
-                            "variable": [
-                                {
-                                    "id": "ability_id",
-                                    "key": "ability_id",
-                                    "value": "1",
-                                    "description": "The ID of the ability."
-                                }
-                            ]
-                        },
-                        "method": "PATCH",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer "
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"name\":\"superSoft\"}"
-                        },
-                        "description": "\u6b64\u7aef\u9ede\u5141\u8a31\u60a8\u66f4\u65b0\u73fe\u6709\u7684\u7279\u6027\u3002"
-                    },
-                    "response": [
-                        {
-                            "header": [],
-                            "code": 200,
-                            "body": "{\n  \"message\": \"Ability updated successfully\"\n}",
-                            "name": ""
-                        },
-                        {
-                            "header": [],
-                            "code": 422,
-                            "body": "{\n  \"message\": \"The given data was invalid.\",\n  \"errors\": {\n    \"name\": [\"\u540d\u7a31\u53ea\u80fd\u5305\u542b\u4e2d\u6587\u548c\u82f1\u6587\u5b57\u7b26\u3002\"]\n  }\n}",
-                            "name": ""
-                        }
-                    ]
-                }
-            ]
-        },
         {
             "name": "Auth",
             "description": "Operations related to auth.",
@@ -185,9 +45,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"penelope.senger@example.org\",\"password\":\"e123456\"}"
+                            "raw": "{\"email\":\"spencer.noemie@example.com\",\"password\":\"e123456\"}"
                         },
-                        "description": "\u6b64\u7aef\u9ede\u5141\u8a31\u7528\u6236\u4f7f\u7528\u4ed6\u5011\u7684\u96fb\u5b50\u90f5\u4ef6\u548c\u5bc6\u78bc\u4f86\u767b\u5165\u7cfb\u7d71\uff0c\u4e26\u8fd4\u56de\u4e00\u500bJWT\u4ee4\u724c\u3002",
+                        "description": "\u6b64\u7aef\u9ede\u5141\u8a31\u7528\u6236\u4f7f\u7528\u4ed6\u5011\u7684\u96fb\u5b50\u90f5\u4ef6\u548c\u5bc6\u78bc\u4f86\u767b\u5165\u7cfb\u7d71\uff0c\u4e26\u8fd4\u56de\u4e00\u500bJWT\u4ee4\u724c\u3002\n\n\u6703\u78ba\u8a8d\u4fe1\u7bb1\u662f\u5426\u5df2\u9a57\u8b49\uff0c\u5982\u679c\u5c1a\u672a\u9a57\u8b49\u8fd4\u56de\u932f\u8aa4\n\u6703\u8a2d\u7f6ecookie\u548chttp only\u4f86\u50b3token",
                         "auth": {
                             "type": "noauth"
                         }
@@ -203,6 +63,12 @@
                             "header": [],
                             "code": 401,
                             "body": "{\n  \"error\": \"Invalid credentials\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\n  \"error\": \"\u4fe1\u7bb1\u672a\u9a57\u8b49\"\n}",
                             "name": ""
                         }
                     ]
@@ -232,7 +98,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "\u6b64\u7aef\u9ede\u5141\u8a31\u5df2\u7d93\u767b\u5165\u7684\u7528\u6236\u767b\u51fa\uff0c\u5b83\u6703\u4f7f\u7576\u524d\u7684JWT\u4ee4\u724c\u5931\u6548\u3002",
+                        "description": "\u6b64\u7aef\u9ede\u5141\u8a31\u5df2\u7d93\u767b\u5165\u7684\u7528\u6236\u767b\u51fa\uff0c\u5b83\u6703\u4f7f\u7576\u524d\u7684JWT\u4ee4\u724c\u5931\u6548\u3002\n\n\u6210\u529f\u8981\u628acookie\u6e05\u6389\u3002 200.",
                         "auth": {
                             "type": "noauth"
                         }
@@ -264,13 +130,13 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "autem",
+                                    "value": "quis",
                                     "description": "The ID of the verify."
                                 },
                                 {
                                     "id": "hash",
                                     "key": "hash",
-                                    "value": "voluptatum",
+                                    "value": "qui",
                                     "description": ""
                                 }
                             ]
@@ -323,7 +189,7 @@
                                 {
                                     "id": "email",
                                     "key": "email",
-                                    "value": "bpfannerstill%40example.org",
+                                    "value": "tkoch%40example.com",
                                     "description": ""
                                 }
                             ]
@@ -555,164 +421,6 @@
             ]
         },
         {
-            "name": "Nature",
-            "description": "Operations related to natures.",
-            "item": [
-                {
-                    "name": "\u6027\u683c\u8a73\u60c5",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/natures",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/natures"
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer "
-                            }
-                        ],
-                        "body": null,
-                        "description": "\u4e3b\u8981\u5728\u65bc\u53ef\u4ee5\u8b93\u4f7f\u7528\u66f4\u65b0\u5bf6\u53ef\u5922\u7684\u6642\u5019\uff0c\u5728\u6027\u683c\u90e8\u5206\u6709\u9078\u9805\u53ef\u4ee5\u8b93\u4f7f\u7528\u8005\u9078\u64c7"
-                    },
-                    "response": [
-                        {
-                            "header": [],
-                            "code": 200,
-                            "body": "[{\n    \"id\": \"\u6027\u683c\u7684 ID\",\n    \"name\": \"\u6027\u683c\u7684\u540d\u7a31\"\n}]",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "\u6027\u683c\u65b0\u589e",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/natures",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/natures"
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer "
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"name\":\"\u597d\u5bb3\u7f9e\"}"
-                        },
-                        "description": ""
-                    },
-                    "response": [
-                        {
-                            "header": [],
-                            "code": 201,
-                            "body": "{\n    \"message\": \"Nature saved successfully\"\n}",
-                            "name": ""
-                        },
-                        {
-                            "header": [],
-                            "code": 400,
-                            "body": "{\n    \"error\": \"Validation error messages if any\"\n}",
-                            "name": ""
-                        },
-                        {
-                            "header": [],
-                            "code": 422,
-                            "body": "{\n  \"message\": \"The given data was invalid.\",\n  \"errors\": {\n    \"name\": [\"\u540d\u7a31\u53ea\u80fd\u5305\u542b\u4e2d\u6587\u548c\u82f1\u6587\u5b57\u3002\"]\n  }\n}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "\u6027\u683c\u4fee\u6539",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/natures\/:nature_id",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/natures\/:nature_id",
-                            "variable": [
-                                {
-                                    "id": "nature_id",
-                                    "key": "nature_id",
-                                    "value": "1",
-                                    "description": "The ID of the nature."
-                                }
-                            ]
-                        },
-                        "method": "PATCH",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer "
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"name\":\"\u6613\u6012\"}"
-                        },
-                        "description": ""
-                    },
-                    "response": [
-                        {
-                            "header": [],
-                            "code": 200,
-                            "body": "{\n    \"message\": \"Nature updated successfully\"\n}",
-                            "name": ""
-                        },
-                        {
-                            "header": [],
-                            "code": 400,
-                            "body": "{\n    \"error\": \"Validation error messages if any\"\n}",
-                            "name": ""
-                        },
-                        {
-                            "header": [],
-                            "code": 404,
-                            "body": "{\n    \"message\": \"Nature not found\"\n}",
-                            "name": ""
-                        },
-                        {
-                            "header": [],
-                            "code": 422,
-                            "body": "{\n  \"message\": \"The given data was invalid.\",\n  \"errors\": {\n    \"name\": [\"\u540d\u7a31\u53ea\u80fd\u5305\u542b\u4e2d\u6587\u548c\u82f1\u6587\u5b57\u3002\"]\n  }\n}",
-                            "name": ""
-                        }
-                    ]
-                }
-            ]
-        },
-        {
             "name": "Order",
             "description": "Operations related to orders.",
             "item": [
@@ -742,7 +450,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"total_price\":46.1007,\"payment_method\":\"est\",\"payment_status\":\"atque\"}"
+                            "raw": "{\"total_price\":314466513.44,\"payment_method\":\"velit\",\"payment_status\":\"qui\"}"
                         },
                         "description": ""
                     },
@@ -833,7 +541,7 @@
                                 {
                                     "id": "order",
                                     "key": "order",
-                                    "value": "et",
+                                    "value": "doloremque",
                                     "description": "\u8a02\u55ae\u7684ID\u3002\u7528\u65bc\u6307\u5b9a\u67e5\u8a62\u54ea\u4e00\u500b\u8a02\u55ae\u7684\u8a73\u60c5\u3002"
                                 }
                             ]
@@ -891,7 +599,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"order_id\":17,\"race_id\":2}"
+                            "raw": "{\"order_id\":18,\"race_id\":18}"
                         },
                         "description": ""
                     },
@@ -954,7 +662,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"totalPrice\":22251}"
+                            "raw": "{\"totalPrice\":4.8}"
                         },
                         "description": "\u4e3b\u8981\u4f7f\u7528\u8005\u9ede\u9078\u7d50\u5e33\u5f8c\u53ef\u4ee5\u8acb\u6c42\u9019\u500bAPI\uff0c\u7136\u5f8c\u85cd\u661f\u91d1\u6d41\u6703\u767c\u7d50\u5e33\u9801\u9762\u7d66\u4f7f\u7528\u8005\uff0c\n\u6b64\u65b9\u6cd5\u4e3b\u8981\u529f\u80fd\u5982\u4e0b\uff1a\n1. \u9a57\u8b49\u7576\u524d\u4f7f\u7528\u8005\u3002\n2. \u66f4\u65b0\u8207\u7576\u524d\u4f7f\u7528\u8005\u95dc\u806f\u7684\u8cfc\u7269\u8eca\u9805\u76ee\u7684\u7d50\u5e33\u72c0\u614b\u3002\n3. \u751f\u6210\u8207\u85cd\u661f\u91d1\u6d41\u76f8\u95dc\u7684\u652f\u4ed8\u53c3\u6578\uff08\u5305\u62ec\u52a0\u5bc6\u548c\u54c8\u5e0c\uff09\u3002\n4. \u8fd4\u56de\u652f\u4ed8\u53c3\u6578\uff0c\u4ee5\u4fbf\u524d\u7aef\u5c07\u4f7f\u7528\u8005\u91cd\u5b9a\u5411\u5230\u85cd\u661f\u91d1\u6d41\u7684\u652f\u4ed8\u9801\u9762\u3002"
                     },
@@ -992,7 +700,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"TradeInfo\":\"deserunt\",\"TradeSha\":\"necessitatibus\"}"
+                            "raw": "{\"TradeInfo\":\"ducimus\",\"TradeSha\":\"beatae\"}"
                         },
                         "description": "\u6b64\u65b9\u6cd5\u4e3b\u8981\u529f\u80fd\u5982\u4e0b\uff1a\n1. \u5f9e\u8acb\u6c42\u4e2d\u63d0\u53d6\u652f\u4ed8\u76f8\u95dc\u7684\u8cc7\u8a0a\u3002\n2. \u9a57\u8b49\u652f\u4ed8\u56de\u8abf\u7684\u6578\u5b57\u7c3d\u540d\u4ee5\u78ba\u4fdd\u8cc7\u6599\u7684\u5b8c\u6574\u6027\u3002\n3. \u6839\u64da\u652f\u4ed8\u7d50\u679c\u8a18\u9304\u76f8\u95dc\u7684\u65e5\u8a8c\u8cc7\u8a0a\u3002\n4. \u5728\u652f\u4ed8\u6210\u529f\u5f8c\u5411\u4f7f\u7528\u8005\u767c\u9001\u901a\u77e5\u90f5\u4ef6\u3002"
                     },
@@ -1030,7 +738,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"first_name\":\"quas\",\"last_name\":\"quisquam\",\"email\":\"willms.cesar@example.com\"}"
+                            "raw": "{\"first_name\":\"debitis\",\"last_name\":\"debitis\",\"email\":\"joel99@example.net\"}"
                         },
                         "description": ""
                     },
@@ -1038,7 +746,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n    \"id\": 123,\n    \"name\": \"myBaby\",\n    \"level\": 50,\n    \"race_id\": 25,\n    \"race\": \"Pikachu\",\n    \"photo\": \"http:\/\/example.com\/pikachu.jpg\",\n    \"ability\": \"Static\",\n    \"nature\": \"Jolly\",\n    \"skills\": [\"Thunderbolt\", \"Quick Attack\"],\n    \"host\": \"Ash Ketchum\"\n}",
+                            "body": "{\n    \"id\": 123,\n    \"name\": \"myBaby\",\n    \"level\": 50,\n    \"race_id\": 25,\n    \"race\": \"Pikachu\",\n    \"photo\": \"http:\/\/example.com\/pikachu.jpg\",\n    \"ability\": \"Static\",\n    \"nature\": \"Jolly\",\n    \"skills\": [\"Thunderbolt\", \"Quick Attack\"],\n    \"host\": \"Ash Ketchum\"\n    \"evolution_level\":16\n}",
                             "name": ""
                         }
                     ]
@@ -1069,7 +777,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"fsj\",\"race_id\":12,\"ability_id\":6,\"nature_id\":19,\"level\":18,\"skills\":[16]}"
+                            "raw": "{\"name\":\"rytb\",\"race_id\":4,\"ability_id\":9,\"nature_id\":19,\"level\":3,\"skills\":[5]}"
                         },
                         "description": "\u6b64\u65b9\u6cd5\u5c07\u9a57\u8b49\u8acb\u6c42\u6578\u64da\uff0c\u4e26\u5728\u6210\u529f\u9a57\u8b49\u5f8c\uff0c\n\u70ba\u7576\u524d\u7d93\u904e\u8eab\u4efd\u9a57\u8b49\u7684\u7528\u6236\u65b0\u589e\u4e00\u96bb\u5bf6\u53ef\u5922\u3002"
                     },
@@ -1118,7 +826,7 @@
                                 {
                                     "id": "pokemon",
                                     "key": "pokemon",
-                                    "value": "3",
+                                    "value": "16",
                                     "description": "\u5bf6\u53ef\u5922\u7684ID\u3002\u793a\u4f8b\uff1a1"
                                 }
                             ]
@@ -1168,7 +876,7 @@
                                 {
                                     "id": "pokemon",
                                     "key": "pokemon",
-                                    "value": "2",
+                                    "value": "20",
                                     "description": "\u5bf6\u53ef\u5922\u7684ID\u3002Example\uff1a1"
                                 }
                             ]
@@ -1190,7 +898,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"mommy\",\"race_id\":9,\"ability_id\":15,\"nature_id\":1,\"level\":4,\"skills\":[\"quia\"]}"
+                            "raw": "{\"name\":\"mommy\",\"race_id\":10,\"ability_id\":10,\"nature_id\":1,\"level\":12,\"skills\":[\"cumque\"]}"
                         },
                         "description": "\u6b64\u65b9\u6cd5\u5141\u8a31\u4f7f\u7528\u8005\u4fee\u6539\u4ed6\u5011\u7684\u5bf6\u53ef\u5922\u7684\u8cc7\u8a0a\u3002"
                     },
@@ -1214,7 +922,7 @@
                                 {
                                     "id": "pokemon",
                                     "key": "pokemon",
-                                    "value": "6",
+                                    "value": "2",
                                     "description": "\u5bf6\u53ef\u5922\u7684ID\u3002\u793a\u4f8b\uff1a1"
                                 }
                             ]
@@ -1270,7 +978,7 @@
                                 {
                                     "id": "pokemon",
                                     "key": "pokemon",
-                                    "value": "9",
+                                    "value": "15",
                                     "description": "\u5bf6\u53ef\u5922\u7684ID\u3002\u7bc4\u4f8b\uff1a1"
                                 }
                             ]
@@ -1345,113 +1053,16 @@
                             }
                         ],
                         "body": null,
-                        "description": "\u6b64\u65b9\u6cd5\u8fd4\u56de\u4e00\u500b\u5305\u542b\u6240\u6709\u5bf6\u53ef\u5922\u7a2e\u65cf\u7684\u5217\u8868\uff0c\n\u6bcf\u500b\u7a2e\u65cf\u5305\u62ec\u5176ID\u3001\u540d\u7a31\u548c\u7167\u7247\u3002\u5217\u8868\u6703\u5206\u9801\uff0c\u6bcf\u9801\u5305\u542b10\u500b\u9805\u76ee\u3002"
-                    },
-                    "response": [
-                        {
-                            "header": [],
-                            "code": 200,
-                            "body": "{\n  \"data\": [\n    {\n      \"id\": 1,\n      \"name\": \"\u76ae\u5361\u4e18\",\n      \"photo\": \"url_to_photo\"\n    },\n    \/\/ \u5176\u4ed6\u7a2e\u65cf...\n  ]\n}",
-                            "name": ""
+                        "description": "\u6b64API\u4e0d\u9700\u8981\u9a57\u8b49\u3002\n\u6b64\u65b9\u6cd5\u8fd4\u56de\u4e00\u500b\u5305\u542b\u6240\u6709\u5bf6\u53ef\u5922\u7a2e\u65cf\u7684\u5217\u8868\uff0c\n\u6bcf\u500b\u7a2e\u65cf\u5305\u62ec\u5176ID\u3001\u540d\u7a31\u548c\u7167\u7247\u3002\u5217\u8868\u6703\u5206\u9801\uff0c\u6bcf\u9801\u5305\u542b12\u500b\u9805\u76ee\u3002",
+                        "auth": {
+                            "type": "noauth"
                         }
-                    ]
-                },
-                {
-                    "name": "\u53d6\u5f97\u6307\u5b9a\u7a2e\u65cf\u7684\u9032\u5316\u7b49\u7d1a\u3002",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/races\/:race_id\/evolutionLevel",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/races\/:race_id\/evolutionLevel",
-                            "variable": [
-                                {
-                                    "id": "race_id",
-                                    "key": "race_id",
-                                    "value": "1",
-                                    "description": "The ID of the race."
-                                },
-                                {
-                                    "id": "race",
-                                    "key": "race",
-                                    "value": "6",
-                                    "description": "\u5bf6\u53ef\u5922\u7a2e\u65cf\u7684ID\u3002\u793a\u4f8b\uff1a1"
-                                }
-                            ]
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer "
-                            }
-                        ],
-                        "body": null,
-                        "description": "\u6b64\u65b9\u6cd5\u8fd4\u56de\u6307\u5b9a\u7a2e\u65cf\u7684\u9032\u5316\u7b49\u7d1a\u3002\u9032\u5316\u7b49\u7d1a\u662f\u4e00\u500b\u6574\u6578\u503c\uff0c\u8868\u793a\u5bf6\u53ef\u5922\u5728\u9054\u5230\u9019\u500b\u7b49\u7d1a\u6642\u53ef\u4ee5\u9032\u5316\u3002"
                     },
                     "response": [
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n  \"id\": 1,\n  \"evolution_level\": 20\n}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "\u53d6\u5f97\u6307\u5b9a\u7a2e\u65cf\u80fd\u5920\u5b78\u7684\u6280\u80fd\u3002",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/races\/:race_id\/skill",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/races\/:race_id\/skill",
-                            "variable": [
-                                {
-                                    "id": "race_id",
-                                    "key": "race_id",
-                                    "value": "1",
-                                    "description": "The ID of the race."
-                                },
-                                {
-                                    "id": "race",
-                                    "key": "race",
-                                    "value": "3",
-                                    "description": "\u5bf6\u53ef\u5922\u7a2e\u65cf\u7684ID\u3002\u793a\u4f8b\uff1a1"
-                                }
-                            ]
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer "
-                            }
-                        ],
-                        "body": null,
-                        "description": "\u6b64\u65b9\u6cd5\u8fd4\u56de\u6307\u5b9a\u7a2e\u65cf\u80fd\u5920\u5b78\u7fd2\u7684\u6240\u6709\u6280\u80fd\u3002\u6280\u80fd\u6309\u7167\u5b83\u5011\u7684ID\u6392\u5e8f\u3002"
-                    },
-                    "response": [
-                        {
-                            "header": [],
-                            "code": 200,
-                            "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"\u96fb\u64ca\"\n  },\n  \/\/ \u5176\u4ed6\u6280\u80fd...\n]",
+                            "body": "{\n\"current_page\": 1,\n\"data\": [\n{\n\"id\": 1,\n\"name\": \"bulbasaur\",\n\"photo\": \"https:\/\/raw.githubusercontent.com\/PokeAPI\/*sprites\/master\/sprites\/pokemon\/1.png\"\n\"stock\":334,\n\"price\":2344\n},\n{\n\"id\": 2,\n\"name\": \"ivysaur\",\n\"photo\": \"https:\/\/raw.githubusercontent.com\/PokeAPI\/*sprites\/master\/sprites\/pokemon\/2.png\",\n\"stock\":334,\n\"price\":2344\n},\n{\n\"id\": 3,\n\"name\": \"venusaur\",\n\"photo\": \"https:\/\/raw.githubusercontent.com\/PokeAPI\/*sprites\/master\/sprites\/pokemon\/3.png\",\n\"stock\":334,\n\"price\":2344\n},...\n\n],\n\"first_page_url\": \"http:\/\/localhost:8000\/api\/races?page=1\",\n\"from\": 1,\n\"last_page\": 85,\n\"last_page_url\": \"http:\/\/localhost:8000\/api\/races?page=85\",\n\"next_page_url\": \"http:\/\/localhost:8000\/api\/races?page=2\",\n\"path\": \"http:\/\/localhost:8000\/api\/races\",\n\"per_page\": 12,\n\"prev_page_url\": null,\n\"to\": 12,\n\"total\": 1010\n}",
                             "name": ""
                         }
                     ]
@@ -1488,7 +1099,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"repellendus\",\"email\":\"grayce77@example.net\",\"password\":\"P@(G40L<Z\\\\yGOTw&M)\",\"password_confirmation\":\"nemo\"}"
+                            "raw": "{\"name\":\"molestiae\",\"email\":\"barrows.luella@example.com\",\"password\":\"5JPQ\\\\k\",\"password_confirmation\":\"architecto\"}"
                         },
                         "description": "\u6b64\u65b9\u6cd5\u6703\u9a57\u8b49\u8f38\u5165\u7684\u8cc7\u6599\uff0c\u4e26\u5728\u6210\u529f\u9a57\u8b49\u5f8c\u5728`users`\u8868\u4e2d\u5275\u5efa\u4e00\u500b\u65b0\u7684\u4f7f\u7528\u8005\u7d00\u9304\u3002\n\u4e4b\u5f8c\uff0c\u5b83\u6703\u89f8\u767c\u4e00\u500b`Registered`\u4e8b\u4ef6\uff0c\u4e26\u8fd4\u56de\u4e00\u500b\u6210\u529f\u7684\u97ff\u61c9\uff0c\u5305\u62ec\u65b0\u5275\u5efa\u7684\u4f7f\u7528\u8005\u7684\u8cc7\u6599\u3002",
                         "auth": {
@@ -1541,13 +1152,19 @@
                             }
                         ],
                         "body": null,
-                        "description": ""
+                        "description": "\u540c\u6642\u9a57\u8b49cookie\u7684token\u6709\u6548\u6027\uff0c\n\u5931\u6557\u7684\u8a71\u8981\u6e05\u9664token\u3002"
                     },
                     "response": [
                         {
                             "header": [],
                             "code": 200,
                             "body": "{\n \"name\": \"John Doe\",\n \"photo\": \"https:\/\/example.com\/photo.jpg\",\n \"email\": \"johndoe@example.com\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n \"error\": \"\u9a57\u8b49\u5931\u6557\"\n}",
                             "name": ""
                         },
                         {
@@ -1587,13 +1204,13 @@
                             "formdata": [
                                 {
                                     "key": "name",
-                                    "value": "ab",
+                                    "value": "cum",
                                     "type": "text",
                                     "description": "optional \u65b0\u7684\u7528\u6236\u540d\u7a31\u3002\u793a\u4f8b\uff1aJohn Doe"
                                 },
                                 {
                                     "key": "email",
-                                    "value": "lueilwitz.imogene@example.com",
+                                    "value": "kuhn.nikolas@example.net",
                                     "type": "text",
                                     "description": "optional \u65b0\u7684\u96fb\u5b50\u90f5\u4ef6\u5730\u5740\u3002\u793a\u4f8b\uff1ajohn.doe@example.com"
                                 },

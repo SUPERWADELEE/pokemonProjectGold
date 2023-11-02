@@ -41,7 +41,7 @@ class AuthController extends Controller
      *   "error": "Invalid credentials"
      * }
      * 
-     *  @response 403 {
+     * @response 403 {
      *   "error": "信箱未驗證"
      * }
      */
