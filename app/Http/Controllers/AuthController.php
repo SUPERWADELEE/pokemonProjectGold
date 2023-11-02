@@ -22,6 +22,9 @@ class AuthController extends Controller
      * 登入
      * 
      * 此端點允許用戶使用他們的電子郵件和密碼來登入系統，並返回一個JWT令牌。
+     * 
+     * 會確認信箱是否已驗證，如果尚未驗證返回錯誤
+     * 會設置cookie和http only來傳token
      *
      * @param Request $request 請求物件，包含電子郵件和密碼
      * 
@@ -36,6 +39,10 @@ class AuthController extends Controller
      * 
      * @response 401 {
      *   "error": "Invalid credentials"
+     * }
+     * 
+     *  @response 403 {
+     *   "error": "信箱未驗證"
      * }
      */
     public function login(Request $request)
@@ -66,6 +73,8 @@ class AuthController extends Controller
      * 登出
      * 
      * 此端點允許已經登入的用戶登出，它會使當前的JWT令牌失效。
+     
+     *成功要把cookie清掉。 200.  
      *
      * @response 200 {
      *   "message": "Successfully logged out"

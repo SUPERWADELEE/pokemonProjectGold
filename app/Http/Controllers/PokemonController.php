@@ -57,6 +57,7 @@ class PokemonController extends Controller
      *     "nature": "Jolly",
      *     "skills": ["Thunderbolt", "Quick Attack"],
      *     "host": "Ash Ketchum"
+     *     "evolution_level":16
      * }
  
      */

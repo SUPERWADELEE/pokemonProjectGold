@@ -24,6 +24,10 @@ class UserController extends Controller
 
     /**
      * 使用者個人資訊
+     * 
+     * 同時驗證cookie的token有效性，
+     * 失敗的話要清除token。
+     * 
      * @response {
      *  "name": "John Doe",
      *  "photo": "https://example.com/photo.jpg",
@@ -32,6 +36,10 @@ class UserController extends Controller
      * 
      * @response 404 {
      *  "error": "User not found"
+     * }
+     * 
+     * @response 401 {
+     *  "error": "驗證失敗"
      * }
      */
     public function show()
