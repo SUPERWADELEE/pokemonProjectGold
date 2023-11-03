@@ -1,28 +1,23 @@
-name: Race
-description: |-
-  Operations related to races.
-  這裡的種族就是寶可夢的意思
+name: CartItem
+description: 'Operations related to cartItems.'
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/races
+    uri: api/cart_items
     metadata:
-      groupName: Race
-      groupDescription: |-
-        Operations related to races.
-        這裡的種族就是寶可夢的意思
+      groupName: CartItem
+      groupDescription: 'Operations related to cartItems.'
       subgroup: ''
       subgroupDescription: ''
-      title: 取得寶可夢種族的列表。
-      description: |-
-        此方法返回一個包含所有寶可夢種族的列表，
-        每個種族包括其ID、名稱和照片。列表會分頁，每頁包含10個項目。
+      title: 顯示購物車商品
+      description: 這部分主要是用來顯示購物車頁面的商品資訊
       authenticated: true
       custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer '
     urlParameters: []
     cleanUrlParameters: []
     queryParameters: []
@@ -35,14 +30,35 @@ endpoints:
         status: 200
         content: |-
           {
-            "data": [
-              {
-                "id": 1,
-                "name": "皮卡丘",
-                "photo": "url_to_photo"
-              },
-              // 其他種族...
-            ]
+
+          "data": [
+          {
+            "id": 67,
+            "amount": 1,
+            "current_price": "147.00",
+            "race_name": "charizard",
+            "race_photo": "https://raw.githubusercontent.com/*PokeAPI/sprites/master/sprites/pokemon/6.png",
+            "race_id": 6
+          },
+          {
+           "id": 68,
+           "amount": 1,
+           "current_price": "478.00",
+           "race_name": "wartortle",
+           "race_photo": "https://raw.githubusercontent.com/*PokeAPI/sprites/master/sprites/pokemon/8.png",
+           "race_id": 8
+          }
+          ],
+           "subtotal": 625
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+              "message": "Unauthenticated."
           }
         headers: []
         description: ''
@@ -55,54 +71,70 @@ endpoints:
     custom: []
   -
     httpMethods:
-      - GET
-    uri: 'api/races/{race_id}/evolutionLevel'
+      - POST
+    uri: api/cart_items
     metadata:
-      groupName: Race
-      groupDescription: |-
-        Operations related to races.
-        這裡的種族就是寶可夢的意思
+      groupName: CartItem
+      groupDescription: 'Operations related to cartItems.'
       subgroup: ''
       subgroupDescription: ''
-      title: 取得指定種族的進化等級。
-      description: 此方法返回指定種族的進化等級。進化等級是一個整數值，表示寶可夢在達到這個等級時可以進化。
+      title: 加入購物車
+      description: ''
       authenticated: true
       custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
-    urlParameters:
-      race_id:
-        name: race_id
-        description: 'The ID of the race.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        custom: []
-      race:
-        name: race
-        description: 寶可夢種族的ID。示例：1
-        required: true
-        example: 4
-        type: integer
-        enumValues: []
-        custom: []
-    cleanUrlParameters:
-      race_id: 1
-      race: 4
+      Authorization: 'Bearer '
+    urlParameters: []
+    cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
+    bodyParameters:
+      quantity:
+        name: quantity
+        description: 購買的數量，必須在1到庫存的範圍內。
+        required: true
+        example: 2
+        type: integer
+        enumValues: []
+        custom: []
+      race_id:
+        name: race_id
+        description: 種族的ID，必須存在於種族表中。
+        required: true
+        example: 5
+        type: integer
+        enumValues: []
+        custom: []
+    cleanBodyParameters:
+      quantity: 2
+      race_id: 5
     fileParameters: []
     responses:
       -
         status: 200
         content: |-
           {
-            "id": 1,
-            "evolution_level": 20
+              "message": "Item added to cart successfully."
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 400
+        content: |-
+          {
+              "error": "Requested quantity exceeds available stock."
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: |-
+          {
+              "error": "Race not found."
           }
         headers: []
         description: ''
@@ -115,42 +147,127 @@ endpoints:
     custom: []
   -
     httpMethods:
-      - GET
-    uri: 'api/races/{race_id}/skill'
+      - PUT
+    uri: api/cart_items
     metadata:
-      groupName: Race
-      groupDescription: |-
-        Operations related to races.
-        這裡的種族就是寶可夢的意思
+      groupName: CartItem
+      groupDescription: 'Operations related to cartItems.'
       subgroup: ''
       subgroupDescription: ''
-      title: 取得指定種族能夠學的技能。
-      description: 此方法返回指定種族能夠學習的所有技能。技能按照它們的ID排序。
+      title: 購物車更新
+      description: 在此API會更新購物車資訊，然後將總金額計算後回傳
       authenticated: true
       custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
-    urlParameters:
-      race_id:
-        name: race_id
-        description: 'The ID of the race.'
+      Authorization: 'Bearer '
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      'products[]':
+        name: 'products[]'
+        description: 'The list of products to update.'
         required: true
-        example: 1
+        example:
+          -
+            product_id: '123'
+            quantity: 2
+          -
+            product_id: '456'
+            quantity: 5
+        type: 'string[]'
+        enumValues: []
+        custom: []
+      'products[].product_id':
+        name: 'products[].product_id'
+        description: 'The ID of the product.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        custom: []
+      'products[].quantity':
+        name: 'products[].quantity'
+        description: 'The new quantity for the product.'
+        required: true
+        example: 19
         type: integer
         enumValues: []
         custom: []
-      race:
-        name: race
-        description: 寶可夢種族的ID。示例：1
+      quantity:
+        name: quantity
+        description: 更新的商品數量，必須在1到庫存的範圍內。
         required: true
-        example: 17
+        example: 3
+        type: integer
+        enumValues: []
+        custom: []
+    cleanBodyParameters:
+      'products[]':
+        -
+          product_id: '123'
+          quantity: 2
+        -
+          product_id: '456'
+          quantity: 5
+      quantity: 3
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 400
+        content: |-
+          {
+              "error": "Validation error message."
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/cart_items/{cart_item_id}'
+    metadata:
+      groupName: CartItem
+      groupDescription: 'Operations related to cartItems.'
+      subgroup: ''
+      subgroupDescription: ''
+      title: 購物車刪除
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      Authorization: 'Bearer '
+    urlParameters:
+      cart_item_id:
+        name: cart_item_id
+        description: 'The ID of the cart item.'
+        required: true
+        example: 5
         type: integer
         enumValues: []
         custom: []
     cleanUrlParameters:
-      race_id: 1
-      race: 17
+      cart_item_id: 5
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -158,15 +275,17 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 200
+        status: 204
+        content: '{}'
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
         content: |-
-          [
-            {
-              "id": 1,
-              "name": "電擊"
-            },
-            // 其他技能...
-          ]
+          {
+              "error": "Resource not found."
+          }
         headers: []
         description: ''
         custom: []

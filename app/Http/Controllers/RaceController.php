@@ -14,26 +14,57 @@ use Illuminate\Http\Request;
  * 這裡的種族就是寶可夢的意思
  * 
  * 
- * @authenticated
+ * 
  */
 class RaceController extends Controller
 {
     /**
      * 取得寶可夢種族的列表。
-     *
+     * 
+     * 此API不需要驗證。
      * 此方法返回一個包含所有寶可夢種族的列表，
-     * 每個種族包括其ID、名稱和照片。列表會分頁，每頁包含10個項目。
+     * 每個種族包括其ID、名稱和照片。列表會分頁，每頁包含12個項目。
      *
-     * @response {
-     *   "data": [
-     *     {
-     *       "id": 1,
-     *       "name": "皮卡丘",
-     *       "photo": "url_to_photo"
-     *     },
-     *     // 其他種族...
-     *   ]
-     * }
+     * @response 
+     *         
+     * {
+     *"current_page": 1,
+     *"data": [
+     *{
+     * "id": 1,
+     * "name": "bulbasaur",
+     * "photo": "https://raw.githubusercontent.com/PokeAPI/*sprites/master/sprites/pokemon/1.png"
+     * "stock":334,
+     * "price":2344
+     * },
+     *{
+     * "id": 2,
+     * "name": "ivysaur",
+     * "photo": "https://raw.githubusercontent.com/PokeAPI/*sprites/master/sprites/pokemon/2.png",
+     * "stock":334,
+     * "price":2344
+     *},
+     *{
+     * "id": 3,
+     * "name": "venusaur",
+     * "photo": "https://raw.githubusercontent.com/PokeAPI/*sprites/master/sprites/pokemon/3.png",
+     * "stock":334,
+     * "price":2344
+     *},...
+       
+     *],
+     *"first_page_url": "http://localhost:8000/api/races?page=1",
+     *"from": 1,
+     *"last_page": 85,
+     *"last_page_url": "http://localhost:8000/api/races?page=85",
+     *"next_page_url": "http://localhost:8000/api/races?page=2",
+     *"path": "http://localhost:8000/api/races",
+     *"per_page": 12,
+     *"prev_page_url": null,
+     *"to": 12,
+     *"total": 1010
+     *}
+
      */
     public function index()
     {
@@ -43,43 +74,16 @@ class RaceController extends Controller
         return $pokemons;
     }
 
-    /**
-     * 取得指定種族的進化等級。
-     *
-     * 此方法返回指定種族的進化等級。進化等級是一個整數值，表示寶可夢在達到這個等級時可以進化。
-     *
-     * @urlParam race integer required 寶可夢種族的ID。示例：1
-     *
-     * @response {
-     *   "id": 1,
-     *   "evolution_level": 20
-     * }
-     */
-    public function evolutionLevel(Race $race)
-    {
+    // public function evolutionLevel(Race $race)
+    // {
 
-        $evolutionLevel = $race->evolution_level;
-        return response(['id' => $race->id, 'evolution_level' => $evolutionLevel]);
-    }
+    //     $evolutionLevel = $race->evolution_level;
+    //     return response(['id' => $race->id, 'evolution_level' => $evolutionLevel]);
+    // }
 
-    /**
-     * 取得指定種族能夠學的技能。
-     *
-     * 此方法返回指定種族能夠學習的所有技能。技能按照它們的ID排序。
-     *
-     * @urlParam race integer required 寶可夢種族的ID。示例：1
-     *
-     * @response [
-     *   {
-     *     "id": 1,
-     *     "name": "電擊"
-     *   },
-     *   // 其他技能...
-     * ]
-     */
-    public function skills(Race $race)
-    {
-        $skills = $race->skills()->orderBy('id')->get();
-        return SkillResource::collection($skills);
-    }
+    // public function skills(Race $race)
+    // {
+    //     $skills = $race->skills()->orderBy('id')->get();
+    //     return SkillResource::collection($skills);
+    // }
 }

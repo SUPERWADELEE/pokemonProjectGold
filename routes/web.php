@@ -25,7 +25,7 @@ Route::get('index', function () {
 
 Route::post('/payment', function (Request $request) {
     // Log所有回傳的資料
-    // Log::info($request->all());
+    Log::info($request->all());
 
     return view('pokemons', ['paymentData' => $request->all()]);
 

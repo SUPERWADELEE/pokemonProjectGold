@@ -22,6 +22,9 @@ class AuthController extends Controller
      * 登入
      * 
      * 此端點允許用戶使用他們的電子郵件和密碼來登入系統，並返回一個JWT令牌。
+     * 
+     * 會確認信箱是否已驗證，如果尚未驗證返回錯誤
+     * 會設置cookie和http only來傳token
      *
      * @param Request $request 請求物件，包含電子郵件和密碼
      * 
@@ -30,12 +33,15 @@ class AuthController extends Controller
      *
      * @response 200 {
      *   "message": "Login successful",
-     *   "token": "Generated JWT token",
      *   "user": "Authenticated user object"
      * }
      * 
      * @response 401 {
      *   "error": "Invalid credentials"
+     * }
+     * 
+     * @response 403 {
+     *   "error": "信箱未驗證"
      * }
      */
     public function login(Request $request)
@@ -66,6 +72,8 @@ class AuthController extends Controller
      * 登出
      * 
      * 此端點允許已經登入的用戶登出，它會使當前的JWT令牌失效。
+     
+     *成功要把cookie清掉。 200.  
      *
      * @response 200 {
      *   "message": "Successfully logged out"
@@ -87,82 +95,95 @@ class AuthController extends Controller
         }
     }
 
-    /**
-     * 註冊email驗證信確認
-     * 
+    // /**
+    //  * 註冊email驗證信確認
+    //  * 
     
-     * 電子郵件驗證確認
-     *
-     * 此端點用於確認用戶的電子郵件驗證。
-     * 它會比對提供的hash值和用戶的電子郵件生成的hash值。
-     * 如果驗證成功，該用戶的電子郵件將被標記為已驗證，並且將觸發一個已驗證的事件。
-     * 系統會將email驗證的日期存入資料庫
-     *
-     * @param Request $request HTTP請求
-     * @param int $id 用戶ID
-     * @param string $hash 從驗證郵件中提供的hash值
-     * 
-     * @throws AuthorizationException 當提供的hash值不匹配時
-     * 
-     * @response 200 {
-     *   "message": "Email verified successfully."
-     * }
-     * 
-     * @response 200 {
-     *   "message": "Email already verified."
-     * }
-     */
+    //  * 電子郵件驗證確認
+    //  *
+    //  * 此端點用於確認用戶的電子郵件驗證(和前端較無關聯）。
+    //  * 它會比對提供的hash值和用戶的電子郵件生成的hash值。
+    //  * 如果驗證成功，該用戶的電子郵件將被標記為已驗證，並且將觸發一個已驗證的事件。
+    //  * 系統會將email驗證的日期存入資料庫
+    //  *
+    //  * @param Request $request HTTP請求
+    //  * @param int $id 用戶ID
+    //  * @param string $hash 從驗證郵件中提供的hash值
+    //  * 
+    //  * @throws AuthorizationException 當提供的hash值不匹配時
+    //  * 
+    //  * @response 200 {
+    //  *   "message": "Email verified successfully."
+    //  * }
+    //  * 
+    //  * @response 200 {
+    //  *   "message": "Email already verified."
+    //  * }
+    //  */
 
-    public function verifyEmail(Request $request, $id, $hash)
-    {
-        $user = User::findOrFail($id);
+    // public function verifyEmail(Request $request, $id, $hash)
+    // {
+    //     $user = User::findOrFail($id);
 
-        if (!hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
-            throw new AuthorizationException();
-        }
+    //     // 此方法通常用來判斷文件是否被串改
+    //     if (!hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
+    //         throw new AuthorizationException();
+    //     }
 
-        if ($user->hasVerifiedEmail()) {
-            return response(['message' => 'Email already verified.']);
-        }
+    //     // 判斷這個email是否已經驗證過
+    //     if ($user->hasVerifiedEmail()) {
+    //         return response(['message' => 'Email already verified.']);
+    //     }
 
-        if ($user->markEmailAsVerified()) {
-            event(new Verified($user));
-        }
+    //     // 到這一步就去將他的email驗證
+    //     if ($user->markEmailAsVerified()) {
+    //         event(new Verified($user));
+    //     }
 
-        return response(['message' => 'Email verified successfully.']);
-    }
+    //     return response(['message' => 'Email verified successfully.']);
+    // }
 
-    /**
-     * 確認user表註冊驗證信狀態
-     * 
-     * 使用者點擊玩註冊之後，系統會去發一個驗證信，
-     * 然後要將使用者導向此頁面，並告知要去點驗證信
-     * 它將返回用戶的電子郵件驗證狀態，無論是已驗證還是未驗證。
-     *
-     * @param string $email 需要檢查的用戶電子郵件地址
-     * 
-     * @response 200 {
-     *   "isVerified": true/false
-     * }
-     * 
-     * @response 404 {
-     *   "error": "User not found"
-     * }
-     */
-    public function checkVerificationStatus($email)
-    {
-        // Find the user by email
-        $user = User::where('email', $email)->first();
+    // /**
+    //  * 確認user表註冊驗證信狀態
+    //  * 
+    //  * 此API用來讓前端判斷目前的使用者是否為email已驗證狀態
+    //  * 目前採用longpoling的方式，所以後端這裡會去輪詢資料庫查看狀態。
+    //  * 如果請求超時會返回false給使用者
+    //  *
+    //  * @param string $email 需要檢查的用戶電子郵件地址
+    //  * 
+    //  * @response 200 {
+    //  *   "isVerified": true/false
+    //  * }
+    //  * 
+    //  * @response 404 {
+    //  *   "error": "User not found"
+    //  * }
+    //  */
 
-        // If the user doesn't exist, return an error
-        if (!$user) {
-            return response()->json(['error' => 'User not found'], 404);
-        }
+    // // 此為long poling的一種實現
+    // public function checkVerificationStatus($email)
+    // {
+    //     $startTime = time();
+    //     $waitTimeoutInSeconds = 10; // 設置超時時間，例如 20 秒
 
-        // Check if the user's email is verified
-        $isVerified = !is_null($user->email_verified_at);
+    //     while (time() - $startTime < $waitTimeoutInSeconds) {
+    //         $user = User::where('email', $email)->first();
 
-        // Return the verification status
-        return response()->json(['isVerified' => $isVerified]);
-    }
+    //         if (!$user) {
+    //             return response()->json(['error' => 'User not found'], 404);
+    //         }
+
+    //         if (!is_null($user->email_verified_at)) {
+    //             // 如果使用者的 email 已經驗證，則立即返回
+    //             return response()->json(['isVerified' => true]);
+    //         }
+
+    //         // 等待一段時間再次檢查
+    //         sleep(2);  // 例如每2秒檢查一次
+    //     }
+
+    //     // 如果超過了 $waitTimeoutInSeconds 秒還沒有驗證，則返回
+    //     return response()->json(['isVerified' => false]);
+    // }
 }
