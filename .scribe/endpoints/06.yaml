@@ -33,12 +33,12 @@ endpoints:
         name: totalPrice
         description: 購物車中所有商品的總價格。
         required: true
-        example: 21453895.225341
+        example: 64449307.6066
         type: number
         enumValues: []
         custom: []
     cleanBodyParameters:
-      totalPrice: 21453895.225341
+      totalPrice: 64449307.6066
     fileParameters: []
     responses: []
     responseFields: []

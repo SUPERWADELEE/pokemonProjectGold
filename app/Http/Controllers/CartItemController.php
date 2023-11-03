@@ -22,20 +22,32 @@ class CartItemController extends Controller
      * 顯示購物車商品
      * 
      * 這部分主要是用來顯示購物車頁面的商品資訊
+     *
      * 
      * @response 200 {
-     *     "data": [
-     *         {
-     *             "id": "項目ID",
-     *             "amount": "購物車中的商品數量",
-     *             "current_price": "當前種族價格",
-     *             "race_name": "種族名稱",
-     *             "race_photo": "種族圖片URL",
-     *             "race_id": "種族ID"
-     *         },
-     *       
-     *     ]
+
+     *"data": [
+     * {
+     *   "id": 67,
+     *   "amount": 1,
+     *   "current_price": "147.00",
+     *   "race_name": "charizard",
+     *   "race_photo": "https://raw.githubusercontent.com/*PokeAPI/sprites/master/sprites/pokemon/6.png",
+     *   "race_id": 6
+     * },
+     * {
+     *  "id": 68,
+     *  "amount": 1,
+     *  "current_price": "478.00",
+     *  "race_name": "wartortle",
+     *  "race_photo": "https://raw.githubusercontent.com/*PokeAPI/sprites/master/sprites/pokemon/8.png",
+     *  "race_id": 8
      * }
+     * ],
+     *  "subtotal": 625
+     *}
+     * 
+     * 
      * 
      * @response 401 {
      *     "message": "Unauthenticated."
@@ -56,7 +68,7 @@ class CartItemController extends Controller
     /**
      * 加入購物車
      * 
-       * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      * 
      * @bodyParam quantity int required 購買的數量，必須在1到庫存的範圍內。Example: 2
      * @bodyParam race_id int required 種族的ID，必須存在於種族表中。Example: 5
@@ -125,13 +137,17 @@ class CartItemController extends Controller
     /**
      * 購物車更新
      * 
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\CartItem $cartItem 購物車的項目
+     * 在此API會更新購物車資訊，然後將總金額計算後回傳
      * 
+     * @bodyParam products[] array required The list of products to update. Example: [{"product_id": "123", "quantity": 2}, {"product_id": "456", "quantity": 5}]
+     * @bodyParam products[].product_id string required The ID of the product.
+     * @bodyParam products[].quantity integer required The new quantity for the product. 
+     *
+     *
      * @bodyParam quantity int required 更新的商品數量，必須在1到庫存的範圍內。Example: 3
      * 
      * @response 200 {
-     *     "total_price": "總金額"
+     *     
      * }
      * 
      * @response 400 {
@@ -140,36 +156,39 @@ class CartItemController extends Controller
      * 
      * @return \Illuminate\Http\Response 包含購物車的總金額的響應
      */
-    public function update(Request $request, CartItem $cartItem)
+    public function update(Request $request)
     {
 
-        $race = Race::find($cartItem->race_id);
-        $raceStock = $race->stock;
-        $validationData = $request->validate(
-            [
-                'quantity' => 'required|int|min:1|max:' . $raceStock,
-            ],
-        );
-        $cartItem->update([
-            'quantity' => $validationData['quantity']
-        ]);
-        // 計算當前購物車總金額
-        $userId = auth()->user()->id;
+        // $race = Race::find($cartItem->race_id);
+        // $raceStock = $race->stock;
+        // $validationData = $request->validate(
+        //     [
+        //         'quantity' => 'required|int|min:1|max:' . $raceStock,
+        //     ],
+        // );
+        // $cartItem->update([
+        //     'quantity' => $validationData['quantity']
+        // ]);
+        // // 計算當前購物車總金額
+        // $userId = auth()->user()->id;
 
-        // 查詢該用戶的所有購物車項目的總價格
-        $totalPrice = CartItem::where('user_id', $userId)
-            ->selectRaw('SUM(current_price * quantity) as total')
-            ->value('total');
+        // // 查詢該用戶的所有購物車項目的總價格
+        // $totalPrice = CartItem::where('user_id', $userId)
+        //     ->selectRaw('SUM(current_price * quantity) as total')
+        //     ->value('total');
 
-        return response(['total_price' => $totalPrice], 200);
+        // return response(['total_price' => $totalPrice], 200);
     }
 
     /**
      * 購物車刪除
      * 
-      * @param \App\Models\CartItem $cartItem 購物車的項目
+     * @param \App\Models\CartItem $cartItem 購物車的項目
      * 
      * @response 204
+     * @response 404 {
+     *     "error": "Resource not found."
+     * }
      * 
      * @return \Illuminate\Http\Response 返回無內容的204響應，表示成功刪除
      */
@@ -180,51 +199,29 @@ class CartItemController extends Controller
     }
 
 
-    /**
-     * 購物車總價格計算
-     * 
-     * 
-     * 這裡會需要前端將使用者已勾選的所有商品的id組成陣列，傳到後端，後端在返回該金額
-     * 
-      * @param \Illuminate\Http\Request $request
-     * 
-     * @bodyParam cart_item_ids array required 需要計算的購物車項目ID的列表。Example: [1, 2, 3]
-     * 
-     * @response 200 {
-     *     "data": {
-     *         "total_price": "計算的總金額"
-     *     }
-     * }
-     * 
-     * @response 403 {
-     *     "error": "Some cart items do not belong to the user or do not exist"
-     * }
-     * 
-     * @return \Illuminate\Http\Response 返回計算的總金額的響應
-     */
-    public function calculateTotalPrice(Request $request)
-    {
-        $request->validate([
-            'cart_item_ids' => 'required|array|exists:cart_items,id',
-        ]);
+    // public function calculateTotalPrice(Request $request)
+    // {
+    //     $request->validate([
+    //         'cart_item_ids' => 'required|array|exists:cart_items,id',
+    //     ]);
 
-        // 確保這些項目都屬於當前用戶
-        $userId = auth()->user()->id;
-        $cartItems = CartItem::whereIn('id', $request->cart_item_ids)
-            ->where('user_id', $userId)
-            ->get();
+    //     // 確保這些項目都屬於當前用戶
+    //     $userId = auth()->user()->id;
+    //     $cartItems = CartItem::whereIn('id', $request->cart_item_ids)
+    //         ->where('user_id', $userId)
+    //         ->get();
 
-        // 當你輸入不是這個使用者的購物車的時候
-        // 數量會對不起來
-        if (count($cartItems) != count($request->cart_item_ids)) {
-            return response(['error' => 'Some cart items do not belong to the user or do not exist'], 403);
-        }
+    //     // 當你輸入不是這個使用者的購物車的時候
+    //     // 數量會對不起來
+    //     if (count($cartItems) != count($request->cart_item_ids)) {
+    //         return response(['error' => 'Some cart items do not belong to the user or do not exist'], 403);
+    //     }
 
-        // 計算總價格
-        $totalPrice = $cartItems->sum(function ($item) {
-            return $item->current_price * $item->quantity;
-        });
+    //     // 計算總價格
+    //     $totalPrice = $cartItems->sum(function ($item) {
+    //         return $item->current_price * $item->quantity;
+    //     });
 
-        return response(['data' => ['total_price' => $totalPrice]], 200);
-    }
+    //     return response(['data' => ['total_price' => $totalPrice]], 200);
+    // }
 }

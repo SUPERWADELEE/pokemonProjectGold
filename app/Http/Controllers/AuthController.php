@@ -33,7 +33,6 @@ class AuthController extends Controller
      *
      * @response 200 {
      *   "message": "Login successful",
-     *   "token": "Generated JWT token",
      *   "user": "Authenticated user object"
      * }
      * 

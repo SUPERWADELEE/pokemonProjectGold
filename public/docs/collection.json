@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "b1975f9e-9bb5-449f-b4f5-a59c3ee0f281",
+        "_postman_id": "7a79bc51-e65d-4e8e-8fbb-94c9e751340c",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -45,7 +45,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"haylee.rowe@example.net\",\"password\":\"e123456\"}"
+                            "raw": "{\"email\":\"abuckridge@example.net\",\"password\":\"e123456\"}"
                         },
                         "description": "\u6b64\u7aef\u9ede\u5141\u8a31\u7528\u6236\u4f7f\u7528\u4ed6\u5011\u7684\u96fb\u5b50\u90f5\u4ef6\u548c\u5bc6\u78bc\u4f86\u767b\u5165\u7cfb\u7d71\uff0c\u4e26\u8fd4\u56de\u4e00\u500bJWT\u4ee4\u724c\u3002\n\n\u6703\u78ba\u8a8d\u4fe1\u7bb1\u662f\u5426\u5df2\u9a57\u8b49\uff0c\u5982\u679c\u5c1a\u672a\u9a57\u8b49\u8fd4\u56de\u932f\u8aa4\n\u6703\u8a2d\u7f6ecookie\u548chttp only\u4f86\u50b3token",
                         "auth": {
@@ -56,7 +56,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n  \"message\": \"Login successful\",\n  \"token\": \"Generated JWT token\",\n  \"user\": \"Authenticated user object\"\n}",
+                            "body": "{\n  \"message\": \"Login successful\",\n  \"user\": \"Authenticated user object\"\n}",
                             "name": ""
                         },
                         {
@@ -155,7 +155,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n    \"data\": [\n        {\n            \"id\": \"\u9805\u76eeID\",\n            \"amount\": \"\u8cfc\u7269\u8eca\u4e2d\u7684\u5546\u54c1\u6578\u91cf\",\n            \"current_price\": \"\u7576\u524d\u7a2e\u65cf\u50f9\u683c\",\n            \"race_name\": \"\u7a2e\u65cf\u540d\u7a31\",\n            \"race_photo\": \"\u7a2e\u65cf\u5716\u7247URL\",\n            \"race_id\": \"\u7a2e\u65cfID\"\n        },\n\n    ]\n}",
+                            "body": "{\n\n\"data\": [\n{\n  \"id\": 67,\n  \"amount\": 1,\n  \"current_price\": \"147.00\",\n  \"race_name\": \"charizard\",\n  \"race_photo\": \"https:\/\/raw.githubusercontent.com\/*PokeAPI\/sprites\/master\/sprites\/pokemon\/6.png\",\n  \"race_id\": 6\n},\n{\n \"id\": 68,\n \"amount\": 1,\n \"current_price\": \"478.00\",\n \"race_name\": \"wartortle\",\n \"race_photo\": \"https:\/\/raw.githubusercontent.com\/*PokeAPI\/sprites\/master\/sprites\/pokemon\/8.png\",\n \"race_id\": 8\n}\n],\n \"subtotal\": 625\n}",
                             "name": ""
                         },
                         {
@@ -218,15 +218,15 @@
                     ]
                 },
                 {
-                    "name": "\u8cfc\u7269\u8eca\u7e3d\u50f9\u683c\u8a08\u7b97",
+                    "name": "\u8cfc\u7269\u8eca\u66f4\u65b0",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/cart_items\/total_price",
+                            "path": "api\/cart_items",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/cart_items\/total_price"
+                            "raw": "{{baseUrl}}\/api\/cart_items"
                         },
-                        "method": "GET",
+                        "method": "PUT",
                         "header": [
                             {
                                 "key": "Content-Type",
@@ -243,21 +243,21 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"cart_item_ids\":[1,2,3]}"
+                            "raw": "{\"products[]\":[{\"product_id\":\"123\",\"quantity\":2},{\"product_id\":\"456\",\"quantity\":5}],\"quantity\":3}"
                         },
-                        "description": "\u9019\u88e1\u6703\u9700\u8981\u524d\u7aef\u5c07\u4f7f\u7528\u8005\u5df2\u52fe\u9078\u7684\u6240\u6709\u5546\u54c1\u7684id\u7d44\u6210\u9663\u5217\uff0c\u50b3\u5230\u5f8c\u7aef\uff0c\u5f8c\u7aef\u5728\u8fd4\u56de\u8a72\u91d1\u984d"
+                        "description": "\u5728\u6b64API\u6703\u66f4\u65b0\u8cfc\u7269\u8eca\u8cc7\u8a0a\uff0c\u7136\u5f8c\u5c07\u7e3d\u91d1\u984d\u8a08\u7b97\u5f8c\u56de\u50b3"
                     },
                     "response": [
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n    \"data\": {\n        \"total_price\": \"\u8a08\u7b97\u7684\u7e3d\u91d1\u984d\"\n    }\n}",
+                            "body": "{\n\n}",
                             "name": ""
                         },
                         {
                             "header": [],
-                            "code": 403,
-                            "body": "{\n    \"error\": \"Some cart items do not belong to the user or do not exist\"\n}",
+                            "code": 400,
+                            "body": "{\n    \"error\": \"Validation error message.\"\n}",
                             "name": ""
                         }
                     ]
@@ -303,6 +303,102 @@
                             "code": 204,
                             "body": "{}",
                             "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\n    \"error\": \"Resource not found.\"\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "GoogleLogin",
+            "description": "Operations related to googleLogin.",
+            "item": [
+                {
+                    "name": "\u91cd\u5b9a\u5411\u5230Google\u8fdb\u884c\u8eab\u4efd\u9a8c\u8bc1",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/login\/google",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/login\/google"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer "
+                            }
+                        ],
+                        "body": null,
+                        "description": "\u8c03\u7528\u6b64\u7aef\u70b9\u5f8c\u7aef\u6703\u56de\u50b3\u6388\u6b0a\u7684url\uff0c\u524d\u7aef\u518d\u5c07\u7528\u6237\u91cd\u5b9a\u5411\u5230Google\u7684\u767b\u5f55\u9875\u9762\u8fdb\u884c\u8eab\u4efd\u9a8c\u8bc1\u3002\n\u6210\u529f\u540e\uff0cGoogle\u4f1a\u5c06\u7528\u6237\u91cd\u5b9a\u5411\u56de\u5e94\u7528\u7684\u56de\u8c03URL\u4e5f\u5c31\u662f\u4ee5\u4e0b\u7684API\u3002",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n \"url\": \"https:\/\/accounts.google.com\/o\/oauth2\/auth?response_type=code&client_id=...\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 500,
+                            "body": "{\n \"error\": \"Unable to redirect to Google. Please try again later.\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "\u8655\u7406\u5f9e Google \u7b2c\u4e09\u65b9\u8a8d\u8b49\u670d\u52d9\u9801\u9762\u8fd4\u56de\u7684\u56de\u8abf\u3002",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/login\/google\/callback",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/login\/google\/callback"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer "
+                            }
+                        ],
+                        "body": null,
+                        "description": "\u6b64\u8655\u5c31\u662f\u53ef\u4ee5\u5f9egoogle\u62ff\u5230\u4f7f\u7528\u8005\u8cc7\u8a0a\u4e26\u5132\u5b58\u5728\u8cc7\u6599\u5eab\n\u7136\u5f8c\u53cd\u56de\u5e36token\u7684cookie",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"message\": \"Login successful via Google\",\n    \"user\": \"\u4f7f\u7528\u8005\u7684\u8cc7\u6599\"\n}",
+                            "name": ""
                         }
                     ]
                 }
@@ -338,7 +434,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"total_price\":69132201.5,\"payment_method\":\"dolores\",\"payment_status\":\"aut\"}"
+                            "raw": "{\"total_price\":6857.879,\"payment_method\":\"pariatur\",\"payment_status\":\"enim\"}"
                         },
                         "description": ""
                     },
@@ -429,7 +525,7 @@
                                 {
                                     "id": "order",
                                     "key": "order",
-                                    "value": "non",
+                                    "value": "recusandae",
                                     "description": "\u8a02\u55ae\u7684ID\u3002\u7528\u65bc\u6307\u5b9a\u67e5\u8a62\u54ea\u4e00\u500b\u8a02\u55ae\u7684\u8a73\u60c5\u3002"
                                 }
                             ]
@@ -487,7 +583,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"order_id\":3,\"race_id\":12}"
+                            "raw": "{\"order_id\":19,\"race_id\":20}"
                         },
                         "description": ""
                     },
@@ -550,7 +646,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"totalPrice\":21453895.22534129}"
+                            "raw": "{\"totalPrice\":64449307.6066}"
                         },
                         "description": "\u4e3b\u8981\u4f7f\u7528\u8005\u9ede\u9078\u7d50\u5e33\u5f8c\u53ef\u4ee5\u8acb\u6c42\u9019\u500bAPI\uff0c\u7136\u5f8c\u85cd\u661f\u91d1\u6d41\u6703\u767c\u7d50\u5e33\u9801\u9762\u7d66\u4f7f\u7528\u8005\uff0c\n\u6b64\u65b9\u6cd5\u4e3b\u8981\u529f\u80fd\u5982\u4e0b\uff1a\n1. \u9a57\u8b49\u7576\u524d\u4f7f\u7528\u8005\u3002\n2. \u66f4\u65b0\u8207\u7576\u524d\u4f7f\u7528\u8005\u95dc\u806f\u7684\u8cfc\u7269\u8eca\u9805\u76ee\u7684\u7d50\u5e33\u72c0\u614b\u3002\n3. \u751f\u6210\u8207\u85cd\u661f\u91d1\u6d41\u76f8\u95dc\u7684\u652f\u4ed8\u53c3\u6578\uff08\u5305\u62ec\u52a0\u5bc6\u548c\u54c8\u5e0c\uff09\u3002\n4. \u8fd4\u56de\u652f\u4ed8\u53c3\u6578\uff0c\u4ee5\u4fbf\u524d\u7aef\u5c07\u4f7f\u7528\u8005\u91cd\u5b9a\u5411\u5230\u85cd\u661f\u91d1\u6d41\u7684\u652f\u4ed8\u9801\u9762\u3002"
                     },
@@ -588,7 +684,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"TradeInfo\":\"cumque\",\"TradeSha\":\"ipsam\"}"
+                            "raw": "{\"TradeInfo\":\"et\",\"TradeSha\":\"repellendus\"}"
                         },
                         "description": "\u6b64\u65b9\u6cd5\u4e3b\u8981\u529f\u80fd\u5982\u4e0b\uff1a\n1. \u5f9e\u8acb\u6c42\u4e2d\u63d0\u53d6\u652f\u4ed8\u76f8\u95dc\u7684\u8cc7\u8a0a\u3002\n2. \u9a57\u8b49\u652f\u4ed8\u56de\u8abf\u7684\u6578\u5b57\u7c3d\u540d\u4ee5\u78ba\u4fdd\u8cc7\u6599\u7684\u5b8c\u6574\u6027\u3002\n3. \u6839\u64da\u652f\u4ed8\u7d50\u679c\u8a18\u9304\u76f8\u95dc\u7684\u65e5\u8a8c\u8cc7\u8a0a\u3002\n4. \u5728\u652f\u4ed8\u6210\u529f\u5f8c\u5411\u4f7f\u7528\u8005\u767c\u9001\u901a\u77e5\u90f5\u4ef6\u3002"
                     },
@@ -626,7 +722,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"first_name\":\"est\",\"last_name\":\"pariatur\",\"email\":\"upton.nakia@example.com\"}"
+                            "raw": "{\"first_name\":\"a\",\"last_name\":\"ut\",\"email\":\"pkihn@example.org\"}"
                         },
                         "description": ""
                     },
@@ -635,63 +731,6 @@
                             "header": [],
                             "code": 200,
                             "body": "{\n    \"id\": 123,\n    \"name\": \"myBaby\",\n    \"level\": 50,\n    \"race_id\": 25,\n    \"race\": \"Pikachu\",\n    \"photo\": \"http:\/\/example.com\/pikachu.jpg\",\n    \"ability\": \"Static\",\n    \"nature\": \"Jolly\",\n    \"skills\": [\"Thunderbolt\", \"Quick Attack\"],\n    \"host\": \"Ash Ketchum\"\n    \"evolution_level\":16\n}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "\u65b0\u589e\u4e00\u500b\u5c6c\u65bc\u8a72\u4f7f\u7528\u8005\u7684\u5bf6\u53ef\u5922\u3002",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/pokemons",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/pokemons"
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer "
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"name\":\"d\",\"race_id\":7,\"ability_id\":1,\"nature_id\":11,\"level\":3,\"skills\":[19]}"
-                        },
-                        "description": "\u6b64\u65b9\u6cd5\u5c07\u9a57\u8b49\u8acb\u6c42\u6578\u64da\uff0c\u4e26\u5728\u6210\u529f\u9a57\u8b49\u5f8c\uff0c\n\u70ba\u7576\u524d\u7d93\u904e\u8eab\u4efd\u9a57\u8b49\u7684\u7528\u6236\u65b0\u589e\u4e00\u96bb\u5bf6\u53ef\u5922\u3002"
-                    },
-                    "response": [
-                        {
-                            "header": [],
-                            "code": 201,
-                            "body": "{\n  \"message\": \"Pokemon created successfully.\"\n}",
-                            "name": ""
-                        },
-                        {
-                            "header": [],
-                            "code": 400,
-                            "body": "{\n  \"message\": \"Validation error.\",\n  \"errors\": {\n    \"name\": [\n      \"The name field is required.\"\n    ],\n    \/\/ ... other validation errors ...\n  }\n}",
-                            "name": ""
-                        },
-                        {
-                            "header": [],
-                            "code": 404,
-                            "body": "{\n  \"message\": \"Race not found.\"\n}",
-                            "name": ""
-                        },
-                        {
-                            "header": [],
-                            "code": 500,
-                            "body": "{\n  \"message\": \"Server error.\"\n}",
                             "name": ""
                         }
                     ]
@@ -714,7 +753,7 @@
                                 {
                                     "id": "pokemon",
                                     "key": "pokemon",
-                                    "value": "11",
+                                    "value": "8",
                                     "description": "\u5bf6\u53ef\u5922\u7684ID\u3002\u793a\u4f8b\uff1a1"
                                 }
                             ]
@@ -747,52 +786,6 @@
                     ]
                 },
                 {
-                    "name": "\u4fee\u6539\u6307\u5b9a\u7684\u5bf6\u53ef\u5922\u3002",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/pokemons\/:id",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/pokemons\/:id",
-                            "variable": [
-                                {
-                                    "id": "id",
-                                    "key": "id",
-                                    "value": "15",
-                                    "description": "The ID of the pokemon."
-                                },
-                                {
-                                    "id": "pokemon",
-                                    "key": "pokemon",
-                                    "value": "15",
-                                    "description": "\u5bf6\u53ef\u5922\u7684ID\u3002Example\uff1a1"
-                                }
-                            ]
-                        },
-                        "method": "PUT",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer "
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"name\":\"mommy\",\"race_id\":7,\"ability_id\":17,\"nature_id\":3,\"level\":2,\"skills\":[\"fugit\"]}"
-                        },
-                        "description": "\u6b64\u65b9\u6cd5\u5141\u8a31\u4f7f\u7528\u8005\u4fee\u6539\u4ed6\u5011\u7684\u5bf6\u53ef\u5922\u7684\u8cc7\u8a0a\u3002"
-                    },
-                    "response": []
-                },
-                {
                     "name": "\u522a\u9664\u6307\u5b9a\u7684\u5bf6\u53ef\u5922\u3002",
                     "request": {
                         "url": {
@@ -810,7 +803,7 @@
                                 {
                                     "id": "pokemon",
                                     "key": "pokemon",
-                                    "value": "3",
+                                    "value": "1",
                                     "description": "\u5bf6\u53ef\u5922\u7684ID\u3002\u793a\u4f8b\uff1a1"
                                 }
                             ]
@@ -866,7 +859,7 @@
                                 {
                                     "id": "pokemon",
                                     "key": "pokemon",
-                                    "value": "10",
+                                    "value": "18",
                                     "description": "\u5bf6\u53ef\u5922\u7684ID\u3002\u7bc4\u4f8b\uff1a1"
                                 }
                             ]
@@ -987,7 +980,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"commodi\",\"email\":\"kunze.yasmeen@example.net\",\"password\":\"!vS{?bL{q&v^RoHP)t\",\"password_confirmation\":\"voluptas\"}"
+                            "raw": "{\"name\":\"quod\",\"email\":\"gayle.cronin@example.com\",\"password\":\"nHBbv|o|w7\",\"password_confirmation\":\"porro\"}"
                         },
                         "description": "\u6b64\u65b9\u6cd5\u6703\u9a57\u8b49\u8f38\u5165\u7684\u8cc7\u6599\uff0c\u4e26\u5728\u6210\u529f\u9a57\u8b49\u5f8c\u5728`users`\u8868\u4e2d\u5275\u5efa\u4e00\u500b\u65b0\u7684\u4f7f\u7528\u8005\u7d00\u9304\u3002\n\u4e4b\u5f8c\uff0c\u5b83\u6703\u89f8\u767c\u4e00\u500b`Registered`\u4e8b\u4ef6\uff0c\u4e26\u8fd4\u56de\u4e00\u500b\u6210\u529f\u7684\u97ff\u61c9\uff0c\u5305\u62ec\u65b0\u5275\u5efa\u7684\u4f7f\u7528\u8005\u7684\u8cc7\u6599\u3002",
                         "auth": {
@@ -1092,13 +1085,13 @@
                             "formdata": [
                                 {
                                     "key": "name",
-                                    "value": "dolores",
+                                    "value": "nostrum",
                                     "type": "text",
                                     "description": "optional \u65b0\u7684\u7528\u6236\u540d\u7a31\u3002\u793a\u4f8b\uff1aJohn Doe"
                                 },
                                 {
                                     "key": "email",
-                                    "value": "nkoss@example.com",
+                                    "value": "veum.logan@example.net",
                                     "type": "text",
                                     "description": "optional \u65b0\u7684\u96fb\u5b50\u90f5\u4ef6\u5730\u5740\u3002\u793a\u4f8b\uff1ajohn.doe@example.com"
                                 },

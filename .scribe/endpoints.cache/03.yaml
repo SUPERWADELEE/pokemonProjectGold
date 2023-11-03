@@ -32,17 +32,26 @@ endpoints:
         status: 200
         content: |-
           {
-              "data": [
-                  {
-                      "id": "項目ID",
-                      "amount": "購物車中的商品數量",
-                      "current_price": "當前種族價格",
-                      "race_name": "種族名稱",
-                      "race_photo": "種族圖片URL",
-                      "race_id": "種族ID"
-                  },
 
-              ]
+          "data": [
+          {
+            "id": 67,
+            "amount": 1,
+            "current_price": "147.00",
+            "race_name": "charizard",
+            "race_photo": "https://raw.githubusercontent.com/*PokeAPI/sprites/master/sprites/pokemon/6.png",
+            "race_id": 6
+          },
+          {
+           "id": 68,
+           "amount": 1,
+           "current_price": "478.00",
+           "race_name": "wartortle",
+           "race_photo": "https://raw.githubusercontent.com/*PokeAPI/sprites/master/sprites/pokemon/8.png",
+           "race_id": 8
+          }
+          ],
+           "subtotal": 625
           }
         headers: []
         description: ''
@@ -140,15 +149,15 @@ endpoints:
     custom: []
   -
     httpMethods:
-      - GET
-    uri: api/cart_items/total_price
+      - PUT
+    uri: api/cart_items
     metadata:
       groupName: CartItem
       groupDescription: 'Operations related to cartItems.'
       subgroup: ''
       subgroupDescription: ''
-      title: 購物車總價格計算
-      description: 這裡會需要前端將使用者已勾選的所有商品的id組成陣列，傳到後端，後端在返回該金額
+      title: 購物車更新
+      description: 在此API會更新購物車資訊，然後將總金額計算後回傳
       authenticated: true
       custom: []
     headers:
@@ -160,40 +169,69 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      cart_item_ids:
-        name: cart_item_ids
-        description: 需要計算的購物車項目ID的列表。
+      'products[]':
+        name: 'products[]'
+        description: 'The list of products to update.'
         required: true
         example:
-          - 1
-          - 2
-          - 3
+          -
+            product_id: '123'
+            quantity: 2
+          -
+            product_id: '456'
+            quantity: 5
         type: 'string[]'
         enumValues: []
         custom: []
+      'products[].product_id':
+        name: 'products[].product_id'
+        description: 'The ID of the product.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        custom: []
+      'products[].quantity':
+        name: 'products[].quantity'
+        description: 'The new quantity for the product.'
+        required: true
+        example: 19
+        type: integer
+        enumValues: []
+        custom: []
+      quantity:
+        name: quantity
+        description: 更新的商品數量，必須在1到庫存的範圍內。
+        required: true
+        example: 3
+        type: integer
+        enumValues: []
+        custom: []
     cleanBodyParameters:
-      cart_item_ids:
-        - 1
-        - 2
-        - 3
+      'products[]':
+        -
+          product_id: '123'
+          quantity: 2
+        -
+          product_id: '456'
+          quantity: 5
+      quantity: 3
     fileParameters: []
     responses:
       -
         status: 200
         content: |-
           {
-              "data": {
-                  "total_price": "計算的總金額"
-              }
+
           }
         headers: []
         description: ''
         custom: []
       -
-        status: 403
+        status: 400
         content: |-
           {
-              "error": "Some cart items do not belong to the user or do not exist"
+              "error": "Validation error message."
           }
         headers: []
         description: ''
@@ -241,6 +279,15 @@ endpoints:
       -
         status: 204
         content: '{}'
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: |-
+          {
+              "error": "Resource not found."
+          }
         headers: []
         description: ''
         custom: []

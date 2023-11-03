@@ -22,15 +22,11 @@ paths:
                 type: object
                 example:
                   message: 'Login successful'
-                  token: 'Generated JWT token'
                   user: 'Authenticated user object'
                 properties:
                   message:
                     type: string
                     example: 'Login successful'
-                  token:
-                    type: string
-                    example: 'Generated JWT token'
                   user:
                     type: string
                     example: 'Authenticated user object'
@@ -70,7 +66,7 @@ paths:
                 email:
                   type: string
                   description: 用戶的電子郵件地址。example：user@example.com
-                  example: haylee.rowe@example.net
+                  example: abuckridge@example.net
                 password:
                   type: string
                   description: 用戶的密碼。
@@ -123,10 +119,68 @@ paths:
         200:
           description: ''
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-                example: "{\n    \"data\": [\n        {\n            \"id\": \"項目ID\",\n            \"amount\": \"購物車中的商品數量\",\n            \"current_price\": \"當前種族價格\",\n            \"race_name\": \"種族名稱\",\n            \"race_photo\": \"種族圖片URL\",\n            \"race_id\": \"種族ID\"\n        },\n\n    ]\n}"
+                type: object
+                example:
+                  data:
+                    -
+                      id: 67
+                      amount: 1
+                      current_price: '147.00'
+                      race_name: charizard
+                      race_photo: 'https://raw.githubusercontent.com/*PokeAPI/sprites/master/sprites/pokemon/6.png'
+                      race_id: 6
+                    -
+                      id: 68
+                      amount: 1
+                      current_price: '478.00'
+                      race_name: wartortle
+                      race_photo: 'https://raw.githubusercontent.com/*PokeAPI/sprites/master/sprites/pokemon/8.png'
+                      race_id: 8
+                  subtotal: 625
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 67
+                        amount: 1
+                        current_price: '147.00'
+                        race_name: charizard
+                        race_photo: 'https://raw.githubusercontent.com/*PokeAPI/sprites/master/sprites/pokemon/6.png'
+                        race_id: 6
+                      -
+                        id: 68
+                        amount: 1
+                        current_price: '478.00'
+                        race_name: wartortle
+                        race_photo: 'https://raw.githubusercontent.com/*PokeAPI/sprites/master/sprites/pokemon/8.png'
+                        race_id: 8
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 67
+                        amount:
+                          type: integer
+                          example: 1
+                        current_price:
+                          type: string
+                          example: '147.00'
+                        race_name:
+                          type: string
+                          example: charizard
+                        race_photo:
+                          type: string
+                          example: 'https://raw.githubusercontent.com/*PokeAPI/sprites/master/sprites/pokemon/6.png'
+                        race_id:
+                          type: integer
+                          example: 6
+                  subtotal:
+                    type: integer
+                    example: 625
         401:
           description: ''
           content:
@@ -203,11 +257,10 @@ paths:
               required:
                 - quantity
                 - race_id
-  /api/cart_items/total_price:
-    get:
-      summary: 購物車總價格計算
+    put:
+      summary: 購物車更新
       operationId: ''
-      description: 這裡會需要前端將使用者已勾選的所有商品的id組成陣列，傳到後端，後端在返回該金額
+      description: 在此API會更新購物車資訊，然後將總金額計算後回傳
       parameters: []
       responses:
         200:
@@ -216,28 +269,20 @@ paths:
             application/json:
               schema:
                 type: object
-                example:
-                  data:
-                    total_price: 計算的總金額
-                properties:
-                  data:
-                    type: object
-                    properties:
-                      total_price:
-                        type: string
-                        example: 計算的總金額
-        403:
+                example: {  }
+                properties: {  }
+        400:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  error: 'Some cart items do not belong to the user or do not exist'
+                  error: 'Validation error message.'
                 properties:
                   error:
                     type: string
-                    example: 'Some cart items do not belong to the user or do not exist'
+                    example: 'Validation error message.'
       tags:
         - CartItem
       requestBody:
@@ -247,17 +292,39 @@ paths:
             schema:
               type: object
               properties:
-                cart_item_ids:
+                'products[]':
                   type: array
-                  description: 需要計算的購物車項目ID的列表。
+                  description: 'The list of products to update.'
                   example:
-                    - 1
-                    - 2
-                    - 3
+                    -
+                      product_id: '123'
+                      quantity: 2
+                    -
+                      product_id: '456'
+                      quantity: 5
                   items:
                     type: string
+                products:
+                  type: object
+                  description: ''
+                  example:
+                    product_id: architecto
+                  properties:
+                    product_id:
+                      type: string
+                      description: 'The ID of the product.'
+                      example: architecto
+                    quantity:
+                      type: integer
+                      description: 'The new quantity for the product.'
+                      example: 19
+                quantity:
+                  type: integer
+                  description: 更新的商品數量，必須在1到庫存的範圍內。
+                  example: 3
               required:
-                - cart_item_ids
+                - 'products[]'
+                - quantity
   '/api/cart_items/{cart_item_id}':
     delete:
       summary: 購物車刪除
@@ -267,6 +334,18 @@ paths:
       responses:
         204:
           description: ''
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Resource not found.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Resource not found.'
       tags:
         - CartItem
     parameters:
@@ -278,6 +357,66 @@ paths:
         required: true
         schema:
           type: integer
+  /api/login/google:
+    get:
+      summary: 重定向到Google进行身份验证
+      operationId: Google
+      description: "调用此端点後端會回傳授權的url，前端再將用户重定向到Google的登录页面进行身份验证。\n成功后，Google会将用户重定向回应用的回调URL也就是以下的API。"
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  url: 'https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=...'
+                properties:
+                  url:
+                    type: string
+                    example: 'https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=...'
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unable to redirect to Google. Please try again later.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unable to redirect to Google. Please try again later.'
+      tags:
+        - GoogleLogin
+      security: []
+  /api/login/google/callback:
+    get:
+      summary: '處理從 Google 第三方認證服務頁面返回的回調。'
+      operationId: Google
+      description: "此處就是可以從google拿到使用者資訊並儲存在資料庫\n然後反回帶token的cookie"
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Login successful via Google'
+                  user: 使用者的資料
+                properties:
+                  message:
+                    type: string
+                    example: 'Login successful via Google'
+                  user:
+                    type: string
+                    example: 使用者的資料
+      tags:
+        - GoogleLogin
+      security: []
   /api/orders:
     post:
       summary: 訂單新增
@@ -357,15 +496,15 @@ paths:
                 total_price:
                   type: number
                   description: 訂單的總價格。
-                  example: 69132201.5
+                  example: 6857.879
                 payment_method:
                   type: string
                   description: "訂單的付款方式，只能是 'credit_card' 或 'cash_on_delivery'。"
-                  example: dolores
+                  example: pariatur
                 payment_status:
                   type: string
                   description: "訂單的付款狀態，只能是 'paid', 'unpaid', 或 'canceled'。"
-                  example: aut
+                  example: enim
               required:
                 - total_price
                 - payment_method
@@ -414,7 +553,7 @@ paths:
         in: path
         name: order
         description: 訂單的ID。用於指定查詢哪一個訂單的詳情。
-        example: non
+        example: recusandae
         required: true
         schema:
           type: string
@@ -521,11 +660,11 @@ paths:
                 order_id:
                   type: integer
                   description: 訂單的ID。
-                  example: 3
+                  example: 19
                 race_id:
                   type: integer
                   description: "產品(Race)的ID。\n\n根據指定的race_id從使用者的購物車中提取數量，並根據race的價格計算出單價和總價。\n建立訂單細節後，減少相應的庫存，並清除使用者購物車中的該race項。"
-                  example: 12
+                  example: 20
               required:
                 - order_id
                 - race_id
@@ -548,7 +687,7 @@ paths:
                 totalPrice:
                   type: number
                   description: 購物車中所有商品的總價格。
-                  example: 21453895.225341
+                  example: 64449307.6066
               required:
                 - totalPrice
   /api/payResult:
@@ -570,11 +709,11 @@ paths:
                 TradeInfo:
                   type: string
                   description: 支付相關的加密資料。
-                  example: cumque
+                  example: et
                 TradeSha:
                   type: string
                   description: 支付回調的數字簽名。
-                  example: ipsam
+                  example: repellendus
               required:
                 - TradeInfo
                 - TradeSha
@@ -604,110 +743,19 @@ paths:
                 first_name:
                   type: string
                   description: 'The first name of the user.'
-                  example: est
+                  example: a
                 last_name:
                   type: string
                   description: 'The last name of the user.'
-                  example: pariatur
+                  example: ut
                 email:
                   type: string
                   description: 'The email address of the user.'
-                  example: upton.nakia@example.com
+                  example: pkihn@example.org
               required:
                 - first_name
                 - last_name
                 - email
-    post:
-      summary: 新增一個屬於該使用者的寶可夢。
-      operationId: ''
-      description: "此方法將驗證請求數據，並在成功驗證後，\n為當前經過身份驗證的用戶新增一隻寶可夢。"
-      parameters: []
-      responses:
-        201:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: 'Pokemon created successfully.'
-                properties:
-                  message:
-                    type: string
-                    example: 'Pokemon created successfully.'
-        400:
-          description: ''
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: "{\n  \"message\": \"Validation error.\",\n  \"errors\": {\n    \"name\": [\n      \"The name field is required.\"\n    ],\n    // ... other validation errors ...\n  }\n}"
-        404:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: 'Race not found.'
-                properties:
-                  message:
-                    type: string
-                    example: 'Race not found.'
-        500:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: 'Server error.'
-                properties:
-                  message:
-                    type: string
-                    example: 'Server error.'
-      tags:
-        - Pokemons
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: 'Must not be greater than 15 characters.'
-                  example: d
-                race_id:
-                  type: integer
-                  description: ''
-                  example: 7
-                ability_id:
-                  type: integer
-                  description: ''
-                  example: 1
-                nature_id:
-                  type: integer
-                  description: ''
-                  example: 11
-                level:
-                  type: integer
-                  description: 'Must be at least 1. Must not be greater than 100.'
-                  example: 3
-                skills:
-                  type: array
-                  description: ''
-                  example:
-                    - 19
-                  items:
-                    type: integer
-              required:
-                - name
-                - race_id
-                - ability_id
-                - nature_id
-                - level
   '/api/pokemons/{id}':
     get:
       summary: 顯示指定寶可夢的詳細資訊。
@@ -767,48 +815,6 @@ paths:
                     example: Ash
       tags:
         - Pokemons
-    put:
-      summary: 修改指定的寶可夢。
-      operationId: ''
-      description: 此方法允許使用者修改他們的寶可夢的資訊。
-      parameters: []
-      responses: {  }
-      tags:
-        - Pokemons
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: 'optional 寶可夢的名字。最大長度為15個字符。'
-                  example: mommy
-                race_id:
-                  type: integer
-                  description: "optional 寶可夢的種族ID。該ID必須存在於系統的'races'表中。"
-                  example: 7
-                ability_id:
-                  type: integer
-                  description: "optional 寶可夢的能力ID。該ID必須存在於系統的'abilities'表中。"
-                  example: 17
-                nature_id:
-                  type: integer
-                  description: "optional 寶可夢的性格ID。該ID必須存在於系統的'natures'表中。"
-                  example: 3
-                level:
-                  type: integer
-                  description: 'optional 寶可夢的等級。其值必須是1到100之間的整數。'
-                  example: 2
-                skills:
-                  type: array
-                  description: 'optional 寶可夢的技能列表。至少包含1項，最多4項技能。Example：[1, 2, 3]'
-                  example:
-                    - fugit
-                  items:
-                    type: string
     delete:
       summary: 刪除指定的寶可夢。
       operationId: ''
@@ -844,7 +850,7 @@ paths:
         in: path
         name: pokemon
         description: 寶可夢的ID。示例：1
-        example: 11
+        example: 8
         required: true
         schema:
           type: integer
@@ -882,7 +888,7 @@ paths:
         in: path
         name: pokemon
         description: 寶可夢的ID。範例：1
-        example: 10
+        example: 18
         required: true
         schema:
           type: integer
@@ -936,19 +942,19 @@ paths:
                 name:
                   type: string
                   description: '使用者的名字。示例：John Doe'
-                  example: commodi
+                  example: quod
                 email:
                   type: string
                   description: 使用者的電子郵件地址。必須是唯一的並且符合電子郵件格式。示例：john.doe@example.com
-                  example: kunze.yasmeen@example.net
+                  example: gayle.cronin@example.com
                 password:
                   type: string
                   description: 使用者的密碼。必須至少有6個字符長並且與`password_confirmation`參數匹配。示例：password123
-                  example: '!vS{?bL{q&v^RoHP)t'
+                  example: nHBbv|o|w7
                 password_confirmation:
                   type: string
                   description: 密碼確認。必須與`password`參數匹配。示例：password123
-                  example: voluptas
+                  example: porro
               required:
                 - name
                 - email
@@ -1046,11 +1052,11 @@ paths:
                 name:
                   type: string
                   description: 'optional 新的用戶名稱。示例：John Doe'
-                  example: dolores
+                  example: nostrum
                 email:
                   type: string
                   description: 'optional 新的電子郵件地址。示例：john.doe@example.com'
-                  example: nkoss@example.com
+                  example: veum.logan@example.net
 tags:
   -
     name: Auth
@@ -1058,6 +1064,9 @@ tags:
   -
     name: CartItem
     description: 'Operations related to cartItems.'
+  -
+    name: GoogleLogin
+    description: 'Operations related to googleLogin.'
   -
     name: Order
     description: 'Operations related to orders.'

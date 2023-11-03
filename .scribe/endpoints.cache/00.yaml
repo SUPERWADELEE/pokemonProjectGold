@@ -29,7 +29,7 @@ endpoints:
         name: first_name
         description: 'The first name of the user.'
         required: true
-        example: est
+        example: a
         type: string
         enumValues: []
         custom: []
@@ -37,7 +37,7 @@ endpoints:
         name: last_name
         description: 'The last name of the user.'
         required: true
-        example: pariatur
+        example: ut
         type: string
         enumValues: []
         custom: []
@@ -45,14 +45,14 @@ endpoints:
         name: email
         description: 'The email address of the user.'
         required: true
-        example: upton.nakia@example.com
+        example: pkihn@example.org
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      first_name: est
-      last_name: pariatur
-      email: upton.nakia@example.com
+      first_name: a
+      last_name: ut
+      email: pkihn@example.org
     fileParameters: []
     responses:
       -
@@ -70,137 +70,6 @@ endpoints:
               "skills": ["Thunderbolt", "Quick Attack"],
               "host": "Ash Ketchum"
               "evolution_level":16
-          }
-        headers: []
-        description: ''
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - POST
-    uri: api/pokemons
-    metadata:
-      groupName: Pokemons
-      groupDescription: 'Operations related to pokemons.'
-      subgroup: ''
-      subgroupDescription: ''
-      title: 新增一個屬於該使用者的寶可夢。
-      description: |-
-        此方法將驗證請求數據，並在成功驗證後，
-        為當前經過身份驗證的用戶新增一隻寶可夢。
-      authenticated: true
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-      Authorization: 'Bearer '
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      name:
-        name: name
-        description: 'Must not be greater than 15 characters.'
-        required: true
-        example: d
-        type: string
-        enumValues: []
-        custom: []
-      race_id:
-        name: race_id
-        description: ''
-        required: true
-        example: 7
-        type: integer
-        enumValues: []
-        custom: []
-      ability_id:
-        name: ability_id
-        description: ''
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        custom: []
-      nature_id:
-        name: nature_id
-        description: ''
-        required: true
-        example: 11
-        type: integer
-        enumValues: []
-        custom: []
-      level:
-        name: level
-        description: 'Must be at least 1. Must not be greater than 100.'
-        required: true
-        example: 3
-        type: integer
-        enumValues: []
-        custom: []
-      skills:
-        name: skills
-        description: ''
-        required: false
-        example:
-          - 19
-        type: 'integer[]'
-        enumValues: []
-        custom: []
-    cleanBodyParameters:
-      name: d
-      race_id: 7
-      ability_id: 1
-      nature_id: 11
-      level: 3
-      skills:
-        - 19
-    fileParameters: []
-    responses:
-      -
-        status: 201
-        content: |-
-          {
-            "message": "Pokemon created successfully."
-          }
-        headers: []
-        description: ''
-        custom: []
-      -
-        status: 400
-        content: |-
-          {
-            "message": "Validation error.",
-            "errors": {
-              "name": [
-                "The name field is required."
-              ],
-              // ... other validation errors ...
-            }
-          }
-        headers: []
-        description: ''
-        custom: []
-      -
-        status: 404
-        content: |-
-          {
-            "message": "Race not found."
-          }
-        headers: []
-        description: ''
-        custom: []
-      -
-        status: 500
-        content: |-
-          {
-            "message": "Server error."
           }
         headers: []
         description: ''
@@ -241,13 +110,13 @@ endpoints:
         name: pokemon
         description: 寶可夢的ID。示例：1
         required: true
-        example: 11
+        example: 8
         type: integer
         enumValues: []
         custom: []
     cleanUrlParameters:
       id: 15
-      pokemon: 11
+      pokemon: 8
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -271,120 +140,6 @@ endpoints:
         headers: []
         description: ''
         custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - PUT
-      - PATCH
-    uri: 'api/pokemons/{id}'
-    metadata:
-      groupName: Pokemons
-      groupDescription: 'Operations related to pokemons.'
-      subgroup: ''
-      subgroupDescription: ''
-      title: 修改指定的寶可夢。
-      description: 此方法允許使用者修改他們的寶可夢的資訊。
-      authenticated: true
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-      Authorization: 'Bearer '
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the pokemon.'
-        required: true
-        example: 15
-        type: integer
-        enumValues: []
-        custom: []
-      pokemon:
-        name: pokemon
-        description: 寶可夢的ID。Example：1
-        required: true
-        example: 15
-        type: integer
-        enumValues: []
-        custom: []
-    cleanUrlParameters:
-      id: 15
-      pokemon: 15
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      name:
-        name: name
-        description: 'optional 寶可夢的名字。最大長度為15個字符。'
-        required: false
-        example: mommy
-        type: string
-        enumValues: []
-        custom: []
-      race_id:
-        name: race_id
-        description: "optional 寶可夢的種族ID。該ID必須存在於系統的'races'表中。"
-        required: false
-        example: 7
-        type: integer
-        enumValues: []
-        custom: []
-      ability_id:
-        name: ability_id
-        description: "optional 寶可夢的能力ID。該ID必須存在於系統的'abilities'表中。"
-        required: false
-        example: 17
-        type: integer
-        enumValues: []
-        custom: []
-      nature_id:
-        name: nature_id
-        description: "optional 寶可夢的性格ID。該ID必須存在於系統的'natures'表中。"
-        required: false
-        example: 3
-        type: integer
-        enumValues: []
-        custom: []
-      level:
-        name: level
-        description: 'optional 寶可夢的等級。其值必須是1到100之間的整數。'
-        required: false
-        example: 2
-        type: integer
-        enumValues: []
-        custom: []
-      skills:
-        name: skills
-        description: 'optional 寶可夢的技能列表。至少包含1項，最多4項技能。Example：[1, 2, 3]'
-        required: false
-        example:
-          - fugit
-        type: 'string[]'
-        enumValues: []
-        custom: []
-      'skills.*':
-        name: 'skills.*'
-        description: "optional 其中的每一個技能ID都必須是有效的且存在於'skills'表中。Example：1"
-        required: false
-        example: 19
-        type: integer
-        enumValues: []
-        custom: []
-    cleanBodyParameters:
-      name: mommy
-      race_id: 7
-      ability_id: 17
-      nature_id: 3
-      level: 2
-      skills:
-        - fugit
-    fileParameters: []
-    responses: []
     responseFields: []
     auth: []
     controller: null
@@ -423,13 +178,13 @@ endpoints:
         name: pokemon
         description: 寶可夢的ID。示例：1
         required: true
-        example: 3
+        example: 1
         type: integer
         enumValues: []
         custom: []
     cleanUrlParameters:
       id: 15
-      pokemon: 3
+      pokemon: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -493,13 +248,13 @@ endpoints:
         name: pokemon
         description: 寶可夢的ID。範例：1
         required: true
-        example: 10
+        example: 18
         type: integer
         enumValues: []
         custom: []
     cleanUrlParameters:
       pokemon_id: 15
-      pokemon: 10
+      pokemon: 18
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

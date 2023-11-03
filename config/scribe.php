@@ -41,6 +41,7 @@ return [
                  * Match only routes whose paths match this pattern (use * as a wildcard to match any characters). Example: 'users/*'.
                  */
                 'prefixes' => ['api/*'],
+                ['/*'],
                 
 
                 /*

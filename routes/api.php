@@ -44,7 +44,9 @@ Route::middleware('auth:api', 'checkStatus', 'throttle:100000,1')->group(functio
      */
     // pokemon列表
 
-    Route::apiResource('pokemons', PokemonController::class);
+    Route::apiResource('pokemons', PokemonController::class)->only([
+    'index', 'show', 'destroy'
+]);
     // Route::get('pokemons', [PokemonController::class, 'index']);
     // Route::post('pokemons', [PokemonController::class, 'store']);
     // Route::get('pokemons/search', [PokemonController::class, 'search']);
@@ -94,8 +96,8 @@ Route::middleware('auth:api', 'checkStatus', 'throttle:100000,1')->group(functio
     // 購物車詳情
     Route::get('cart_items', [CartItemController::class, 'index']);
     Route::post('cart_items', [CartItemController::class, 'store']);
-    Route::get('cart_items/total_price', [CartItemController::class, 'calculateTotalPrice']);
-    // Route::put('cart_items/{cart_item}', [CartItemController::class, 'update']);
+    // Route::get('cart_items/total_price', [CartItemController::class, 'calculateTotalPrice']);
+    Route::put('cart_items', [CartItemController::class, 'update']);
     Route::delete('cart_items/{cart_item}', [CartItemController::class, 'destroy']);
 
 
@@ -123,6 +125,11 @@ Route::post('/Auth/logout', [AuthController::class, 'logout']);
 
 // Route::post('pokemons/add', [PokemonController::class, 'add']);
 Route::post('/payResult', [PaymentsResponseController::class, 'notifyResponse']);
+
+// 第三方登入
+Route::get('login/google', [GoogleLoginController::class, 'redirectToProvider']);
+Route::get('login/google/callback', [GoogleLoginController::class,'handleProviderCallback']);
+
 
 
 

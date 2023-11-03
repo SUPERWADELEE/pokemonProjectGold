@@ -20,27 +20,32 @@ class GoogleLoginController extends Controller
 
 
     /**
-     * 將用戶重定向到Google的OAuth認證頁面。
+     * 重定向到Google进行身份验证
      *
-     * 此API就是當前端按下google登入的時候
-     * 將用戶重定向到Google的OAuth服務。
-     * 如果在重定向過程中出現錯誤，它會捕獲異常
-     * 並回應一個JSON錯誤訊息。
-     * 如果成功就是倒倒google頁面
+     * 调用此端点後端會回傳授權的url，前端再將用户重定向到Google的登录页面进行身份验证。
+     * 成功后，Google会将用户重定向回应用的回调URL也就是以下的API。
      *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse 
-     *         返回到Google的OAuth頁面的重定向響應，或者在失敗時返回一個JSON錯誤訊息。
+     * 
+     *
+     * @response 200 {
+     *  "url": "https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=..."
+     * }
+     * @response 500 {
+     *  "error": "Unable to redirect to Google. Please try again later."
+     * }
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function redirectToProvider()
     {
-       
-        try {
-            return Socialite::driver('google')->redirect();
-        } catch (\Exception $e) {
-            // Log::error('Error redirecting to Google: ' . $e->getMessage());
 
-            return response()->json(['error' => '無法重定向到Google。請稍後再試。'], 500);
-        }
+    //     try {
+    //         return Socialite::driver('google')->redirect();
+    //     } catch (\Exception $e) {
+    //         // Log::error('Error redirecting to Google: ' . $e->getMessage());
+
+    //         return response()->json(['error' => '無法重定向到Google。請稍後再試。'], 500);
+    //     }
     }
 
 
@@ -49,10 +54,9 @@ class GoogleLoginController extends Controller
      * 處理從 Google 第三方認證服務頁面返回的回調。
      *
      * 此處就是可以從google拿到使用者資訊並儲存在資料庫
-     * 然後登入
+     * 然後反回帶token的cookie
      * @response 200 {
      *     "message": "Login successful via Google",
-     *     "token": "使用者的 JWT 令牌",
      *     "user": "使用者的資料"
      * }
      * 
@@ -82,11 +86,11 @@ class GoogleLoginController extends Controller
         $token = JWTAuth::fromUser($user);
 
         // 返回令牌給前端
-        // return response()->json([
-        //     'message' => 'Login successful via Google',
-        //     'token' => $token,
-        //     'user' => $user
-        // ], 200);
-        return redirect("/?token={$token}");
+        return response()->json([
+            'message' => 'Login successful via Google',
+            'token' => $token,
+            'user' => $user
+        ], 200);
+        // return redirect("/?token={$token}");
     }
 }

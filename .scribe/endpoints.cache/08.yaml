@@ -33,7 +33,7 @@ endpoints:
         name: email
         description: 用戶的電子郵件地址。example：user@example.com
         required: true
-        example: haylee.rowe@example.net
+        example: abuckridge@example.net
         type: string
         enumValues: []
         custom: []
@@ -46,7 +46,7 @@ endpoints:
         enumValues: []
         custom: []
     cleanBodyParameters:
-      email: haylee.rowe@example.net
+      email: abuckridge@example.net
       password: e123456
     fileParameters: []
     responses:
@@ -55,7 +55,6 @@ endpoints:
         content: |-
           {
             "message": "Login successful",
-            "token": "Generated JWT token",
             "user": "Authenticated user object"
           }
         headers: []

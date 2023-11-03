@@ -72,75 +72,28 @@ class PokemonController extends Controller
     }
 
 
-   /**
-     * 新增一個屬於該使用者的寶可夢。
-     *
-     * 此方法將驗證請求數據，並在成功驗證後，
-     * 為當前經過身份驗證的用戶新增一隻寶可夢。
-     *
-     * @authenticated
-     *
-     * // ... your existing params documentation ...
-     *
-     * @response 201 {
-     *   "message": "Pokemon created successfully."
-     * }
-     * 
-     * @response 400 {
-     *   "message": "Validation error.",
-     *   "errors": {
-     *     "name": [
-     *       "The name field is required."
-     *     ],
-     *     // ... other validation errors ...
-     *   }
-     * }
-     * 
-     * @response 404 {
-     *   "message": "Race not found."
-     * }
-     * 
-     * @response 500 {
-     *   "message": "Server error."
-     * }
-     *
-     */
-    // 寶可夢新增
-    public function store(StorePokemonRequest $request)
-    {
-        $validatedData = $request->validated();
-        $user = JWTAuth::parseToken()->authenticate();
-        $userId = $user->id;
-        $validatedData['user_id'] = $userId;
-        Pokemon::create($validatedData);
-    }
+    // 寶可夢新增(目前沒有)
+    // public function store(StorePokemonRequest $request)
+    // {
+    //     $validatedData = $request->validated();
+    //     $user = JWTAuth::parseToken()->authenticate();
+    //     $userId = $user->id;
+    //     $validatedData['user_id'] = $userId;
+    //     Pokemon::create($validatedData);
+    // }
 
-    /**
-     * 修改指定的寶可夢。
-     *
-     * 此方法允許使用者修改他們的寶可夢的資訊。
-     *
-     * @bodyParam name string optional 寶可夢的名字。最大長度為15個字符。Example:mommy
-     * @bodyParam race_id integer optional 寶可夢的種族ID。該ID必須存在於系統的'races'表中。
-     * @bodyParam ability_id integer optional 寶可夢的能力ID。該ID必須存在於系統的'abilities'表中。
-     * @bodyParam nature_id integer optional 寶可夢的性格ID。該ID必須存在於系統的'natures'表中。
-     * @bodyParam level integer optional 寶可夢的等級。其值必須是1到100之間的整數。
-     * @bodyParam skills array optional 寶可夢的技能列表。至少包含1項，最多4項技能。Example：[1, 2, 3]
-     * @bodyParam skills.* integer optional 其中的每一個技能ID都必須是有效的且存在於'skills'表中。Example：1
-     *
-     * @urlParam pokemon integer required 寶可夢的ID。Example：1
-     *
-     */
-    // 寶可夢資料修改
-    public function update(UpdatePokemonRequest $request, Pokemon $pokemon)
-    {
-        $pokemon->load(['ability', 'nature', 'race']);
-        // 你不能去修改別人的神奇寶貝
-        $this->authorize('update', $pokemon); //path:Model/pokemon-> path:model->policy
-        $pokemon->update($request->validated());
-        // return PokemonResource::make($pokemon);
-    }
+    // 寶可夢資料修改(目前沒有)
+    // public function update(UpdatePokemonRequest $request, Pokemon $pokemon)
+    // {
+    //     $pokemon->load(['ability', 'nature', 'race']);
+    //     // 你不能去修改別人的神奇寶貝
+    //      $this->authorize('update', $pokemon); 
+    //      //path:Model/pokemon-> path:model->policy
+    //     $pokemon->update($request->validated());
+    //     // return PokemonResource::make($pokemon);
+    // }
 
+    
     /**
      * 顯示指定寶可夢的詳細資訊。
      *
